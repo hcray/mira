@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MRWebViewActivity" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        style="@style/title"
+        android:background="#81d8cf"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/leftbtn"
+            style="@style/table_back_line"
+            android:onClick="back"
+            android:visibility="visible" >
+
+            <ImageView style="@style/table_back_image" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="@color/white" />
+
+        <Button
+            style="@style/table_more_set"
+            android:onClick="complete"
+            android:text="" />
+    </RelativeLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc" >
+    </LinearLayout>
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+         />
+
+</LinearLayout>

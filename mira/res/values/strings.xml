@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">mira</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_mrmain">MRMainActivity</string>
+    <string name="title_activity_mrtest">MRTestActivity</string>
+    <string name="title_activity_mrhistory">MRHistoryActivity</string>
+    <string name="title_activity_mrmy">MRMyActivity</string>
+    <string name="title_activity_mrindex">MRIndexActivity</string>
+    <string name="title_activity_mrfind">MRFindActivity</string>
+    <string name="title_activity_mrweb_view">MRWebViewActivity</string>
+    <string name="title_activity_mrwelcome">MRWelcomeActivity</string>
+
+</resources>

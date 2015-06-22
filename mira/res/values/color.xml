@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   	 <color name="user_list_public_bg">#e5e6e7</color>
+   	 <color name="transparent">#00000000</color>
+     <color name="editTextColor">#7d7d7d</color>
+     <color name="mainleft_text">#666</color>
+     <color name="backgroundColor">#ffffff</color>
+     <color name="backgroundColor2">#f7f7f7</color>
+      <color name="backgroundColor3">#f0eff4</color>
+     <color name="guidColor">#e7ece6</color>
+     <color name="white">#ffffff</color>
+     <color name="white_88">#88ffffff</color>
+     <color name="white_cc">#bbffffff</color>
+     <color name="red">#ff0000</color>
+     <color name="black">#000000</color>
+     <color name="touming_half">#88000000</color>
+     <color name="blue">#2493cd</color>
+     <color name="blue_change">#45c3ec</color>
+      <color name="blue_90">#e55597b0</color>
+     <color name="blue_change1">#ee45c3ec</color>
+     <color name="blue_deep">#016193</color>
+     <color name="gray_deep">#626262</color>
+     <color name="gray_dd">#bcbcbc</color>
+     <color name="menu_choose">#cad1cc</color>
+     <color name="green">#01b434</color>
+     <color name="green1">#36ff00</color>
+     <color name="yellow">#e7d902</color>
+     <color name="progressBackgroundColor">#d3d3d3</color>
+     <color name="hintColor">#c0bfc3</color>
+     <color name="TextColor">#FFFFFF</color>
+    <color name="bgColor">#000000</color>
+    <color  name="btnchooseColor">#079bc6</color>
+    
+    
+    
+    <color name="body_text_1">#ff000000</color>
+    <color name="body_text_2">#99000000</color>
+    <color name="body_text_disabled">#66000000</color>
+    <color name="body_text_disabled1">#94000000</color>
+    <color name="body_text_1_inverse">#ffffffff</color>
+    <color name="body_text_2_inverse">#99ffffff</color>
+    <color name="accent_1">#ff29549f</color>
+    <color name="title">#2493cd</color>
+    <color name="hyperlink">#ffff549f</color>
+    <color name="background_1">#ffffffff</color>
+    <color name="whats_on_separator">#4d000000</color>
+    <color name="all_track_color">#ff222222</color>
+    <color name="block_column_1">#ff0fabff</color>
+    <color name="block_column_2">#ffdf1831</color>
+    <color name="block_column_3">#ff009939</color>
+    
+    
+    
+    
+    
+    <drawable name="font_some">#8b8a8a</drawable>
+    <drawable name="gray">#d2d2d2</drawable>
+    <drawable name="white">#ffffff</drawable>
+    <drawable name="black">#000000</drawable>
+    <drawable name="font_common">#595959</drawable>
+    <drawable name="font_2d">#6d6d6d</drawable>
+    <drawable name="backgroud_color">#e6e6e6</drawable>
+
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#a0000000</color>
+    <color name="barcode_menu_selected">#55FFFFFF</color>
+    <color name="barcode_menu_normal">#00000000</color>
+    <color name="stroke">#b0b0b0</color>
+    <color name="inner_line">#dedede</color>
+    <color name="bt_bg_pressed">#55ededed</color>
+    <color name="bg_list_item_white">#fff</color>
+
+    <color name="font_black">#000</color>
+    <color name="font_small">#aaa</color>
+    <color name="bg_bottom_bar">#f8f8f8</color>
+    
+    <!-- call borad color begin -->
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_7d7d7d">#7d7d7d</color>
+    <color name="color_ff9105">#ff9105</color>
+    <color name="color_ff8a00">#ff8a00</color>
+    <color name="color_83b600">#83b600</color>
+    <color name="color_cad1cc">#cad1cc</color>
+    <color name="color_75a800">#75a800</color>
+    <color name="color_3ab8ea">#3ab8ea</color>
+    <color name="color_2493cd">#2493cd</color>
+    <color name="color_1caae7">#1caae7</color>
+    <color name="color_bbbbbb">#bbbbbb</color>
+    <color name="color_dfdfdf">#dfdfdf</color>
+    <color name="color_c0bfc3">#c0bfc3</color>
+    <color name="color_555555">#555555</color>
+    <color name="color_f8c351">#f8c351</color>
+    <color name="color_e1a347">#e1a347</color> <!-- 做标记 -->
+    <!-- call borad color end -->
+</resources>
