@@ -1,17 +1,15 @@
 package com.mira;
 
-import com.common.MRCommon;
-
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
+
+import com.common.MRCommon;
 
 public class MRIndexActivity extends Activity {
 	WebView webView;
@@ -20,6 +18,8 @@ public class MRIndexActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_index);
+		
+		/**
 		webView=(WebView)findViewById(R.id.webView);
 		
 		webView.getSettings().setAllowFileAccess(true);// 设置允许访问文件数据
@@ -70,6 +70,7 @@ public class MRIndexActivity extends Activity {
 			}
 		});
 		webView.loadUrl("http://apinet.miramask.com/app");
+		*/
 	}
 
 	@Override

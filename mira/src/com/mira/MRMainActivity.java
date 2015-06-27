@@ -1,24 +1,22 @@
 package com.mira;
 
 
-import com.common.BaiDuLocationModel;
-import com.common.BaiduLocation;
-import com.common.HandlerEvent;
-import com.common.MRCommon;
-import com.database.MRDataBase;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
+
+import com.common.BaiDuLocationModel;
+import com.common.BaiduLocation;
+import com.common.HandlerEvent;
+import com.common.MRCommon;
+import com.database.MRDataBase;
 
 public class MRMainActivity extends TabActivity {
 	TabHost tabHost;
@@ -68,19 +66,8 @@ public class MRMainActivity extends TabActivity {
 					tvTest.setTextColor(0xff888888);
 					tvMy.setTextColor(0xff888888);
 					break;
-				case R.id.ll_find:
-					tabHost.setCurrentTab(1);	
-					ivIndex.setBackgroundResource(R.drawable.tab_infomation);
-					ivFind.setBackgroundResource(R.drawable.tab_discover_select);
-					ivTest.setBackgroundResource(R.drawable.tab_check);
-					ivMy.setBackgroundResource(R.drawable.tab_myinfo);
-					tvIndex.setTextColor(0xff888888);
-					tvFind.setTextColor(0xff63c5c8);
-					tvTest.setTextColor(0xff888888);
-					tvMy.setTextColor(0xff888888);
-					break;
 				case R.id.ll_test:
-					tabHost.setCurrentTab(2);
+					tabHost.setCurrentTab(1);
 					ivIndex.setBackgroundResource(R.drawable.tab_infomation);
 					ivFind.setBackgroundResource(R.drawable.tab_discover);
 					ivTest.setBackgroundResource(R.drawable.tab_check_select);
@@ -88,6 +75,17 @@ public class MRMainActivity extends TabActivity {
 					tvIndex.setTextColor(0xff888888);
 					tvFind.setTextColor(0xff888888);
 					tvTest.setTextColor(0xff63c5c8);
+					tvMy.setTextColor(0xff888888);
+					break;
+				case R.id.ll_find:
+					tabHost.setCurrentTab(2);	
+					ivIndex.setBackgroundResource(R.drawable.tab_infomation);
+					ivFind.setBackgroundResource(R.drawable.tab_discover_select);
+					ivTest.setBackgroundResource(R.drawable.tab_check);
+					ivMy.setBackgroundResource(R.drawable.tab_myinfo);
+					tvIndex.setTextColor(0xff888888);
+					tvFind.setTextColor(0xff63c5c8);
+					tvTest.setTextColor(0xff888888);
 					tvMy.setTextColor(0xff888888);
 					break;
 				case R.id.ll_my:
