@@ -17,5 +17,8 @@
     <string name="main_activity_tv_discover">发现</string>
     <string name="main_activity_tv_test">检测</string>
     <string name="main_activity_tv_my">我的</string>
+    
+    <string name="activity_index_camera">camera</string>
+    <string name="activity_index_calender">calender</string>
 
 </resources>

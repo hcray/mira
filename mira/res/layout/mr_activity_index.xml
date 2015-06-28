@@ -29,10 +29,13 @@
             android:text="@string/main_activity_tv_diary"
             android:textColor="@color/white" />
 
-        <Button
+        <ImageButton
+            android:id="@+id/ib_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
             style="@style/table_more_set"
-            android:onClick="complete"
-            android:text="" />
+            android:src="@drawable/camera"
+            android:contentDescription="@string/activity_index_camera" />
     </RelativeLayout>
 	<LinearLayout
         android:layout_width="match_parent"
@@ -46,16 +49,17 @@
 	        android:layout_marginStart="20dp"
 	        android:orientation="horizontal">
         
-	        <EditText android:id="@+id/et_picDt"
+	        <EditText android:id="@+id/et_selectDate"
 	            android:layout_width="80dp"
 	            android:layout_height="wrap_content"
 	            android:inputType="text"
 	            />
-	        <Button android:id="@+id/b_datePick" 
+	        <ImageButton android:id="@+id/ib_calender" 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="日期"
-	            android:labelFor="@+id/et_picDt"/>
+	            android:src="@drawable/calender"
+	            android:contentDescription="@string/activity_index_calender"
+	            android:labelFor="@+id/et_selectDate"/>
         </LinearLayout>
         
             
