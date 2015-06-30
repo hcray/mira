@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     tools:context=".MRMyActivity" >
 
     <RelativeLayout
@@ -34,5 +35,45 @@
             android:onClick="complete"
             android:text="" />
     </RelativeLayout>
+   
+    <LinearLayout
+        android:orientation="vertical"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:padding="15.0dip">
+        	<RelativeLayout
+		    	android:layout_width="fill_parent" 
+		    	android:layout_height="wrap_content">
+	    	    <ImageView 
+			    	android:id="@+id/user_info_userface"
+			      	android:layout_width="70dip" 
+			        android:layout_height="70dip"
+			        android:scaleType="fitCenter"
+			        android:padding="3.0dip"
+					android:clickable="true"
+			        android:src="@drawable/widget_dface"/>
+	    	    <ImageView 
+			    	android:id="@+id/user_info_gender"
+			      	android:layout_width="18dip" 
+			        android:layout_height="18dip"
+			        android:layout_marginLeft="10.0dip"
+			        android:layout_toRightOf="@id/user_info_userface"
+		           	android:layout_alignBottom="@id/user_info_userface"
+			        android:scaleType="fitCenter"
+			        android:src="@drawable/widget_gender_man"/>
+			   	<TextView 
+		       		android:id="@+id/user_info_username"  
+		    		android:layout_width="wrap_content" 
+		           	android:layout_height="wrap_content" 
+		           	android:layout_marginBottom="10.0dip"
+		           	android:layout_above="@id/user_info_gender"
+		           	android:layout_alignLeft="@id/user_info_gender"
+		           	android:textSize="15.0dip"
+		            android:textColor="#0e5986"/>
 
-</RelativeLayout>
+		    </RelativeLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>
