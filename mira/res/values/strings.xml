@@ -27,5 +27,6 @@
     <string name="login_activity_password">密码:</string>
     <string name="login_activity_password_hint">输入密码</string>
     <string name="login_activity_forget">忘记密码?</string>
+    <string name="login_activity_signIn">注册</string>
 
 </resources>

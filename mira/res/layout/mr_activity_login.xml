@@ -90,23 +90,37 @@
 		        android:id="@+id/login_activity_bt_login" 
 	        	android:layout_width="180dp"
 	        	android:layout_height="wrap_content"
+	        	android:gravity="center"
 	        	android:text="@string/login_activity_tv_login"/>
 		</LinearLayout>
        
-		<LinearLayout 
+		<RelativeLayout 
 		    android:id="@+id/login_activity_ly_forget"
 	        android:layout_width="fill_parent" 
-	        android:layout_height="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="20dp" 
+	        android:layout_marginRight="20dp" 
 	        android:layout_marginTop="7.0dip"
 	        android:layout_below="@id/login_activity_ly_submit">
-				<TextView
-					android:layout_width="wrap_content" 
-					android:layout_height="wrap_content" 
-					android:layout_marginLeft="8.0dip" 
-					android:textSize="14dip" 
-					android:textStyle="bold" 
-					android:textColor="#ff000000" 
-					android:text="@string/login_activity_forget" />
-		</LinearLayout>
+			<TextView
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:layout_alignParentLeft="true"
+				android:layout_marginLeft="8.0dip" 
+				android:textSize="14dip" 
+				android:textStyle="bold" 
+				android:textColor="#ff000000" 
+				android:text="@string/login_activity_forget" />
+			
+			<TextView
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_marginLeft="8.0dip" 
+				android:textSize="14dip" 
+				android:textStyle="bold"
+				android:textColor="#ff000000" 
+				android:text="@string/login_activity_signIn" />
+		</RelativeLayout>
 
 </RelativeLayout>
