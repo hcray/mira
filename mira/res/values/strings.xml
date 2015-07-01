@@ -12,13 +12,20 @@
     <string name="title_activity_mrfind">MRFindActivity</string>
     <string name="title_activity_mrweb_view">MRWebViewActivity</string>
     <string name="title_activity_mrwelcome">MRWelcomeActivity</string>
-    
     <string name="main_activity_tv_diary">美丽日记</string>
     <string name="main_activity_tv_discover">发现</string>
     <string name="main_activity_tv_test">检测</string>
     <string name="main_activity_tv_my">我的</string>
-    
     <string name="activity_index_camera">camera</string>
     <string name="activity_index_calender">calender</string>
+    
+    <string name="title_activity_login">LoginActivity</string>
+    
+    <string name="login_activity_tv_login">登录</string>
+    <string name="login_activity_account">账号:</string>
+    <string name="login_activity_account_hint">输入账号/手机号</string>
+    <string name="login_activity_password">密码:</string>
+    <string name="login_activity_password_hint">输入密码</string>
+    <string name="login_activity_forget">忘记密码?</string>
 
 </resources>
