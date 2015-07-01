@@ -24,6 +24,8 @@
       	android:id="@+id/login_uly"
        	android:layout_width="fill_parent" 
        	android:layout_height="wrap_content"
+       	android:layout_marginLeft="20dp" 
+	    android:layout_marginRight="20dp"
        	android:layout_below="@id/login_title">
           <TextView 
             android:layout_width="wrap_content" 
@@ -47,12 +49,14 @@
             android:maxLines="1" 
             android:singleLine="true" 
             android:selectAllOnFocus="true" 
-            android:inputType="textEmailAddress" />
+            android:inputType="number" />
       </LinearLayout>
       
      <LinearLayout
         android:id="@+id/login_activity_ly_password"
-        android:layout_width="fill_parent" 
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="20dp" 
+	    android:layout_marginRight="20dp"
         android:layout_height="wrap_content" 
         android:layout_marginTop="7.0dip"
         android:layout_below="@id/login_uly">
@@ -102,7 +106,9 @@
 	        android:layout_marginRight="20dp" 
 	        android:layout_marginTop="7.0dip"
 	        android:layout_below="@id/login_activity_ly_submit">
+			
 			<TextView
+				android:id="@+id/login_activity_tv_forget"
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content" 
 				android:layout_alignParentLeft="true"
@@ -113,6 +119,7 @@
 				android:text="@string/login_activity_forget" />
 			
 			<TextView
+			    android:id="@+id/login_activity_tv_signIn"
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
 				android:layout_alignParentRight="true"
