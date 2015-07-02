@@ -32,5 +32,12 @@
     <string name="title_activity_mrinput_account">MRInputAccountActivity</string>
     <string name="title_activity_mrinput_password">MRInputPasswordActivity</string>
     <string name="title_activity_mrcomplete_info">MRCompleteInfoActivity</string>
+    
+    <string name="input_account_front_number">+86</string>
+    <string name="input_account_comment">请输入您的手机号码，该号码不会对其他人公开</string>
+    <string name="inputAccount_activity_tv_login">注册</string>
+    <string name="inputAccount_activity_account_hint">手机号</string>
+    <string name="input_account_btn_next">下一步</string>
+    <string name="input_account_phone_number_null">请输入手机号</string>
 
 </resources>

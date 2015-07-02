@@ -3,10 +3,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
+    
+   <RelativeLayout
+        android:id="@+id/inputAccount_title"
+        style="@style/title"
+        android:background="#81d8cf"
+        android:visibility="visible" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/inputAccount_activity_tv_login"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+    
+    <LinearLayout 
+      	android:id="@+id/inputAccount_uly"
+       	android:layout_width="fill_parent" 
+       	android:layout_height="wrap_content"
+       	android:layout_marginLeft="20dp" 
+	    android:layout_marginRight="20dp"
+       	android:layout_below="@id/inputAccount_title">
+          <TextView 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginLeft="8.0dip" 
+            android:layout_marginTop="10.0dip" 
+            android:textSize="16dip" 
+            android:textStyle="bold" 
+            android:textColor="#ff000000" 
+            android:text="@string/input_account_front_number" />
+          
+          <EditText 
+            android:id="@+id/inputAccount_ev_account" 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="10.0dip" 
+            android:layout_marginLeft="8.0dip" 
+            android:layout_marginRight="8.0dip" 
+            android:background="@null" 
+            android:hint="@string/inputAccount_activity_account_hint" 
+            android:textSize="16sp" 
+            android:maxLines="1" 
+            android:singleLine="true" 
+            android:selectAllOnFocus="true" 
+            android:inputType="number" />
+      </LinearLayout>
+      
+	<LinearLayout 
+		android:id="@+id/inputAccount_uly2"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp" 
+		android:layout_marginRight="20dp"
+		android:layout_below="@id/inputAccount_uly">
+          
+	    <TextView 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="10.0dip" 
+            android:textSize="12sp" 
+            android:textColor="#C0C0C0" 
+            android:text="@string/input_account_comment" />
+	</LinearLayout>
+	
+	<LinearLayout 
+		android:id="@+id/inputAccount_uly3"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp" 
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="20dp"
+		android:layout_below="@id/inputAccount_uly2">
+          
+	    <Button 
+	        android:id="@+id/inputAccount_btn_next"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/input_account_btn_next"/>
+	</LinearLayout>
+      
 
 </RelativeLayout>
