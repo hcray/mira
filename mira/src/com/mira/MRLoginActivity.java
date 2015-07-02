@@ -1,6 +1,7 @@
 package com.mira;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -83,13 +84,15 @@ public class MRLoginActivity extends Activity {
         //忘记密码
         tvForget.setOnClickListener(new View.OnClickListener() {
      			public void onClick(View v) {
-     				//TODO
+     				Intent intent = new Intent(v.getContext(), MRInputAccountActivity.class);
+     		    	startActivity(intent);
      			}
         });
         //注册
         tvSignIn.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
-        		//TODO
+        		Intent intent = new Intent(v.getContext(), MRInputAccountActivity.class);
+        		startActivity(intent);
         	}
         });
         

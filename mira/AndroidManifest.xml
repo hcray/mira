@@ -103,6 +103,18 @@
             android:name=".MRLoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name=".MRInputAccountActivity"
+            android:label="@string/title_activity_mrinput_account" >
+        </activity>
+        <activity
+            android:name=".MRInputPasswordActivity"
+            android:label="@string/title_activity_mrinput_password" >
+        </activity>
+        <activity
+            android:name=".MRCompleteInfoActivity"
+            android:label="@string/title_activity_mrcomplete_info" >
+        </activity>
     </application>
 
 </manifest>

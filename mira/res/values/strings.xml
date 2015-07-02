@@ -29,5 +29,8 @@
     <string name="msg_login_account_null">请输入账号</string>
     <string name="msg_login_pwd_null">请输入密码</string>
     <string name="title_activity_mrnex">MRNexActivity</string>
+    <string name="title_activity_mrinput_account">MRInputAccountActivity</string>
+    <string name="title_activity_mrinput_password">MRInputPasswordActivity</string>
+    <string name="title_activity_mrcomplete_info">MRCompleteInfoActivity</string>
 
 </resources>
