@@ -18,9 +18,7 @@
     <string name="main_activity_tv_my">我的</string>
     <string name="activity_index_camera">camera</string>
     <string name="activity_index_calender">calender</string>
-    
     <string name="title_activity_login">LoginActivity</string>
-    
     <string name="login_activity_tv_login">登录</string>
     <string name="login_activity_account">账号:</string>
     <string name="login_activity_account_hint">输入账号/手机号</string>
@@ -28,5 +26,8 @@
     <string name="login_activity_password_hint">输入密码</string>
     <string name="login_activity_forget">忘记密码?</string>
     <string name="login_activity_signIn">注册</string>
+    <string name="msg_login_account_null">请输入账号</string>
+    <string name="msg_login_pwd_null">请输入密码</string>
+    <string name="title_activity_mrnex">MRNexActivity</string>
 
 </resources>
