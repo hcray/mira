@@ -38,8 +38,11 @@
         android:layout_below="@id/userInfo_title"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp"
+        
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_user_pic"
@@ -57,8 +60,10 @@
         android:layout_below="@id/userInfo_activity_ll_user_pic"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_user_sign"
             android:layout_width="fill_parent"
@@ -75,9 +80,10 @@
         android:layout_below="@id/userInfo_activity_ll_user_sign"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
-        >
+        android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_nick_name"
             android:layout_width="fill_parent"
@@ -94,9 +100,10 @@
         android:layout_below="@id/userInfo_activity_ll_nick_name"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
-        >
+        android:layout_marginRight="20dp">
     
 		<ImageView
 		    android:layout_marginTop="10dp"
@@ -113,9 +120,10 @@
         android:layout_below="@id/userInfo_activity_ll_border1"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
-        >
+        android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_sex"
             android:layout_width="fill_parent"
@@ -132,8 +140,10 @@
         android:layout_below="@id/userInfo_activity_ll_sex"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp"
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_age"
@@ -151,8 +161,10 @@
         android:layout_below="@id/userInfo_activity_ll_age"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_height"
             android:layout_width="fill_parent"
@@ -168,8 +180,10 @@
         android:layout_below="@id/userInfo_activity_ll_height"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_weight"
             android:layout_width="fill_parent"
@@ -185,8 +199,10 @@
         android:layout_below="@id/userInfo_activity_ll_weight"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp"
         >
 		<ImageView
 		    android:layout_marginTop="10dp"
@@ -202,8 +218,10 @@
         android:layout_below="@id/userInfo_activity_ll_border2"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_menses"
             android:layout_width="fill_parent"
@@ -219,8 +237,11 @@
         android:layout_below="@id/userInfo_activity_ll_menses"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp"
+        >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_type"
             android:layout_width="fill_parent"
@@ -236,8 +257,11 @@
         android:layout_below="@id/userInfo_activity_ll_skin_type"
         android:orientation="horizontal"
         android:gravity="end"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="20dp"
+        >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_type_test"
             android:layout_width="wrap_content"
