@@ -38,14 +38,12 @@
     <string name="inputAccount_activity_account_hint">手机号</string>
     <string name="input_account_btn_next">下一步</string>
     <string name="input_account_phone_number_null">请输入手机号</string>
-    
     <string name="inputPassword_activity_tv_title">完善信息</string>
     <string name="inputPassword_activity_password_hint">密码，至少六位</string>
     <string name="inputPassword_activity_vcode">验证码</string>
     <string name="inputPassword_btn_next">下一步</string>
     <string name="inputPassword_vcode_is_null">请输入验证码</string>
     <string name="inputPassword_password_is_null">请输入密码</string>
-    
     <string name="completeInfo_activity_title">基本信息</string>
     <string name="completeInfo_activity_uploadPic">上传头像</string>
     <string name="completeInfo_activity_nickName">昵称</string>
@@ -55,10 +53,8 @@
     <string name="completeInfo_activity_birthday">生日</string>
     <string name="completeInfo_activity_skinType">皮肤类型</string>
     <string name="completeInfo_activity_complete">完成</string>
-    
     <string name="title_activity_mrgrades_rule">MRGradesRuleActivity</string>
     <string name="btn_back_value">返回</string>
-    
     <string name="gradesRule_activity_title">积分规则</string>
     <string name="gradesRule_activity_rule_title">如何赚取积分?</string>
     <string name="gradesRule_activity_rule_content">积分规则</string>
@@ -66,5 +62,11 @@
     <string name="gradesRule_activity_rule_content2">2.上传自拍照得积分</string>
     <string name="gradesRule_activity_rule_content3">3.分享得积分</string>
     <string name="gradesRule_activity_rule_content4">4.记录我的护肤品得积分</string>
+    <string name="title_activity_mruser_info">MRUserInfoActivity</string>
+    <string name="title_activity_mrmy_changes">MRMyChangesActivity</string>
 
+    
+    <string name="myChanges_activity_title">我的变化</string>
+
+    <string name="userInfo_activity_title">个人资料</string>
 </resources>

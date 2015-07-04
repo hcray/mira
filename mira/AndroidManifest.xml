@@ -98,7 +98,7 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
-        </service>
+        </service>
         -->
 
         <activity
@@ -120,6 +120,14 @@
         <activity
             android:name=".MRGradesRuleActivity"
             android:label="@string/title_activity_mrgrades_rule" >
+        </activity>
+        <activity
+            android:name=".MRUserInfoActivity"
+            android:label="@string/title_activity_mruser_info" >
+        </activity>
+        <activity
+            android:name=".MRMyChangesActivity"
+            android:label="@string/title_activity_mrmy_changes" >
         </activity>
     </application>
 
