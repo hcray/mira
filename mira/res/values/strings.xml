@@ -69,4 +69,16 @@
     <string name="myChanges_activity_title">我的变化</string>
 
     <string name="userInfo_activity_title">个人资料</string>
+    <string name="userInfo_activity_user_pic">头像</string>
+    <string name="userInfo_activity_user_sign">个性签名</string>
+    <string name="userInfo_activity_nick_name">昵称</string>
+    <string name="userInfo_activity_sex">性别</string>
+    <string name="userInfo_activity_age">年龄</string>
+    <string name="userInfo_activity_height">身高</string>
+    <string name="userInfo_activity_weight">体重</string>
+    <string name="userInfo_activity_menses">经期记录</string>
+    <string name="userInfo_activity_skin_type">我的肤质</string>
+    <string name="userInfo_activity_skin_type_test">不知道，去测测</string>
+    
+    
 </resources>
