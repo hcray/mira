@@ -47,5 +47,15 @@
     <string name="inputPassword_vcode_is_null">请输入验证码</string>
     <string name="inputPassword_password_is_null">请输入密码</string>
     
+    <string name="completeInfo_activity_title">基本信息</string>
+    <string name="completeInfo_activity_uploadPic">上传头像</string>
+    <string name="completeInfo_activity_nickName">昵称</string>
+    <string name="completeInfo_activity_sex">性别</string>
+    <string name="completeInfo_activity_sex_man">男</string>
+    <string name="completeInfo_activity_sex_woman">女</string>
+    <string name="completeInfo_activity_birthday">生日</string>
+    <string name="completeInfo_activity_skinType">皮肤类型</string>
+    <string name="completeInfo_activity_complete">完成</string>
+    
 
 </resources>
