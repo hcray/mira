@@ -127,7 +127,7 @@
             android:textSize="18sp"
             android:text="@string/completeInfo_activity_birthday" />
         
-        <EditText 
+        <EditText
             android:id="@+id/completeInfo_activity_et_birthday"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

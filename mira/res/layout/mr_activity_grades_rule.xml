@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/gradesRule_title"
+        style="@style/title"
+        android:layout_alignParentTop="true"
+        android:background="#81d8cf"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/gradesRuleBackbtn"
+            style="@style/table_back_line"
+            android:onClick="back"
+            android:visibility="visible" >
+
+            <ImageView style="@style/table_back_image" 
+                android:contentDescription="@string/btn_back_value"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/gradesRule_activity_tv_title"
+            style="@style/titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/gradesRule_activity_title"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gradesRule_title"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="15.0dip" >
+         <TextView
+            android:id="@+id/gradesRule_activity_tv_rule_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/gradesRule_activity_rule_title"
+            />
+
+        <TextView
+            android:id="@+id/gradesRule_activity_tv_rule_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/gradesRule_activity_rule_content"
+            />
+        <TextView
+            android:id="@+id/gradesRule_activity_tv_rule_content1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gradesRule_activity_rule_content1"
+            />
+        <TextView
+            android:id="@+id/gradesRule_activity_tv_rule_content2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gradesRule_activity_rule_content2"
+            />
+        <TextView
+            android:id="@+id/gradesRule_activity_tv_rule_content3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gradesRule_activity_rule_content3"
+            />
+        <TextView
+            android:id="@+id/gradesRule_activity_tv_rule_content4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gradesRule_activity_rule_content4"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

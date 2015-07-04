@@ -15,7 +15,7 @@
         android:required="false" />
 
     <uses-sdk
-        android:minSdkVersion="18"
+        android:minSdkVersion="15"
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -93,11 +93,13 @@
             android:screenOrientation="portrait" >
         </activity>
 
+        <!--
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
-        </service>
+        </service>
+        -->
 
         <activity
             android:name=".MRLoginActivity"
@@ -114,6 +116,10 @@
         <activity
             android:name=".MRCompleteInfoActivity"
             android:label="@string/title_activity_mrcomplete_info" >
+        </activity>
+        <activity
+            android:name=".MRGradesRuleActivity"
+            android:label="@string/title_activity_mrgrades_rule" >
         </activity>
     </application>
 

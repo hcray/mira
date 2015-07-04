@@ -89,15 +89,16 @@
 				           	android:text="V11"
 				            />
 					   	
-				   	      <ImageView 
-					    	android:id="@+id/user_info_help"
+				   	      <ImageButton
+					    	android:id="@+id/user_info_ibtn_help"
 					      	android:layout_width="18dip" 
 					        android:layout_height="18dip"
 					        android:layout_marginLeft="10.0dip"
 				           	android:layout_alignParentRight="true"
 				           	android:scaleType="fitCenter"
 				           	android:layout_marginRight="20sp"
-					        android:src="@drawable/help"/>
+					        android:background="@drawable/help"
+					        />
 				   	      
 					  	<TextView 
 				       		android:id="@+id/user_info_grades"  
@@ -105,7 +106,7 @@
 				           	android:layout_height="wrap_content" 
 				           	android:layout_marginBottom="10.0dip"
 				           	android:textSize="15.0dip"
-				           	android:layout_toLeftOf="@id/user_info_help"
+				           	android:layout_toLeftOf="@id/user_info_ibtn_help"
 				           	android:text="0积分"
 				            />
 			   	
