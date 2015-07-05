@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,11 @@ public class MRLoginActivity extends Activity {
 	 * 注册
 	 */
 	private TextView tvSignIn;
+	
+	/**
+	 * 返回按钮
+	 */
+	private LinearLayout backbtn;
 	
 	private InputMethodManager imm;
 	
@@ -88,6 +94,7 @@ public class MRLoginActivity extends Activity {
      		    	startActivity(intent);
      			}
         });
+        
         //注册
         tvSignIn.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
@@ -96,6 +103,13 @@ public class MRLoginActivity extends Activity {
         	}
         });
         
+        //返回按钮
+    	backbtn = (LinearLayout) this.findViewById(R.id.activityLoginBackbtn);
+		backbtn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				MRLoginActivity.this.finish();
+			}
+		});
         
 	}
 	

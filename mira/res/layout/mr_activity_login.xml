@@ -9,6 +9,15 @@
         style="@style/title"
         android:background="#81d8cf"
         android:visibility="visible" >
+       	<LinearLayout
+            android:id="@+id/activityLoginBackbtn"
+            style="@style/table_back_line"
+            android:onClick="back"
+            android:visibility="visible" >
+
+            <ImageView style="@style/table_back_image" 
+                android:contentDescription="@string/btn_back_value"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView1"
