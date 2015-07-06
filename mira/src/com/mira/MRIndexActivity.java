@@ -10,7 +10,6 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -19,7 +18,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -31,12 +29,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
+
+import com.AppContext;
+import com.common.StringUtils;
 
 public class MRIndexActivity extends Activity implements
 	OnItemSelectedListener, ViewFactory {
 	
 	private static String TAG = "MRIndexActivity";
+
+	private Uri origUri;
+	
+	private String theLarge;
 	
 	/**
 	 * 相机 
@@ -82,7 +88,8 @@ public class MRIndexActivity extends Activity implements
 		ibCamera.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				try {  
+				try {
+					/*
 		            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); 
 		            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		            String picName = format.format(new Date());
@@ -96,6 +103,8 @@ public class MRIndexActivity extends Activity implements
 		            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);  
 		            startActivityForResult(intent, 0); 
 		            Log.v(TAG, "startActivityForResult");
+		            */
+					startTakePhoto();
 		        } catch (Exception e) {  
 		            e.printStackTrace();  
 		            Log.e(TAG, "message: " + e.getMessage() + " cause:" + e.getCause());
@@ -128,12 +137,39 @@ public class MRIndexActivity extends Activity implements
 		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.mrindex, menu);
-		return true;
-	}
+    private void startTakePhoto() {
+        Intent intent;
+        // 判断是否挂载了SD卡
+        String savePath = "";
+        String storageState = Environment.getExternalStorageState();
+        if (storageState.equals(Environment.MEDIA_MOUNTED)) {
+            savePath = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + "/mira/Camera/";
+            File savedir = new File(savePath);
+            if (!savedir.exists()) {
+                savedir.mkdirs();
+            }
+        }
+
+        // 没有挂载SD卡，无法保存文件
+        if (StringUtils.isEmpty(savePath)) {
+        	Toast.makeText(this.getBaseContext(), "无法保存照片，请检查SD卡是否挂载", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Log.v(TAG, "savePath: " + savePath);
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String fileName = "mira_" + timeStamp + ".jpg";// 照片命名
+        File out = new File(savePath, fileName);
+        Uri uri = Uri.fromFile(out);
+        origUri = uri;
+
+        theLarge = savePath + fileName;// 该照片的绝对路径
+
+        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(intent, 0);
+    }
 	
 	@Override 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
@@ -148,12 +184,14 @@ public class MRIndexActivity extends Activity implements
                 return;  
             }
             
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-            String picName = format.format(new Date());
+            //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+            //String picName = format.format(new Date());
             
-            String pathString = Environment.getExternalStorageDirectory()  
-                    .toString() + "/mira/" + picName + ".jpg";  
-            Log.v(TAG, "pathString = " + pathString);  
+           // String pathString = Environment.getExternalStorageDirectory().toString() + "/mira/" + picName + ".jpg";  
+            
+            //data.getExtras()
+           // Log.v(TAG, "pathString = " + pathString);  
+            
 //            Bitmap b = BitmapFactory.decodeFile(pathString);  
 //            imageView.setImageBitmap(b); 
  
@@ -167,25 +205,42 @@ public class MRIndexActivity extends Activity implements
 		/* 设定目前所在路径 */
 		List<String> it = new ArrayList<String>();
 
+		/*
 		String status = Environment.getExternalStorageState();
 		if (status.equals(Environment.MEDIA_MOUNTED)) {
 			
 		}else {
-//			showToast("无存储卡!");
+			//showToast("无存储卡!");
 		}
 		// 根据自己的需求读取SDCard中的资源图片的路径
 		String imagePath = Environment.getExternalStorageDirectory().toString()
 				+ "/mira/";
 
-		File mFile = new File(imagePath);
-		File[] files = mFile.listFiles();
-
-		/* 将所有文件存入ArrayList中 */
-		for (int i = 0; i < files.length; i++) {
-			File file = files[i];
-			if (checkIsImageFile(file.getPath()))
-				it.add(file.getPath());
-		}
+		 */
+        // 判断是否挂载了SD卡
+        String savePath = "";
+        String storageState = Environment.getExternalStorageState();
+        if (storageState.equals(Environment.MEDIA_MOUNTED)) {
+            savePath = Environment.getExternalStorageDirectory()
+                    .getAbsolutePath() + "/mira/Camera/";
+            File savedir = new File(savePath);
+            if (!savedir.exists()) {
+                savedir.mkdirs();
+            }
+        }
+        
+        if(StringUtils.isEmpty(savePath)){
+        	//Toast.makeText(this.getBaseContext(), "无法保存照片，请检查SD卡是否挂载", Toast.LENGTH_SHORT).show();
+        }else{
+			File mFile = new File(savePath);
+			File[] files = mFile.listFiles();
+			/* 将所有文件存入ArrayList中 */
+			for (int i = 0; i < files.length; i++) {
+				File file = files[i];
+				if (checkIsImageFile(file.getPath()))
+					it.add(file.getPath());
+			}
+        }
 		return it;
 	}
 
