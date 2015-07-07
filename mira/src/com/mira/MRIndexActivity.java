@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,11 +17,9 @@ import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
@@ -32,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
 
-import com.AppContext;
 import com.common.StringUtils;
 
 public class MRIndexActivity extends Activity implements
@@ -64,10 +58,25 @@ public class MRIndexActivity extends Activity implements
 	 */
 	private EditText etSelectDate;
 	
+	
+	/**
+	 * 
+	 */
+	private ImageButton arrowLeft;
+
+	
+	/**
+	 * 
+	 */
+	private ImageButton arrowRight;
+	
 //	private ImageView imageView;
 	
 	private List<String> imagePathList;
+	
 	private String[] list;
+	
+	private int position = -1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +89,9 @@ public class MRIndexActivity extends Activity implements
 		String picName = format.format(new Date());
 		etSelectDate.setText(picName);
 		
+		arrowLeft = (ImageButton) this.findViewById(R.id.index_activity_ib_arrowLeft);
+		
+		arrowRight = (ImageButton) this.findViewById(R.id.index_activity_ib_arrowRight);
 		
 		mSwitcher = (ImageSwitcher) this.findViewById(R.id.imgSwitcher);
 		
@@ -115,6 +127,10 @@ public class MRIndexActivity extends Activity implements
 		imagePathList = getImagePathFromSD();
 		Log.v(TAG, "imagePathList: " + imagePathList);
 		list = imagePathList.toArray(new String[imagePathList.size()]);
+		if(list.length > 0){
+			//取最后一张图片
+			position = list.length - 1;
+		}
 
 		mSwitcher.setFactory(this);
 		/* 设定载入Switcher的模式 */
@@ -134,9 +150,41 @@ public class MRIndexActivity extends Activity implements
 
 		});
 		
+		arrowLeft.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(position > 1){
+					position --;
+					String photoURL = list[position];
+					Log.i("A", String.valueOf(position));
+					
+					mSwitcher.setImageURI(Uri.parse(photoURL));
+				}else{
+					Toast.makeText(v.getContext(), "已经是最后一张", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		
+		arrowRight.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(position < list.length-1){
+					position ++;
+					String photoURL = list[position];
+					Log.i("A", String.valueOf(position));
+					
+					mSwitcher.setImageURI(Uri.parse(photoURL));
+				}else{
+					Toast.makeText(v.getContext(), "已经是最后一张", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 		
 	}
 
+	/**
+	 * 开启相机
+	 */
     private void startTakePhoto() {
         Intent intent;
         // 判断是否挂载了SD卡
@@ -171,6 +219,9 @@ public class MRIndexActivity extends Activity implements
         startActivityForResult(intent, 0);
     }
 	
+    /***
+     * 返回方法
+     */
 	@Override 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
         try {  
@@ -263,59 +314,6 @@ public class MRIndexActivity extends Activity implements
 		return isImageFormat;
 	}
 
-	/* 改写BaseAdapter自定义一ImageAdapter class */
-	public class ImageAdapter extends BaseAdapter {
-		/* 声明变量 */
-		int mGalleryItemBackground;
-		private Context mContext;
-		private List<String> lis;
-
-		/* ImageAdapter的构造符 */
-		public ImageAdapter(Context c, List<String> li) {
-			mContext = c;
-			lis = li;
-			/*
-			 * 使用res/values/attrs.xml中的<declare-styleable>定义 的Gallery属性.
-			 */
-			//TypedArray mTypeArray = obtainStyledAttributes(R.styleable.Gallery);
-			/* 取得Gallery属性的Index id */
-			//mGalleryItemBackground = mTypeArray.getResourceId(R.styleable.Gallery_android_galleryItemBackground, 0);
-			/* 让对象的styleable属性能够反复使用 */
-			//mTypeArray.recycle();
-		}
-
-		/* 重写的方法getCount,传回图片数目 */
-		public int getCount() {
-			return lis.size();
-		}
-
-		/* 重写的方法getItem,传回position */
-		public Object getItem(int position) {
-			return position;
-		}
-
-		/* 重写的方法getItemId,传并position */
-		public long getItemId(int position) {
-			return position;
-		}
-
-		/* 重写方法getView,传并几View对象 */
-		public View getView(int position, View convertView, ViewGroup parent) {
-			/* 产生ImageView对象 */
-			ImageView i = new ImageView(mContext);
-			/* 设定图片给imageView对象 */
-			Bitmap bm = BitmapFactory.decodeFile(lis.get(position).toString());
-			i.setImageBitmap(bm);
-			/* 重新设定图片的宽高 */
-			i.setScaleType(ImageView.ScaleType.FIT_XY);
-			/* 重新设定Layout的宽高 */
-			//i.setLayoutParams(new Gallery.LayoutParams(136, 88));
-			/* 设定Gallery背景图 */
-			i.setBackgroundResource(mGalleryItemBackground);
-			/* 传回imageView对象 */
-			return i;
-		}
-	}
 
 	@Override
 	public View makeView() {
@@ -323,7 +321,7 @@ public class MRIndexActivity extends Activity implements
 		iv.setBackgroundColor(0xFF000000);
 		iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
 		iv.setLayoutParams(new ImageSwitcher.LayoutParams(
-				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		return iv;
 	}
 
