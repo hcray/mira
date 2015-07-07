@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import com.database.MRDataBase;
 
 public class MRMainActivity extends TabActivity {
 	
-	private DoubleClickExitHelper mDoubleClickExitHelper;
+	private Long mExitTime = 0l;
 	
 	TabHost tabHost;
 	ImageView ivIndex;
@@ -42,7 +43,6 @@ public class MRMainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_main);
 		MRDataBase.Init(this);
-		mDoubleClickExitHelper = new DoubleClickExitHelper(this);
 		
 		ivIndex=(ImageView)findViewById(R.id.iv_index);
 		ivFind=(ImageView)findViewById(R.id.iv_find);
@@ -163,12 +163,16 @@ public class MRMainActivity extends TabActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		boolean flag = true;
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			// 是否退出应用
-			return mDoubleClickExitHelper.onKeyDown(keyCode, event);
-		} else {
-			flag = super.onKeyDown(keyCode, event);
-		}
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				int pid = android.os.Process.myTid();
+	            android.os.Process.killProcess(pid);
+			}
 		return flag;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

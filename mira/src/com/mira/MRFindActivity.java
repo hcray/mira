@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MRFindActivity extends Activity {
-
+	private Long mExitTime = 0l;
+	
 	int width;
 	int height;
 	ImageButton ibMask;
@@ -84,6 +87,24 @@ public class MRFindActivity extends Activity {
 				MRFindActivity.this.startActivity(intent);
 			}
 		});
+	}
+	
+	/**
+	 * 监听返回--是否退出程序
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		boolean flag = true;
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				int pid = android.os.Process.myTid();
+	            android.os.Process.killProcess(pid);
+			}
+		return flag;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

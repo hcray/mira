@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
@@ -27,10 +28,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
 
+import com.common.DoubleClickExitHelper;
 import com.common.StringUtils;
 
 public class MRIndexActivity extends Activity implements
 	OnItemSelectedListener, ViewFactory {
+	
+	private Long mExitTime = 0l;
 	
 	private static String TAG = "MRIndexActivity";
 
@@ -351,6 +355,23 @@ public class MRIndexActivity extends Activity implements
 	public void onNothingSelected(AdapterView<?> parent) {
 		// TODO Auto-generated method stub
 		
+	}
+	/**
+	 * 监听返回--是否退出程序
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		boolean flag = true;
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				int pid = android.os.Process.myTid();
+	            android.os.Process.killProcess(pid);
+			}
+		return flag;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

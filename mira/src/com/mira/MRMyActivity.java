@@ -3,11 +3,14 @@ package com.mira;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MRMyActivity extends Activity {
+	private Long mExitTime = 0l;
 	
 	private ImageButton iBtn_help;
 	//个人资料
@@ -57,5 +60,23 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
+	}
+	
+	/**
+	 * 监听返回--是否退出程序
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		boolean flag = true;
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				int pid = android.os.Process.myTid();
+	            android.os.Process.killProcess(pid);
+			}
+		return flag;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
