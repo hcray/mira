@@ -60,23 +60,32 @@ public class MRIndexActivity extends Activity implements
 	
 	
 	/**
-	 * 
+	 * 朝左切换图片的按钮
 	 */
 	private ImageButton arrowLeft;
 
 	
 	/**
-	 * 
+	 * 朝右切换图片的按钮
 	 */
 	private ImageButton arrowRight;
 	
 //	private ImageView imageView;
 	
+	/**
+	 * 路径集合
+	 */
 	private List<String> imagePathList;
 	
-	private String[] list;
+	/**
+	 * 路径集合
+	 */
+	private String[] pathList;
 	
-	private int position = -1;
+	/**
+	 * 当前位置
+	 */
+	private int curPosition = -1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -126,10 +135,10 @@ public class MRIndexActivity extends Activity implements
 		
 		imagePathList = getImagePathFromSD();
 		Log.v(TAG, "imagePathList: " + imagePathList);
-		list = imagePathList.toArray(new String[imagePathList.size()]);
-		if(list.length > 0){
+		pathList = imagePathList.toArray(new String[imagePathList.size()]);
+		if(pathList.length > 0){
 			//取最后一张图片
-			position = list.length - 1;
+			curPosition = pathList.length - 1;
 		}
 
 		mSwitcher.setFactory(this);
@@ -153,10 +162,10 @@ public class MRIndexActivity extends Activity implements
 		arrowLeft.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(position > 1){
-					position --;
-					String photoURL = list[position];
-					Log.i("A", String.valueOf(position));
+				if(curPosition > 1){
+					curPosition --;
+					String photoURL = pathList[curPosition];
+					Log.i("A", String.valueOf(curPosition));
 					
 					mSwitcher.setImageURI(Uri.parse(photoURL));
 				}else{
@@ -168,10 +177,10 @@ public class MRIndexActivity extends Activity implements
 		arrowRight.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(position < list.length-1){
-					position ++;
-					String photoURL = list[position];
-					Log.i("A", String.valueOf(position));
+				if(curPosition < pathList.length-1){
+					curPosition ++;
+					String photoURL = pathList[curPosition];
+					Log.i("A", String.valueOf(curPosition));
 					
 					mSwitcher.setImageURI(Uri.parse(photoURL));
 				}else{
@@ -329,7 +338,7 @@ public class MRIndexActivity extends Activity implements
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Auto-generated method stub
-		String photoURL = list[position];
+		String photoURL = pathList[position];
 		Log.i("A", String.valueOf(position));
 
 		mSwitcher.setImageURI(Uri.parse(photoURL));
