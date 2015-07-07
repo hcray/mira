@@ -59,6 +59,7 @@
 	        <ImageButton android:id="@+id/ib_calender" 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:background="#00000000"
 	            android:src="@drawable/calender"
 	            android:contentDescription="@string/activity_index_calender"
 	            android:labelFor="@+id/et_selectDate"/>
