@@ -4,6 +4,7 @@ package com.mira;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,11 +15,15 @@ import android.widget.TextView;
 
 import com.common.BaiDuLocationModel;
 import com.common.BaiduLocation;
+import com.common.DoubleClickExitHelper;
 import com.common.HandlerEvent;
 import com.common.MRCommon;
 import com.database.MRDataBase;
 
 public class MRMainActivity extends TabActivity {
+	
+	private DoubleClickExitHelper mDoubleClickExitHelper;
+	
 	TabHost tabHost;
 	ImageView ivIndex;
 	ImageView ivFind;
@@ -37,6 +42,7 @@ public class MRMainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_main);
 		MRDataBase.Init(this);
+		mDoubleClickExitHelper = new DoubleClickExitHelper(this);
 		
 		ivIndex=(ImageView)findViewById(R.id.iv_index);
 		ivFind=(ImageView)findViewById(R.id.iv_find);
@@ -149,6 +155,20 @@ public class MRMainActivity extends TabActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.mrmain, menu);
 		return true;
+	}
+	
+	/**
+	 * 监听返回--是否退出程序
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		boolean flag = true;
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			// 是否退出应用
+			return mDoubleClickExitHelper.onKeyDown(keyCode, event);
+		} else {
+			flag = super.onKeyDown(keyCode, event);
+		}
+		return flag;
 	}
 
 }

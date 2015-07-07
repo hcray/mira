@@ -83,5 +83,6 @@
     <string name="index_activity_arrowLeft_desc">朝左</string>
     <string name="index_activity_arrowRight_desc">朝右</string>
     
+    <string name="back_exit_tips">再按一次退出系统</string>
     
 </resources>
