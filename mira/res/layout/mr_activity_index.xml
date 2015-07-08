@@ -16,8 +16,6 @@
             style="@style/table_back_line"
             android:onClick="back"
             android:visibility="gone" >
-
-            <ImageView style="@style/table_back_image" />
         </LinearLayout>
 
         <TextView
@@ -46,15 +44,13 @@
 	    <LinearLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="20dp"
 	        android:layout_marginStart="20dp"
 	        android:orientation="horizontal">
         
-	        <EditText android:id="@+id/et_selectDate"
+	        <EditText android:id="@+id/et_selectDt"
 	            android:layout_width="120dp"
 	            android:layout_height="wrap_content"
 	            android:inputType="none"
-	            android:editable="false"
 	            />
 	        <ImageButton android:id="@+id/ib_calender" 
 	            android:layout_width="wrap_content"
@@ -62,13 +58,15 @@
 	            android:background="#00000000"
 	            android:src="@drawable/calender"
 	            android:contentDescription="@string/activity_index_calender"
-	            android:labelFor="@+id/et_selectDate"/>
+	            android:labelFor="@+id/et_selectDt"/>
         </LinearLayout>
         
         <LinearLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:orientation="horizontal">
+	        android:orientation="horizontal"
+	        android:baselineAligned="false" 
+	        >
 	        
             <LinearLayout
                 android:id="@+id/index_activity_ll_arrowLeft"
@@ -114,27 +112,30 @@
 	        
         </LinearLayout>
         
-        <TextView android:layout_width="wrap_content"
-          		android:layout_height="wrap_content"
-          		android:textSize="20sp"
-          		android:layout_marginBottom="10dp"
-          		android:layout_marginLeft="20dp"
-          		android:layout_marginStart="20dp"
-          		android:layout_marginTop="10dp"
-          		android:text="今日测试结果"/>
-        <TextView android:layout_width="wrap_content"
-          		android:layout_height="wrap_content"
-          		android:textSize="20sp"
-          		android:layout_marginTop="10dp"
-          		android:layout_marginLeft="20dp"
-          		android:layout_marginStart="20dp"
-          		android:text="我的护肤品"/>
-        <TextView android:layout_width="wrap_content"
-          		android:layout_height="wrap_content"
-          		android:textSize="20sp"
-          		android:layout_marginTop="10dp"
-          		android:layout_marginLeft="20dp"
-          		android:layout_marginStart="20dp"
-          		android:text="我的心情"/>
+       <LinearLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+        
+	        <TextView android:layout_width="wrap_content"
+	          		android:layout_height="wrap_content"
+	          		android:textSize="20sp"
+	          		android:layout_marginBottom="10dp"
+	          		android:layout_marginStart="20dp"
+	          		android:layout_marginTop="10dp"
+	          		android:text="@string/index_activity_today_result"/>
+	        <TextView android:layout_width="wrap_content"
+	          		android:layout_height="wrap_content"
+	          		android:textSize="20sp"
+	          		android:layout_marginTop="10dp"
+	          		android:layout_marginStart="20dp"
+	          		android:text="@string/index_activity_my_cream"/>
+	        <TextView android:layout_width="wrap_content"
+	          		android:layout_height="wrap_content"
+	          		android:textSize="20sp"
+	          		android:layout_marginTop="10dp"
+	          		android:layout_marginStart="20dp"
+	          		android:text="@string/index_activity_my_mood"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

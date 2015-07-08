@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
 
-import com.common.DoubleClickExitHelper;
 import com.common.StringUtils;
 
 public class MRIndexActivity extends Activity implements
@@ -97,7 +96,7 @@ public class MRIndexActivity extends Activity implements
 		setContentView(R.layout.mr_activity_index);
 		
 //		imageView = (ImageView) this.findViewById(R.id.imageView);
-		etSelectDate = (EditText) this.findViewById(R.id.et_selectDate);
+		etSelectDate = (EditText) this.findViewById(R.id.et_selectDt);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		String picName = format.format(new Date());
 		etSelectDate.setText(picName);

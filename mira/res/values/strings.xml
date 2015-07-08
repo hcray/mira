@@ -82,6 +82,9 @@
     
     <string name="index_activity_arrowLeft_desc">朝左</string>
     <string name="index_activity_arrowRight_desc">朝右</string>
+    <string name="index_activity_today_result">今日测试结果</string>
+    <string name="index_activity_my_cream">我的护肤品</string>
+    <string name="index_activity_my_mood">我的心情</string>
     
     <string name="back_exit_tips">再按一次退出系统</string>
     
