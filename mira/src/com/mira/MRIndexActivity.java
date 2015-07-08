@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,9 +16,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -27,6 +30,8 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
+import cn.aigestudio.datepicker.interfaces.OnDateSelected;
+import cn.aigestudio.datepicker.views.DatePicker;
 
 import com.common.StringUtils;
 
@@ -187,6 +192,34 @@ public class MRIndexActivity extends Activity implements
 				}
 			}
 		});
+		
+		ibCalender = (ImageButton) this.findViewById(R.id.index_activity_ib_calender);
+		ibCalender.setOnClickListener(new View.OnClickListener() {
+		            @Override
+		            public void onClick(View v) {
+		                final AlertDialog dialog = new AlertDialog.Builder(MRIndexActivity.this).create();
+		                dialog.show();
+
+		                DatePicker datePicker = new DatePicker(MRIndexActivity.this);
+		                datePicker.setOnDateSelected(new OnDateSelected() {
+		                    @Override
+		                    public void selected(List<String> date) {
+		                        StringBuilder sb = new StringBuilder();
+		                        for (String s : date) {
+		                            sb.append(s).append("\n");
+		                        }
+		                        etSelectDate.setText(sb.toString());;
+//		                        Toast.makeText(MRIndexActivity.this, sb.toString(),Toast.LENGTH_SHORT).show();
+		                        dialog.dismiss();
+		                    }
+		                });
+
+		                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams
+		                        .WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		                dialog.getWindow().setContentView(datePicker, params);
+		                dialog.getWindow().setGravity(Gravity.CENTER);
+		            }
+		        });
 		
 		if(pathList.length > 0){
 			//取最后一张图片
