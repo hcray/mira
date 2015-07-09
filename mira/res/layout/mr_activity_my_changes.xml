@@ -30,5 +30,47 @@
             android:text="@string/myChanges_activity_title"
             android:textColor="@color/white" />
     </RelativeLayout>
+    
+     <LinearLayout
+        android:id="@+id/myChanges_activity_lv1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myChanges_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal" 
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/completeInfo_activity_tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"
+            android:text="@string/myChanges_activity_lately" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:contentDescription="@string/myChanges_activity_lately" >
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/myChanges_activity_lately_twenty" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myChanges_activity_lately_fifty" >
+            </RadioButton>
+        </RadioGroup>
+    </LinearLayout>
 
 </RelativeLayout>

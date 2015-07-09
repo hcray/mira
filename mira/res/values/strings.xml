@@ -86,6 +86,11 @@
     <string name="index_activity_my_cream">我的护肤品</string>
     <string name="index_activity_my_mood">我的心情</string>
     
+    <string name="myChanges_activity_lately">最近</string>
+    <string name="myChanges_activity_lately_twenty">20张</string>
+    <string name="myChanges_activity_lately_fifty">50张</string>
+    
+    
     <string name="back_exit_tips">再按一次退出系统</string>
     
 </resources>
