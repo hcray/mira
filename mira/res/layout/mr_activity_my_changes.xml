@@ -29,6 +29,14 @@
             android:layout_centerInParent="true"
             android:text="@string/myChanges_activity_title"
             android:textColor="@color/white" />
+         
+         <ImageButton
+            android:id="@+id/myChanges_share"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            style="@style/table_more_set"
+            android:src="@drawable/share"
+            android:contentDescription="@string/myChanges_activity_share_desc" />
     </RelativeLayout>
     
      <LinearLayout
@@ -72,5 +80,38 @@
             </RadioButton>
         </RadioGroup>
     </LinearLayout>
+    
+	<GridView
+        android:id="@+id/myChanges_gridView"
+        android:layout_below="@id/myChanges_activity_lv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipChildren="true"
+        android:gravity="center"
+        android:horizontalSpacing="3dip"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dip" >
+    </GridView>
+    
+	<RelativeLayout
+        android:id="@+id/myChanges_bottom_rly"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:clickable="true" 
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/myChange_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="@string/myChanges_activity_setting"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>

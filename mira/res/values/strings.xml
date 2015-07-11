@@ -89,6 +89,8 @@
     <string name="myChanges_activity_lately">最近</string>
     <string name="myChanges_activity_lately_twenty">20张</string>
     <string name="myChanges_activity_lately_fifty">50张</string>
+    <string name="myChanges_activity_setting">设置</string>
+    <string name="myChanges_activity_share_desc">分享</string>
     
     
     <string name="back_exit_tips">再按一次退出系统</string>
