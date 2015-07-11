@@ -93,6 +93,17 @@
     <string name="myChanges_activity_share_desc">分享</string>
     
     
+    <string name="my_activity_title_name">我的</string>
+    <string name="my_activity_ibtn_help_desc">帮助</string>
+    <string name="my_activity_iv_user_info_userface_desc">头像</string>
+    <string name="my_activity_tv_user_info">个人资料</string>
+    <string name="my_activity_tv_user_info_change">我的变化</string>
+    <string name="my_activity_tv_user_info_history">历史记录</string>
+    <string name="my_activity_tv_user_info_moodSaying">心情语录</string>
+    <string name="my_activity_tv_user_info_plan">护肤计划</string>
+    <string name="my_activity_tv_user_info_shop">积分商城</string>
+    <string name="my_activity_tv_user_info_setting">设置</string>
+    
     <string name="back_exit_tips">再按一次退出系统</string>
     
 </resources>

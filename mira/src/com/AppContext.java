@@ -23,6 +23,8 @@ public class AppContext extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        login = false;
+        loginUid = -1;
     }
     
     public int getLoginUid() {

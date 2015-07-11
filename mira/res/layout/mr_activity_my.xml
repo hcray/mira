@@ -8,7 +8,6 @@
     <RelativeLayout
         android:id="@+id/title"
         style="@style/title"
-        android:layout_alignParentTop="true"
         android:background="#81d8cf"
         android:visibility="visible" >
 
@@ -27,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="我的"
+            android:text="@string/my_activity_title_name"
             android:textColor="@color/white" />
 
         <Button
@@ -53,20 +52,21 @@
 			        android:scaleType="fitCenter"
 			        android:padding="3.0dip"
 					android:clickable="true"
-			        android:src="@drawable/widget_dface"/>
+			        android:src="@drawable/widget_dface"
+			        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
 	    	    <LinearLayout     	
 	    	        android:layout_width="fill_parent" 
     				android:layout_height="wrap_content"
     				android:orientation="vertical"
-    				android:layout_marginLeft="10dip"
-    				android:layout_toRightOf="@id/user_info_userface">
+    				android:layout_marginStart="10dip"
+    				android:layout_toEndOf="@id/user_info_userface">
 				   	<TextView 
-			       		android:id="@+id/user_info_username"  
+			       		android:id="@+id/user_info_nickName"  
 			    		android:layout_width="wrap_content" 
 			           	android:layout_height="wrap_content" 
 			           	android:layout_marginBottom="10.0dip"
 			           	android:textSize="15.0dip"
-			           	android:text="小花"/>
+			           	android:text=""/>
 				   	
 				   	<TextView 
 			       		android:id="@+id/user_info_sign"  
@@ -74,7 +74,7 @@
 			           	android:layout_height="wrap_content" 
 			           	android:layout_marginBottom="10.0dip"
 			           	android:textSize="15.0dip"
-			           	android:text="熊二的嫂子"
+			           	android:text=""
 			            />
 				   	
 				   	<RelativeLayout  
@@ -86,18 +86,19 @@
 				           	android:layout_height="wrap_content" 
 				           	android:layout_marginBottom="10.0dip"
 				           	android:textSize="15.0dip"
-				           	android:text="V11"
+				           	android:text=""
 				            />
 					   	
 				   	      <ImageButton
 					    	android:id="@+id/user_info_ibtn_help"
 					      	android:layout_width="18dip" 
 					        android:layout_height="18dip"
-					        android:layout_marginLeft="10.0dip"
-				           	android:layout_alignParentRight="true"
+					        android:layout_marginStart="10.0dip"
+				           	android:layout_alignParentEnd="true"
 				           	android:scaleType="fitCenter"
-				           	android:layout_marginRight="20sp"
+				           	android:layout_marginEnd="20sp"
 					        android:background="@drawable/help"
+					        android:contentDescription="@string/myChanges_activity_share_desc"
 					        />
 				   	      
 					  	<TextView 
@@ -106,8 +107,8 @@
 				           	android:layout_height="wrap_content" 
 				           	android:layout_marginBottom="10.0dip"
 				           	android:textSize="15.0dip"
-				           	android:layout_toLeftOf="@id/user_info_ibtn_help"
-				           	android:text="0积分"
+				           	android:layout_toStartOf="@id/user_info_ibtn_help"
+				           	android:text=""
 				            />
 			   	
 				   	</RelativeLayout>
@@ -123,8 +124,8 @@
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="20dp"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
 		>
      		<TextView 
 	       		android:id="@+id/user_info"  
@@ -132,25 +133,25 @@
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="个人资料"
+	           	android:text="@string/my_activity_tv_user_info"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
     <RelativeLayout
         android:id="@+id/my_activity_rl_changes"
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
 		android:layout_marginBottom="5dp">
      		<TextView 
 	       		android:id="@+id/user_info_change"  
@@ -158,25 +159,25 @@
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="我的变化"
+	           	android:text="@string/my_activity_tv_user_info_change"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_change_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
     <RelativeLayout
         android:id="@+id/my_activity_rl_history"
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
 		android:layout_marginBottom="5dp">
      		<TextView 
 	       		android:id="@+id/user_info_history"  
@@ -184,24 +185,24 @@
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="历史记录"
+	           	android:text="@string/my_activity_tv_user_info_history"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_history_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
     <RelativeLayout  
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
 		android:layout_marginBottom="5dp">
      		<TextView 
 	       		android:id="@+id/user_info_moodSaying"  
@@ -209,24 +210,24 @@
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="心情语录"
+	           	android:text="@string/my_activity_tv_user_info_moodSaying"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_moodSaying_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
     <RelativeLayout  
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
 		android:layout_marginTop="20dp"
 		android:layout_marginBottom="20dp"
 		>
@@ -236,49 +237,49 @@
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="护肤计划"
+	           	android:text="@string/my_activity_tv_user_info_plan"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_plan_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
     <RelativeLayout  
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp">
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp">
      		<TextView 
 	       		android:id="@+id/user_info_shop"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="积分商城"
+	           	android:text="@string/my_activity_tv_user_info_shop"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_shop_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
 	
     <RelativeLayout  
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="15dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
 		android:layout_marginTop="10dp">
      		<TextView 
 	       		android:id="@+id/user_info_setting"  
@@ -286,17 +287,17 @@
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginBottom="10.0dip"
 	           	android:textSize="20.0dip"
-	           	android:text="设置"
+	           	android:text="@string/my_activity_tv_user_info_setting"
 	            />
      		
      		   <ImageView 
 			    	android:id="@+id/user_info_setting_ico"
 			      	android:layout_width="18dip" 
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
-		           	android:layout_alignParentRight="true"
+			        android:layout_marginStart="10.0dip"
+		           	android:layout_alignParentEnd="true"
 		           	android:scaleType="fitCenter"
-		           	android:layout_marginRight="20sp"
+		           	android:layout_marginEnd="20sp"
 			        android:src="@drawable/right"/>
 	</RelativeLayout>
 

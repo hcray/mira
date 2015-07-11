@@ -2,24 +2,21 @@ package com.mira;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-
-import com.adapter.ImageGridAdapter;
-import com.gif.JpgToGif;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.adapter.ImageGridAdapter;
+import com.gif.JpgToGif;
 
 public class MRMyChangesActivity extends Activity {
 
@@ -121,8 +118,9 @@ public class MRMyChangesActivity extends Activity {
 			@Override
 			public boolean accept(File dir, String filename) {
 				if (filename.endsWith(".jpg") || filename.endsWith(".png")
-						|| filename.endsWith(".jpeg"))
+						|| filename.endsWith(".jpeg")){
 					return true;
+				}
 				return false;
 			}
 		}));

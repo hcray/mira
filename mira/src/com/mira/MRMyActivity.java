@@ -1,5 +1,7 @@
 package com.mira;
 
+import com.AppContext;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,9 +38,15 @@ public class MRMyActivity extends Activity {
 		rlUserInfo = (RelativeLayout) this.findViewById(R.id.my_activity_rl_user_info);
 		rlUserInfo.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				//个人资料
-				Intent intent = new Intent(v.getContext(), MRUserInfoActivity.class);
-				startActivity(intent);
+				if(AppContext.getInstance().isLogin()){
+					//个人资料
+					Intent intent = new Intent(v.getContext(), MRUserInfoActivity.class);
+					startActivity(intent);
+					
+				}else{
+					Intent intent = new Intent(v.getContext(), MRLoginActivity.class);
+					startActivity(intent);
+				}
 			}
 		});
 		
@@ -54,7 +62,6 @@ public class MRMyActivity extends Activity {
 		rlHistory = (RelativeLayout) this.findViewById(R.id.my_activity_rl_history);
 		rlHistory.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				//历史记录
 				Intent intent = new Intent(v.getContext(), MRHistoryActivity.class);
 				startActivity(intent);
 			}
