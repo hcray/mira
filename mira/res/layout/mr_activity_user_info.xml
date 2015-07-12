@@ -55,41 +55,54 @@
     
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_user_sign"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userInfo_activity_ll_user_pic"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_user_sign"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/userInfo_activity_user_sign"
             />
+         
+          <EditText
+            android:id="@+id/userInfo_activity_et_user_sign"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:inputType="text"/>
     </LinearLayout>
     
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_nick_name"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userInfo_activity_ll_user_sign"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_nick_name"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/userInfo_activity_nick_name"
+            />
+         
+         <EditText android:id="@+id/userInfo_activity_et_nick_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
             />
     </LinearLayout>
     
@@ -119,18 +132,41 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/userInfo_activity_ll_border1"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="20dp">
          <TextView
             android:id="@+id/userInfo_activity_tv_sex"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/userInfo_activity_sex"
             />
+         
+           <RadioGroup
+            android:id="@+id/userInfo_activity_radioGroup_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:contentDescription="@string/completeInfo_activity_sex" >
+
+            <RadioButton
+                android:id="@+id/userInfo_activity_radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/completeInfo_activity_sex_man" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/userInfo_activity_radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/completeInfo_activity_sex_woman" >
+            </RadioButton>
+        </RadioGroup>
     </LinearLayout>
     
 	<LinearLayout
@@ -268,6 +304,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/userInfo_activity_skin_type_test"/>
-    </LinearLayout>	
+    </LinearLayout>
+    
+   	<LinearLayout
+        android:id="@+id/userInfo_activity_ll_save"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userInfo_activity_ll_skin_type_test"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/userInfo_activity_btn_save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/userInfo_activity_save" />
+    </LinearLayout>
 
 </RelativeLayout>

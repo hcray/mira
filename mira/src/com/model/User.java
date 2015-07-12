@@ -1,6 +1,11 @@
 package com.model;
 
 public class User {
+	/**
+	 * 头像的图片文件名
+	 */
+	private String face;
+	
 	private String nickName;
 	
 	private String sign;
@@ -21,7 +26,7 @@ public class User {
 	
 	private String skinType;
 	
-	private String account;
+	private int account;
 	
 	private String password;
 
@@ -105,11 +110,11 @@ public class User {
 		this.skinType = skinType;
 	}
 
-	public String getAccount() {
+	public int getAccount() {
 		return account;
 	}
 
-	public void setAccount(String account) {
+	public void setAccount(int account) {
 		this.account = account;
 	}
 
@@ -119,6 +124,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getFace() {
+		return face;
+	}
+
+	public void setFace(String face) {
+		this.face = face;
 	}
 
 	@Override

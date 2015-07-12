@@ -74,11 +74,13 @@
     <string name="userInfo_activity_nick_name">昵称</string>
     <string name="userInfo_activity_sex">性别</string>
     <string name="userInfo_activity_age">年龄</string>
+    <string name="userInfo_activity_birthday">生日</string>
     <string name="userInfo_activity_height">身高</string>
     <string name="userInfo_activity_weight">体重</string>
     <string name="userInfo_activity_menses">经期记录</string>
     <string name="userInfo_activity_skin_type">我的肤质</string>
     <string name="userInfo_activity_skin_type_test">不知道，去测测</string>
+    <string name="userInfo_activity_save">保存</string>
     
     <string name="index_activity_arrowLeft_desc">朝左</string>
     <string name="index_activity_arrowRight_desc">朝右</string>
@@ -105,5 +107,6 @@
     <string name="my_activity_tv_user_info_setting">设置</string>
     
     <string name="back_exit_tips">再按一次退出系统</string>
+    <string name="message_nickName_is_null">请输入昵称</string>
     
 </resources>

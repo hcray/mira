@@ -13,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.AppContext;
 import com.common.StringUtils;
+import com.model.User;
 
 public class MRLoginActivity extends Activity {
 	
@@ -84,6 +86,12 @@ public class MRLoginActivity extends Activity {
 					Toast.makeText(v.getContext(), getString(R.string.msg_login_pwd_null), Toast.LENGTH_SHORT).show();
 					return;
 				}
+				//保存用户信息
+				User user = new User();
+				user.setAccount(Integer.parseInt(account));
+				AppContext.getInstance().saveUserInfo(user);
+				
+				MRLoginActivity.this.finish();
 			}
 		});
 		

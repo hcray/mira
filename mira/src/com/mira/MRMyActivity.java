@@ -1,7 +1,5 @@
 package com.mira;
 
-import com.AppContext;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +7,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.AppContext;
+import com.model.User;
 
 public class MRMyActivity extends Activity {
 	private Long mExitTime = 0l;
@@ -21,12 +23,27 @@ public class MRMyActivity extends Activity {
 	private RelativeLayout rlChanges;
 	//历史记录
 	private RelativeLayout rlHistory;
+	
+	private TextView tv_nickName;
+
+	private TextView tv_sign;
+	
+	private TextView tv_level;
+	
+	private TextView tv_grades;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_my);
 		
-		iBtn_help = (ImageButton) this.findViewById(R.id.user_info_ibtn_help);
+		tv_nickName = (TextView) this.findViewById(R.id.my_activity_nickName);
+		tv_sign = (TextView) this.findViewById(R.id.my_activity_sign);
+		tv_level = (TextView) this.findViewById(R.id.my_activity_level);
+		tv_grades = (TextView) this.findViewById(R.id.my_activity_grades);
+		
+		iBtn_help = (ImageButton) this.findViewById(R.id.my_activity_ibtn_help);
 		iBtn_help.setOnClickListener(new View.OnClickListener() {
  			public void onClick(View v) {
  				//积分帮助
@@ -67,8 +84,21 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
+		initUI();
 	}
 	
+	
+	
+	
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		initUI();
+	}
+
+
+
 	/**
 	 * 监听返回--是否退出程序
 	 */
@@ -86,4 +116,22 @@ public class MRMyActivity extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	/**
+	 * 初始化界面
+	 */
+	private void initUI(){
+		// 判断是否登录
+		if (AppContext.getInstance().isLogin()) {
+			User user = AppContext.getInstance().getLoginUser();
+			tv_nickName.setText(user.getNickName());
+			tv_sign.setText(user.getSign());
+			tv_level.setText(user.getLevel());
+			tv_grades.setText(user.getGrades());
+		} else {
+			tv_nickName.setText("未登录");
+		}
+		
+	}
+	
 }

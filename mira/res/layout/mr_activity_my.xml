@@ -61,7 +61,7 @@
     				android:layout_marginStart="10dip"
     				android:layout_toEndOf="@id/user_info_userface">
 				   	<TextView 
-			       		android:id="@+id/user_info_nickName"  
+			       		android:id="@+id/my_activity_nickName"  
 			    		android:layout_width="wrap_content" 
 			           	android:layout_height="wrap_content" 
 			           	android:layout_marginBottom="10.0dip"
@@ -69,7 +69,7 @@
 			           	android:text=""/>
 				   	
 				   	<TextView 
-			       		android:id="@+id/user_info_sign"  
+			       		android:id="@+id/my_activity_sign"  
 			    		android:layout_width="wrap_content" 
 			           	android:layout_height="wrap_content" 
 			           	android:layout_marginBottom="10.0dip"
@@ -81,7 +81,7 @@
 				   	    android:layout_width="fill_parent" 
     					android:layout_height="fill_parent">
 					   	<TextView 
-				       		android:id="@+id/user_info_level"  
+				       		android:id="@+id/my_activity_level"  
 				    		android:layout_width="wrap_content" 
 				           	android:layout_height="wrap_content" 
 				           	android:layout_marginBottom="10.0dip"
@@ -90,7 +90,7 @@
 				            />
 					   	
 				   	      <ImageButton
-					    	android:id="@+id/user_info_ibtn_help"
+					    	android:id="@+id/my_activity_ibtn_help"
 					      	android:layout_width="18dip" 
 					        android:layout_height="18dip"
 					        android:layout_marginStart="10.0dip"
@@ -102,12 +102,12 @@
 					        />
 				   	      
 					  	<TextView 
-				       		android:id="@+id/user_info_grades"  
+				       		android:id="@+id/my_activity_grades"  
 				    		android:layout_width="wrap_content" 
 				           	android:layout_height="wrap_content" 
 				           	android:layout_marginBottom="10.0dip"
 				           	android:textSize="15.0dip"
-				           	android:layout_toStartOf="@id/user_info_ibtn_help"
+				           	android:layout_toStartOf="@id/my_activity_ibtn_help"
 				           	android:text=""
 				            />
 			   	
