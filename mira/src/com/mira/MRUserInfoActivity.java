@@ -1,6 +1,5 @@
 package com.mira;
 
-import com.AppContext;
 import com.common.StringUtils;
 import com.model.User;
 
