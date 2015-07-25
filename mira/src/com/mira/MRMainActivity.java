@@ -33,10 +33,11 @@ public class MRMainActivity extends TabActivity {
 	//LinearLayout llFind;
 	LinearLayout llTest;
 	LinearLayout llMy;
-	TextView tvIndex;
+	
+	//TextView tvIndex;
 	//TextView tvFind;
-	TextView tvTest;
-	TextView tvMy;
+	//TextView tvTest;
+	//TextView tvMy;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,10 +54,10 @@ public class MRMainActivity extends TabActivity {
 		llTest=(LinearLayout)findViewById(R.id.ll_test);
 		llMy=(LinearLayout)findViewById(R.id.ll_my);
 		
-		tvIndex=(TextView)findViewById(R.id.tv_index);
+		//tvIndex=(TextView)findViewById(R.id.tv_index);
 		//tvFind=(TextView)findViewById(R.id.tv_find);
-		tvTest=(TextView)findViewById(R.id.tv_test);
-		tvMy=(TextView)findViewById(R.id.tv_my);
+		//tvTest=(TextView)findViewById(R.id.tv_test);
+		//tvMy=(TextView)findViewById(R.id.tv_my);
 		View.OnClickListener ibClick=new View.OnClickListener() {
 			
 			@Override
@@ -68,10 +69,10 @@ public class MRMainActivity extends TabActivity {
 					//ivFind.setBackgroundResource(R.drawable.tab_discover);
 					ivTest.setBackgroundResource(R.drawable.tab_check);
 					ivMy.setBackgroundResource(R.drawable.tab_myinfo);
-					tvIndex.setTextColor(0xff63c5c8);
+					//tvIndex.setTextColor(0xff63c5c8);
 					//tvFind.setTextColor(0xff888888);
-					tvTest.setTextColor(0xff888888);
-					tvMy.setTextColor(0xff888888);
+					//tvTest.setTextColor(0xff888888);
+					//tvMy.setTextColor(0xff888888);
 					break;
 				case R.id.ll_test:
 					tabHost.setCurrentTab(1);
@@ -79,10 +80,11 @@ public class MRMainActivity extends TabActivity {
 					//ivFind.setBackgroundResource(R.drawable.tab_discover);
 					ivTest.setBackgroundResource(R.drawable.tab_check_select);
 					ivMy.setBackgroundResource(R.drawable.tab_myinfo);
-					tvIndex.setTextColor(0xff888888);
+					
+					//tvIndex.setTextColor(0xff888888);
 					//tvFind.setTextColor(0xff888888);
-					tvTest.setTextColor(0xff63c5c8);
-					tvMy.setTextColor(0xff888888);
+					//tvTest.setTextColor(0xff63c5c8);
+					//tvMy.setTextColor(0xff888888);
 					break;
 				/*
 				case R.id.ll_find:
@@ -103,10 +105,11 @@ public class MRMainActivity extends TabActivity {
 					//ivFind.setBackgroundResource(R.drawable.tab_discover);
 					ivTest.setBackgroundResource(R.drawable.tab_check);
 					ivMy.setBackgroundResource(R.drawable.tab_myinfo_select);
-					tvIndex.setTextColor(0xff888888);
+					
+					//tvIndex.setTextColor(0xff888888);
 					//tvFind.setTextColor(0xff888888);
-					tvTest.setTextColor(0xff888888);
-					tvMy.setTextColor(0xff63c5c8);
+					//tvTest.setTextColor(0xff888888);
+					//tvMy.setTextColor(0xff63c5c8);
 					break;
 				default:
 					break;
@@ -139,10 +142,10 @@ public class MRMainActivity extends TabActivity {
 		ivTest.setBackgroundResource(R.drawable.tab_check);
 		ivMy.setBackgroundResource(R.drawable.tab_myinfo);
 		
-		tvIndex.setTextColor(0xff63c5c8);
+		//tvIndex.setTextColor(0xff63c5c8);
 		//tvFind.setTextColor(0xff888888);
-		tvTest.setTextColor(0xff888888);
-		tvMy.setTextColor(0xff888888);
+		//tvTest.setTextColor(0xff888888);
+		//tvMy.setTextColor(0xff888888);
 		MRCommon.update(this);
 	}
 	@Override
