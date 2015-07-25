@@ -1,7 +1,6 @@
 package com.mira;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,24 +25,14 @@ public class MRLoginActivity extends Activity {
 	private AutoCompleteTextView loginAccount;
 	
 	/**
-	 * 密码
+	 * 验证码
 	 */
-	private EditText loginPassword;
+	private EditText loginCode;
 	
 	/**
 	 * 登陆按钮
 	 */
 	private Button btn_login;
-	
-	/**
-	 * 忘记密码
-	 */
-	private TextView tvForget;
-	
-	/**
-	 * 注册
-	 */
-	private TextView tvSignIn;
 	
 	/**
 	 * 返回按钮
@@ -73,7 +62,7 @@ public class MRLoginActivity extends Activity {
 		
 		loginAccount = (AutoCompleteTextView) this.findViewById(R.id.login_account);
 		
-		loginPassword = (EditText) this.findViewById(R.id.login_password);
+		loginCode = (EditText) this.findViewById(R.id.login_vcode);
 		
 		btn_login = (Button) this.findViewById(R.id.login_activity_bt_login);
 		
@@ -83,7 +72,7 @@ public class MRLoginActivity extends Activity {
 				imm.hideSoftInputFromWindow(v.getWindowToken(), 0);  
 				//账号 密码
 				String account = loginAccount.getText().toString();
-				String pwd = loginPassword.getText().toString();
+				String pwd = loginCode.getText().toString();
 				//判断输入
 				if(StringUtils.isEmpty(account)){
 					Toast.makeText(v.getContext(), getString(R.string.msg_login_account_null), Toast.LENGTH_SHORT).show();
@@ -117,23 +106,6 @@ public class MRLoginActivity extends Activity {
         			lyThirdPartyAccountDetail.setVisibility(View.VISIBLE);
         			
         		}
-        	}
-        });
-        
-        
-        //忘记密码
-        tvForget.setOnClickListener(new View.OnClickListener() {
-     			public void onClick(View v) {
-     				Intent intent = new Intent(v.getContext(), MRInputAccountActivity.class);
-     		    	startActivity(intent);
-     			}
-        });
-        
-        //注册
-        tvSignIn.setOnClickListener(new View.OnClickListener() {
-        	public void onClick(View v) {
-        		Intent intent = new Intent(v.getContext(), MRInputAccountActivity.class);
-        		startActivity(intent);
         	}
         });
         
