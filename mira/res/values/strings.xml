@@ -19,13 +19,21 @@
     <string name="activity_index_camera">camera</string>
     <string name="activity_index_calender">calender</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="login_activity_tv_login">登录</string>
+    <string name="login_activity_tv_login">登    录</string>
     <string name="login_activity_account">账号:</string>
-    <string name="login_activity_account_hint">输入账号/手机号</string>
+    <string name="login_activity_account_hint">您的手机号</string>
     <string name="login_activity_password">密码:</string>
-    <string name="login_activity_password_hint">输入密码</string>
+    <string name="login_activity_password_hint">输入验证码</string>
+    <string name="login_activity_get_code">获取验证码</string>
     <string name="login_activity_forget">忘记密码?</string>
     <string name="login_activity_signIn">注册</string>
+    <string name="login_activity_third_party_login">第三方账号登录</string>
+    <string name="login_activity_weixin_login">微信</string>
+    <string name="login_activity_qq_login">QQ</string>
+    <string name="login_activity_weibo_login">微博</string>
+    <string name="login_activity_desc_arrow_down">朝下展开</string>
+    
+    
     <string name="msg_login_account_null">请输入账号</string>
     <string name="msg_login_pwd_null">请输入密码</string>
     <string name="title_activity_mrnex">MRNexActivity</string>

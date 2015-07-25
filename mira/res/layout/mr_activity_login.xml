@@ -33,18 +33,18 @@
       	android:id="@+id/login_uly"
        	android:layout_width="fill_parent" 
        	android:layout_height="wrap_content"
+       	android:gravity="center_horizontal"
        	android:layout_marginLeft="20dp" 
 	    android:layout_marginRight="20dp"
+	    android:layout_marginTop="10dp"
        	android:layout_below="@id/login_title">
-          <TextView 
-            android:layout_width="wrap_content" 
+          <ImageView
             android:layout_height="wrap_content" 
-            android:layout_marginLeft="8.0dip" 
-            android:layout_marginTop="10.0dip" 
-            android:textSize="16dip" 
-            android:textStyle="bold" 
-            android:textColor="#ff000000" 
-            android:text="@string/login_activity_account" />
+            android:layout_width="wrap_content" 
+            android:background="@drawable/ico_user"
+            android:contentDescription="@string/login_activity_account"
+            />
+          
           <AutoCompleteTextView 
             android:id="@+id/login_account" 
             android:layout_width="fill_parent" 
@@ -54,7 +54,7 @@
             android:layout_marginRight="8.0dip" 
             android:background="@null" 
             android:hint="@string/login_activity_account_hint" 
-            android:textSize="16dip" 
+            android:textSize="16sp" 
             android:maxLines="1" 
             android:singleLine="true" 
             android:selectAllOnFocus="true" 
@@ -67,29 +67,46 @@
         android:layout_marginLeft="20dp" 
 	    android:layout_marginRight="20dp"
         android:layout_height="wrap_content" 
-        android:layout_marginTop="7.0dip"
-        android:layout_below="@id/login_uly">
-           <TextView 
-	            android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content" 
-	            android:layout_marginLeft="8.0dip" 
-	            android:textSize="16dip" 
-	            android:textStyle="bold" 
-	            android:textColor="#ff000000" 
-	            android:text="@string/login_activity_password" />
-           <EditText 
-	            android:id="@+id/login_password" 
-	            android:layout_width="fill_parent" 
-	            android:layout_height="wrap_content" 
-	            android:layout_marginLeft="8.0dip" 
-	            android:layout_marginRight="8.0dip" 
-	            android:textSize="16dip" 
-	            android:background="@null" 
-	            android:hint="@string/login_activity_password_hint" 
-	            android:maxLines="1" 
-	            android:password="true" 
-	            android:singleLine="true" 
-	            android:selectAllOnFocus="true" />
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:layout_below="@id/login_uly"
+        android:orientation="horizontal">
+          <ImageView
+            android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:background="@drawable/ico_pass"
+            android:contentDescription="@string/login_activity_password"
+            />
+          <EditText 
+            android:id="@+id/login_password" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8.0dip" 
+            android:layout_marginRight="8.0dip" 
+            android:textSize="16sp" 
+            android:background="@null" 
+            android:hint="@string/login_activity_password_hint" 
+            android:maxLines="1" 
+           	android:inputType="numberPassword"
+            android:singleLine="true"
+            android:selectAllOnFocus="true" />
+          
+          <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end" >
+
+            <Button
+                android:id="@+id/inputPassword_btn_reset_send"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="#81d8cf"
+                android:padding="3dp"
+                android:text="@string/login_activity_get_code"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+
        </LinearLayout>
        
 		<LinearLayout 
@@ -97,48 +114,83 @@
 			android:layout_width="fill_parent" 
 			android:layout_height="wrap_content"
 			android:gravity="center"
-			android:layout_marginLeft="20dp"
-			android:layout_marginRight="20dp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
 			android:layout_below="@id/login_activity_ly_password">
            
 		    <Button
-		        android:id="@+id/login_activity_bt_login" 
+		        android:id="@+id/login_activity_bt_login"
+		        android:background="#81d8cf"
+		        android:textColor="@color/white"
 	        	android:layout_width="fill_parent"
 	        	android:layout_height="wrap_content"
 	        	android:gravity="center"
 	        	android:text="@string/login_activity_tv_login"/>
 		</LinearLayout>
        
-		<RelativeLayout 
-		    android:id="@+id/login_activity_ly_forget"
+		<LinearLayout 
+		    android:id="@+id/login_activity_ly_third_party_account"
 	        android:layout_width="fill_parent" 
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="20dp" 
 	        android:layout_marginRight="20dp" 
-	        android:layout_marginTop="7.0dip"
+	        android:layout_marginTop="40dp"
+	        android:gravity="center"
+	        android:orientation="vertical"
 	        android:layout_below="@id/login_activity_ly_submit">
 			
 			<TextView
-				android:id="@+id/login_activity_tv_forget"
+				android:id="@+id/login_activity_tv_third_party_login"
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content" 
-				android:layout_alignParentLeft="true"
-				android:layout_marginLeft="8.0dip" 
-				android:textSize="14dip" 
-				android:textStyle="bold" 
-				android:textColor="#ff000000" 
-				android:text="@string/login_activity_forget" />
+				android:textSize="14sp" 
+				android:textColor="#81d8cf"
+				android:drawableBottom="@drawable/arrow_down"
+				android:text="@string/login_activity_third_party_login" />
+		</LinearLayout>
+		
+		<LinearLayout 
+		    android:id="@+id/login_activity_ly_third_party_account_detail"
+	        android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="20dp" 
+	        android:layout_marginRight="20dp" 
+	        android:layout_marginTop="40dp"
+	        android:gravity="center"
+	        android:orientation="horizontal"
+	        android:visibility="invisible"
+	        android:layout_below="@id/login_activity_ly_third_party_account">
 			
 			<TextView
-			    android:id="@+id/login_activity_tv_signIn"
+				android:id="@+id/login_activity_tv_weixin_login"
 				android:layout_width="wrap_content" 
 				android:layout_height="wrap_content"
-				android:layout_alignParentRight="true"
-				android:layout_marginLeft="8.0dip" 
-				android:textSize="14dip" 
-				android:textStyle="bold"
-				android:textColor="#ff000000" 
-				android:text="@string/login_activity_signIn" />
-		</RelativeLayout>
+				android:layout_weight="3"
+				android:textSize="14sp"
+				android:gravity="center"
+				android:drawableTop="@drawable/ico_weixin"
+				android:text="@string/login_activity_weixin_login" />
+			
+			<TextView
+				android:id="@+id/login_activity_tv_qq_login"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_weight="4"
+				android:textSize="14sp"
+				android:gravity="center"
+				android:drawableTop="@drawable/ico_qq"
+				android:text="@string/login_activity_qq_login" />
+			
+			<TextView
+				android:id="@+id/login_activity_tv_weibo_login"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:layout_weight="3"
+				android:textSize="14sp"
+				android:gravity="center"
+				android:drawableTop="@drawable/ico_weibo"
+				android:text="@string/login_activity_weibo_login" />
+		</LinearLayout>
 
 </RelativeLayout>

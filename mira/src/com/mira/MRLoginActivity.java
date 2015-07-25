@@ -50,6 +50,16 @@ public class MRLoginActivity extends Activity {
 	 */
 	private LinearLayout backbtn;
 	
+	/**
+	 * 第三方登录
+	 */
+	private TextView tvThirdPartyLogin;
+	
+	/**
+	 *第三方登录详细 
+	 */
+	private LinearLayout lyThirdPartyAccountDetail;
+	
 	private InputMethodManager imm;
 	
 	@Override
@@ -59,15 +69,13 @@ public class MRLoginActivity extends Activity {
 		Log.v(TAG, "onCreate()");
 		imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
 		
+		lyThirdPartyAccountDetail = (LinearLayout) this.findViewById(R.id.login_activity_ly_third_party_account_detail);
+		
 		loginAccount = (AutoCompleteTextView) this.findViewById(R.id.login_account);
 		
 		loginPassword = (EditText) this.findViewById(R.id.login_password);
 		
 		btn_login = (Button) this.findViewById(R.id.login_activity_bt_login);
-		
-		tvForget = (TextView) this.findViewById(R.id.login_activity_tv_forget);
-		
-		tvSignIn = (TextView) this.findViewById(R.id.login_activity_tv_signIn);
 		
         btn_login.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -94,6 +102,25 @@ public class MRLoginActivity extends Activity {
 			}
 		});
 		
+        tvThirdPartyLogin = (TextView) this.findViewById(R.id.login_activity_tv_third_party_login);
+        //展开第三方登录
+        tvThirdPartyLogin.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View v) {
+        		int visibleValue = lyThirdPartyAccountDetail.getVisibility();
+        		if(View.VISIBLE == visibleValue){
+        			lyThirdPartyAccountDetail.setVisibility(View.INVISIBLE);
+//        			Drawable rightDrawable = getResources().getDrawable(R.drawable.icon_new);
+//        			rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
+//        			tvVersionStatus.setCompoundDrawables(null, null, rightDrawable, null);
+
+        		}else{
+        			lyThirdPartyAccountDetail.setVisibility(View.VISIBLE);
+        			
+        		}
+        	}
+        });
+        
+        
         //忘记密码
         tvForget.setOnClickListener(new View.OnClickListener() {
      			public void onClick(View v) {
