@@ -3,12 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".MRMyActivity" >
+    tools:context=".MRMyActivity" 
+    android:background="#e4f3f2">
 
     <RelativeLayout
         android:id="@+id/title"
         style="@style/title"
-        android:background="#81d8cf"
+        android:background="#84dfd8"
         android:visibility="visible" >
 
         <LinearLayout
@@ -40,7 +41,8 @@
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
-		android:padding="15.0dip">
+		android:padding="10.0dip"
+		android:background="@color/white">
         
         	<RelativeLayout
 		    	android:layout_width="fill_parent" 
@@ -52,66 +54,104 @@
 			        android:scaleType="fitCenter"
 			        android:padding="3.0dip"
 					android:clickable="true"
-			        android:src="@drawable/widget_dface"
+			        android:src="@drawable/ico_info_pic"
 			        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
 	    	    <LinearLayout     	
 	    	        android:layout_width="fill_parent" 
     				android:layout_height="wrap_content"
     				android:orientation="vertical"
     				android:layout_marginStart="10dip"
-    				android:layout_toEndOf="@id/user_info_userface">
+    				android:layout_marginTop="20dp"
+    				android:layout_toEndOf="@id/user_info_userface"
+    				>
 				   	<TextView 
 			       		android:id="@+id/my_activity_nickName"  
 			    		android:layout_width="wrap_content" 
 			           	android:layout_height="wrap_content" 
 			           	android:layout_marginBottom="10.0dip"
 			           	android:textSize="15.0dip"
-			           	android:text=""/>
+			           	android:text="Mira's Fans"
+			           	android:textColor="#84dfd8"/>
 				   	
+				   	<!-- 
 				   	<TextView 
 			       		android:id="@+id/my_activity_sign"  
 			    		android:layout_width="wrap_content" 
 			           	android:layout_height="wrap_content" 
 			           	android:layout_marginBottom="10.0dip"
 			           	android:textSize="15.0dip"
-			           	android:text=""
+			           	android:text="222"
 			            />
+				   	 -->
 				   	
-				   	<RelativeLayout  
+				   	<LinearLayout  
 				   	    android:layout_width="fill_parent" 
     					android:layout_height="fill_parent">
+    					<!-- 
 					   	<TextView 
 				       		android:id="@+id/my_activity_level"  
 				    		android:layout_width="wrap_content" 
 				           	android:layout_height="wrap_content" 
 				           	android:layout_marginBottom="10.0dip"
 				           	android:textSize="15.0dip"
-				           	android:text=""
+				           	android:text="333"
 				            />
-					   	
-				   	      <ImageButton
-					    	android:id="@+id/my_activity_ibtn_help"
-					      	android:layout_width="18dip" 
-					        android:layout_height="18dip"
-					        android:layout_marginStart="10.0dip"
-				           	android:layout_alignParentEnd="true"
-				           	android:scaleType="fitCenter"
-				           	android:layout_marginEnd="20sp"
-					        android:background="@drawable/help"
-					        android:contentDescription="@string/myChanges_activity_share_desc"
-					        />
+    					 -->
+					   	<ImageView 
+					   	    android:src="@drawable/ico_star1"
+					   	    android:layout_width="wrap_content"
+					   	    android:layout_height="wrap_content"/>
+					   	<ImageView 
+					   	    android:src="@drawable/ico_star1"
+					   	    android:layout_width="wrap_content"
+					   	    android:layout_height="wrap_content"/>
+					   	<ImageView 
+					   	    android:src="@drawable/ico_star1"
+					   	    android:layout_width="wrap_content"
+					   	    android:layout_height="wrap_content"/>
+					   	<ImageView 
+					   	    android:src="@drawable/ico_star2"
+					   	    android:layout_width="wrap_content"
+					   	    android:layout_height="wrap_content"/>
 				   	      
-					  	<TextView 
-				       		android:id="@+id/my_activity_grades"  
-				    		android:layout_width="wrap_content" 
-				           	android:layout_height="wrap_content" 
-				           	android:layout_marginBottom="10.0dip"
-				           	android:textSize="15.0dip"
-				           	android:layout_toStartOf="@id/my_activity_ibtn_help"
-				           	android:text=""
-				            />
+					   	
+					   <LinearLayout
+				            android:layout_width="fill_parent"
+				            android:layout_height="wrap_content"
+				            android:gravity="end" >
 			   	
-				   	</RelativeLayout>
+						  	<TextView 
+					       		android:id="@+id/my_activity_grades"  
+					    		android:layout_width="wrap_content" 
+					           	android:layout_height="wrap_content" 
+					           	android:layout_marginBottom="10.0dip"
+					           	android:layout_marginEnd="2dp"
+					           	android:textSize="15.0dip"
+					           	android:textColor="#84dfd8"
+					           	android:text="368"
+					            />
+						  	<TextView 
+					       		android:id="@+id/my_activity_grades_name"  
+					    		android:layout_width="wrap_content" 
+					           	android:layout_height="wrap_content" 
+					           	android:layout_marginBottom="10.0dip"
+					           	android:textSize="15.0dip"
+					           	android:textColor="#999999"
+					           	android:text="积分"
+					            />
+						  	 
+						  	 <ImageButton
+						    	android:id="@+id/my_activity_ibtn_help"
+						      	android:layout_width="18dip" 
+						        android:layout_height="18dip"
+						        android:layout_marginStart="10.0dip"
+					           	android:layout_alignParentEnd="true"
+					           	android:scaleType="fitCenter"
+						        android:background="@drawable/ico_help"
+						        android:contentDescription="@string/myChanges_activity_share_desc"
+						        />
+					  	 </LinearLayout>
+				   	</LinearLayout>
 				   	
 	    	    </LinearLayout>
 
@@ -121,184 +161,167 @@
     
     <RelativeLayout  
         android:id="@+id/my_activity_rl_user_info"
-   	    android:layout_width="fill_parent" 
+   	    android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="20dp"
-		android:layout_marginStart="20dp"
+		android:layout_marginTop="15dp"
+		android:layout_marginStart="15dp"
 		android:layout_marginEnd="15dp"
+		android:background="@color/white"
+		android:gravity="center_vertical"
 		>
-     		<TextView 
-	       		android:id="@+id/user_info"  
-	    		android:layout_width="wrap_content" 
-	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
-	           	android:text="@string/my_activity_tv_user_info"
-	            />
      		
-     		   <ImageView 
-			    	android:id="@+id/user_info_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
+    	<TextView
+       		android:id="@+id/user_info"  
+    		android:layout_width="wrap_content" 
+           	android:layout_height="wrap_content" 
+           	android:textSize="16.0dip"
+           	android:textColor="#999999"
+           	android:gravity="center_vertical"
+           	android:layout_marginStart="20dp"
+           	android:text="@string/my_activity_tv_user_info"
+           	android:drawableStart="@drawable/ico_peoplemsg"
+           	android:drawablePadding="20dp"
+           	android:paddingTop="5dp"
+           	android:paddingBottom="5dp"
+            />
+    	
+   		<ImageView
+	      	android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+           	android:layout_alignParentEnd="true"
+           	android:paddingStart="10dp"
+           	android:paddingEnd="10dp"
+           	android:layout_centerVertical="true"
+	        android:src="@drawable/arrow_right"/>
+     		
 	</RelativeLayout>
     <RelativeLayout
         android:id="@+id/my_activity_rl_changes"
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
+		android:layout_marginStart="15dp"
 		android:layout_marginEnd="15dp"
-		android:layout_marginBottom="5dp">
+		android:layout_marginTop="15dp"
+		android:background="@color/white"
+		android:gravity="center_vertical"
+		>
      		<TextView 
 	       		android:id="@+id/user_info_change"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
+	           	android:textSize="16.0dip"
+	           	android:textColor="#999999"
 	           	android:text="@string/my_activity_tv_user_info_change"
+		        android:gravity="center_vertical"
+	           	android:layout_marginStart="20dp"
+	           	android:drawableStart="@drawable/ico_change"
+	           	android:drawablePadding="20dp"
+	           	android:paddingTop="5dp"
+           		android:paddingBottom="5dp"
 	            />
      		
-     		   <ImageView 
-			    	android:id="@+id/user_info_change_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
+	   		<ImageView
+		      	android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+	           	android:layout_alignParentEnd="true"
+	           	android:paddingStart="10dp"
+	           	android:paddingEnd="10dp"
+	           	android:layout_centerVertical="true"
+		        android:src="@drawable/arrow_right"/>
 	</RelativeLayout>
+	<View android:layout_height="1px" 
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+	    android:layout_marginStart="30dp"
+		android:layout_marginEnd="30dp"
+		>
+	    
+	</View>
     <RelativeLayout
         android:id="@+id/my_activity_rl_history"
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
+		android:layout_marginStart="15dp"
 		android:layout_marginEnd="15dp"
-		android:layout_marginBottom="5dp">
+		android:background="@color/white"
+		android:gravity="center_vertical"
+		>
      		<TextView 
 	       		android:id="@+id/user_info_history"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
+	           	android:textSize="16.0dip"
+	           	android:textColor="#999999"
 	           	android:text="@string/my_activity_tv_user_info_history"
+	           	android:gravity="center_vertical"
+	           	android:layout_marginStart="20dp"
+	           	android:drawableStart="@drawable/ico_history"
+	           	android:drawablePadding="20dp"
+   				android:paddingTop="5dp"
+          	 	android:paddingBottom="5dp"
 	            />
      		
-     		   <ImageView 
-			    	android:id="@+id/user_info_history_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
-	</RelativeLayout>
-    <RelativeLayout  
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
-		android:layout_marginEnd="15dp"
-		android:layout_marginBottom="5dp">
-     		<TextView 
-	       		android:id="@+id/user_info_moodSaying"  
-	    		android:layout_width="wrap_content" 
-	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
-	           	android:text="@string/my_activity_tv_user_info_moodSaying"
-	            />
-     		
-     		   <ImageView 
-			    	android:id="@+id/user_info_moodSaying_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
-	</RelativeLayout>
-    <RelativeLayout  
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
-		android:layout_marginEnd="15dp"
-		android:layout_marginTop="20dp"
-		android:layout_marginBottom="20dp"
-		>
-     		<TextView 
-	       		android:id="@+id/user_info_plan"  
-	    		android:layout_width="wrap_content" 
-	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
-	           	android:text="@string/my_activity_tv_user_info_plan"
-	            />
-     		
-     		   <ImageView 
-			    	android:id="@+id/user_info_plan_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
-	</RelativeLayout>
-    <RelativeLayout  
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
-		android:layout_marginEnd="15dp">
-     		<TextView 
-	       		android:id="@+id/user_info_shop"  
-	    		android:layout_width="wrap_content" 
-	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
-	           	android:text="@string/my_activity_tv_user_info_shop"
-	            />
-     		
-     		   <ImageView 
-			    	android:id="@+id/user_info_shop_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
+	   		<ImageView
+		      	android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+	           	android:layout_alignParentEnd="true"
+	           	android:paddingStart="10dp"
+	           	android:paddingEnd="10dp"
+	           	android:layout_centerVertical="true"
+		        android:src="@drawable/arrow_right"/>
 	</RelativeLayout>
 	
     <RelativeLayout  
    	    android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:layout_marginStart="20dp"
+		android:layout_marginStart="15dp"
 		android:layout_marginEnd="15dp"
-		android:layout_marginTop="10dp">
+		android:layout_marginTop="15dp"
+		android:background="@color/white"
+		android:gravity="center_vertical"
+		>
      		<TextView 
 	       		android:id="@+id/user_info_setting"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:layout_marginBottom="10.0dip"
-	           	android:textSize="20.0dip"
+	           	android:textSize="16.0dip"
+	           	android:textColor="#999999"
 	           	android:text="@string/my_activity_tv_user_info_setting"
+	           	android:gravity="center_vertical"
+	           	android:layout_marginStart="20dp"
+	           	android:drawableStart="@drawable/ico_set"
+	           	android:drawablePadding="20dp"
+	           	android:paddingTop="5dp"
+           		android:paddingBottom="5dp"
 	            />
      		
-     		   <ImageView 
-			    	android:id="@+id/user_info_setting_ico"
-			      	android:layout_width="18dip" 
-			        android:layout_height="18dip"
-			        android:layout_marginStart="10.0dip"
-		           	android:layout_alignParentEnd="true"
-		           	android:scaleType="fitCenter"
-		           	android:layout_marginEnd="20sp"
-			        android:src="@drawable/right"/>
+	   		<ImageView
+		      	android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+	           	android:layout_alignParentEnd="true"
+	           	android:paddingStart="10dp"
+	           	android:paddingEnd="10dp"
+	           	android:layout_centerVertical="true"
+		        android:src="@drawable/arrow_right"/>
+	</RelativeLayout>
+	
+    <RelativeLayout  
+   	    android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:layout_marginStart="15dp"
+		android:layout_marginEnd="15dp"
+		android:layout_marginTop="15dp"
+		android:background="@color/white"
+		android:gravity="center_vertical"
+		>
+   		   <Button
+	        android:id="@+id/login_activity_bt_login"
+	        android:background="#49c6bd"
+	        android:textColor="@color/white"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center"
+        	android:text="@string/my_activity_btn_logout"/>
 	</RelativeLayout>
 
 </LinearLayout>

@@ -113,6 +113,7 @@
     <string name="my_activity_tv_user_info_plan">护肤计划</string>
     <string name="my_activity_tv_user_info_shop">积分商城</string>
     <string name="my_activity_tv_user_info_setting">设置</string>
+    <string name="my_activity_btn_logout">退出</string>
     
     <string name="back_exit_tips">再按一次退出系统</string>
     <string name="message_nickName_is_null">请输入昵称</string>

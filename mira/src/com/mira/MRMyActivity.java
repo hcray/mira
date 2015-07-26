@@ -25,9 +25,9 @@ public class MRMyActivity extends Activity {
 	
 	private TextView tv_nickName;
 
-	private TextView tv_sign;
+//	private TextView tv_sign;
 	
-	private TextView tv_level;
+//	private TextView tv_level;
 	
 	private TextView tv_grades;
 	
@@ -38,8 +38,8 @@ public class MRMyActivity extends Activity {
 		setContentView(R.layout.mr_activity_my);
 		
 		tv_nickName = (TextView) this.findViewById(R.id.my_activity_nickName);
-		tv_sign = (TextView) this.findViewById(R.id.my_activity_sign);
-		tv_level = (TextView) this.findViewById(R.id.my_activity_level);
+//		tv_sign = (TextView) this.findViewById(R.id.my_activity_sign);
+//		tv_level = (TextView) this.findViewById(R.id.my_activity_level);
 		tv_grades = (TextView) this.findViewById(R.id.my_activity_grades);
 		
 		iBtn_help = (ImageButton) this.findViewById(R.id.my_activity_ibtn_help);
@@ -124,8 +124,8 @@ public class MRMyActivity extends Activity {
 		if (AppContext.getInstance().isLogin()) {
 			User user = AppContext.getInstance().getLoginUser();
 			tv_nickName.setText(user.getNickName());
-			tv_sign.setText(user.getSign());
-			tv_level.setText(user.getLevel());
+//			tv_sign.setText(user.getSign());
+//			tv_level.setText(user.getLevel());
 			tv_grades.setText(user.getGrades());
 		} else {
 			tv_nickName.setText("未登录");
