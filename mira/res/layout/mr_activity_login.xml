@@ -2,12 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}" 
+    android:background="#e4f3f2">
 
     <RelativeLayout
         android:id="@+id/login_title"
         style="@style/title"
-        android:background="#81d8cf"
+        android:background="#84dfd8"
         android:visibility="visible" >
        	<LinearLayout
             android:id="@+id/activityLoginBackbtn"
@@ -100,7 +101,7 @@
                 android:id="@+id/inputPassword_btn_reset_send"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="#81d8cf"
+                android:background="#49c6bd"
                 android:padding="3dp"
                 android:text="@string/login_activity_get_code"
                 android:textColor="@color/white"
@@ -121,7 +122,7 @@
            
 		    <Button
 		        android:id="@+id/login_activity_bt_login"
-		        android:background="#81d8cf"
+		        android:background="#49c6bd"
 		        android:textColor="@color/white"
 	        	android:layout_width="fill_parent"
 	        	android:layout_height="wrap_content"
