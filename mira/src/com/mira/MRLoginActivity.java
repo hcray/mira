@@ -104,16 +104,15 @@ public class MRLoginActivity extends Activity {
         			//箭头朝下
         			Drawable arrowDownDrawable = getResources().getDrawable(R.drawable.arrow_down);
         			arrowDownDrawable.setBounds(0, 0, arrowDownDrawable.getMinimumWidth(), arrowDownDrawable.getMinimumHeight());
-        			tvThirdPartyLogin.setCompoundDrawables(null, null, arrowDownDrawable, null);
+        			tvThirdPartyLogin.setCompoundDrawables(null, null, null, arrowDownDrawable);
 
         		}else{
         			//展开
         			lyThirdPartyAccountDetail.setVisibility(View.VISIBLE);
         			//箭头朝上        			
-        			lyThirdPartyAccountDetail.setVisibility(View.INVISIBLE);
         			Drawable arrowUpDrawable = getResources().getDrawable(R.drawable.arrow_up);
         			arrowUpDrawable.setBounds(0, 0, arrowUpDrawable.getMinimumWidth(), arrowUpDrawable.getMinimumHeight());
-        			tvThirdPartyLogin.setCompoundDrawables(null, null, arrowUpDrawable, null);
+        			tvThirdPartyLogin.setCompoundDrawables(null, null, null, arrowUpDrawable);
         			
         		}
         	}
