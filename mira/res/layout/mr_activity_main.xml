@@ -47,8 +47,8 @@
 
                 <ImageView
                     android:id="@+id/iv_index"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/tab_infomation" />
 
                 
@@ -72,8 +72,8 @@
 
                 <ImageView
                     android:id="@+id/iv_test"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/tab_check" />
                <!--  <TextView
                     android:id="@+id/tv_test"
@@ -119,8 +119,8 @@
 
                 <ImageView
                     android:id="@+id/iv_my"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/tab_myinfo"/>
            <!--      <TextView
                     android:id="@+id/tv_my"
