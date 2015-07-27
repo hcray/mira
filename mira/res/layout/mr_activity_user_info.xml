@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/userInfo_title"
         android:gravity="center_vertical"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="@color/white"
         >
          <TextView
@@ -53,6 +53,23 @@
             android:drawableStart="@drawable/ico_info_head"
 	        android:drawablePadding="20dp"
             />
+         
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         <ImageView 
+		    	android:id="@+id/userInfo_activityi_iv_userface"
+		      	android:layout_width="50dip" 
+		        android:layout_height="50dip"
+		        android:scaleType="fitCenter"
+		        android:padding="3.0dip"
+				android:clickable="true"
+		        android:src="@drawable/ico_info_pic"
+		        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
+         </LinearLayout>
     </LinearLayout>
    	
    	<View 
@@ -84,6 +101,23 @@
             android:drawableStart="@drawable/ico_info_name"
 	        android:drawablePadding="20dp"
             />
+         
+		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         
+	         <TextView 
+	             android:id="@+id/userInfo_activity_tv_nick_name_value"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="抹茶妹妹"
+	             android:textColor="#999999"
+	             />
+	         
+	    </LinearLayout>
     </LinearLayout>
     
 	<View 
@@ -115,6 +149,23 @@
             android:drawableStart="@drawable/ico_info_sex"
 	        android:drawablePadding="20dp"
             />
+         
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         
+	         <TextView 
+	             android:id="@+id/userInfo_activity_tv_sex_value"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="妹子"
+	             android:textColor="#999999"
+	             />
+	         
+	    </LinearLayout>
 	</LinearLayout>
 	
 	<View 
@@ -138,7 +189,7 @@
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_birthday"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/userInfo_activity_birthday"
             android:gravity="center_vertical"
@@ -148,6 +199,23 @@
             android:drawableStart="@drawable/ico_info_birth"
 	        android:drawablePadding="20dp"
             />
+		
+		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         
+	         <TextView 
+	             android:id="@+id/userInfo_activity_tv_birthday_value"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="1980-08-06"
+	             android:textColor="#999999"
+	             />
+	         
+	    </LinearLayout>
     </LinearLayout>
     
 	<View 
@@ -170,7 +238,7 @@
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_type"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/userInfo_activity_skin_type"
             android:gravity="center_vertical"
@@ -180,6 +248,22 @@
             android:drawableStart="@drawable/ico_info_skin"
 	        android:drawablePadding="20dp"
 	        />
+		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         
+	         <TextView 
+	             android:id="@+id/userInfo_activity_tv_skin_type_value"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="油性皮肤"
+	             android:textColor="#999999"
+	             />
+	         
+	    </LinearLayout>         
     </LinearLayout>
     
 	<View 
@@ -202,7 +286,7 @@
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_sensitivity"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/userInfo_activity_skin_sensitivity"
             android:gravity="center_vertical"
@@ -212,6 +296,22 @@
             android:drawableStart="@drawable/ico_info_sensitivity"
 	        android:drawablePadding="20dp"
 	        />
+		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         
+	         <TextView 
+	             android:id="@+id/userInfo_activity_tv_skin_sensitivity_value"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="非敏感性"
+	             android:textColor="#999999"
+	             />
+	         
+	    </LinearLayout>          
     </LinearLayout>
     
 	<View 
@@ -234,7 +334,7 @@
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_menses"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/userInfo_activity_menses"
             android:gravity="center_vertical"
@@ -244,6 +344,21 @@
             android:drawableStart="@drawable/ico_info_menses"
 	        android:drawablePadding="20dp"
 	        />
+		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:gravity="end" >
+	         
+	         <TextView 
+	             android:id="@+id/userInfo_activity_tv_menses_value"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="月经期"
+	             android:textColor="#999999"
+	             />
+	    </LinearLayout> 
     </LinearLayout>
     
    	<LinearLayout
