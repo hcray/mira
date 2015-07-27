@@ -40,7 +40,7 @@
         <item name="android:layout_width">22dp</item>
         <item name="android:layout_height">22dp</item>
         <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:src">@drawable/z_back</item>
+        <item name="android:src">@drawable/ico_back</item>
     </style>
     <style name="titletext">
         <item name="android:textColor">@color/white</item>

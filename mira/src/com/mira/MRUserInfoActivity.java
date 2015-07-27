@@ -1,8 +1,5 @@
 package com.mira;
 
-import com.common.StringUtils;
-import com.model.User;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +8,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+
+import com.model.User;
 
 public class MRUserInfoActivity extends Activity {
 
@@ -34,11 +32,11 @@ public class MRUserInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_user_info);
 		
-		et_sign = (EditText) this.findViewById(R.id.userInfo_activity_et_user_sign);
-		et_nickName = (EditText) this.findViewById(R.id.userInfo_activity_et_nick_name);
-		rg_sex = (RadioGroup) this.findViewById(R.id.userInfo_activity_radioGroup_sex);
-		rb_male = (RadioButton) this.findViewById(R.id.userInfo_activity_radioMale);
-		rb_female = (RadioButton) this.findViewById(R.id.userInfo_activity_radioFemale);
+//		et_sign = (EditText) this.findViewById(R.id.userInfo_activity_et_user_sign);
+//		et_nickName = (EditText) this.findViewById(R.id.userInfo_activity_et_nick_name);
+//		rg_sex = (RadioGroup) this.findViewById(R.id.userInfo_activity_radioGroup_sex);
+//		rb_male = (RadioButton) this.findViewById(R.id.userInfo_activity_radioMale);
+//		rb_female = (RadioButton) this.findViewById(R.id.userInfo_activity_radioFemale);
 		
 		backbtn = (LinearLayout) this.findViewById(R.id.userInfoBackbtn);
 		backbtn.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +49,7 @@ public class MRUserInfoActivity extends Activity {
 		btn_save = (Button) this.findViewById(R.id.userInfo_activity_btn_save);
 		btn_save.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String sign = et_sign.getText().toString();
+				/*String sign = et_sign.getText().toString();
 				String nickName = et_nickName.getText().toString();
 				if(StringUtils.isEmpty(nickName)){
 					Toast.makeText(v.getContext(), getString(R.string.message_nickName_is_null), Toast.LENGTH_SHORT).show();
@@ -66,7 +64,7 @@ public class MRUserInfoActivity extends Activity {
 				}else{
 					user.setSex("female");
 				}
-				AppContext.getInstance().saveUserInfo(user);
+				AppContext.getInstance().saveUserInfo(user);*/
 				MRUserInfoActivity.this.finish();
 			}
 		});

@@ -76,7 +76,7 @@
     
     <string name="myChanges_activity_title">我的变化</string>
 
-    <string name="userInfo_activity_title">个人资料</string>
+    <string name="userInfo_activity_title">资料</string>
     <string name="userInfo_activity_user_pic">头像</string>
     <string name="userInfo_activity_user_sign">个性签名</string>
     <string name="userInfo_activity_nick_name">昵称</string>
@@ -86,9 +86,10 @@
     <string name="userInfo_activity_height">身高</string>
     <string name="userInfo_activity_weight">体重</string>
     <string name="userInfo_activity_menses">经期记录</string>
-    <string name="userInfo_activity_skin_type">我的肤质</string>
+    <string name="userInfo_activity_skin_type">皮肤类型</string>
+    <string name="userInfo_activity_skin_sensitivity">是否敏感</string>
     <string name="userInfo_activity_skin_type_test">不知道，去测测</string>
-    <string name="userInfo_activity_save">保存</string>
+    <string name="userInfo_activity_save">完成</string>
     
     <string name="index_activity_arrowLeft_desc">朝左</string>
     <string name="index_activity_arrowRight_desc">朝右</string>

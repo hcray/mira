@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e4f3f2"
     tools:context="${relativePackage}.${activityClass}" >
 
     <RelativeLayout
         android:id="@+id/userInfo_title"
         style="@style/title"
         android:layout_alignParentTop="true"
-        android:background="#81d8cf"
+        android:background="#84dfd8"
         android:visibility="visible" >
 
         <LinearLayout
@@ -38,288 +39,229 @@
         android:layout_below="@id/userInfo_title"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp"
-        
+        android:background="@color/white"
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_user_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:text="@string/userInfo_activity_user_pic"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_head"
+	        android:drawablePadding="20dp"
             />
     </LinearLayout>
-    
-	<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_user_sign"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_user_pic"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
-         <TextView
-            android:id="@+id/userInfo_activity_tv_user_sign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_user_sign"
-            />
-         
-          <EditText
-            android:id="@+id/userInfo_activity_et_user_sign"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:inputType="text"/>
-    </LinearLayout>
-    
+   	
+   	<View 
+   	    android:id="@+id/userInfo_activity_view1"
+   	    android:layout_height="1px" 
+   	    android:layout_below="@id/userInfo_activity_ll_user_pic"
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+		>
+	</View>
+
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_nick_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_user_sign"
-        android:gravity="center_horizontal"
+        android:layout_below="@id/userInfo_activity_view1"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
+        android:background="@color/white">
          <TextView
             android:id="@+id/userInfo_activity_tv_nick_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
             android:text="@string/userInfo_activity_nick_name"
-            />
-         
-         <EditText android:id="@+id/userInfo_activity_et_nick_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:inputType="text"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_name"
+	        android:drawablePadding="20dp"
             />
     </LinearLayout>
     
-	<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_border1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_nick_name"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
-    
-		<ImageView
-		    android:layout_marginTop="10dp"
-	        android:layout_width="fill_parent"  
-	        android:layout_height="1dp"  
-	        android:background="#D1D1D1"  
-	        />
-	</LinearLayout>
+	<View 
+   	    android:id="@+id/userInfo_activity_view2"
+   	    android:layout_height="1px" 
+   	    android:layout_below="@id/userInfo_activity_ll_nick_name"
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+		>
+	</View>
 	
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_sex"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_border1"
-        android:gravity="center_horizontal"
+        android:layout_below="@id/userInfo_activity_view2"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
+        android:background="@color/white">
          <TextView
             android:id="@+id/userInfo_activity_tv_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/userInfo_activity_sex"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_sex"
+	        android:drawablePadding="20dp"
             />
-         
-           <RadioGroup
-            android:id="@+id/userInfo_activity_radioGroup_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:contentDescription="@string/completeInfo_activity_sex" >
-
-            <RadioButton
-                android:id="@+id/userInfo_activity_radioMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/completeInfo_activity_sex_man" >
-            </RadioButton>
-
-            <RadioButton
-                android:id="@+id/userInfo_activity_radioFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/completeInfo_activity_sex_woman" >
-            </RadioButton>
-        </RadioGroup>
-    </LinearLayout>
-    
-	<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_sex"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp"
-        >
-         <TextView
-            android:id="@+id/userInfo_activity_tv_age"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_age"
-            />
-    </LinearLayout>
-    
-	<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_age"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
-         <TextView
-            android:id="@+id/userInfo_activity_tv_height"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_height"/>
-    </LinearLayout>
-    
-	<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_height"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
-         <TextView
-            android:id="@+id/userInfo_activity_tv_weight"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_weight"/>
-    </LinearLayout>		
-    
-	<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_border2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_weight"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp"
-        >
-		<ImageView
-		    android:layout_marginTop="10dp"
-	        android:layout_width="fill_parent"  
-	        android:layout_height="1dp"  
-	        android:background="#D1D1D1"/>
 	</LinearLayout>
 	
-		<LinearLayout
-	    android:id="@+id/userInfo_activity_ll_menses"
-        android:layout_width="wrap_content"
+	<View 
+   	    android:id="@+id/userInfo_activity_view3"
+   	    android:layout_height="1px" 
+   	    android:layout_below="@id/userInfo_activity_ll_sex"
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+		>
+	</View>
+         
+    
+	<LinearLayout
+	    android:id="@+id/userInfo_activity_ll_birthday"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_border2"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp">
+        android:layout_below="@id/userInfo_activity_view3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
          <TextView
-            android:id="@+id/userInfo_activity_tv_menses"
+            android:id="@+id/userInfo_activity_tv_birthday"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_menses"/>
-    </LinearLayout>	
+            android:text="@string/userInfo_activity_birthday"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_birth"
+	        android:drawablePadding="20dp"
+            />
+    </LinearLayout>
+    
+	<View 
+   	    android:id="@+id/userInfo_activity_view4"
+   	    android:layout_height="1px" 
+   	    android:layout_below="@id/userInfo_activity_ll_birthday"
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+		>
+	</View>
     
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_skin_type"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_menses"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_below="@id/userInfo_activity_view4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/white"
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_type"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_skin_type"/>
+            android:text="@string/userInfo_activity_skin_type"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_skin"
+	        android:drawablePadding="20dp"
+	        />
     </LinearLayout>
     
-    <LinearLayout
-	    android:id="@+id/userInfo_activity_ll_skin_type_test"
+	<View 
+   	    android:id="@+id/userInfo_activity_view5"
+   	    android:layout_height="1px" 
+   	    android:layout_below="@id/userInfo_activity_ll_skin_type"
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+		>
+	</View>
+    
+	<LinearLayout
+	    android:id="@+id/userInfo_activity_ll_skin_sensitivity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_skin_type"
+        android:layout_below="@id/userInfo_activity_view5"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:gravity="end"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="20dp"
+        android:background="@color/white"
         >
          <TextView
-            android:id="@+id/userInfo_activity_tv_skin_type_test"
-            android:layout_width="wrap_content"
+            android:id="@+id/userInfo_activity_tv_skin_sensitivity"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/userInfo_activity_skin_type_test"/>
+            android:text="@string/userInfo_activity_skin_sensitivity"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_sensitivity"
+	        android:drawablePadding="20dp"
+	        />
+    </LinearLayout>
+    
+	<View 
+   	    android:id="@+id/userInfo_activity_view6"
+   	    android:layout_height="1px" 
+   	    android:layout_below="@id/userInfo_activity_ll_skin_sensitivity"
+	    android:background="#84dfd8" 
+	    android:layout_width="fill_parent"
+		>
+	</View>
+    
+	<LinearLayout
+	    android:id="@+id/userInfo_activity_ll_menses"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userInfo_activity_view6"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
+         <TextView
+            android:id="@+id/userInfo_activity_tv_menses"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/userInfo_activity_menses"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ico_info_menses"
+	        android:drawablePadding="20dp"
+	        />
     </LinearLayout>
     
    	<LinearLayout
         android:id="@+id/userInfo_activity_ll_save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userInfo_activity_ll_skin_type_test"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/userInfo_activity_ll_menses"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/userInfo_activity_btn_save"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="#49c6bd"
+	        android:textColor="@color/white"
             android:text="@string/userInfo_activity_save" />
     </LinearLayout>
 
