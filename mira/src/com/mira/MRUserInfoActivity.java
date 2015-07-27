@@ -77,7 +77,7 @@ public class MRUserInfoActivity extends Activity {
 	 * 初始化
 	 */
 	private void initUI(){
-		User user = AppContext.getInstance().getLoginUser();
+		/*User user = AppContext.getInstance().getLoginUser();
 		et_nickName.setText(user.getNickName());
 		et_sign.setText(user.getSign());
 		String sex = user.getSex();
@@ -85,7 +85,7 @@ public class MRUserInfoActivity extends Activity {
 			rb_male.setChecked(true);
 		}else if("female".equalsIgnoreCase(sex)){
 			rb_female.setChecked(true);
-		}
+		}*/
 		
 	}
 }
