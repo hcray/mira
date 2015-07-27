@@ -1,6 +1,7 @@
 package com.mira;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -96,14 +97,23 @@ public class MRLoginActivity extends Activity {
         tvThirdPartyLogin.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		int visibleValue = lyThirdPartyAccountDetail.getVisibility();
+        		//点击的时候如果是展开的，则隐藏
         		if(View.VISIBLE == visibleValue){
+        			//隐藏
         			lyThirdPartyAccountDetail.setVisibility(View.INVISIBLE);
-//        			Drawable rightDrawable = getResources().getDrawable(R.drawable.icon_new);
-//        			rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
-//        			tvVersionStatus.setCompoundDrawables(null, null, rightDrawable, null);
+        			//箭头朝下
+        			Drawable arrowDownDrawable = getResources().getDrawable(R.drawable.arrow_down);
+        			arrowDownDrawable.setBounds(0, 0, arrowDownDrawable.getMinimumWidth(), arrowDownDrawable.getMinimumHeight());
+        			tvThirdPartyLogin.setCompoundDrawables(null, null, arrowDownDrawable, null);
 
         		}else{
+        			//展开
         			lyThirdPartyAccountDetail.setVisibility(View.VISIBLE);
+        			//箭头朝上        			
+        			lyThirdPartyAccountDetail.setVisibility(View.INVISIBLE);
+        			Drawable arrowUpDrawable = getResources().getDrawable(R.drawable.arrow_up);
+        			arrowUpDrawable.setBounds(0, 0, arrowUpDrawable.getMinimumWidth(), arrowUpDrawable.getMinimumHeight());
+        			tvThirdPartyLogin.setCompoundDrawables(null, null, arrowUpDrawable, null);
         			
         		}
         	}
