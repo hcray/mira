@@ -32,8 +32,6 @@
     <string name="login_activity_qq_login">QQ</string>
     <string name="login_activity_weibo_login">微博</string>
     <string name="login_activity_desc_arrow_down">朝下展开</string>
-    
-    
     <string name="msg_login_account_null">请输入账号</string>
     <string name="msg_login_pwd_null">请输入密码</string>
     <string name="title_activity_mrnex">MRNexActivity</string>
@@ -72,10 +70,7 @@
     <string name="gradesRule_activity_rule_content4">4.记录我的护肤品得积分</string>
     <string name="title_activity_mruser_info">MRUserInfoActivity</string>
     <string name="title_activity_mrmy_changes">MRMyChangesActivity</string>
-
-    
     <string name="myChanges_activity_title">我的变化</string>
-
     <string name="userInfo_activity_title">资料</string>
     <string name="userInfo_activity_user_pic">头像</string>
     <string name="userInfo_activity_user_sign">个性签名</string>
@@ -90,20 +85,16 @@
     <string name="userInfo_activity_skin_sensitivity">是否敏感</string>
     <string name="userInfo_activity_skin_type_test">不知道，去测测</string>
     <string name="userInfo_activity_save">完成</string>
-    
     <string name="index_activity_arrowLeft_desc">朝左</string>
     <string name="index_activity_arrowRight_desc">朝右</string>
     <string name="index_activity_today_result">今日测试结果</string>
     <string name="index_activity_my_cream">我的护肤品</string>
     <string name="index_activity_my_mood">我的心情</string>
-    
     <string name="myChanges_activity_lately">最近</string>
     <string name="myChanges_activity_lately_twenty">20张</string>
     <string name="myChanges_activity_lately_fifty">50张</string>
     <string name="myChanges_activity_setting">设置</string>
     <string name="myChanges_activity_share_desc">分享</string>
-    
-    
     <string name="my_activity_title_name">我的</string>
     <string name="my_activity_ibtn_help_desc">帮助</string>
     <string name="my_activity_iv_user_info_userface_desc">头像</string>
@@ -115,8 +106,22 @@
     <string name="my_activity_tv_user_info_shop">积分商城</string>
     <string name="my_activity_tv_user_info_setting">设置</string>
     <string name="my_activity_btn_logout">退出</string>
-    
     <string name="back_exit_tips">再按一次退出系统</string>
     <string name="message_nickName_is_null">请输入昵称</string>
+    <string name="title_activity_mrset">MRSetActivity</string>
     
+    <!-- 设置页面 -->
+    <string name="set_activity_title_name">设置</string>
+    <string name="set_activity_tv_wifi_upload_pic_value">wifi下上传图片</string>
+    <string name="set_activity_tv_gps_value">GPS定位</string>
+    <string name="set_activity_tv_alarm_value">闹钟提醒</string>
+    <string name="set_activity_tv_weixin_value">微信</string>
+    <string name="set_activity_tv_qq_value">QQ</string>
+    <string name="set_activity_tv_weibo_value">新浪微博</string>
+    <string name="set_activity_tv_suggestion_value">意见反馈</string>
+    <string name="set_activity_tv_check_update_value">检测更新</string>
+    <string name="set_activity_tv_no_binding">未绑定</string>
+    <string name="set_activity_tv_binding">已绑定</string>
+    <string name="set_activity_tv_version">最新版本V1.0.0</string>
+
 </resources>

@@ -22,6 +22,8 @@ public class MRMyActivity extends Activity {
 	private RelativeLayout rlChanges;
 	//历史记录
 	private RelativeLayout rlHistory;
+	//设置
+	private RelativeLayout rlSetting;
 	
 	private TextView tv_nickName;
 
@@ -79,6 +81,14 @@ public class MRMyActivity extends Activity {
 		rlHistory.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), MRHistoryActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		rlSetting = (RelativeLayout) this.findViewById(R.id.my_activity_rl_setting);
+		rlSetting.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), MRSetActivity.class);
 				startActivity(intent);
 			}
 		});
