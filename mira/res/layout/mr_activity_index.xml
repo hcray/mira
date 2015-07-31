@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             style="@style/table_more_set"
-            android:src="@drawable/camera"
+            android:src="@drawable/ico_camera"
             android:contentDescription="@string/activity_index_camera" />
     </RelativeLayout>
 	<LinearLayout
@@ -56,7 +56,7 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:background="#00000000"
-	            android:src="@drawable/calender"
+	            android:src="@drawable/ico_date_pick"
 	            android:contentDescription="@string/activity_index_calender"
 	            android:labelFor="@+id/et_selectDt"/>
         </LinearLayout>

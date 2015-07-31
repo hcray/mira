@@ -12,7 +12,7 @@
     <string name="title_activity_mrfind">MRFindActivity</string>
     <string name="title_activity_mrweb_view">MRWebViewActivity</string>
     <string name="title_activity_mrwelcome">MRWelcomeActivity</string>
-    <string name="main_activity_tv_diary">美丽日记</string>
+    <string name="main_activity_tv_diary">日记</string>
     <string name="main_activity_tv_discover">发现</string>
     <string name="main_activity_tv_test">检测</string>
     <string name="main_activity_tv_my">我的</string>
