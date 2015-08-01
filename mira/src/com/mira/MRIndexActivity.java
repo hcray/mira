@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
 import cn.aigestudio.datepicker.interfaces.OnDateSelected;
@@ -64,7 +65,7 @@ public class MRIndexActivity extends Activity implements
 	/**
 	 * 日期显示
 	 */
-	private EditText etSelectDate;
+	private TextView etSelectDate;
 	
 	
 	/**
@@ -101,7 +102,7 @@ public class MRIndexActivity extends Activity implements
 		setContentView(R.layout.mr_activity_index);
 		
 //		imageView = (ImageView) this.findViewById(R.id.imageView);
-		etSelectDate = (EditText) this.findViewById(R.id.et_selectDt);
+		etSelectDate = (TextView) this.findViewById(R.id.index_activity_selectDate);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		String picName = format.format(new Date());
 		etSelectDate.setText(picName);
