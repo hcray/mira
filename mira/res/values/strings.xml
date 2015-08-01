@@ -88,6 +88,8 @@
     <string name="index_activity_arrowLeft_desc">朝左</string>
     <string name="index_activity_arrowRight_desc">朝右</string>
     <string name="index_activity_today_result">今日测试结果</string>
+    <string name="index_activity_test_changes">我的美丽变化</string>
+    <string name="index_activity_test_history">检测历史记录</string>
     <string name="index_activity_my_cream">我的护肤品</string>
     <string name="index_activity_my_mood">我的心情</string>
     <string name="myChanges_activity_lately">最近</string>
