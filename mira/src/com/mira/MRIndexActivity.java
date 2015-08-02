@@ -60,7 +60,7 @@ public class MRIndexActivity extends Activity implements
 	/**
 	 * 图片展示
 	 */
-	private ImageSwitcher mSwitcher;
+	//private ImageSwitcher mSwitcher;
 	
 	/**
 	 * 日期显示
@@ -111,7 +111,7 @@ public class MRIndexActivity extends Activity implements
 		
 		arrowRight = (ImageButton) this.findViewById(R.id.index_activity_ib_arrowRight);
 		
-		mSwitcher = (ImageSwitcher) this.findViewById(R.id.imgSwitcher);
+		//mSwitcher = (ImageSwitcher) this.findViewById(R.id.imgSwitcher);
 		
 		ibCamera = (ImageButton) this.findViewById(R.id.ib_camera);
 		
@@ -146,21 +146,21 @@ public class MRIndexActivity extends Activity implements
 		Log.v(TAG, "imagePathList: " + imagePathList);
 		pathList = imagePathList.toArray(new String[imagePathList.size()]);
 
-		mSwitcher.setFactory(this);
+		//mSwitcher.setFactory(this);
 		/* 设定载入Switcher的模式 */
-		mSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+		//mSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
 		/* 设定输出Switcher的模式 */
-		mSwitcher.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_out));
-		mSwitcher.setOnClickListener(new OnClickListener() {
+		//mSwitcher.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_out));
+		//mSwitcher.setOnClickListener(new OnClickListener() {
 
-			public void onClick(View v) {
+			//public void onClick(View v) {
 				// Toast.makeText(ImageSwitcherAndGalleryActivity.this,
 				// "你点击了ImageSwitch上的图片",
 				// Toast.LENGTH_SHORT).show();
 
-			}
+			//}
 
-		});
+		//});
 		
 		arrowLeft.setOnClickListener(new OnClickListener() {
 			@Override
@@ -171,7 +171,7 @@ public class MRIndexActivity extends Activity implements
 					String photoURL = pathList[curPosition];
 					Log.i(TAG, "photoURL: " + photoURL);
 					
-					mSwitcher.setImageURI(Uri.parse(photoURL));
+					//mSwitcher.setImageURI(Uri.parse(photoURL));
 				}else{
 					Toast.makeText(v.getContext(), "已经是最前一张", Toast.LENGTH_SHORT).show();
 				}
@@ -187,7 +187,7 @@ public class MRIndexActivity extends Activity implements
 					String photoURL = pathList[curPosition];
 					Log.i(TAG, "photoURL: " + photoURL);
 					
-					mSwitcher.setImageURI(Uri.parse(photoURL));
+					//mSwitcher.setImageURI(Uri.parse(photoURL));
 				}else{
 					Toast.makeText(v.getContext(), "已经是最后一张", Toast.LENGTH_SHORT).show();
 				}
@@ -222,6 +222,7 @@ public class MRIndexActivity extends Activity implements
 		            }
 		        });
 		
+		/*
 		if(pathList.length > 0){
 			//取最后一张图片
 			curPosition = pathList.length - 1;
@@ -229,6 +230,7 @@ public class MRIndexActivity extends Activity implements
 			Log.i(TAG, "photoURL: " + photoURL);
 			mSwitcher.setImageURI(Uri.parse(photoURL));
 		}
+		*/
 	}
 
 	/**
@@ -381,7 +383,7 @@ public class MRIndexActivity extends Activity implements
 		String photoURL = pathList[position];
 		Log.i("A", String.valueOf(position));
 
-		mSwitcher.setImageURI(Uri.parse(photoURL));
+		//mSwitcher.setImageURI(Uri.parse(photoURL));
 	}
 
 	@Override
