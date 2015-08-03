@@ -210,11 +210,14 @@
                             android:src="@drawable/photo_left" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/index_activity_ll_imgSwitcher"
                         android:layout_width="wrap_content"
                         android:layout_height="200dp"
-                        android:layout_weight="8" >
+                        android:layout_weight="8" 
+                        android:background="@drawable/index_photo"
+                        android:scaleType="centerInside"
+                        >
 
                         <!-- 
                         <ImageSwitcher
@@ -223,14 +226,14 @@
                             android:layout_height="fill_parent"
                             android:scaleType="centerInside"
                             />
-                         -->
                          <ImageView 
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:scaleType="centerInside"
                             android:src="@drawable/index_photo"
                             />
-                    </LinearLayout>
+                         -->
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:id="@+id/index_activity_ll_arrowRight"
