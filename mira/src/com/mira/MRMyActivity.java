@@ -85,11 +85,11 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
-		rlSetting = (RelativeLayout) this.findViewById(R.id.my_activity_rl_setting);
+		rlSetting = (RelativeLayout) this.findViewById(R.id.my_activity_rl_check_update);
 		rlSetting.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MRSetActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(v.getContext(), MRSetActivity.class);
+//				startActivity(intent);
 			}
 		});
 		
