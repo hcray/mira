@@ -99,7 +99,7 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
-        </service>
+        </service>
         -->
 
         <activity
@@ -133,6 +133,10 @@
         <activity
             android:name=".MRSetActivity"
             android:label="@string/title_activity_mrset" >
+        </activity>
+        <activity
+            android:name=".MRCityActivity"
+            android:label="@string/title_activity_mrcity" >
         </activity>
     </application>
 
