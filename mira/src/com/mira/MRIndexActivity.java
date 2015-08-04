@@ -96,6 +96,11 @@ public class MRIndexActivity extends Activity implements
 	 */
 	private int curPosition = -1;
 	
+	/**
+	 * 选择城市
+	 */
+	private TextView tvCity;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -231,6 +236,16 @@ public class MRIndexActivity extends Activity implements
 			mSwitcher.setImageURI(Uri.parse(photoURL));
 		}
 		*/
+		
+		tvCity = (TextView) this.findViewById(R.id.index_activity_tv_city);
+		tvCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	Intent intent = new Intent(v.getContext(), MRCityActivity.class);
+            	startActivity(intent);
+            }
+		});
+		
 	}
 
 	/**

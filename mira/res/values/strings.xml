@@ -111,7 +111,7 @@
     <string name="back_exit_tips">再按一次退出系统</string>
     <string name="message_nickName_is_null">请输入昵称</string>
     <string name="title_activity_mrset">MRSetActivity</string>
-    
+
     <!-- 设置页面 -->
     <string name="set_activity_title_name">设置</string>
     <string name="set_activity_tv_wifi_upload_pic_value">wifi下上传图片</string>
@@ -125,5 +125,9 @@
     <string name="set_activity_tv_no_binding">未绑定</string>
     <string name="set_activity_tv_binding">已绑定</string>
     <string name="set_activity_tv_version">最新版本V1.0.0</string>
+    <string name="title_activity_mrcity">MRCityActivity</string>
+    
+    <!-- 选择城市 -->
+    <string name="city_activity_title">选择城市</string>
 
 </resources>
