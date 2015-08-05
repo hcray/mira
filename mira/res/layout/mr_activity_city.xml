@@ -40,16 +40,26 @@
        	android:gravity="center_horizontal"
        	android:background="@drawable/layout_city_bottom_border"
        	>
+        
+   		<ImageButton
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="5dp"
+          android:background="#00000000"
+          android:contentDescription="@string/activity_index_calender"
+          android:scaleType="centerInside"
+          android:src="@drawable/ico_find" />
 	    <EditText
 	        android:id="@+id/city_activity_input"
 	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_height="fill_parent"
 	        android:background="@null"
 	        android:layout_marginStart="10dp"
 	        android:hint="请输入省市中文名称或拼音首字母"
 	        android:textColorHint="#aaaaaa"
 	        android:textSize="14sp"
-	        android:drawableStart="@drawable/ico_find"
 	        />
 
 	</LinearLayout>
@@ -61,21 +71,31 @@
        	android:gravity="center_vertical"
 	    android:orientation="horizontal"
        	>
+	    <ImageButton
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="5dp"
+          android:background="#00000000"
+          android:contentDescription="@string/activity_index_calender"
+          android:scaleType="centerInside"
+          android:src="@drawable/ico_position" />
 	    <TextView
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_height="fill_parent"
 	        android:textSize="14sp"
 	        android:layout_marginStart="10dp"
 	        android:gravity="center_vertical"
-	        android:drawableStart="@drawable/ico_position"
 	        android:text="定位到的城市："
 	        android:textColor="#aaaaaa"
 	        />
 	    <TextView
 	        android:id="@+id/city_activity_selected"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_height="fill_parent"
 	        android:layout_marginStart="5dp"
+	        android:gravity="center_vertical"
 	        android:textSize="14sp"
 	        android:textColor="#49c6bd"
 	        android:textStyle="bold"

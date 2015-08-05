@@ -52,7 +52,7 @@ public class MyLetterListView extends View
 			paint.setColor(Color.parseColor("#49c6bd"));
 			//paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
-			paint.setTextSize(25);
+			paint.setTextSize(45);
 			if (i == choose)
 			{
 				//选中索引的颜色
