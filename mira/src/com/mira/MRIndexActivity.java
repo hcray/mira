@@ -208,7 +208,9 @@ public class MRIndexActivity extends Activity implements
 
 		                DatePicker datePicker = new DatePicker(MRIndexActivity.this);
 		                //不显示农历
-		                datePicker.isLunarDisplay(false);
+		                //datePicker.isLunarDisplay(false);
+		                //单选
+		                datePicker.isMultiSelect(false);
 		                datePicker.setOnDateSelected(new OnDateSelected() {
 		                    @Override
 		                    public void selected(List<String> date) {
