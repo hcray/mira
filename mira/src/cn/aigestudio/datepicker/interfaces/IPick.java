@@ -35,4 +35,12 @@ public interface IPick {
      * @param display true表示显示农历，false反之(true display lunar,false otherwise)
      */
     void isLunarDisplay(boolean display);
+    
+    /**
+     * 设置是否多选
+     * Set is multiSelect
+     *
+     * @param display true 表示多选，false反之(true multiSelect, false Single Select)
+     */
+    void isMultiSelect(boolean select);
 }

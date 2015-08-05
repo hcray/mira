@@ -52,4 +52,9 @@ public class DatePicker extends LinearLayout implements IPick {
     public void isLunarDisplay(boolean display) {
         monthView.setLunarShow(display);
     }
+
+	@Override
+	public void isMultiSelect(boolean select) {
+		monthView.setSelectType(select);
+	}
 }
