@@ -101,10 +101,10 @@ public class MRTestBLL {
 		Matcher m = p_str.matcher(con);
 		String sqlString = null;
 		if (m.find() && m.group(0).equals(con)) {
-			sqlString = "SELECT * FROM T_city WHERE AllNameSort LIKE " + "\""
+			sqlString = "SELECT * FROM t_city WHERE AllNameSort LIKE " + "\""
 					+ con + "%" + "\"" + " ORDER BY CityName";
 		} else {
-			sqlString = "SELECT * FROM T_city WHERE NameSort LIKE " + "\""
+			sqlString = "SELECT * FROM t_city WHERE NameSort LIKE " + "\""
 					+ con + "%" + "\"" + " ORDER BY CityName";
 		}
 		Cursor cursor = database.rawQuery(sqlString, null);
@@ -133,7 +133,7 @@ public class MRTestBLL {
 		dbAdapter.open();
 		SQLiteDatabase database = dbAdapter.getmDb();
 		Cursor cursor = database.rawQuery(
-				"SELECT * FROM T_city ORDER BY CityName", null);
+				"SELECT * FROM t_city ORDER BY CityName", null);
 		for (int i = 0; i < cursor.getCount(); i++) {
 			cursor.moveToPosition(i);
 			CityModel cityModel = new CityModel();

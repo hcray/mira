@@ -1,19 +1,11 @@
 package com.database;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.util.Log;
-
-import com.mira.R;
 
 public class MRDataBase {
 	static SQLiteDatabase database;
@@ -57,6 +49,16 @@ public class MRDataBase {
 			+ "weatherpm int,"
 			+ "weatherziwaixian text,"
 			+ "weatherwendu text," + "weathercity text" + ")";
+	
+	// 创建检测结果的数据库表
+	private static String CREATE_TABLE_CITY = "create table if not exists "
+			+ DATABASE_TABLE_CITY
+			+ "("
+			+ "RecNo integer primary key not null,"
+			+ "AllNameSort text,"
+			+ "CityName text ,"
+			+ "NameSort text"
+			+  ")";
 
 	public MRDataBase(Context ctx) {
 		this.mCtx = ctx;
@@ -70,28 +72,6 @@ public class MRDataBase {
 	 */
 	public MRDataBase open() throws SQLException {
 		Log.d(TAG, "open()");
-		String dbFile = DB_PATH + "/" + DATABASE_NAME;
-		File file = new File(dbFile);
-		if (!file.exists()) {
-			//打开raw中得数据库文件，获得stream流
-			InputStream stream = mCtx.getResources().openRawResource(R.raw.china_city);
-			try {
-
-				// 将获取到的stream 流写入道data中
-				FileOutputStream outputStream = new FileOutputStream(dbFile);
-				byte[] buffer = new byte[BUFFER_SIZE];
-				int count = 0;
-				while ((count = stream.read(buffer)) > 0) {
-					outputStream.write(buffer, 0, count);
-				}
-				outputStream.close();
-				stream.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 		mDbHelper = new DatabaseHelper(mCtx);
 		mDb = mDbHelper.getWritableDatabase();
 		return this;
@@ -123,6 +103,10 @@ public class MRDataBase {
 		public void onCreate(SQLiteDatabase db) {
 			// 创建表
 			db.execSQL(CREATE_TABLE_TEST_RESULT);
+			db.execSQL(CREATE_TABLE_CITY);
+			for(String sql : InitSQL.sqlList){
+				db.execSQL(sql);
+			}
 		}
 		// 升级
 		@Override
