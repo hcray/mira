@@ -23,7 +23,7 @@ public class TitleView extends LinearLayout implements MonthView.OnPageChangeLis
 
     public TitleView(Context context) {
         super(context);
-        setColor(0xFFE95344);
+        setColor(0xFF84dfd8);
         setOrientation(HORIZONTAL);
 
         monthTitles = Language.getLanguage(context).monthTitles();

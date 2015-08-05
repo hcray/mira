@@ -55,7 +55,7 @@ public class MonthView extends View implements ValueAnimator.AnimatorUpdateListe
     private int lastYear, currentYear, nextYear;
     private int animZoomOut1, animZoomIn1, animZoomOut2;
     private int circleRadius;
-    private int colorMain = 0xFFE95344;
+    private int colorMain = 0xFF84dfd8;
 
     private float textSizeGregorian, textSizeLunar;
     private float offsetYLunar;
