@@ -52,7 +52,7 @@ public class MRCityActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_city);
 		btn = (Button) findViewById(R.id.btn);
-		et = (EditText) findViewById(R.id.et);
+		et = (EditText) findViewById(R.id.city_activity_input);
 		overlay = (TextView) findViewById(R.id.overlay);
 		btn.setOnClickListener(new OnClickListener() {
 			@Override

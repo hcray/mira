@@ -32,17 +32,63 @@
             android:text="@string/city_activity_title"
             android:textColor="@color/white" />
     </RelativeLayout>
-    <EditText
-        android:id="@+id/et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入省市中文名称或拼音首字母" />
+    
+	<LinearLayout 
+      	android:id="@+id/city_activity_input_uly"
+       	android:layout_width="fill_parent" 
+       	android:layout_height="wrap_content"
+       	android:gravity="center_horizontal"
+       	android:background="@drawable/layout_city_bottom_border"
+       	>
+	    <EditText
+	        android:id="@+id/city_activity_input"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@null"
+	        android:layout_marginStart="10dp"
+	        android:hint="请输入省市中文名称或拼音首字母"
+	        android:textColorHint="#aaaaaa"
+	        android:textSize="14sp"
+	        android:drawableStart="@drawable/ico_find"
+	        />
 
+	</LinearLayout>
+	
+	<LinearLayout 
+      	android:id="@+id/city_activity_position_uly"
+       	android:layout_width="fill_parent" 
+       	android:layout_height="wrap_content"
+       	android:gravity="center_vertical"
+	    android:orientation="horizontal"
+       	>
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="14sp"
+	        android:layout_marginStart="10dp"
+	        android:gravity="center_vertical"
+	        android:drawableStart="@drawable/ico_position"
+	        android:text="定位到的城市："
+	        android:textColor="#aaaaaa"
+	        />
+	    <TextView
+	        android:id="@+id/city_activity_selected"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="5dp"
+	        android:textSize="14sp"
+	        android:textColor="#49c6bd"
+	        android:textStyle="bold"
+	        android:text="杭州"
+	        />
+
+	</LinearLayout>
     <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="搜索" />
+        android:text="搜索" 
+        android:visibility="gone"/>
 
     <FrameLayout
         android:layout_width="match_parent"
