@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.14+'
+    }
+}
+
+//添加编码
+tasks.withType(JavaCompile) { 
+	options.encoding = "GBK" 
+} 
+
+apply plugin: 'android'
+
+dependencies {
+	compile files('libs/Android_Location_V1.3.1.jar')
+    compile files('libs/android-support-v4.jar')
+}
+
+android {
+    compileSdkVersion 14
+    buildToolsVersion "19.1"
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 14
+    }
+    
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        instrumentTest.setRoot('tests')
+    }
+    
+	lintOptions {
+		abortOnError false
+	}
+	//声明创建一个带签名的发布版本细节
+	signingConfigs {
+		release {
+			storeFile file("android.keystore")
+			storePassword "######"
+			keyAlias "mykey"
+			keyPassword "######"
+		}
+	}
+	//声明此发布构建在签名之前需要运行proguard
+	buildTypes {
+		release {
+			minifyEnabled true
+			proguardFile 'proguard-project.txt'
+			//proguardFile 'proguard.cfg'
+			signingConfig signingConfigs.release
+		} 
+	}
+}

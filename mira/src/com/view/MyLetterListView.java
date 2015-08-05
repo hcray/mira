@@ -40,7 +40,7 @@ public class MyLetterListView extends View
 		super.onDraw(canvas);
 		if (showBkg)
 		{
-			canvas.drawColor(Color.parseColor("#40000000"));
+			canvas.drawColor(Color.parseColor("#e4f3f2"));
 		}
 
 		int height = getHeight();
@@ -48,12 +48,14 @@ public class MyLetterListView extends View
 		int singleHeight = height / b.length;
 		for (int i = 0; i < b.length; i++)
 		{
-			paint.setColor(Color.WHITE);
+			//索引颜色
+			paint.setColor(Color.parseColor("#84dfd8"));
 			paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
 			paint.setTextSize(25);
 			if (i == choose)
 			{
+				//选中索引的颜色
 				paint.setColor(Color.parseColor("#3399ff"));
 				paint.setFakeBoldText(true);
 			}
