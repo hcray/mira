@@ -67,7 +67,7 @@
                 android:layout_width="30dip"
                 android:layout_height="fill_parent"
                 android:layout_alignParentRight="true"
-                android:background="#e4f3f2" />
+                android:background="#50e4f3f2" />
         </RelativeLayout>
 
         <TextView
