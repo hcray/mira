@@ -11,14 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.common.BaiDuLocationModel;
 import com.common.BaiduLocation;
 import com.common.HandlerEvent;
 import com.common.MRCommon;
-import com.database.MRDataBase;
 
 public class MRMainActivity extends TabActivity {
 	
@@ -42,7 +40,7 @@ public class MRMainActivity extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_main);
-		MRDataBase.Init(this);
+//		MRDataBase.Init(this);
 		
 		ivIndex=(ImageView)findViewById(R.id.iv_index);
 		//ivFind=(ImageView)findViewById(R.id.iv_find);

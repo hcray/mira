@@ -3,29 +3,20 @@ package com.mira;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.model.CityModel;
-import com.view.MyLetterListView;
-import com.view.MyLetterListView.OnTouchingLetterChangedListener;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +24,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.bll.MRTestBLL;
+import com.model.CityModel;
+import com.view.MyLetterListView;
+import com.view.MyLetterListView.OnTouchingLetterChangedListener;
 
 public class MRCityActivity extends Activity {
 	// 返回
@@ -47,7 +42,7 @@ public class MRCityActivity extends Activity {
 	private String[] sections;// 存放存在的汉语拼音首字母
 	private Handler handler;
 	private OverlayThread overlayThread;
-	private SQLiteDatabase database;
+//	private SQLiteDatabase database;
 	private ArrayList<CityModel> mCityNames;
 	private Button btn;
 	private EditText et;
@@ -64,7 +59,7 @@ public class MRCityActivity extends Activity {
 			public void onClick(View v) {
 				String content = et.getText().toString().trim();
 				mCityNames.clear();
-				mCityNames = getSelectCityNames(content);
+				mCityNames = MRTestBLL.getSelectCityNames(content, MRCityActivity.this);
 				setAdapter(mCityNames);
 
 			}
@@ -72,11 +67,11 @@ public class MRCityActivity extends Activity {
 
 		mCityLit = (ListView) findViewById(R.id.city_list);
 		letterListView = (MyLetterListView) findViewById(R.id.cityLetterListView);
-		DBManager dbManager = new DBManager(this);
-		dbManager.openDateBase();
-		dbManager.closeDatabase();
-		database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null);
-		mCityNames = getCityNames();
+//		DBManager dbManager = new DBManager(this);
+//		dbManager.openDateBase();
+//		dbManager.closeDatabase();
+//		database = SQLiteDatabase.openOrCreateDatabase(DBManager.DB_PATH + "/" + DBManager.DB_NAME, null);
+		mCityNames = MRTestBLL.getCityNames(MRCityActivity.this);
 		// database.close();
 		letterListView.setOnTouchingLetterChangedListener(new LetterListViewListener());
 		alphaIndexer = new HashMap<String, Integer>();
@@ -95,54 +90,7 @@ public class MRCityActivity extends Activity {
 		});
 	}
 
-	private ArrayList<CityModel> getSelectCityNames(String con) {
-		ArrayList<CityModel> names = new ArrayList<CityModel>();
-		// 判断查询的内容是不是汉字
-		Pattern p_str = Pattern.compile("[\\u4e00-\\u9fa5]+");
-		Matcher m = p_str.matcher(con);
-		String sqlString = null;
-		if (m.find() && m.group(0).equals(con)) {
-			sqlString = "SELECT * FROM T_city WHERE AllNameSort LIKE " + "\""
-					+ con + "%" + "\"" + " ORDER BY CityName";
-		} else {
-			sqlString = "SELECT * FROM T_city WHERE NameSort LIKE " + "\""
-					+ con + "%" + "\"" + " ORDER BY CityName";
-		}
-		Cursor cursor = database.rawQuery(sqlString, null);
-		for (int i = 0; i < cursor.getCount(); i++) {
-			cursor.moveToPosition(i);
-			CityModel cityModel = new CityModel();
-			cityModel.setCityName(cursor.getString(cursor
-					.getColumnIndex("AllNameSort")));
-			cityModel.setNameSort(cursor.getString(cursor
-					.getColumnIndex("CityName")));
-			names.add(cityModel);
-		}
-		cursor.close();
-		return names;
-	}
-
-	/**
-	 * 从数据库获取城市数据
-	 * 
-	 * @return
-	 */
-	private ArrayList<CityModel> getCityNames() {
-		ArrayList<CityModel> names = new ArrayList<CityModel>();
-		Cursor cursor = database.rawQuery(
-				"SELECT * FROM T_city ORDER BY CityName", null);
-		for (int i = 0; i < cursor.getCount(); i++) {
-			cursor.moveToPosition(i);
-			CityModel cityModel = new CityModel();
-			cityModel.setCityName(cursor.getString(cursor
-					.getColumnIndex("AllNameSort")));
-			cityModel.setNameSort(cursor.getString(cursor
-					.getColumnIndex("CityName")));
-			names.add(cityModel);
-		}
-		cursor.close();
-		return names;
-	}
+	
 
 	/**
 	 * 城市列表点击事件
