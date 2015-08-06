@@ -141,12 +141,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#ffffff"
+            android:background="#aaaaaa"
             android:gravity="center"
             android:maxWidth="80dp"
             android:minWidth="80dp"
             android:text=""
-            android:textColor="#3399ff"
+            android:textColor="#49c6bd"
             android:textSize="70sp"
             android:visibility="invisible" />
     </FrameLayout>
