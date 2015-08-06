@@ -23,7 +23,7 @@ public class MRDataBase {
 	// 城市
 	private static final String DATABASE_TABLE_CITY = "t_city";
 	// 检测结果
-	private static final String DATABASE_TABLE_TEST_RESULT = "t_test_result";
+	public static final String DATABASE_TABLE_TEST_RESULT = "t_test_result";
 
 	private static final int DATABASE_VERSION = 3;
 	

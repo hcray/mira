@@ -20,7 +20,7 @@ public class MRTestBLL {
 	 * @param context
 	 */
 	public static void addTestModel(TestModel model, Context context) {
-		String sql = "insert or replace into test (type,status,wendu,shidu,shuifen,ziwaixian,time,weatherpm,weatherziwaixian,weatherwendu,weathercity) values (?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert or replace into " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " (type,status,wendu,shidu,shuifen,ziwaixian,time,weatherpm,weatherziwaixian,weatherwendu,weathercity) values (?,?,?,?,?,?,?,?,?,?,?)";
 		//SQLiteDatabase database = MRDataBase.getDataBase(context);
 		MRDataBase dbAdapter = new MRDataBase(context);
 		dbAdapter.open();
@@ -42,7 +42,7 @@ public class MRTestBLL {
 	 */
 	public static ArrayList<TestModel> getTestList(int type, Context context) {
 		ArrayList<TestModel> list = new ArrayList<TestModel>();
-		String sql = "select * from test where type=? order by time desc";
+		String sql = "select * from " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " where type=? order by time desc";
 //		SQLiteDatabase database = MRDataBase.getDataBase(context);
 		MRDataBase dbAdapter = new MRDataBase(context);
 		dbAdapter.open();
@@ -76,7 +76,7 @@ public class MRTestBLL {
 	 * @param context
 	 */
 	public static void deleteTestModel(int id, Context context) {
-		String sql = "delete from test where _id=?";
+		String sql = "delete from " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " where _id=?";
 //		SQLiteDatabase database = MRDataBase.getDataBase(context);
 		MRDataBase dbAdapter = new MRDataBase(context);
 		dbAdapter.open();
