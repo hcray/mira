@@ -15,17 +15,18 @@ tasks.withType(JavaCompile) {
 apply plugin: 'android'
 
 dependencies {
-	compile files('libs/Android_Location_V1.3.1.jar')
+	compile files('libs/gson-2.2.4.jar')
     compile files('libs/android-support-v4.jar')
+    compile files('libs/locSDK_4.2.jar')
 }
 
 android {
-    compileSdkVersion 14
+    compileSdkVersion 19
     buildToolsVersion "19.1"
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 14
+        minSdkVersion 18
+        targetSdkVersion 19
     }
     
     sourceSets {
@@ -48,9 +49,9 @@ android {
 	//声明创建一个带签名的发布版本细节
 	signingConfigs {
 		release {
-			storeFile file("android.keystore")
+			storeFile file("mira.keystore")
 			storePassword "######"
-			keyAlias "mykey"
+			keyAlias "mirakey"
 			keyPassword "######"
 		}
 	}
