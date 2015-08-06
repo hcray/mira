@@ -7,10 +7,12 @@
         android:id="@+id/alpha"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#333333"
-        android:paddingLeft="13dip"
+        android:background="#e4f3f2"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#99CCFF"
+        android:textColor="#49c6bd"
+        android:textStyle="bold"
          />
 
     <ImageView
@@ -29,16 +31,14 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/image_view"
         android:layout_below="@id/alpha"
-        android:layout_marginLeft="2.0dip"
-        android:layout_marginRight="5.0dip"
-        android:layout_marginTop="6.0dip"
         android:paddingBottom="5dp"
-        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:paddingTop="5dp"
         android:singleLine="true"
         android:text="name"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#212121" />
+        android:textColor="#555555" />
     <!-- android:layout_toRightOf="@id/image_view" -->
 
     <TextView
