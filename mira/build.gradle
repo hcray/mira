@@ -9,7 +9,7 @@ buildscript {
 
 //添加编码
 tasks.withType(JavaCompile) { 
-	options.encoding = "GBK" 
+	options.encoding = "UTF-8" 
 } 
 
 apply plugin: 'android'
