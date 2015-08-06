@@ -126,8 +126,18 @@
     <string name="set_activity_tv_binding">已绑定</string>
     <string name="set_activity_tv_version">最新版本V1.0.0</string>
     <string name="title_activity_mrcity">MRCityActivity</string>
-    
+
     <!-- 选择城市 -->
     <string name="city_activity_title">选择城市</string>
+    <string name="title_activity_mrdetection">MRDetectionActivity</string>
+    
+    <!-- 检测页面 -->
+    <string name="detection_activity_title">检测</string>
+    <string name="detection_acitivity_photo">部位展示图片</string>
+    <string name="detection_acitivity_menu">菜单背景图片</string>
+    <string name="detection_activity_head_value">额头</string>
+    <string name="detection_activity_face_value">脸颊</string>
+    <string name="detection_activity_nose_value">鼻子</string>
+    <string name="detection_activity_chin_value">下巴</string>
 
 </resources>
