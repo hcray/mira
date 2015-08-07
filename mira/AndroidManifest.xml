@@ -139,7 +139,7 @@
             android:label="@string/title_activity_mrcity" >
         </activity>
         <activity
-            android:name=".MRDetectionActivity"
+            android:name=".MRDetectionMenuActivity"
             android:label="@string/title_activity_mrdetection" >
         </activity>
     </application>

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class MRDetectionActivity extends Activity implements OnClickListener{
+public class MRDetectionMenuActivity extends Activity implements OnClickListener{
 
 	private TextView tvHead;
 	
@@ -22,7 +22,7 @@ public class MRDetectionActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.mr_activity_detection);
+		setContentView(R.layout.mr_activity_detection_menu);
 		
 		tvHead = (TextView) this.findViewById(R.id.detection_activity_head);
 		
