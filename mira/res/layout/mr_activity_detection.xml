@@ -1,0 +1,209 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e4f3f2"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <RelativeLayout
+        android:id="@+id/userInfo_title"
+        style="@style/title"
+        android:layout_alignParentTop="true"
+        android:background="#84dfd8"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/userInfoBackbtn"
+            style="@style/table_back_line"
+            android:onClick="back"
+            android:visibility="visible" >
+
+            <ImageView
+                style="@style/table_back_image"
+                android:contentDescription="@string/btn_back_value" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/detection_activity_tv_title"
+            style="@style/titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/detection_activity_title"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <com.view.RoundProgressBar
+                android:id="@+id/pb"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android_custom:roundColor="#ffffff"
+                android_custom:roundProgressColor="#e4f3f2"
+                android_custom:roundWidth="13dp"
+                android_custom:textColor="#e4f3f2"
+                android_custom:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/data_bg" />
+
+                <TextView
+                    android:id="@+id/detection_activity_tv_tem_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:drawableLeft="@drawable/ico_data_tem"
+                    android:drawablePadding="5dp"
+                    android:gravity="right|center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="环境温度"
+                    android:textColor="#aaaaaa"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/detection_activity_tv_tem_label"
+                    android:gravity="center"
+                    android:text="25℃"
+                    android:textColor="#81d8cf"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/data_bg" />
+
+                <TextView
+                    android:id="@+id/detection_activity_tv_wet_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:drawableLeft="@drawable/ico_data_wet"
+                    android:drawablePadding="5dp"
+                    android:gravity="right|center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="环境湿度"
+                    android:textColor="#aaaaaa"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/detection_activity_tv_wet_label"
+                    android:gravity="center"
+                    android:text="30%"
+                    android:textColor="#81d8cf"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/data_bg" />
+
+                <TextView
+                    android:id="@+id/detection_activity_tv_water_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:drawableLeft="@drawable/ico_data_water"
+                    android:drawablePadding="5dp"
+                    android:gravity="right|center_vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="皮肤水分"
+                    android:textColor="#aaaaaa"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/detection_activity_tv_water_label"
+                    android:gravity="center"
+                    android:text="42%"
+                    android:textColor="#81d8cf"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp" 
+        android:background="#ffffff">
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp" 
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="#ffffff">
+    </LinearLayout>
+
+</LinearLayout>
