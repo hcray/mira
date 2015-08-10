@@ -123,7 +123,7 @@ public class MRMainActivity extends TabActivity {
 	
 		tabHost = getTabHost();
 		tabHost.addTab(tabHost.newTabSpec("a").setIndicator("0").setContent(new Intent(MRMainActivity.this, MRIndexActivity.class)));
-		tabHost.addTab(tabHost.newTabSpec("b").setIndicator("1").setContent(new Intent(MRMainActivity.this, MRTestActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("b").setIndicator("1").setContent(new Intent(MRMainActivity.this, MRDetectionMenuActivity.class)));
 		//tabHost.addTab(tabHost.newTabSpec("c").setIndicator("2").setContent(new Intent(MRMainActivity.this, MRFindActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("c").setIndicator("2").setContent(new Intent(MRMainActivity.this, MRMyActivity.class)));
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {

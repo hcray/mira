@@ -131,13 +131,16 @@
     <string name="city_activity_title">选择城市</string>
     <string name="title_activity_mrdetection">MRDetectionActivity</string>
     
+    <!-- 检测菜单页面 -->
+    <string name="detection_menu_activity_title">检测</string>
+    <string name="detection_menu_activity_head_value">额头</string>
+    <string name="detection_menu_activity_face_value">脸颊</string>
+    <string name="detection_menu_activity_nose_value">鼻子</string>
+    <string name="detection_menu_activity_chin_value">下巴</string>
+    <string name="detection_menu_acitivity_photo">部位展示图片</string>
+    <string name="detection_menu_acitivity_menu">菜单背景图片</string>
+    
     <!-- 检测页面 -->
     <string name="detection_activity_title">检测</string>
-    <string name="detection_acitivity_photo">部位展示图片</string>
-    <string name="detection_acitivity_menu">菜单背景图片</string>
-    <string name="detection_activity_head_value">额头</string>
-    <string name="detection_activity_face_value">脸颊</string>
-    <string name="detection_activity_nose_value">鼻子</string>
-    <string name="detection_activity_chin_value">下巴</string>
 
 </resources>

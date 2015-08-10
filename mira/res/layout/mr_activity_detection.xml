@@ -8,14 +8,14 @@
     tools:context="${relativePackage}.${activityClass}" >
 
     <RelativeLayout
-        android:id="@+id/userInfo_title"
+        android:id="@+id/detection_activity_title"
         style="@style/title"
         android:layout_alignParentTop="true"
         android:background="#84dfd8"
         android:visibility="visible" >
 
         <LinearLayout
-            android:id="@+id/userInfoBackbtn"
+            android:id="@+id/detection_activity_backbtn"
             style="@style/table_back_line"
             android:onClick="back"
             android:visibility="visible" >
@@ -48,7 +48,7 @@
             android:orientation="vertical" >
 
             <com.view.RoundProgressBar
-                android:id="@+id/pb"
+                android:id="@+id/detection_activity_pb"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginEnd="20dp"

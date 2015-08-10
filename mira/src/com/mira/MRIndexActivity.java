@@ -21,13 +21,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher.ViewFactory;
@@ -100,6 +99,8 @@ public class MRIndexActivity extends Activity implements
 	 * 选择城市
 	 */
 	private TextView tvCity;
+	
+	private LinearLayout llTestHistory;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -248,6 +249,15 @@ public class MRIndexActivity extends Activity implements
             	Intent intent = new Intent(v.getContext(), MRCityActivity.class);
             	startActivity(intent);
             }
+		});
+		
+		llTestHistory = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_history);
+		llTestHistory.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), MRDetectionMenuActivity.class);
+				startActivity(intent);
+			}
 		});
 		
 	}
