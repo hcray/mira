@@ -58,7 +58,7 @@ public class LineCharView extends View {
 		linecolor = typedArray.getColor(R.styleable.LineChar_linecolor,
 				Color.GRAY);
 		interval = typedArray.getLayoutDimension(R.styleable.LineChar_interval,
-				50);
+				100);
 		bgColor = typedArray
 				.getColor(R.styleable.LineChar_bgcolor, Color.WHITE);
 		typedArray.recycle();
@@ -85,7 +85,7 @@ public class LineCharView extends View {
 			xinit = interval / 2 + xori;
 			imageWidth = BitmapFactory.decodeResource(getResources(),
 					R.drawable.btn_blue).getWidth();
-			minXinit = width - xori - x_coords.size() * interval;
+			minXinit = (int) (width - xori - x_coords.size() * interval * 0.5);
 			maxXinit = xinit;
 			setBackgroundColor(bgColor);
 		}
@@ -119,7 +119,7 @@ public class LineCharView extends View {
 		paint.setColor(xylinecolor);
 		paint.setStyle(Paint.Style.FILL);
 		for (int i = 1; i < 6; i++) {
-			canvas.drawCircle(xori, (float) (yori - (i * 0.4 * interval)),
+			canvas.drawCircle(xori + 20, (float) (yori - (i * 0.4 * interval)),
 					xylinewidth * 2, paint);
 		}
 
@@ -148,7 +148,7 @@ public class LineCharView extends View {
 		Path path = new Path();
 		// 画坐标点
 		for (int i = 0; i < x_coords.size(); i++) {
-			int x = i * interval + xinit;
+			int x = (int) (i * interval * 0.5 + xinit);
 			if (i == 0) {
 				path.moveTo(x, getYValue(x_coord_values.get(i)));
 			} else {
@@ -158,10 +158,8 @@ public class LineCharView extends View {
 			canvas.drawCircle(x, yori, xylinewidth * 2, x_coordPaint);
 			String text = x_coords.get(i);
 			x_coordPaint.setColor(xytextcolor);
-			canvas.drawText(text, 
-					x - x_coordPaint.measureText(text) / 2, 
-					yori + xytextsize + xylinewidth * 2,
-					x_coordPaint);
+			//x轴上的文字
+			canvas.drawText(text,  x - x_coordPaint.measureText(text) / 2, yori + xytextsize + xylinewidth * 2, x_coordPaint);
 		}
 
 		x_coordPaint.setStyle(Paint.Style.STROKE);
@@ -172,7 +170,7 @@ public class LineCharView extends View {
 
 		// 画表情
 		for (int i = 0; i < x_coords.size(); i++) {
-			int x = i * interval + xinit;
+			int x = (int) (i * interval * 0.5 + xinit);
 			canvas.drawBitmap(getYBitmap(x_coord_values.get(i)), x - imageWidth
 					/ 2, getYValue(x_coord_values.get(i)) - imageWidth / 2,
 					x_coordPaint);
@@ -213,7 +211,7 @@ public class LineCharView extends View {
 		return bitmap;
 	}
 
-	@Override
+	/*@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
 		// 如果不用滑动就可以展示所有数据，就不让滑动
@@ -241,7 +239,7 @@ public class LineCharView extends View {
 			break;
 		}
 		return true;
-	}
+	}*/
 
 	public int getXori() {
 		return xori;

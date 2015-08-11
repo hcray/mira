@@ -259,7 +259,7 @@
 
             <com.view.LineCharView
                 android:id="@+id/detection_activity_lcv"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android_custom:interval="80dp"
                 android_custom:xytextcolor="#aaaaaa"
