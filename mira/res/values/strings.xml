@@ -142,5 +142,7 @@
     
     <!-- 检测页面 -->
     <string name="detection_activity_title">检测</string>
+    <string name="detection_activity_result_desc1">哎呀,你额头的皮肤都快赶上小Baby的了，超过了79%的帅哥和美女，快告诉我你是怎么补水哒。</string>
+    <string name="detection_activity_result_desc2">室内温、湿度适宜，室外紫外线强度较强，建议出门前涂擦SPF在12至15之间，PA+的防嗮护肤品。</string>
 
 </resources>

@@ -3,8 +3,6 @@ package com.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mira.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -19,8 +17,9 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
+
+import com.mira.R;
 
 public class LineCharView extends View {
 	private int xori;// 圆点x坐标
@@ -56,7 +55,7 @@ public class LineCharView extends View {
 		xytextsize = typedArray.getLayoutDimension(
 				R.styleable.LineChar_xytextsize, 20);
 		linecolor = typedArray.getColor(R.styleable.LineChar_linecolor,
-				Color.GRAY);
+				Color.parseColor("#81d8cf"));
 		interval = typedArray.getLayoutDimension(R.styleable.LineChar_interval,
 				100);
 		bgColor = typedArray
@@ -161,9 +160,9 @@ public class LineCharView extends View {
 			//x轴上的文字
 			canvas.drawText(text,  x - x_coordPaint.measureText(text) / 2, yori + xytextsize + xylinewidth * 2, x_coordPaint);
 		}
-
+		//折线
 		x_coordPaint.setStyle(Paint.Style.STROKE);
-		x_coordPaint.setStrokeWidth(xylinewidth);
+		x_coordPaint.setStrokeWidth(xylinewidth*2);
 		x_coordPaint.setColor(linecolor);
 		// 画折线
 		canvas.drawPath(path, x_coordPaint);
