@@ -83,7 +83,7 @@
                     android:id="@+id/detection_activity_tv_tem_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="40dp"
                     android:drawableLeft="@drawable/ico_data_tem"
                     android:drawablePadding="5dp"
                     android:gravity="right|center_vertical"
@@ -123,7 +123,7 @@
                     android:id="@+id/detection_activity_tv_wet_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="40dp"
                     android:drawableLeft="@drawable/ico_data_wet"
                     android:drawablePadding="5dp"
                     android:gravity="right|center_vertical"
@@ -162,7 +162,7 @@
                     android:id="@+id/detection_activity_tv_water_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="40dp"
                     android:drawableLeft="@drawable/ico_data_water"
                     android:drawablePadding="5dp"
                     android:gravity="right|center_vertical"
@@ -202,12 +202,12 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:background="#ffffff"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingBottom="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
             <TextView
@@ -253,8 +253,8 @@
 
         <!-- 图表 -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="horizontal" >
 
             <com.view.LineCharView
@@ -262,8 +262,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android_custom:interval="80dp"
-                android_custom:xytextcolor="#FF70A7F9"
-                android_custom:xytextsize="20sp" />
+                android_custom:xytextcolor="#aaaaaa"
+                android_custom:xytextsize="12sp" />
         </LinearLayout>
     </LinearLayout>
 

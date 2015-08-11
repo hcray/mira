@@ -36,7 +36,7 @@ public class LineCharView extends View {
 	private int interval;// 坐标间的间隔
 	private int bgColor;// 背景颜色
 	private List<String> x_coords;// x坐标点的值
-	private List<String> x_coord_values;// 每个点状态值
+	private List<Integer> x_coord_values;// 每个点状态值
 
 	private int width;// 控件宽度
 	private int heigth;// 控件高度
@@ -50,7 +50,7 @@ public class LineCharView extends View {
 				R.styleable.LineChar);
 		xylinecolor = typedArray.getColor(R.styleable.LineChar_xylinecolor,
 				Color.GRAY);
-		xylinewidth = typedArray.getInt(R.styleable.LineChar_xylinewidth, 5);
+		xylinewidth = typedArray.getInt(R.styleable.LineChar_xylinewidth, 1);
 		xytextcolor = typedArray.getColor(R.styleable.LineChar_xytextcolor,
 				Color.BLACK);
 		xytextsize = typedArray.getLayoutDimension(
@@ -58,12 +58,12 @@ public class LineCharView extends View {
 		linecolor = typedArray.getColor(R.styleable.LineChar_linecolor,
 				Color.GRAY);
 		interval = typedArray.getLayoutDimension(R.styleable.LineChar_interval,
-				100);
+				50);
 		bgColor = typedArray
 				.getColor(R.styleable.LineChar_bgcolor, Color.WHITE);
 		typedArray.recycle();
 		x_coords = new ArrayList<String>();
-		x_coord_values = new ArrayList<String>();
+		x_coord_values = new ArrayList<Integer>();
 	}
 
 	public LineCharView(Context context) {
@@ -103,10 +103,14 @@ public class LineCharView extends View {
 	// 画坐标轴
 	private void drawXY(Canvas canvas) {
 		Paint paint = new Paint();
+		// 颜色
 		paint.setColor(xylinecolor);
+		// 宽度
 		paint.setStrokeWidth(xylinewidth);
-		canvas.drawLine(xori, 0, xori, yori, paint);
-		canvas.drawLine(xori, yori, width, yori, paint);
+		// Y
+		canvas.drawLine(xori + 20, 0, xori + 20, yori, paint);
+		// x
+		canvas.drawLine(xori + 20, yori, width, yori, paint);
 	}
 
 	// 画Y轴坐标点
@@ -114,21 +118,23 @@ public class LineCharView extends View {
 		Paint paint = new Paint();
 		paint.setColor(xylinecolor);
 		paint.setStyle(Paint.Style.FILL);
-		for (int i = 1; i < 5; i++) {
-			canvas.drawCircle(xori, yori - (i * interval / 2), xylinewidth * 2,
-					paint);
+		for (int i = 1; i < 6; i++) {
+			canvas.drawCircle(xori, (float) (yori - (i * 0.4 * interval)),
+					xylinewidth * 2, paint);
 		}
 
 		paint.setTextSize(xytextsize);
 		paint.setColor(xytextcolor);
-		canvas.drawText("D", xori - textwidth - 6 - xylinewidth, yori
-				- (2 * interval) + xytextsize / 2, paint);
-		canvas.drawText("C", xori - textwidth - 6 - xylinewidth, (float) (yori
-				- (1.5 * interval) + xytextsize / 2), paint);
-		canvas.drawText("B", xori - textwidth - 6 - xylinewidth, yori
-				- interval + xytextsize / 2, paint);
-		canvas.drawText("A", xori - textwidth - 6 - xylinewidth, (float) (yori
-				- (0.5 * interval) + xytextsize / 2), paint);
+		canvas.drawText("100", xori - textwidth - 6 - xylinewidth,
+				(float) (yori - (2.0 * interval) + xytextsize / 2), paint);
+		canvas.drawText("80", xori - textwidth - 6 - xylinewidth, (float) (yori
+				- (1.6 * interval) + xytextsize / 2), paint);
+		canvas.drawText("60", xori - textwidth - 6 - xylinewidth, (float) (yori
+				- (1.2 * interval) + xytextsize / 2), paint);
+		canvas.drawText("40", xori - textwidth - 6 - xylinewidth, (float) (yori
+				- (0.8 * interval) + xytextsize / 2), paint);
+		canvas.drawText("20", xori - textwidth - 6 - xylinewidth, (float) (yori
+				- (0.4 * interval) + xytextsize / 2), paint);
 	}
 
 	// 画X轴坐标点，折线，表情
@@ -152,8 +158,10 @@ public class LineCharView extends View {
 			canvas.drawCircle(x, yori, xylinewidth * 2, x_coordPaint);
 			String text = x_coords.get(i);
 			x_coordPaint.setColor(xytextcolor);
-			canvas.drawText(text, x - x_coordPaint.measureText(text) / 2, yori
-					+ xytextsize + xylinewidth * 2, x_coordPaint);
+			canvas.drawText(text, 
+					x - x_coordPaint.measureText(text) / 2, 
+					yori + xytextsize + xylinewidth * 2,
+					x_coordPaint);
 		}
 
 		x_coordPaint.setStyle(Paint.Style.STROKE);
@@ -173,15 +181,17 @@ public class LineCharView extends View {
 		// 将折线超出x轴坐标的部分截取掉
 		x_coordPaint.setStyle(Paint.Style.FILL);
 		x_coordPaint.setColor(bgColor);
-		x_coordPaint.setXfermode(new PorterDuffXfermode(
-				PorterDuff.Mode.SRC_OVER));
+		x_coordPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
 		RectF rectF = new RectF(0, 0, xori, heigth);
 		canvas.drawRect(rectF, x_coordPaint);
 
 	}
 
 	// 得到y坐标
-	private float getYValue(String value) {
+	private float getYValue(int value) {
+		float v = value/20;
+		return (float) (yori - interval * v * 0.4);
+		/*
 		if (value.equalsIgnoreCase("A")) {
 			return yori - interval / 2;
 		} else if (value.equalsIgnoreCase("B")) {
@@ -193,24 +203,13 @@ public class LineCharView extends View {
 		} else {
 			return yori;
 		}
+		*/
+		
 	}
 
 	// 得到表情图
-	private Bitmap getYBitmap(String value) {
-		Bitmap bitmap = null;
-		if (value.equalsIgnoreCase("A")) {
-			bitmap = BitmapFactory.decodeResource(getResources(),
-					R.drawable.btn_blue);
-		} else if (value.equalsIgnoreCase("B")) {
-			bitmap = BitmapFactory.decodeResource(getResources(),
-					R.drawable.btn_blue);
-		} else if (value.equalsIgnoreCase("C")) {
-			bitmap = BitmapFactory.decodeResource(getResources(),
-					R.drawable.btn_blue);
-		} else if (value.equalsIgnoreCase("D")) {
-			bitmap = BitmapFactory.decodeResource(getResources(),
-					R.drawable.btn_blue);
-		}
+	private Bitmap getYBitmap(Integer value) {
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.btn_blue);
 		return bitmap;
 	}
 
@@ -344,7 +343,7 @@ public class LineCharView extends View {
 		return x_coords;
 	}
 
-	public List<String> getX_coord_values() {
+	public List<Integer> getX_coord_values() {
 		return x_coord_values;
 	}
 
@@ -356,7 +355,7 @@ public class LineCharView extends View {
 	 * @param x_coord_values
 	 *            每个点的值
 	 */
-	public void setValue(List<String> x_coords, List<String> x_coord_values) {
+	public void setValue(List<String> x_coords, List<Integer> x_coord_values) {
 		if (x_coord_values.size() != x_coords.size()) {
 			throw new IllegalArgumentException("坐标轴点和坐标轴点的值的个数必须一样!");
 		}
