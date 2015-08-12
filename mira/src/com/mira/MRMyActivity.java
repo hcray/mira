@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.model.User;
+import com.service.BluetoothService;
 
 public class MRMyActivity extends Activity {
 	private Long mExitTime = 0l;
@@ -118,6 +119,8 @@ public class MRMyActivity extends Activity {
 				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
 				mExitTime = System.currentTimeMillis();
 			} else {
+				Intent intent = new Intent(MRMyActivity.this, BluetoothService.class);
+			    stopService(intent);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

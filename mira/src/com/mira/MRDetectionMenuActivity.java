@@ -1,5 +1,7 @@
 package com.mira;
 
+import com.service.BluetoothService;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -80,6 +82,8 @@ public class MRDetectionMenuActivity extends Activity{
 				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
 				mExitTime = System.currentTimeMillis();
 			} else {
+				Intent intent = new Intent(MRDetectionMenuActivity.this, BluetoothService.class);
+			    stopService(intent);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

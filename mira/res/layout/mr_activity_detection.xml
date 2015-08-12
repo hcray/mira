@@ -94,6 +94,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/detection_activity_tv_tem_value"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
@@ -134,6 +135,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/detection_activity_tv_wet_value"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
@@ -173,6 +175,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/detection_activity_tv_water_value"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"

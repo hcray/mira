@@ -146,6 +146,9 @@
             android:name=".MRDetectionActivity"
             android:label="@string/title_activity_mrdetection" >
         </activity>
+        
+        <!-- 自动连接蓝牙的服务 -->
+        <service android:name="com.service.BluetoothService"/>
     </application>
 
 </manifest>

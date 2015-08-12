@@ -13,4 +13,14 @@ public class TestModel {
 	public String weatherziwaixian;
 	public String weatherwendu;
 	public String weathercity;
+	
+	@Override
+	public String toString() {
+		return "TestModel [id=" + id + ", wenDu=" + wenDu + ", shiDu=" + shiDu
+				+ ", shuiFen=" + shuiFen + ", ziWaiXian=" + ziWaiXian
+				+ ", type=" + type + ", status=" + status + ", time=" + time
+				+ ", weatherpm=" + weatherpm + ", weatherziwaixian="
+				+ weatherziwaixian + ", weatherwendu=" + weatherwendu
+				+ ", weathercity=" + weathercity + "]";
+	}
 }

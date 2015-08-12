@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import cn.aigestudio.datepicker.interfaces.OnDateSelected;
 import cn.aigestudio.datepicker.views.DatePicker;
 
 import com.common.StringUtils;
+import com.service.BluetoothService;
 
 public class MRIndexActivity extends Activity implements
 	OnItemSelectedListener, ViewFactory {
@@ -260,6 +262,17 @@ public class MRIndexActivity extends Activity implements
 			}
 		});
 		
+		//启动蓝牙
+		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()){
+			Log.d(TAG, "start bluetooth...");
+			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivity(enableBtIntent);
+		} else {
+			Log.d(TAG, "start bluetooth servcie...");
+			Intent intent = new Intent(MRIndexActivity.this, BluetoothService.class);
+		    startService(intent);
+		}
 	}
 
 	/**
@@ -430,6 +443,8 @@ public class MRIndexActivity extends Activity implements
 				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
 				mExitTime = System.currentTimeMillis();
 			} else {
+				Intent intent = new Intent(MRIndexActivity.this, BluetoothService.class);
+			    stopService(intent);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

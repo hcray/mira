@@ -2,6 +2,7 @@ package com.mira;
 
 
 import android.app.TabActivity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -17,6 +18,7 @@ import com.common.BaiDuLocationModel;
 import com.common.BaiduLocation;
 import com.common.HandlerEvent;
 import com.common.MRCommon;
+import com.service.BluetoothService;
 
 public class MRMainActivity extends TabActivity {
 	
@@ -173,6 +175,8 @@ public class MRMainActivity extends TabActivity {
 				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
 				mExitTime = System.currentTimeMillis();
 			} else {
+				Intent intent = new Intent(MRMainActivity.this, BluetoothService.class);
+			    stopService(intent);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}
