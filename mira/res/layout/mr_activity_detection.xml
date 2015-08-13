@@ -48,15 +48,15 @@
             android:orientation="vertical" >
 
             <com.view.RoundProgressBar
-                android:id="@+id/detection_activity_pb"
+                android:id="@+id/detection_activity_rpb"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android_custom:roundColor="#ffffff"
-                android_custom:roundProgressColor="#e4f3f2"
+                android_custom:roundProgressColor="#84dfd8"
                 android_custom:roundWidth="13dp"
-                android_custom:textColor="#e4f3f2"
+                android_custom:textColor="#84dfd8"
                 android_custom:textSize="18sp" />
         </LinearLayout>
 

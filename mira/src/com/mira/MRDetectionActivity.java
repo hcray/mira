@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.model.TestModel;
 import com.view.LineCharView;
+import com.view.RoundProgressBar;
 
 public class MRDetectionActivity extends Activity {
 	private LinearLayout backbtn;
@@ -44,17 +45,23 @@ public class MRDetectionActivity extends Activity {
 	 * 水分
 	 */
 	private TextView tvWater;
+	
+	/**
+	 * 综合得分
+	 */
+	private RoundProgressBar rpb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_detection);
-		tvTem = (TextView) this
-				.findViewById(R.id.detection_activity_tv_tem_value);
-		tvWet = (TextView) this
-				.findViewById(R.id.detection_activity_tv_wet_value);
-		tvWater = (TextView) this
-				.findViewById(R.id.detection_activity_tv_water_value);
+		tvTem = (TextView) this.findViewById(R.id.detection_activity_tv_tem_value);
+		
+		tvWet = (TextView) this.findViewById(R.id.detection_activity_tv_wet_value);
+		
+		tvWater = (TextView) this.findViewById(R.id.detection_activity_tv_water_value);
+		
+		rpb = (RoundProgressBar) this.findViewById(R.id.detection_activity_rpb);
 
 		LineCharView lcv = (LineCharView) findViewById(R.id.detection_activity_lcv);
 		List<String> x_coords = new ArrayList<String>();
@@ -161,6 +168,7 @@ public class MRDetectionActivity extends Activity {
 					isTest = true;
 					dataList = new ArrayList<TestModel>();
 					showToast("检测中，请勿放开...");
+					resetUI();
 				} else if (shuiFen < 5 && isTest && dataList.size() < 5) {
 					showToast("测试未完成，请重试...");
 					isTest = false;
@@ -202,6 +210,22 @@ public class MRDetectionActivity extends Activity {
 		tvTem.setText(wenDu / 100 + "℃");
 		tvWet.setText(shiDu + "%");
 		tvWater.setText(shuiFen + "%");
+		rpb.setProgress(shuiFen);
+	}
+	
+	
+	/**
+	 * 重置页面
+	 */
+	private void resetUI() {
+		int wenDu = 0;
+		int shiDu = 0;
+		int shuiFen = 0;
+		//页面显示
+		tvTem.setText(wenDu / 100 + "℃");
+		tvWet.setText(shiDu + "%");
+		tvWater.setText(shuiFen + "%");
+		rpb.setProgress(shuiFen);
 	}
 
 	// 显示提示信息
