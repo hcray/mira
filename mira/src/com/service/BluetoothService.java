@@ -56,6 +56,7 @@ public class BluetoothService extends IntentService {
 				case MRBluetoothManage.MRBLUETOOTHSTATUS_CONNECT_CLOSE:
 					Log.d(tag, "MRBLUETOOTHSTATUS_CONNECT_CLOSE");
 					MRBluetoothManage.stop();
+					MRBluetoothManage.Init(BluetoothService.this, this);
 					break;
 				default:
 					break;
