@@ -85,14 +85,53 @@ public class MRDetectionActivity extends Activity {
 			}
 		});
 	}
+	
+	
 
 	@Override
+	protected void onStart() {
+		super.onStart();
+		receiver = new BLEReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("com.mira.action.BLUETOOTH_DATA");
+		MRDetectionActivity.this.registerReceiver(receiver, filter);
+	}
+
+
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (receiver != null) {
+			unregisterReceiverSafe(receiver);
+		}
+	}
+
+
+
+	/*@Override
 	protected void onResume() {
 		super.onResume();
 		receiver = new BLEReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("com.mira.action.BLUETOOTH_DATA");
 		MRDetectionActivity.this.registerReceiver(receiver, filter);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (receiver != null) {
+			unregisterReceiverSafe(receiver);
+		}
+	}*/
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (receiver != null) {
+			unregisterReceiverSafe(receiver);
+		}
 	}
 
 	/**
@@ -147,25 +186,39 @@ public class MRDetectionActivity extends Activity {
 		int wenDu = 0;
 		int shiDu = 0;
 		int shuiFen = 0;
-		//int ziWaiXian = 0;
+		// int ziWaiXian = 0;
 		for (int i = 0; i < dataList.size(); i++) {
 			wenDu += dataList.get(i).wenDu;
 			shiDu += dataList.get(i).shiDu;
 			shuiFen += dataList.get(i).shuiFen;
-			//ziWaiXian += dataList.get(i).ziWaiXian;
+			// ziWaiXian += dataList.get(i).ziWaiXian;
 		}
 		wenDu /= dataList.size();
 		shiDu /= dataList.size();
 		shuiFen /= dataList.size();
-		//ziWaiXian /= dataList.size();
+		// ziWaiXian /= dataList.size();
 
-		tvTem.setText(wenDu);
-		tvWet.setText(shiDu);
-		tvWater.setText(shuiFen);
+		//页面显示
+		tvTem.setText(wenDu / 100 + "℃");
+		tvWet.setText(shiDu + "%");
+		tvWater.setText(shuiFen + "%");
 	}
 
 	// 显示提示信息
 	public void showToast(String str) {
 		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
 	}
+
+	/**
+	 * 安全取消注册
+	 * @param receiver
+	 */
+	private void unregisterReceiverSafe(BroadcastReceiver receiver) {
+		try {
+			MRDetectionActivity.this.unregisterReceiver(receiver);
+		} catch (IllegalArgumentException e) {
+			// ignore
+		}
+	}
+
 }

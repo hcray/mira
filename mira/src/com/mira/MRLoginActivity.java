@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.common.StringUtils;
 import com.model.User;
+import com.utils.CountDownTimerUtil;
 
 public class MRLoginActivity extends Activity {
 
@@ -60,6 +61,8 @@ public class MRLoginActivity extends Activity {
 	private LinearLayout lyThirdPartyAccountDetail;
 
 	private InputMethodManager imm;
+	
+	private TimeCount time;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +94,7 @@ public class MRLoginActivity extends Activity {
 					Matcher m = p.matcher(account);
 					if (m.matches()) {
 						// TODO 调用获取的接口
-						TimeCount time = new TimeCount(60000, 1000);
+						time = new TimeCount(60000, 1000);
 						time.start();
 					} else {
 						Toast.makeText(v.getContext(), getString(R.string.msg_login_account_invalid), Toast.LENGTH_SHORT).show();
@@ -123,13 +126,11 @@ public class MRLoginActivity extends Activity {
 				User user = new User();
 				user.setAccount(Integer.parseInt(account));
 				AppContext.getInstance().saveUserInfo(user);
-
 				MRLoginActivity.this.finish();
 			}
 		});
 
-		tvThirdPartyLogin = (TextView) this
-				.findViewById(R.id.login_activity_tv_third_party_login);
+		tvThirdPartyLogin = (TextView) this.findViewById(R.id.login_activity_tv_third_party_login);
 		// 展开第三方登录
 		tvThirdPartyLogin.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -178,21 +179,27 @@ public class MRLoginActivity extends Activity {
 	 * @author 21829
 	 *
 	 */
-	class TimeCount extends CountDownTimer {
+	class TimeCount extends CountDownTimerUtil {
 		public TimeCount(long millisInFuture, long countDownInterval) {
 			super(millisInFuture, countDownInterval);// 参数依次为总时长,和计时的时间间隔
 		}
 
 		@Override
 		public void onFinish() {// 计时完毕时触发
-			btn_getCode.setText(getString(R.string.login_activity_get_code));
-			btn_getCode.setClickable(true);
+			if(!isFinishing()){
+				btn_getCode.setText(getString(R.string.login_activity_get_code));
+				btn_getCode.setClickable(true);
+			}
 		}
 
 		@Override
 		public void onTick(long millisUntilFinished) {// 计时过程显示
-			btn_getCode.setClickable(false);
-			btn_getCode.setText(millisUntilFinished / 1000 + "秒");
+			if(isFinishing()){
+				time.cancel();
+			}else{
+				btn_getCode.setClickable(false);
+				btn_getCode.setText(millisUntilFinished / 1000 + "秒");
+			}
 		}
 	}
 
