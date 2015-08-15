@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,11 @@ public class MRMyActivity extends Activity {
 	
 	private TextView tv_grades;
 	
+	/**
+	 * 退出按钮
+	 */
+	private Button btnLogout;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +63,15 @@ public class MRMyActivity extends Activity {
 		rlUserInfo = (RelativeLayout) this.findViewById(R.id.my_activity_rl_user_info);
 		rlUserInfo.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if(AppContext.getInstance().isLogin()){
-					//个人资料
-					Intent intent = new Intent(v.getContext(), MRUserInfoActivity.class);
-					startActivity(intent);
+				//个人资料
+				Intent intent = new Intent(v.getContext(), MRUserInfoActivity.class);
+				startActivity(intent);
 					
-				}else{
-					Intent intent = new Intent(v.getContext(), MRLoginActivity.class);
-					startActivity(intent);
-				}
+//				if(AppContext.getInstance().isLogin()){
+//				}else{
+//					Intent intent = new Intent(v.getContext(), MRLoginActivity.class);
+//					startActivity(intent);
+//				}
 			}
 		});
 		
@@ -94,6 +100,17 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
+		//退出
+		btnLogout = (Button) findViewById(R.id.my_activity_bt_logout);
+		btnLogout.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				AppContext.getInstance().cleanLoginInfo();
+				//跳到登录页面
+				Intent intent = new Intent(v.getContext(), MRLoginActivity.class);
+	    		startActivity(intent);
+	    		finish();
+			}
+		});
 		initUI();
 	}
 	

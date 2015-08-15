@@ -10,7 +10,7 @@ public class MiraConstants {
 	/**
 	 * 服务端地址
 	 */
-	public final static String baseUrl = "http://";
+	public final static String baseUrl = "http://mira.api.1088pm.cn/";
 	
 	/**
 	 * 创建Token
@@ -71,4 +71,29 @@ public class MiraConstants {
 	 * 上传日志接口
 	 */
 	public final static String uploadNotice = baseUrl + "/api/User/UploadNotice";
+	
+	/**
+	 * 部位
+	 */
+	public final static String PART = "part";
+	
+	/**
+	 * 1：额头
+	 */
+	public final static int PART_HEAD = 1;
+	
+	/**
+	 * 2：脸颊 
+	 */
+	public final static int PART_FACE = 2;
+	
+	/**
+	 * 3：鼻子
+	 */
+	public final static int PART_NOSE = 3;
+	
+	/**
+	 * 4：下巴
+	 */
+	public final static int PART_CHIN = 4;
 }

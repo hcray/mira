@@ -29,7 +29,7 @@ public class AppContext extends BaseApplication {
 	public void onCreate() {
 		super.onCreate();
 		instance = this;
-		login = false;
+		login = getLoginStatus();
 		loginUid = -1;
 	}
 
@@ -118,6 +118,7 @@ public class AppContext extends BaseApplication {
 		editor.putString("user.sex", user.getSex());
 		editor.putString("user.account", String.valueOf(user.getAccount()));
 		editor.putString("user.age", user.getAge());
+		editor.putBoolean("user.isLogin", login);
 		editor.commit();
 
 	}
@@ -166,6 +167,16 @@ public class AppContext extends BaseApplication {
 		preferences.getString("user.age", user.getAge());
 
 		return user;
+	}
+	
+	/**
+	 * 当前登录状态
+	 * @return
+	 */
+	private boolean getLoginStatus(){
+		SharedPreferences preferences = context().getSharedPreferences("user", Context.MODE_PRIVATE);
+		boolean isLogin = preferences.getBoolean("user.isLogin", false);
+		return isLogin;
 	}
 
 	/**

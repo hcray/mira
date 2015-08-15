@@ -14,7 +14,7 @@
             android:id="@+id/activityLoginBackbtn"
             style="@style/table_back_line"
             android:onClick="back"
-            android:visibility="visible" >
+            android:visibility="gone" >
 
             <ImageView style="@style/table_back_image" 
                 android:contentDescription="@string/btn_back_value"/>

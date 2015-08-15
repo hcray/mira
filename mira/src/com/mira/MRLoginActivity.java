@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -126,6 +127,9 @@ public class MRLoginActivity extends Activity {
 				User user = new User();
 				user.setAccount(Integer.parseInt(account));
 				AppContext.getInstance().saveUserInfo(user);
+				//跳转主页面
+	    		Intent intent = new Intent(v.getContext(), MRMainActivity.class);
+	    		startActivity(intent);
 				MRLoginActivity.this.finish();
 			}
 		});

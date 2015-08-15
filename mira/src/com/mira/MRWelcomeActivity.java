@@ -55,9 +55,18 @@ public class MRWelcomeActivity extends Activity {
     /**
      * 跳转到...
      */
-    private void redirectTo(){        
-        Intent intent = new Intent(this, MRMainActivity.class);
-        startActivity(intent);
+    private void redirectTo(){
+    	//判断是否登录，如果已经登录，则跳转主页面，没有登录，跳转登录页面
+    	boolean isLogin = AppContext.getInstance().isLogin();
+    	if(isLogin){
+    		Intent intent = new Intent(this, MRMainActivity.class);
+    		startActivity(intent);
+
+    	}else{
+    		Intent intent = new Intent(this, MRLoginActivity.class);
+    		startActivity(intent);
+    		
+    	}
         finish();
     }
 
