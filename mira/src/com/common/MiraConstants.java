@@ -10,7 +10,7 @@ public class MiraConstants {
 	/**
 	 * 服务端地址
 	 */
-	public final static String baseUrl = "http://mira.api.1088pm.cn/";
+	public final static String baseUrl = "http:///";
 	
 	/**
 	 * 创建Token
