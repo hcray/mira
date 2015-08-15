@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bll.MRTestBLL;
 import com.common.MiraConstants;
 import com.model.TestModel;
 import com.view.LineCharView;
@@ -215,9 +216,9 @@ public class MRDetectionActivity extends Activity {
 	 * 更新页面数据
 	 */
 	private void updateUI() {
-		int wenDu = 0;
-		int shiDu = 0;
-		int shuiFen = 0;
+		short wenDu = 0;
+		short shiDu = 0;
+		short shuiFen = 0;
 		// int ziWaiXian = 0;
 		for (int i = 0; i < dataList.size(); i++) {
 			wenDu += dataList.get(i).wenDu;
@@ -235,10 +236,18 @@ public class MRDetectionActivity extends Activity {
 		tvWet.setText(shiDu + "%");
 		tvWater.setText(shuiFen + "%");
 		rpb.setProgress(shuiFen);
+		TestModel testModel = new TestModel();
+		
+		testModel.time=System.currentTimeMillis();
+		testModel.wenDu = wenDu;
+		testModel.shiDu = shiDu;
+		testModel.shuiFen = shuiFen;
+		testModel.type = part;
 		
 		//保存数据库
-		
+		MRTestBLL.addTestModel(testModel, MRDetectionActivity.this);
 		//上传服务器
+		//TODO
 	}
 
 	/**
