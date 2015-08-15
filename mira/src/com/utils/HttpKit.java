@@ -74,14 +74,14 @@ public class HttpKit {
 	 * @return 登录结果
 	 */
 	public static void userLogin(String UUID, String loginName,
-			int type, String password, AsyncHttpResponseHandler handler) {
+			String type, String password, AsyncHttpResponseHandler handler) {
 //		LoginRet rb = new LoginRet();
 //		HttpClient httpClient = new DefaultHttpClient();
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
 		params.add("UUID", UUID);
 		params.add("LoginName", loginName);
-		params.add("Type", String.valueOf(type));
+		params.add("Type", type);
 		params.add("Password", password);
 		client.post(MiraConstants.userLogin, params, handler);
 		

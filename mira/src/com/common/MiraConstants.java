@@ -100,5 +100,15 @@ public class MiraConstants {
 	/**
 	 * 已经选择的城市 
 	 */
-	public final static String SELECTED_CITY = "selectedCity"; 
+	public final static String SELECTED_CITY = "selectedCity";
+	
+	/**
+	 * Type=1:动态验证码 Type= 2：账户密码
+	 */
+	public final static String LOGIN_TYPE_DYNAMIC = "1";
+	
+	/**
+	 * Type=1:动态验证码 Type= 2：账户密码
+	 */
+	public final static String LOGIN_TYPE_PW = "2";
 }

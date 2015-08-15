@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bean.ResultBean;
+import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -73,6 +74,8 @@ public class MRLoginActivity extends Activity {
 	private TimeCount time;
 	
 	private String account;
+	
+	private String UUID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class MRLoginActivity extends Activity {
 
 		loginCode = (EditText) this.findViewById(R.id.login_vcode);
 
+		UUID = AppContext.getInstance().getAppId();
 		// 获取验证码按钮
 		btn_getCode = (Button) this
 				.findViewById(R.id.login_activity_btn_get_code);
@@ -103,10 +107,8 @@ public class MRLoginActivity extends Activity {
 					Pattern p = Pattern.compile("^(1[34578])\\d{9}$");
 					Matcher m = p.matcher(account);
 					if (m.matches()) {
-						// TODO 调用获取的接口
-	                	String UUID = AppContext.getInstance().getAppId();
 	                	HttpKit.getVerificationCode(UUID , account, mHandler);
-						
+						//验证码按钮可用倒计时
 						time = new TimeCount(60000, 1000);
 						time.start();
 					} else {
@@ -134,15 +136,18 @@ public class MRLoginActivity extends Activity {
 				if (StringUtils.isEmpty(pwd)) {
 					Toast.makeText(v.getContext(), getString(R.string.msg_login_pwd_null), Toast.LENGTH_SHORT).show();
 					return;
+				} else {
+					// 判断是否有效的手机号码
+					Pattern p = Pattern.compile("^(1[34578])\\d{9}$");
+					Matcher m = p.matcher(account);
+					if (m.matches()) {
+						HttpKit.userLogin(UUID, account, MiraConstants.LOGIN_TYPE_DYNAMIC, pwd, handler);
+						
+					} else {
+						Toast.makeText(v.getContext(), getString(R.string.msg_login_account_invalid), Toast.LENGTH_SHORT).show();
+						return;
+					}
 				}
-				// 保存用户信息
-				User user = new User();
-				user.setAccount(account);
-				AppContext.getInstance().saveUserInfo(user);
-				//跳转主页面
-	    		Intent intent = new Intent(v.getContext(), MRMainActivity.class);
-	    		startActivity(intent);
-				MRLoginActivity.this.finish();
 			}
 		});
 
@@ -220,7 +225,7 @@ public class MRLoginActivity extends Activity {
 	}
 	
 	/**
-	 * 获取验证码
+	 * 创建token
 	 */
 	private final JsonHttpResponseHandler mHandler = new JsonHttpResponseHandler() {
 
@@ -228,6 +233,7 @@ public class MRLoginActivity extends Activity {
 		public void onFailure(int statusCode, Header[] headers,
 				Throwable throwable, JSONObject errorResponse) {
 			Log.d(TAG, "mHandler: " + errorResponse.toString());
+			Toast.makeText(MRLoginActivity.this, getString(R.string.tip_no_internet), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
@@ -240,7 +246,6 @@ public class MRLoginActivity extends Activity {
 			//未授权
 			if(retBean.getResultCode() == -2){
 				Log.d(TAG, "mHandler: ResultCode == -2");
-				String UUID = AppContext.getInstance().getAppId();
 				String token = CyptoUtils.encodeMd5(UUID + "mira2015");
 				HttpKit.createToken(UUID, "1", token, cHandler);
 			}
@@ -256,6 +261,7 @@ public class MRLoginActivity extends Activity {
 		public void onFailure(int statusCode, Header[] headers,
 				Throwable throwable, JSONObject errorResponse) {
 			Log.d(TAG, "cHandler: " + errorResponse.toString());
+			Toast.makeText(MRLoginActivity.this, getString(R.string.tip_no_internet), Toast.LENGTH_SHORT).show();
 		}
 		
 		@Override
@@ -266,8 +272,41 @@ public class MRLoginActivity extends Activity {
 			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
 			//成功
 			if(retBean.getResultCode() == 0){
-			  	String UUID = AppContext.getInstance().getAppId();
             	HttpKit.getVerificationCode(UUID , account, mHandler);
+			}
+		}
+	};
+	
+	/**
+	 * 登录
+	 */
+	private final JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
+		
+		@Override
+		public void onFailure(int statusCode, Header[] headers,
+				Throwable throwable, JSONObject errorResponse) {
+			Log.d(TAG, "handler: " + errorResponse.toString());
+			Toast.makeText(MRLoginActivity.this, getString(R.string.tip_login_error_for_network), Toast.LENGTH_SHORT).show();
+		}
+		
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d(TAG, "handler: " + response.toString());
+			Gson gson = new Gson();
+			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+			//成功
+			if(retBean.getResultCode() == 0){
+				// 保存用户信息
+				User user = new User();
+				user.setAccount(account);
+				AppContext.getInstance().saveUserInfo(user);
+				//跳转主页面
+	    		Intent intent = new Intent(MRLoginActivity.this, MRMainActivity.class);
+	    		startActivity(intent);
+				MRLoginActivity.this.finish();
+			} else {
+				Toast.makeText(MRLoginActivity.this, retBean.getMessage(), Toast.LENGTH_SHORT).show();
 			}
 		}
 	};

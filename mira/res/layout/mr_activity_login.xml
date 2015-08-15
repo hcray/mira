@@ -151,7 +151,9 @@
 				android:textColor="#81d8cf"
 				android:drawableBottom="@drawable/arrow_down"
 				android:drawablePadding="10dp"
-				android:text="@string/login_activity_third_party_login" />
+				android:text="@string/login_activity_third_party_login" 
+				android:visibility="gone"
+				/>
 		</LinearLayout>
 		
 		<LinearLayout 
