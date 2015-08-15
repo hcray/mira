@@ -12,6 +12,8 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -96,6 +98,9 @@ public class MRCityActivity extends Activity {
 				MRCityActivity.this.finish();
 			}
 		});
+		
+		//监控输入框的变化
+		et.addTextChangedListener(watcher);
 		
 		cityLocation = (TextView) this.findViewById(R.id.city_activity_tv_city_location);
 		String city = "";
@@ -269,4 +274,29 @@ public class MRCityActivity extends Activity {
 		}
 
 	}
+	
+	/**
+	 * 输入框监控
+	 */
+	private TextWatcher watcher = new TextWatcher(){
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+			String content = et.getText().toString().trim();
+			mCityNames.clear();
+			mCityNames = MRTestBLL.getSelectCityNames(content, MRCityActivity.this);
+			setAdapter(mCityNames);
+		}
+
+		@Override
+		public void afterTextChanged(Editable s) {
+			
+		}};
 }
