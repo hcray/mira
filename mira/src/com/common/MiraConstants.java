@@ -96,4 +96,9 @@ public class MiraConstants {
 	 * 4：下巴
 	 */
 	public final static int PART_CHIN = 4;
+	
+	/**
+	 * 已经选择的城市 
+	 */
+	public final static String SELECTED_CITY = "selectedCity"; 
 }

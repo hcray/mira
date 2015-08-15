@@ -94,14 +94,11 @@
             android:screenOrientation="portrait" >
         </activity>
 
-        <!--
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
-        </service>
-        -->
-
+        </service>
         <activity
             android:name=".MRLoginActivity"
             android:label="@string/title_activity_login" >

@@ -92,12 +92,12 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/city_activity_selected"
+            android:id="@+id/city_activity_tv_city_location"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginStart="5dp"
             android:gravity="center_vertical"
-            android:text="杭州"
+            android:text=""
             android:textColor="#49c6bd"
             android:textSize="14sp"
             android:textStyle="bold" />

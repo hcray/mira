@@ -10,7 +10,9 @@ import java.util.Locale;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,6 +36,7 @@ import android.widget.ViewSwitcher.ViewFactory;
 import cn.aigestudio.datepicker.interfaces.OnDateSelected;
 import cn.aigestudio.datepicker.views.DatePicker;
 
+import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.service.BluetoothService;
 
@@ -249,9 +252,16 @@ public class MRIndexActivity extends Activity implements
             @Override
             public void onClick(View v) {
             	Intent intent = new Intent(v.getContext(), MRCityActivity.class);
-            	startActivity(intent);
+            	startActivityForResult(intent, 1);
             }
 		});
+		//设置定位到的城市
+		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
+		String city = preferences.getString(MiraConstants.SELECTED_CITY, "");
+		if(city.isEmpty()){
+			city = preferences.getString("City", "");
+		}
+		tvCity.setText(city);
 		
 		llTestHistory = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_history);
 		llTestHistory.setOnClickListener(new View.OnClickListener() {
@@ -320,8 +330,13 @@ public class MRIndexActivity extends Activity implements
         try {  
             Log.v(TAG, "onActivityResult requestCode = " + requestCode + "; resultCode =  " 
                     + resultCode);  
-            if (requestCode != 0) {  
-                return;  
+            if (requestCode == 1 && resultCode == RESULT_OK) {  
+            	Bundle bundle = data.getExtras();
+            	String selectCity = bundle.getString(MiraConstants.SELECTED_CITY);
+            	if(null != selectCity && !selectCity.isEmpty()){
+            		tvCity.setText(selectCity);
+            	}
+            	
             }  
             if (resultCode == 0) {  
                 //finish();  

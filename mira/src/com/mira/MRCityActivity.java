@@ -6,6 +6,9 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,9 +26,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bll.MRTestBLL;
+import com.common.MiraConstants;
 import com.model.CityModel;
 import com.view.MyLetterListView;
 import com.view.MyLetterListView.OnTouchingLetterChangedListener;
@@ -33,6 +36,11 @@ import com.view.MyLetterListView.OnTouchingLetterChangedListener;
 public class MRCityActivity extends Activity {
 	// 返回
 	private LinearLayout backbtn;
+	
+	/**
+	 * 定位到的城市
+	 */
+	private TextView cityLocation;
 
 	private BaseAdapter adapter;
 	private ListView mCityLit;
@@ -88,6 +96,12 @@ public class MRCityActivity extends Activity {
 				MRCityActivity.this.finish();
 			}
 		});
+		
+		cityLocation = (TextView) this.findViewById(R.id.city_activity_tv_city_location);
+		String city = "";
+		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
+		city = preferences.getString("City", "");
+		cityLocation.setText(city);
 	}
 
 	
@@ -103,10 +117,19 @@ public class MRCityActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 				long arg3) {
-			CityModel cityModel = (CityModel) mCityLit.getAdapter()
-					.getItem(pos);
-			Toast.makeText(MRCityActivity.this, cityModel.getCityName(),
-					Toast.LENGTH_SHORT).show();
+			CityModel cityModel = (CityModel) mCityLit.getAdapter().getItem(pos);
+			//保存当前选中的城市，结束当前页面
+			//Toast.makeText(MRCityActivity.this, cityModel.getCityName(), Toast.LENGTH_SHORT).show();
+
+			SharedPreferences preferences = arg1.getContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
+			Editor editor = preferences.edit();
+			editor.putString(MiraConstants.SELECTED_CITY, cityModel.getCityName());
+			editor.commit();
+			
+			Intent mIntent = new Intent();
+			mIntent.putExtra(MiraConstants.SELECTED_CITY, cityModel.getCityName());
+			setResult(RESULT_OK, mIntent);
+			finish();
 		}
 
 	}
