@@ -67,7 +67,7 @@
 		        android:scaleType="fitCenter"
 		        android:padding="3.0dip"
 				android:clickable="true"
-		        android:src="@drawable/ico_info_pic"
+		        android:src="@drawable/head_pic"
 		        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
          </LinearLayout>
     </LinearLayout>
@@ -103,6 +103,7 @@
             />
          
 		<LinearLayout
+		    android:id="@+id/userInfo_activity_ll_nick_name_value"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -113,7 +114,7 @@
 	             android:id="@+id/userInfo_activity_tv_nick_name_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
-	             android:text="抹茶妹妹"
+	             android:text=""
 	             android:textColor="#999999"
 	             />
 	         
@@ -151,6 +152,7 @@
             />
          
          <LinearLayout
+            android:id="@+id/userInfo_activity_ll_sex_value"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -161,7 +163,7 @@
 	             android:id="@+id/userInfo_activity_tv_sex_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
-	             android:text="妹子"
+	             android:text=""
 	             android:textColor="#999999"
 	             />
 	         
@@ -201,6 +203,7 @@
             />
 		
 		<LinearLayout
+		    android:id="@+id/userInfo_activity_ll_birthday_value"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -211,7 +214,7 @@
 	             android:id="@+id/userInfo_activity_tv_birthday_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
-	             android:text="1980-08-06"
+	             android:text=""
 	             android:textColor="#999999"
 	             />
 	         
@@ -235,6 +238,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:visibility="gone"
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_type"
@@ -272,6 +276,7 @@
    	    android:layout_below="@id/userInfo_activity_ll_skin_type"
 	    android:background="#84dfd8" 
 	    android:layout_width="fill_parent"
+	    android:visibility="gone"
 		>
 	</View>
     
@@ -283,6 +288,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:visibility="gone"
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_skin_sensitivity"
@@ -320,6 +326,7 @@
    	    android:layout_below="@id/userInfo_activity_ll_skin_sensitivity"
 	    android:background="#84dfd8" 
 	    android:layout_width="fill_parent"
+	    android:visibility="gone"
 		>
 	</View>
     
@@ -331,6 +338,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:visibility="gone"
         >
          <TextView
             android:id="@+id/userInfo_activity_tv_menses"
@@ -369,7 +377,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:visibility="gone"
+        >
 
         <Button
             android:id="@+id/userInfo_activity_btn_save"

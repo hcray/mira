@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bean.ResultBean;
+import com.bean.RetUserBean;
 import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.google.gson.Gson;
@@ -294,12 +295,16 @@ public class MRLoginActivity extends Activity {
 				JSONObject response) {
 			Log.d(TAG, "handler: " + response.toString());
 			Gson gson = new Gson();
-			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+			RetUserBean retBean = gson.fromJson(response.toString(), RetUserBean.class);
 			//成功
 			if(retBean.getResultCode() == 0){
 				// 保存用户信息
 				User user = new User();
 				user.setAccount(account);
+				user.setUserId(retBean.getUserId());
+				user.setNickName(retBean.getNickName());
+				user.setBirthday(retBean.getBirthday());
+				user.setSex(retBean.getSex());
 				AppContext.getInstance().saveUserInfo(user);
 				//跳转主页面
 	    		Intent intent = new Intent(MRLoginActivity.this, MRMainActivity.class);

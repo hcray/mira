@@ -14,9 +14,12 @@ public class User {
 	
 	private String grades;
 	
-	private String sex;
+	/**
+	 * 用户性别 1：男 2：女 3：保密
+	 */
+	private int sex;
 	
-	private String age;
+	private String birthday;
 	
 	private String height;
 	
@@ -28,7 +31,15 @@ public class User {
 	
 	private String account;
 	
-	private String password;
+	private String userId;
+
+	public String getFace() {
+		return face;
+	}
+
+	public void setFace(String face) {
+		this.face = face;
+	}
 
 	public String getNickName() {
 		return nickName;
@@ -62,20 +73,20 @@ public class User {
 		this.grades = grades;
 	}
 
-	public String getSex() {
+	public int getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 
-	public String getAge() {
-		return age;
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getHeight() {
@@ -118,28 +129,13 @@ public class User {
 		this.account = account;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getFace() {
-		return face;
-	}
-
-	public void setFace(String face) {
-		this.face = face;
-	}
-
-	@Override
-	public String toString() {
-		return "User [nickName=" + nickName + ", sign=" + sign + ", level="
-				+ level + ", grades=" + grades + ", sex=" + sex + ", age="
-				+ age + ", height=" + height + ", weight=" + weight
-				+ ", menses=" + menses + ", skinType=" + skinType
-				+ ", account=" + account + ", password=" + password + "]";
-	}
+	
 }

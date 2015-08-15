@@ -2,10 +2,7 @@ package com.mira;
 
 
 import android.app.TabActivity;
-import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -20,6 +17,7 @@ import com.common.BaiDuLocationModel;
 import com.common.BaiduLocation;
 import com.common.HandlerEvent;
 import com.common.MRCommon;
+import com.model.TestModel;
 import com.service.BluetoothService;
 
 public class MRMainActivity extends TabActivity {
@@ -157,7 +155,13 @@ public class MRMainActivity extends TabActivity {
 				
 			};
 		});
-		BaiduLocation.getWeather(this);
+		TestModel model = BaiduLocation.getWeather(this);
+		if(model == null){
+			Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+		}else{
+			Toast.makeText(this, model.toString(), Toast.LENGTH_SHORT).show();
+		}
+		
 
 		super.onResume();
 	}

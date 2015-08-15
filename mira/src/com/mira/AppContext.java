@@ -2,15 +2,23 @@ package com.mira;
 
 import java.util.UUID;
 
+import org.apache.http.Header;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.base.BaseApplication;
+import com.bean.ResultBean;
+import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.User;
+import com.utils.HttpKit;
 
 /**
  * 全局应用程序类：用于保存和调用全局应用配置及访问网络数据
@@ -108,16 +116,13 @@ public class AppContext extends BaseApplication {
 		SharedPreferences preferences = context().getSharedPreferences("user",
 				Context.MODE_PRIVATE);
 		Editor editor = preferences.edit();
-		editor.putString("user.face", user.getFace());
+		
 		editor.putString("user.nickName", user.getNickName());
-		editor.putString("user.sign", user.getSign());
-		editor.putString("user.level", user.getLevel());
-		editor.putString("user.grades", user.getGrades());
-		editor.putString("user.height", user.getHeight());
-		editor.putString("user.weight", user.getWeight());
-		editor.putString("user.sex", user.getSex());
-		editor.putString("user.account", String.valueOf(user.getAccount()));
-		editor.putString("user.age", user.getAge());
+		editor.putInt("user.sex", user.getSex());
+		editor.putString("user.account", user.getAccount());
+		editor.putString("user.birthday", user.getBirthday());
+		editor.putString("user.userId", user.getUserId());
+		
 		editor.putBoolean("user.isLogin", login);
 		editor.commit();
 
@@ -132,17 +137,13 @@ public class AppContext extends BaseApplication {
 		SharedPreferences preferences = context().getSharedPreferences("user",
 				Context.MODE_PRIVATE);
 		Editor editor = preferences.edit();
-		editor.putString("user.face", user.getFace());
 		editor.putString("user.nickName", user.getNickName());
-		editor.putString("user.sign", user.getSign());
-		editor.putString("user.level", user.getLevel());
-		editor.putString("user.grades", user.getGrades());
-		editor.putString("user.height", user.getHeight());
-		editor.putString("user.weight", user.getWeight());
-		editor.putString("user.sex", user.getSex());
-		editor.putString("user.account", String.valueOf(user.getAccount()));
-		editor.putString("user.age", user.getAge());
+		editor.putInt("user.sex", user.getSex());
+		editor.putString("user.birthday", user.getBirthday());
 		editor.commit();
+		User curUser = getLoginUser();
+		HttpKit.updateUserInfo(getAppId(), curUser.getUserId(), curUser.getNickName(), curUser.getSex(), curUser.getBirthday(), "", "", handler);
+		
 	}
 
 	/**
@@ -152,20 +153,18 @@ public class AppContext extends BaseApplication {
 	 */
 	public User getLoginUser() {
 		User user = new User();
-		SharedPreferences preferences = context().getSharedPreferences("user",
-				Context.MODE_PRIVATE);
-		preferences.getString("user.face", user.getFace());
-		preferences.getString("user.nickName", user.getNickName());
-		preferences.getString("user.sign", user.getSign());
-		preferences.getString("user.level", user.getLevel());
-		preferences.getString("user.grades", user.getGrades());
-		preferences.getString("user.height", user.getHeight());
-		preferences.getString("user.weight", user.getWeight());
-		preferences.getString("user.sex", user.getSex());
-		preferences
-				.getString("user.account", String.valueOf(user.getAccount()));
-		preferences.getString("user.age", user.getAge());
+		SharedPreferences preferences = context().getSharedPreferences("user", Context.MODE_PRIVATE);
+		String nickName = preferences.getString("user.nickName", user.getNickName());
+		int sex = preferences.getInt("user.sex", user.getSex());
+		String account = preferences.getString("user.account", user.getAccount());
+		String birthday = preferences.getString("user.birthday", user.getBirthday());
+		String userId = preferences.getString("user.userId", user.getUserId());
 
+		user.setAccount(account);
+		user.setNickName(nickName);
+		user.setSex(sex);
+		user.setBirthday(birthday);
+		user.setUserId(userId);
 		return user;
 	}
 	
@@ -185,11 +184,23 @@ public class AppContext extends BaseApplication {
 	public void cleanLoginInfo() {
 		this.loginUid = "0";
 		this.login = false;
-		SharedPreferences preferences = context().getSharedPreferences("user",
-				Context.MODE_PRIVATE);
+		SharedPreferences preferences = context().getSharedPreferences("user", Context.MODE_PRIVATE);
 		Editor editor = preferences.edit();
 		editor.clear();
 		editor.commit();
 	}
+	
+	private final JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d("AppContext", "handler: " + response.toString());
+			Gson gson = new Gson();
+			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+			//成功
+			if(retBean.getResultCode() == 0){
+			}
+		}
+	};
 
 }

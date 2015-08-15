@@ -156,36 +156,47 @@ public class HttpKit {
 	 * @param sensitiveId 是	敏感类型编号
 	 * @return
 	 */
-	public static ResultBean updateUserInfo(String UUID, String userId,
+	public static void updateUserInfo(String UUID, String userId,
 			String nickName, int sex, String birthday, String skinId,
-			String sensitiveId) {
+			String sensitiveId, AsyncHttpResponseHandler handler) {
 		
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UserId", userId);
+		params.add("NickName", nickName);
+		params.add("Sex", String.valueOf(sex));
+		params.add("Birthday", birthday);
+		params.add("SkinId", skinId);
+		params.add("SensitiveId", sensitiveId);
+		client.post(MiraConstants.updateUserInfo, params, handler);
 		
-		HttpPost httpPost = new HttpPost(MiraConstants.updateUserInfo);
-		httpPost.addHeader("UUID", UUID);
-		httpPost.addHeader("UserId", userId);
-		httpPost.addHeader("NickName", nickName);
-		httpPost.addHeader("Sex", String.valueOf(sex));
-		httpPost.addHeader("Birthday", birthday);
-		httpPost.addHeader("SkinId", skinId);
-		httpPost.addHeader("SensitiveId", sensitiveId);
-		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+//		ResultBean rb = new ResultBean();
+//		HttpClient httpClient = new DefaultHttpClient();
+//		
+//		HttpPost httpPost = new HttpPost(MiraConstants.updateUserInfo);
+//		httpPost.addHeader("UUID", UUID);
+//		httpPost.addHeader("UserId", userId);
+//		httpPost.addHeader("NickName", nickName);
+//		httpPost.addHeader("Sex", String.valueOf(sex));
+//		httpPost.addHeader("Birthday", birthday);
+//		httpPost.addHeader("SkinId", skinId);
+//		httpPost.addHeader("SensitiveId", sensitiveId);
+//		
+//		try {
+//			//执行请求
+//			HttpResponse response = httpClient.execute(httpPost);
+//			
+//			HttpEntity entity = response.getEntity();
+//			//返回值
+//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
+//			
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return rb;
 	}
 	
 	/**
