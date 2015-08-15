@@ -100,7 +100,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/detection_activity_tv_tem_label"
                     android:gravity="center"
-                    android:text="25℃"
+                    android:text=""
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -141,7 +141,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/detection_activity_tv_wet_label"
                     android:gravity="center"
-                    android:text="30%"
+                    android:text=""
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -181,7 +181,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/detection_activity_tv_water_label"
                     android:gravity="center"
-                    android:text="42%"
+                    android:text=""
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
                     android:textStyle="bold" />

@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.common.MiraConstants;
 import com.model.TestModel;
 import com.view.LineCharView;
 import com.view.RoundProgressBar;
@@ -32,6 +33,12 @@ public class MRDetectionActivity extends Activity {
 	boolean isTest;
 
 	/**
+	 * 当前检测的部位
+	 * 1：额头 2：脸颊 3：鼻子 4：下巴
+	 */
+	private int part;
+
+	/**
 	 * 温度
 	 */
 	private TextView tvTem;
@@ -45,25 +52,55 @@ public class MRDetectionActivity extends Activity {
 	 * 水分
 	 */
 	private TextView tvWater;
-	
+
 	/**
 	 * 综合得分
 	 */
 	private RoundProgressBar rpb;
+	
+	/**
+	 * 标题
+	 */
+	private TextView tvTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_detection);
-		tvTem = (TextView) this.findViewById(R.id.detection_activity_tv_tem_value);
-		
-		tvWet = (TextView) this.findViewById(R.id.detection_activity_tv_wet_value);
-		
-		tvWater = (TextView) this.findViewById(R.id.detection_activity_tv_water_value);
-		
+		tvTem = (TextView) this
+				.findViewById(R.id.detection_activity_tv_tem_value);
+
+		tvWet = (TextView) this
+				.findViewById(R.id.detection_activity_tv_wet_value);
+
+		tvWater = (TextView) this
+				.findViewById(R.id.detection_activity_tv_water_value);
+
 		rpb = (RoundProgressBar) this.findViewById(R.id.detection_activity_rpb);
 
 		LineCharView lcv = (LineCharView) findViewById(R.id.detection_activity_lcv);
+		
+		tvTitle = (TextView) findViewById(R.id.detection_activity_tv_title);
+
+		Intent intent = getIntent();// getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
+		Bundle bundle = intent.getExtras();// .getExtras()得到intent所附带的额外数据
+		//当前检测的部位
+		part = bundle.getInt(MiraConstants.PART);
+		Log.d(tag, "part: " + part);
+		
+		if (MiraConstants.PART_HEAD == part) {
+			tvTitle.setText(getString(R.string.detection_activity_title_head));
+			
+		} else if (MiraConstants.PART_FACE == part) {
+			tvTitle.setText(getString(R.string.detection_activity_title_face));
+			
+		} else if (MiraConstants.PART_NOSE == part) {
+			tvTitle.setText(getString(R.string.detection_activity_title_nose));
+			
+		} else if (MiraConstants.PART_CHIN == part) {
+			tvTitle.setText(getString(R.string.detection_activity_title_chin));
+		}
+
 		List<String> x_coords = new ArrayList<String>();
 		x_coords.add("1");
 		x_coords.add("2");
@@ -92,8 +129,6 @@ public class MRDetectionActivity extends Activity {
 			}
 		});
 	}
-	
-	
 
 	@Override
 	protected void onStart() {
@@ -104,8 +139,6 @@ public class MRDetectionActivity extends Activity {
 		MRDetectionActivity.this.registerReceiver(receiver, filter);
 	}
 
-
-
 	@Override
 	protected void onStop() {
 		super.onStop();
@@ -114,24 +147,15 @@ public class MRDetectionActivity extends Activity {
 		}
 	}
 
-
-
-	/*@Override
-	protected void onResume() {
-		super.onResume();
-		receiver = new BLEReceiver();
-		IntentFilter filter = new IntentFilter();
-		filter.addAction("com.mira.action.BLUETOOTH_DATA");
-		MRDetectionActivity.this.registerReceiver(receiver, filter);
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (receiver != null) {
-			unregisterReceiverSafe(receiver);
-		}
-	}*/
+	/*
+	 * @Override protected void onResume() { super.onResume(); receiver = new
+	 * BLEReceiver(); IntentFilter filter = new IntentFilter();
+	 * filter.addAction("com.mira.action.BLUETOOTH_DATA");
+	 * MRDetectionActivity.this.registerReceiver(receiver, filter); }
+	 * 
+	 * @Override protected void onPause() { super.onPause(); if (receiver !=
+	 * null) { unregisterReceiverSafe(receiver); } }
+	 */
 
 	@Override
 	protected void onDestroy() {
@@ -206,14 +230,17 @@ public class MRDetectionActivity extends Activity {
 		shuiFen /= dataList.size();
 		// ziWaiXian /= dataList.size();
 
-		//页面显示
+		// 页面显示
 		tvTem.setText(wenDu / 100 + "℃");
 		tvWet.setText(shiDu + "%");
 		tvWater.setText(shuiFen + "%");
 		rpb.setProgress(shuiFen);
+		
+		//保存数据库
+		
+		//上传服务器
 	}
-	
-	
+
 	/**
 	 * 重置页面
 	 */
@@ -221,7 +248,7 @@ public class MRDetectionActivity extends Activity {
 		int wenDu = 0;
 		int shiDu = 0;
 		int shuiFen = 0;
-		//页面显示
+		// 页面显示
 		tvTem.setText(wenDu / 100 + "℃");
 		tvWet.setText(shiDu + "%");
 		tvWater.setText(shuiFen + "%");
@@ -235,6 +262,7 @@ public class MRDetectionActivity extends Activity {
 
 	/**
 	 * 安全取消注册
+	 * 
 	 * @param receiver
 	 */
 	private void unregisterReceiverSafe(BroadcastReceiver receiver) {

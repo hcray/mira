@@ -1,5 +1,6 @@
 package com.mira;
 
+import com.common.MiraConstants;
 import com.service.BluetoothService;
 
 import android.app.Activity;
@@ -38,6 +39,8 @@ public class MRDetectionMenuActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
+				//1：额头 2：脸颊 3：鼻子 4：下巴
+				intent.putExtra(MiraConstants.PART, MiraConstants.PART_HEAD);
 				startActivity(intent);
 			}
 		});
@@ -47,6 +50,7 @@ public class MRDetectionMenuActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
+				intent.putExtra(MiraConstants.PART, MiraConstants.PART_FACE);
 				startActivity(intent);
 			}
 		});
@@ -56,6 +60,7 @@ public class MRDetectionMenuActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
+				intent.putExtra(MiraConstants.PART, MiraConstants.PART_NOSE);
 				startActivity(intent);
 			}
 		});
@@ -65,6 +70,7 @@ public class MRDetectionMenuActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
+				intent.putExtra(MiraConstants.PART, MiraConstants.PART_CHIN);
 				startActivity(intent);
 			}
 		});
