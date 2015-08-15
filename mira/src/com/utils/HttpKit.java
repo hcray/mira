@@ -2,6 +2,7 @@ package com.utils;
 
 import java.io.IOException;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -13,6 +14,9 @@ import org.apache.http.util.EntityUtils;
 import com.bean.LoginRet;
 import com.bean.ResultBean;
 import com.common.MiraConstants;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class HttpKit {
 
@@ -27,30 +31,38 @@ public class HttpKit {
 	 * 
 	 * @return 结果
 	 */
-	public static ResultBean createToken(String UUID, String mobileType,
-			String token) {
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
+	public static void createToken(String UUID, String mobileType,
+			String token, AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("MobileType", mobileType);
+		params.add("Token", token);
+		client.post(MiraConstants.createToken, params, handler);
 		
-		HttpPost httpPost = new HttpPost(MiraConstants.createToken);
-		httpPost.addHeader("UUID", UUID);
-		httpPost.addHeader("MobileType", mobileType);
-		httpPost.addHeader("Token", token);
 		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+//		ResultBean rb = new ResultBean();
+//		HttpClient httpClient = new DefaultHttpClient();
+//		
+//		HttpPost httpPost = new HttpPost(MiraConstants.createToken);
+//		httpPost.addHeader("UUID", UUID);
+//		httpPost.addHeader("MobileType", mobileType);
+//		httpPost.addHeader("Token", token);
+//		
+//		try {
+//			//执行请求
+//			HttpResponse response = httpClient.execute(httpPost);
+//			
+//			HttpEntity entity = response.getEntity();
+//			//返回值
+//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
+//			
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return rb;
 	}
 	
 	/**
@@ -61,31 +73,38 @@ public class HttpKit {
 	 * @param password 是	登录密码，Type=1:动态验证码 Type= 2：账户密码
 	 * @return 登录结果
 	 */
-	public static LoginRet userLogin(String UUID, String loginName,
-			int type, String password) {
-		LoginRet rb = new LoginRet();
-		HttpClient httpClient = new DefaultHttpClient();
+	public static void userLogin(String UUID, String loginName,
+			int type, String password, AsyncHttpResponseHandler handler) {
+//		LoginRet rb = new LoginRet();
+//		HttpClient httpClient = new DefaultHttpClient();
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("LoginName", loginName);
+		params.add("Type", String.valueOf(type));
+		params.add("Password", password);
+		client.post(MiraConstants.userLogin, params, handler);
 		
-		HttpPost httpPost = new HttpPost(MiraConstants.userLogin);
-		httpPost.addHeader("UUID", UUID);
-		httpPost.addHeader("LoginName", loginName);
-		httpPost.addHeader("Type", String.valueOf(type));
-		httpPost.addHeader("Password", password);
-		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+//		HttpPost httpPost = new HttpPost(MiraConstants.userLogin);
+//		httpPost.addHeader("UUID", UUID);
+//		httpPost.addHeader("LoginName", loginName);
+//		httpPost.addHeader("Type", String.valueOf(type));
+//		httpPost.addHeader("Password", password);
+//		
+//		try {
+//			//执行请求
+//			HttpResponse response = httpClient.execute(httpPost);
+//			
+//			HttpEntity entity = response.getEntity();
+//			//返回值
+//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
+//			
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return rb;
 	}
 	
 	/**
@@ -94,28 +113,36 @@ public class HttpKit {
 	 * @param mobile 是	手机号码
 	 * @return 结果
 	 */
-	public static ResultBean getVerificationCode(String UUID, String mobile) {
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
+	public static void getVerificationCode(String UUID, String mobile, AsyncHttpResponseHandler handler) {
 		
-		HttpPost httpPost = new HttpPost(MiraConstants.getVerificationCode);
-		httpPost.addHeader("UUID", UUID);
-		httpPost.addHeader("Mobile", mobile);
 		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("Mobile", mobile);
+		client.post(MiraConstants.getVerificationCode, params, handler);
+		
+//		ResultBean rb = new ResultBean();
+//		HttpClient httpClient = new DefaultHttpClient();
+		
+//		HttpPost httpPost = new HttpPost(MiraConstants.getVerificationCode);
+//		httpPost.addHeader("UUID", UUID);
+//		httpPost.addHeader("Mobile", mobile);
+//		
+//		try {
+//			//执行请求
+//			HttpResponse response = httpClient.execute(httpPost);
+//			
+//			HttpEntity entity = response.getEntity();
+//			//返回值
+//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
+//			
+//		} catch (ClientProtocolException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return rb;
 	}
 	
 	/**

@@ -3,11 +3,13 @@ package com.mira;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.http.Header;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,9 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bean.ResultBean;
 import com.common.StringUtils;
+import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.User;
 import com.utils.CountDownTimerUtil;
+import com.utils.CyptoUtils;
+import com.utils.HttpKit;
 
 public class MRLoginActivity extends Activity {
 
@@ -64,6 +71,8 @@ public class MRLoginActivity extends Activity {
 	private InputMethodManager imm;
 	
 	private TimeCount time;
+	
+	private String account;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +94,7 @@ public class MRLoginActivity extends Activity {
 				.findViewById(R.id.login_activity_btn_get_code);
 		btn_getCode.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String account = loginAccount.getText().toString();
+				account = loginAccount.getText().toString();
 				if (StringUtils.isEmpty(account)) {
 					Toast.makeText(v.getContext(), getString(R.string.msg_login_account_null), Toast.LENGTH_SHORT).show();
 					return;
@@ -95,6 +104,9 @@ public class MRLoginActivity extends Activity {
 					Matcher m = p.matcher(account);
 					if (m.matches()) {
 						// TODO 调用获取的接口
+	                	String UUID = AppContext.getInstance().getAppId();
+	                	HttpKit.getVerificationCode(UUID , account, mHandler);
+						
 						time = new TimeCount(60000, 1000);
 						time.start();
 					} else {
@@ -112,7 +124,7 @@ public class MRLoginActivity extends Activity {
 				// 隐藏软键盘
 				imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 				// 账号 密码
-				String account = loginAccount.getText().toString();
+				account = loginAccount.getText().toString();
 				String pwd = loginCode.getText().toString();
 				// 判断输入
 				if (StringUtils.isEmpty(account)) {
@@ -125,7 +137,7 @@ public class MRLoginActivity extends Activity {
 				}
 				// 保存用户信息
 				User user = new User();
-				user.setAccount(Integer.parseInt(account));
+				user.setAccount(account);
 				AppContext.getInstance().saveUserInfo(user);
 				//跳转主页面
 	    		Intent intent = new Intent(v.getContext(), MRMainActivity.class);
@@ -206,5 +218,58 @@ public class MRLoginActivity extends Activity {
 			}
 		}
 	}
+	
+	/**
+	 * 获取验证码
+	 */
+	private final JsonHttpResponseHandler mHandler = new JsonHttpResponseHandler() {
+
+		@Override
+		public void onFailure(int statusCode, Header[] headers,
+				Throwable throwable, JSONObject errorResponse) {
+			Log.d(TAG, "mHandler: " + errorResponse.toString());
+		}
+
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d(TAG, "mHandler: " + response.toString());
+			Gson gson = new Gson();
+			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+			Log.d(TAG, "mHandler:ResultCode: " + retBean.getResultCode());
+			//未授权
+			if(retBean.getResultCode() == -2){
+				Log.d(TAG, "mHandler: ResultCode == -2");
+				String UUID = AppContext.getInstance().getAppId();
+				String token = CyptoUtils.encodeMd5(UUID + "mira2015");
+				HttpKit.createToken(UUID, "1", token, cHandler);
+			}
+		}
+	};
+	
+	/**
+	 * 获取验证码
+	 */
+	private final JsonHttpResponseHandler cHandler = new JsonHttpResponseHandler() {
+		
+		@Override
+		public void onFailure(int statusCode, Header[] headers,
+				Throwable throwable, JSONObject errorResponse) {
+			Log.d(TAG, "cHandler: " + errorResponse.toString());
+		}
+		
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d(TAG, "cHandler: " + response.toString());
+			Gson gson = new Gson();
+			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+			//成功
+			if(retBean.getResultCode() == 0){
+			  	String UUID = AppContext.getInstance().getAppId();
+            	HttpKit.getVerificationCode(UUID , account, mHandler);
+			}
+		}
+	};
 
 }

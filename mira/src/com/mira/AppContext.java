@@ -21,7 +21,7 @@ import com.model.User;
 public class AppContext extends BaseApplication {
 	private static AppContext instance;
 
-	private int loginUid;
+	private String loginUid;
 
 	private boolean login;
 
@@ -30,10 +30,10 @@ public class AppContext extends BaseApplication {
 		super.onCreate();
 		instance = this;
 		login = getLoginStatus();
-		loginUid = -1;
+		loginUid = "-1";
 	}
 
-	public int getLoginUid() {
+	public String getLoginUid() {
 		return loginUid;
 	}
 
@@ -183,7 +183,7 @@ public class AppContext extends BaseApplication {
 	 * 清除登录信息
 	 */
 	public void cleanLoginInfo() {
-		this.loginUid = 0;
+		this.loginUid = "0";
 		this.login = false;
 		SharedPreferences preferences = context().getSharedPreferences("user",
 				Context.MODE_PRIVATE);

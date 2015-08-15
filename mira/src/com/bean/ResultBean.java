@@ -11,7 +11,7 @@ public class ResultBean {
 	/**
 	 * int 返回状态代码：0-成功 -1-失败
 	 */
-	private int resultCode;
+	private int ResultCode;
 	
 	/**
 	 * 返回消息，成功则返回“成功”，失败则返回错误信息
@@ -29,11 +29,11 @@ public class ResultBean {
 	private List<SensitiveBean> SensitiveList;
 
 	public int getResultCode() {
-		return resultCode;
+		return ResultCode;
 	}
 
 	public void setResultCode(int resultCode) {
-		this.resultCode = resultCode;
+		this.ResultCode = resultCode;
 	}
 
 	public String getMessage() {

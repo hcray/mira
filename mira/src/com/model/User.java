@@ -26,7 +26,7 @@ public class User {
 	
 	private String skinType;
 	
-	private int account;
+	private String account;
 	
 	private String password;
 
@@ -110,11 +110,11 @@ public class User {
 		this.skinType = skinType;
 	}
 
-	public int getAccount() {
+	public String getAccount() {
 		return account;
 	}
 
-	public void setAccount(int account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
 
