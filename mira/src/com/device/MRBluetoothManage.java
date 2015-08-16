@@ -253,7 +253,7 @@ public class MRBluetoothManage {
 					public void onCharacteristicRead(final BluetoothGatt gatt,
 							final BluetoothGattCharacteristic characteristic,
 							int status) {
-						Log.d(tag,"onCharacteristicRead()");
+						//Log.d(tag,"onCharacteristicRead()");
 						if (status == 0) {
 							final byte[] data = characteristic.getValue();
 							new Handler(Looper.getMainLooper())

@@ -83,7 +83,7 @@ public class BluetoothService extends IntentService {
 				model.shiDu = BitConverter.toShort(shiDuByte);
 				model.shuiFen = BitConverter.toShort(shuiFenByte);
 				model.ziWaiXian = BitConverter.toShort(ziWaiXianByte);
-				Log.d(tag, model.toString());
+				//Log.d(tag, model.toString());
 				sendData(model);
 			}
 		});

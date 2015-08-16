@@ -3,6 +3,9 @@ package com.mira;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.Header;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,9 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bean.ResultBean;
 import com.bll.MRTestBLL;
 import com.common.MiraConstants;
+import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.TestModel;
+import com.model.User;
+import com.utils.HttpKit;
 import com.view.LineCharView;
 import com.view.RoundProgressBar;
 
@@ -248,6 +256,11 @@ public class MRDetectionActivity extends Activity {
 		MRTestBLL.addTestModel(testModel, MRDetectionActivity.this);
 		//上传服务器
 		//TODO
+		User user = AppContext.getInstance().getLoginUser();
+		String UUID = AppContext.getInstance().getAppId();
+		String userId = user.getUserId();
+		Log.d(tag, "userId: " + userId);
+		HttpKit.uploadDetection(UUID, userId, part, String.valueOf(shiDu), String.valueOf(wenDu), String.valueOf(shuiFen), String.valueOf(shuiFen), String.valueOf(shuiFen), handler);
 	}
 
 	/**
@@ -281,5 +294,22 @@ public class MRDetectionActivity extends Activity {
 			// ignore
 		}
 	}
+	
+	/**
+	 * 修改用户后的回调
+	 */
+	private final JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d(tag, "uploadDetection handler: " + response.toString());
+			Gson gson = new Gson();
+			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+			//成功
+			if(retBean.getResultCode() == 0){
+				
+			}
+		}
+	};
 
 }

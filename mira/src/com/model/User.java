@@ -137,5 +137,14 @@ public class User {
 		this.userId = userId;
 	}
 
+	@Override
+	public String toString() {
+		return "User [face=" + face + ", nickName=" + nickName + ", sign="
+				+ sign + ", level=" + level + ", grades=" + grades + ", sex="
+				+ sex + ", birthday=" + birthday + ", height=" + height
+				+ ", weight=" + weight + ", menses=" + menses + ", skinType="
+				+ skinType + ", account=" + account + ", userId=" + userId
+				+ "]";
+	}
 	
 }

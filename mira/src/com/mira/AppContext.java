@@ -32,6 +32,8 @@ public class AppContext extends BaseApplication {
 	private String loginUid;
 
 	private boolean login;
+	
+	private String appId;
 
 	@Override
 	public void onCreate() {
@@ -64,26 +66,20 @@ public class AppContext extends BaseApplication {
 	 * @return
 	 */
 	public String getAppId() {
-
-		final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
-
-		final String tmDevice, tmSerial, androidId;
-
-		tmDevice = "" + tm.getDeviceId();
-
-		tmSerial = "" + tm.getSimSerialNumber();
-
-		androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
-		UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
-
-		String uniqueId = deviceUuid.toString();
-		/*
-		 * String uniqueID = getProperty(AppConfig.CONF_APP_UNIQUEID); if
-		 * (StringUtils.isEmpty(uniqueID)) {
-		 * setProperty(AppConfig.CONF_APP_UNIQUEID, uniqueID); }
-			String uniqueID = UUID.randomUUID().toString();
-		 */
+		String uniqueId = "";
+		if (appId != null && !appId.isEmpty()) {
+			uniqueId = appId;
+			
+		} else {
+			final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
+			final String tmDevice, tmSerial, androidId;
+			tmDevice = "" + tm.getDeviceId();
+			tmSerial = "" + tm.getSimSerialNumber();
+			androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+			UUID deviceUuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
+			uniqueId = deviceUuid.toString();
+			appId = uniqueId;
+		}
 		return uniqueId;
 	}
 

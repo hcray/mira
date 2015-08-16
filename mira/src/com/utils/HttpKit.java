@@ -144,7 +144,7 @@ public class HttpKit {
 	/**
 	 * 上传检测数据
 	 * @param UUID String 是	设备号
-	 * @param UerId String 是	用户编号
+	 * @param UserId String 是	用户编号
 	 * @param Position int 是	1：额头 2：脸颊 3：鼻子 4：下巴
 	 * @param Humidity Decimal	是	湿度
 	 * @param Temperature Decimal	是	温度
@@ -153,13 +153,13 @@ public class HttpKit {
 	 * @param Comment String	是	备注
 	 * @return
 	 */
-	public static void uploadDetection(String UUID, String UerId,
+	public static void uploadDetection(String UUID, String UserId,
 			int Position, String Humidity, String Temperature, String Water,
 			String Score, String Comment, AsyncHttpResponseHandler handler) {
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
 		params.add("UUID", UUID);
-		params.add("UerId", UerId);
+		params.add("UserId", UserId);
 		params.add("Position", String.valueOf(Position));
 		params.add("Humidity", Humidity);
 		params.add("Temperature", Temperature);
