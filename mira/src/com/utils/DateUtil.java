@@ -1,6 +1,7 @@
 package com.utils;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateUtil {
 
@@ -17,10 +18,26 @@ public class DateUtil {
 		cal.set(Calendar.MILLISECOND, 0);
 		return cal.getTimeInMillis();
 	}
+	
+	/**
+	 * 获取指定日期0点的时间
+	 * @param date 指定日期
+	 * @return
+	 */
+	public static long getTimesMorning(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		return cal.getTimeInMillis();
+	}
 
 	/**
-	 * 获得偏移了day的0点的时间
-	 * 
+	 * 获得跟今天比偏移了day的0点的时间
+	 * @param day 跟今天比偏移的天数，可以是负数，默认加
 	 * @return
 	 */
 	public static long getTimesMorning(int day) {
@@ -48,8 +65,8 @@ public class DateUtil {
 	}
 
 	/**
-	 * 获得偏移了day的24点时间
-	 * 
+	 * 获得跟今天比偏移了day的24点时间
+	 * @param day 跟今天比偏移的天数 ,可以是负数,默认加
 	 * @return
 	 */
 	public static long getTimesNight(int day) {
@@ -59,6 +76,22 @@ public class DateUtil {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		cal.add(Calendar.DAY_OF_YEAR, day);
+		return cal.getTimeInMillis();
+	}
+	
+	/**
+	 * 指定日期的24点的时间
+	 * @param date 指定的日期
+	 * @return 从1970年开始计算的时间
+	 */
+	public static long getTimesNight(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 24);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
 		return cal.getTimeInMillis();
 	}
 
@@ -111,5 +144,19 @@ public class DateUtil {
 				cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		cal.set(Calendar.HOUR_OF_DAY, 24);
 		return cal.getTimeInMillis();
+	}
+	
+	/**
+	 * 偏移后的天数
+	 * @param date 原始日期
+	 * @param day 偏移天数
+	 * @return 偏移后的日期
+	 */
+	public static Date getShiftDay(Date date, int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_YEAR, day);
+		return cal.getTime();
 	}
 }

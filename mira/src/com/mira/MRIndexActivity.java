@@ -1,8 +1,10 @@
 package com.mira;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +15,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -36,9 +39,11 @@ import android.widget.ViewSwitcher.ViewFactory;
 import cn.aigestudio.datepicker.interfaces.OnDateSelected;
 import cn.aigestudio.datepicker.views.DatePicker;
 
+import com.bll.MRTestBLL;
 import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.service.BluetoothService;
+import com.utils.DateUtil;
 
 public class MRIndexActivity extends Activity implements
 	OnItemSelectedListener, ViewFactory {
@@ -105,7 +110,37 @@ public class MRIndexActivity extends Activity implements
 	 */
 	private TextView tvCity;
 	
+	/**
+	 * 额头
+	 */
+	private TextView tvHeadValue;
+	
+	private ImageView ivHeadWaring;
+	
+	/**
+	 * 脸颊
+	 */
+	private TextView tvFaceValue;
+	
+	private ImageView ivFaceWaring;
+	
+	/**
+	 * 鼻子
+	 */
+	private TextView tvNoseValue;
+	
+	private ImageView ivNoseWaring;
+	
+	/**
+	 * 下巴
+	 */
+	private TextView tvChinValue;
+	
+	private ImageView ivChinWaring;
+	
 	private LinearLayout llTestHistory;
+	
+	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +149,8 @@ public class MRIndexActivity extends Activity implements
 		
 //		imageView = (ImageView) this.findViewById(R.id.imageView);
 		etSelectDate = (TextView) this.findViewById(R.id.index_activity_selectDate);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		String picName = format.format(new Date());
+		//显示今天的时间
 		etSelectDate.setText(picName);
 		
 		arrowLeft = (ImageButton) this.findViewById(R.id.index_activity_ib_arrowLeft);
@@ -123,6 +158,18 @@ public class MRIndexActivity extends Activity implements
 		arrowRight = (ImageButton) this.findViewById(R.id.index_activity_ib_arrowRight);
 		
 		//mSwitcher = (ImageSwitcher) this.findViewById(R.id.imgSwitcher);
+		
+		tvHeadValue = (TextView) this.findViewById(R.id.index_activity_tv_head_value);
+		ivHeadWaring = (ImageView) this.findViewById(R.id.index_activity_iv_head_waring);
+		
+		tvFaceValue = (TextView) this.findViewById(R.id.index_activity_tv_face_value);
+		ivFaceWaring = (ImageView) this.findViewById(R.id.index_activity_iv_face_waring);
+		
+		tvNoseValue = (TextView) this.findViewById(R.id.index_activity_tv_nose_value);
+		ivNoseWaring = (ImageView) this.findViewById(R.id.index_activity_iv_nose_waring);
+		
+		tvChinValue = (TextView) this.findViewById(R.id.index_activity_tv_chin_value);
+		ivChinWaring = (ImageView) this.findViewById(R.id.index_activity_iv_chin_waring);
 		
 		ibCamera = (ImageButton) this.findViewById(R.id.ib_camera);
 		
@@ -177,14 +224,25 @@ public class MRIndexActivity extends Activity implements
 			@Override
 			public void onClick(View v) {
 				Log.i(TAG, "arrowLeft click() curPosition: " + curPosition + " pathList.length: " + pathList.length);
-				if(curPosition > 0){
-					curPosition --;
-					String photoURL = pathList[curPosition];
-					Log.i(TAG, "photoURL: " + photoURL);
-					
-					//mSwitcher.setImageURI(Uri.parse(photoURL));
-				}else{
-					Toast.makeText(v.getContext(), "已经是最前一张", Toast.LENGTH_SHORT).show();
+//				if(curPosition > 0){
+//					curPosition --;
+//					String photoURL = pathList[curPosition];
+//					Log.i(TAG, "photoURL: " + photoURL);
+//					
+//					//mSwitcher.setImageURI(Uri.parse(photoURL));
+//				}else{
+//					Toast.makeText(v.getContext(), "已经是最前一张", Toast.LENGTH_SHORT).show();
+//				}
+				
+				String curDateStr = etSelectDate.getText().toString();
+				try {
+					Date curDate = format.parse(curDateStr);
+					Date shiftDate = DateUtil.getShiftDay(curDate, -1);
+					String shiftDateStr = format.format(shiftDate);
+					etSelectDate.setText(shiftDateStr);
+					showTestRet();
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
 			}
 		});
@@ -192,15 +250,27 @@ public class MRIndexActivity extends Activity implements
 		arrowRight.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i(TAG, "arrowRight click() curPosition: " + curPosition + " pathList.length: " + pathList.length);
-				if(curPosition < pathList.length-1){
-					curPosition ++;
-					String photoURL = pathList[curPosition];
-					Log.i(TAG, "photoURL: " + photoURL);
-					
-					//mSwitcher.setImageURI(Uri.parse(photoURL));
-				}else{
-					Toast.makeText(v.getContext(), "已经是最后一张", Toast.LENGTH_SHORT).show();
+//				Log.i(TAG, "arrowRight click() curPosition: " + curPosition + " pathList.length: " + pathList.length);
+//				if(curPosition < pathList.length-1){
+//					curPosition ++;
+//					String photoURL = pathList[curPosition];
+//					Log.i(TAG, "photoURL: " + photoURL);
+//					
+//					//mSwitcher.setImageURI(Uri.parse(photoURL));
+//				}else{
+//					Toast.makeText(v.getContext(), "已经是最后一张", Toast.LENGTH_SHORT).show();
+//				}
+				
+				
+				String curDateStr = etSelectDate.getText().toString();
+				try {
+					Date curDate = format.parse(curDateStr);
+					Date shiftDate = DateUtil.getShiftDay(curDate, 1);
+					String shiftDateStr = format.format(shiftDate);
+					etSelectDate.setText(shiftDateStr);
+					showTestRet();
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
 			}
 		});
@@ -224,7 +294,8 @@ public class MRIndexActivity extends Activity implements
 		                        for (String s : date) {
 		                            sb.append(s).append("\n");
 		                        }
-		                        etSelectDate.setText(sb.toString());;
+		                        etSelectDate.setText(sb.toString());
+		                        showTestRet();
 //		                        Toast.makeText(MRIndexActivity.this, sb.toString(),Toast.LENGTH_SHORT).show();
 		                        dialog.dismiss();
 		                    }
@@ -263,14 +334,18 @@ public class MRIndexActivity extends Activity implements
 		}
 		tvCity.setText(city);
 		
+		//检测历史记录
 		llTestHistory = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_history);
 		llTestHistory.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MRDetectionMenuActivity.class);
+				Intent intent = new Intent(v.getContext(), MRHistoryActivity.class);
 				startActivity(intent);
 			}
 		});
+		
+		//设置显示的数据
+		showTestRet();
 		
 		//启动蓝牙
 		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -448,6 +523,86 @@ public class MRIndexActivity extends Activity implements
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	private void showTestRet(){
+		//当前显示数据的日期
+		String curDateStr = etSelectDate.getText().toString();
+		try {
+			Date curDate = format.parse(curDateStr);
+			//开始时间
+			long startTime = DateUtil.getTimesMorning(curDate);
+			//结束时间
+			long endTime = DateUtil.getTimesNight(curDate);
+			int headValue = MRTestBLL.getTestMax(MiraConstants.PART_HEAD, startTime, endTime, MRIndexActivity.this);
+			int faceValue = MRTestBLL.getTestMax(MiraConstants.PART_FACE, startTime, endTime, MRIndexActivity.this);
+			int noseValue = MRTestBLL.getTestMax(MiraConstants.PART_NOSE, startTime, endTime, MRIndexActivity.this);
+			int chinValue = MRTestBLL.getTestMax(MiraConstants.PART_CHIN, startTime, endTime, MRIndexActivity.this);
+			
+			//今日的最小值、最大值
+			int minValue = headValue;
+			int maxValue = headValue;
+			
+			if(faceValue < minValue){
+				minValue = faceValue;
+			}
+			if(noseValue < minValue){
+				minValue = noseValue;
+			}
+			if(chinValue < minValue){
+				minValue = chinValue;
+			}
+			
+			if(faceValue > maxValue){
+				maxValue = faceValue;
+			}
+			if(noseValue > maxValue){
+				maxValue = noseValue;
+			}
+			if(chinValue > maxValue){
+				maxValue = chinValue;
+			}
+			
+			tvHeadValue.setText(String.valueOf(headValue));
+			if(headValue == minValue){
+				ivHeadWaring.setVisibility(View.VISIBLE);
+				tvHeadValue.setTextColor(Color.parseColor("#FD9A00"));
+			} else {
+				ivHeadWaring.setVisibility(View.GONE);
+				tvHeadValue.setTextColor(Color.parseColor("#81d8cf"));
+			}
+			
+			tvFaceValue.setText(String.valueOf(faceValue));
+			if(faceValue == minValue){
+				ivFaceWaring.setVisibility(View.VISIBLE);
+				tvFaceValue.setTextColor(Color.parseColor("#FD9A00"));
+			} else {
+				ivFaceWaring.setVisibility(View.GONE);
+				tvFaceValue.setTextColor(Color.parseColor("#81d8cf"));
+			}
+			
+			tvNoseValue.setText(String.valueOf(noseValue));
+			if(noseValue == minValue){
+				ivNoseWaring.setVisibility(View.VISIBLE);
+				tvNoseValue.setTextColor(Color.parseColor("#FD9A00"));
+			} else {
+				ivNoseWaring.setVisibility(View.GONE);
+				tvNoseValue.setTextColor(Color.parseColor("#81d8cf"));
+			}
+			
+			tvChinValue.setText(String.valueOf(chinValue));
+			if(chinValue == minValue){
+				ivChinWaring.setVisibility(View.VISIBLE);
+				tvChinValue.setTextColor(Color.parseColor("#FD9A00"));
+			} else {
+				ivChinWaring.setVisibility(View.GONE);
+				tvChinValue.setTextColor(Color.parseColor("#81d8cf"));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 监听返回--是否退出程序
 	 */
