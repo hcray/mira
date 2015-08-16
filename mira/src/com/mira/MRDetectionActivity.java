@@ -1,6 +1,7 @@
 package com.mira;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.Header;
@@ -26,6 +27,7 @@ import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.TestModel;
 import com.model.User;
+import com.utils.DateUtil;
 import com.utils.HttpKit;
 import com.view.LineCharView;
 import com.view.RoundProgressBar;
@@ -71,6 +73,27 @@ public class MRDetectionActivity extends Activity {
 	 * 标题
 	 */
 	private TextView tvTitle;
+	
+	
+	/**
+	 * 历史记录 
+	 */
+	private LineCharView lcv;
+	
+	/**
+	 * 历史记录天
+	 */
+	private TextView tvDay;
+	
+	/**
+	 * 历史记录周
+	 */
+	private TextView tvWeek;
+	
+	/**
+	 * 默认显示天的历史记录
+	 */
+	private boolean daySelect;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +107,14 @@ public class MRDetectionActivity extends Activity {
 
 		tvWater = (TextView) this
 				.findViewById(R.id.detection_activity_tv_water_value);
+		
+		tvDay = (TextView) this.findViewById(R.id.detection_activity_tv_day);
+
+		tvWeek = (TextView) this.findViewById(R.id.detection_activity_tv_week);
 
 		rpb = (RoundProgressBar) this.findViewById(R.id.detection_activity_rpb);
 
-		LineCharView lcv = (LineCharView) findViewById(R.id.detection_activity_lcv);
+		lcv = (LineCharView) findViewById(R.id.detection_activity_lcv);
 		
 		tvTitle = (TextView) findViewById(R.id.detection_activity_tv_title);
 
@@ -110,31 +137,60 @@ public class MRDetectionActivity extends Activity {
 			tvTitle.setText(getString(R.string.detection_activity_title_chin));
 		}
 
-		List<String> x_coords = new ArrayList<String>();
-		x_coords.add("1");
-		x_coords.add("2");
-		x_coords.add("3");
-		x_coords.add("4");
-		x_coords.add("5");
-		x_coords.add("6");
-		x_coords.add("7");
+//		List<String> x_coords = new ArrayList<String>();
+//		x_coords.add("1");
+//		x_coords.add("2");
+//		x_coords.add("3");
+//		x_coords.add("4");
+//		x_coords.add("5");
+//		x_coords.add("6");
+//		x_coords.add("7");
+//
+//		List<Integer> x_coord_values = new ArrayList<Integer>();
+//		x_coord_values.add(0);
+//		x_coord_values.add(40);
+//		x_coord_values.add(28);
+//		x_coord_values.add(52);
+//		x_coord_values.add(90);
+//		x_coord_values.add(72);
+//		x_coord_values.add(65);
+//		lcv.setBgColor(Color.WHITE);
+//		lcv.setValue(x_coords, x_coord_values);
+		showDayHistory();
+		daySelect = true;
 
-		List<Integer> x_coord_values = new ArrayList<Integer>();
-		x_coord_values.add(0);
-		x_coord_values.add(40);
-		x_coord_values.add(28);
-		x_coord_values.add(52);
-		x_coord_values.add(90);
-		x_coord_values.add(72);
-		x_coord_values.add(65);
-		lcv.setBgColor(Color.WHITE);
-		lcv.setValue(x_coords, x_coord_values);
-
-		backbtn = (LinearLayout) this
-				.findViewById(R.id.detection_activity_backbtn);
+		backbtn = (LinearLayout) this.findViewById(R.id.detection_activity_backbtn);
 		backbtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				MRDetectionActivity.this.finish();
+			}
+		});
+		
+		tvDay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//修改选择样式
+				tvDay.setBackgroundColor(Color.parseColor("#84dfd8"));
+				tvDay.setTextColor(Color.parseColor("#ffffff"));
+				
+				tvWeek.setBackgroundColor(Color.parseColor("#e4f3f2"));
+				tvWeek.setTextColor(Color.parseColor("#aaaaaa"));
+				//数据展示
+				showDayHistory();
+			}
+		});
+		
+		tvWeek.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//修改选择样式
+				tvWeek.setBackgroundColor(Color.parseColor("#84dfd8"));
+				tvWeek.setTextColor(Color.parseColor("#ffffff"));
+				
+				tvDay.setBackgroundColor(Color.parseColor("#e4f3f2"));
+				tvDay.setTextColor(Color.parseColor("#aaaaaa"));
+				//数据展示
+				showWeekHistory();
 			}
 		});
 	}
@@ -254,6 +310,12 @@ public class MRDetectionActivity extends Activity {
 		
 		//保存数据库
 		MRTestBLL.addTestModel(testModel, MRDetectionActivity.this);
+		//刷新历史数据
+		if (daySelect) {
+			showDayHistory();
+		} else {
+			showWeekHistory();
+		}
 		//上传服务器
 		//TODO
 		User user = AppContext.getInstance().getLoginUser();
@@ -311,5 +373,66 @@ public class MRDetectionActivity extends Activity {
 			}
 		}
 	};
+	
+	/**
+	 * 历史记录按照周显示，只显示每天最高的
+	 */
+	private void showWeekHistory(){
+		daySelect = false;
+		List<String> x_coords = new ArrayList<String>();
+		x_coords.add("1");
+		x_coords.add("2");
+		x_coords.add("3");
+		x_coords.add("4");
+		x_coords.add("5");
+		x_coords.add("6");
+		x_coords.add("7");
+
+		List<Integer> x_coord_values = new ArrayList<Integer>();
+		x_coord_values.add(0);
+		x_coord_values.add(40);
+		x_coord_values.add(28);
+		x_coord_values.add(52);
+		x_coord_values.add(90);
+		x_coord_values.add(72);
+		x_coord_values.add(65);
+		lcv.setBgColor(Color.WHITE);
+		lcv.setValue(x_coords, x_coord_values);
+	}
+	
+	/**
+	 * 历史记录按照天显示，最多显示最后七次
+	 */
+	private void showDayHistory(){
+		daySelect = true;
+		long time = DateUtil.getTimesMorning();
+		List<TestModel> dayList = new ArrayList<TestModel>();
+
+		List<TestModel> list = MRTestBLL.getTestList4Today(part, MRDetectionActivity.this, time);
+		if(list.size() > 7){
+			dayList = list.subList(0, 6);
+		}else{
+			dayList = list;
+		}
+		
+		if (dayList.isEmpty()) {
+
+		} else {
+			//反序list
+			Collections.reverse(dayList);
+			int size = dayList.size();
+			List<String> x_coords = new ArrayList<String>();
+			List<Integer> x_coord_values = new ArrayList<Integer>();
+			for (int i = 0; i < size; i++) {
+				//只显示七条记录
+				if (i < 7) {
+					x_coords.add(String.valueOf(i+1));
+					x_coord_values.add((int) dayList.get(i).shuiFen);
+				}
+			}
+			lcv.setBgColor(Color.WHITE);
+			lcv.setValue(x_coords, x_coord_values);
+		}
+	}
 
 }
