@@ -71,6 +71,26 @@ public class MRTestBLL {
 	}
 	
 	/**
+	 * 查询区间最大的数据
+	 * @param type
+	 * @param context
+	 * @return
+	 */
+	public static short getTestMax(int type,long startTime, long endTime, Context context) {
+		String sql = "select max(shuifen) as shuifen  from " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " where type = ? and time >= ? and time <= ?";
+		short ret = 0;
+		MRDataBase dbAdapter = new MRDataBase(context);
+		dbAdapter.open();
+		SQLiteDatabase database = dbAdapter.getmDb();
+		Cursor c = database.rawQuery(sql, new String[] { String.valueOf(type) , String.valueOf(startTime), String.valueOf(endTime)});
+		while (c.moveToNext()) {
+			ret = c.getShort(c.getColumnIndex("shuifen"));
+		}
+		dbAdapter.close();
+		return ret;
+	}
+	
+	/**
 	 * 查询今天数据
 	 * @param type
 	 * @param context

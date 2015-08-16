@@ -44,8 +44,7 @@ public class MRDetectionActivity extends Activity {
 	boolean isTest;
 
 	/**
-	 * 当前检测的部位
-	 * 1：额头 2：脸颊 3：鼻子 4：下巴
+	 * 当前检测的部位 1：额头 2：脸颊 3：鼻子 4：下巴
 	 */
 	private int part;
 
@@ -68,28 +67,27 @@ public class MRDetectionActivity extends Activity {
 	 * 综合得分
 	 */
 	private RoundProgressBar rpb;
-	
+
 	/**
 	 * 标题
 	 */
 	private TextView tvTitle;
-	
-	
+
 	/**
-	 * 历史记录 
+	 * 历史记录
 	 */
 	private LineCharView lcv;
-	
+
 	/**
 	 * 历史记录天
 	 */
 	private TextView tvDay;
-	
+
 	/**
 	 * 历史记录周
 	 */
 	private TextView tvWeek;
-	
+
 	/**
 	 * 默认显示天的历史记录
 	 */
@@ -107,7 +105,7 @@ public class MRDetectionActivity extends Activity {
 
 		tvWater = (TextView) this
 				.findViewById(R.id.detection_activity_tv_water_value);
-		
+
 		tvDay = (TextView) this.findViewById(R.id.detection_activity_tv_day);
 
 		tvWeek = (TextView) this.findViewById(R.id.detection_activity_tv_week);
@@ -115,81 +113,82 @@ public class MRDetectionActivity extends Activity {
 		rpb = (RoundProgressBar) this.findViewById(R.id.detection_activity_rpb);
 
 		lcv = (LineCharView) findViewById(R.id.detection_activity_lcv);
-		
+
 		tvTitle = (TextView) findViewById(R.id.detection_activity_tv_title);
 
 		Intent intent = getIntent();// getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
 		Bundle bundle = intent.getExtras();// .getExtras()得到intent所附带的额外数据
-		//当前检测的部位
+		// 当前检测的部位
 		part = bundle.getInt(MiraConstants.PART);
 		Log.d(tag, "part: " + part);
-		
+
 		if (MiraConstants.PART_HEAD == part) {
 			tvTitle.setText(getString(R.string.detection_activity_title_head));
-			
+
 		} else if (MiraConstants.PART_FACE == part) {
 			tvTitle.setText(getString(R.string.detection_activity_title_face));
-			
+
 		} else if (MiraConstants.PART_NOSE == part) {
 			tvTitle.setText(getString(R.string.detection_activity_title_nose));
-			
+
 		} else if (MiraConstants.PART_CHIN == part) {
 			tvTitle.setText(getString(R.string.detection_activity_title_chin));
 		}
 
-//		List<String> x_coords = new ArrayList<String>();
-//		x_coords.add("1");
-//		x_coords.add("2");
-//		x_coords.add("3");
-//		x_coords.add("4");
-//		x_coords.add("5");
-//		x_coords.add("6");
-//		x_coords.add("7");
-//
-//		List<Integer> x_coord_values = new ArrayList<Integer>();
-//		x_coord_values.add(0);
-//		x_coord_values.add(40);
-//		x_coord_values.add(28);
-//		x_coord_values.add(52);
-//		x_coord_values.add(90);
-//		x_coord_values.add(72);
-//		x_coord_values.add(65);
-//		lcv.setBgColor(Color.WHITE);
-//		lcv.setValue(x_coords, x_coord_values);
+		// List<String> x_coords = new ArrayList<String>();
+		// x_coords.add("1");
+		// x_coords.add("2");
+		// x_coords.add("3");
+		// x_coords.add("4");
+		// x_coords.add("5");
+		// x_coords.add("6");
+		// x_coords.add("7");
+		//
+		// List<Integer> x_coord_values = new ArrayList<Integer>();
+		// x_coord_values.add(0);
+		// x_coord_values.add(40);
+		// x_coord_values.add(28);
+		// x_coord_values.add(52);
+		// x_coord_values.add(90);
+		// x_coord_values.add(72);
+		// x_coord_values.add(65);
+		// lcv.setBgColor(Color.WHITE);
+		// lcv.setValue(x_coords, x_coord_values);
 		showDayHistory();
 		daySelect = true;
 
-		backbtn = (LinearLayout) this.findViewById(R.id.detection_activity_backbtn);
+		backbtn = (LinearLayout) this
+				.findViewById(R.id.detection_activity_backbtn);
 		backbtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				MRDetectionActivity.this.finish();
 			}
 		});
-		
+
 		tvDay.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//修改选择样式
+				// 修改选择样式
 				tvDay.setBackgroundColor(Color.parseColor("#84dfd8"));
 				tvDay.setTextColor(Color.parseColor("#ffffff"));
-				
+
 				tvWeek.setBackgroundColor(Color.parseColor("#e4f3f2"));
 				tvWeek.setTextColor(Color.parseColor("#aaaaaa"));
-				//数据展示
+				// 数据展示
 				showDayHistory();
 			}
 		});
-		
+
 		tvWeek.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//修改选择样式
+				// 修改选择样式
 				tvWeek.setBackgroundColor(Color.parseColor("#84dfd8"));
 				tvWeek.setTextColor(Color.parseColor("#ffffff"));
-				
+
 				tvDay.setBackgroundColor(Color.parseColor("#e4f3f2"));
 				tvDay.setTextColor(Color.parseColor("#aaaaaa"));
-				//数据展示
+				// 数据展示
 				showWeekHistory();
 			}
 		});
@@ -301,28 +300,30 @@ public class MRDetectionActivity extends Activity {
 		tvWater.setText(shuiFen + "%");
 		rpb.setProgress(shuiFen);
 		TestModel testModel = new TestModel();
-		
-		testModel.time=System.currentTimeMillis();
+
+		testModel.time = System.currentTimeMillis();
 		testModel.wenDu = wenDu;
 		testModel.shiDu = shiDu;
 		testModel.shuiFen = shuiFen;
 		testModel.type = part;
-		
-		//保存数据库
+
+		// 保存数据库
 		MRTestBLL.addTestModel(testModel, MRDetectionActivity.this);
-		//刷新历史数据
+		// 刷新历史数据
 		if (daySelect) {
 			showDayHistory();
 		} else {
 			showWeekHistory();
 		}
-		//上传服务器
-		//TODO
+		// 上传服务器
+		// TODO
 		User user = AppContext.getInstance().getLoginUser();
 		String UUID = AppContext.getInstance().getAppId();
 		String userId = user.getUserId();
 		Log.d(tag, "userId: " + userId);
-		HttpKit.uploadDetection(UUID, userId, part, String.valueOf(shiDu), String.valueOf(wenDu), String.valueOf(shuiFen), String.valueOf(shuiFen), String.valueOf(shuiFen), handler);
+		HttpKit.uploadDetection(UUID, userId, part, String.valueOf(shiDu),
+				String.valueOf(wenDu), String.valueOf(shuiFen),
+				String.valueOf(shuiFen), String.valueOf(shuiFen), handler);
 	}
 
 	/**
@@ -356,7 +357,7 @@ public class MRDetectionActivity extends Activity {
 			// ignore
 		}
 	}
-	
+
 	/**
 	 * 修改用户后的回调
 	 */
@@ -366,67 +367,64 @@ public class MRDetectionActivity extends Activity {
 				JSONObject response) {
 			Log.d(tag, "uploadDetection handler: " + response.toString());
 			Gson gson = new Gson();
-			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
-			//成功
-			if(retBean.getResultCode() == 0){
-				
+			ResultBean retBean = gson.fromJson(response.toString(),
+					ResultBean.class);
+			// 成功
+			if (retBean.getResultCode() == 0) {
+
 			}
 		}
 	};
-	
+
 	/**
 	 * 历史记录按照周显示，只显示每天最高的
 	 */
-	private void showWeekHistory(){
+	private void showWeekHistory() {
 		daySelect = false;
+		int j = 6;
 		List<String> x_coords = new ArrayList<String>();
-		x_coords.add("1");
-		x_coords.add("2");
-		x_coords.add("3");
-		x_coords.add("4");
-		x_coords.add("5");
-		x_coords.add("6");
-		x_coords.add("7");
-
 		List<Integer> x_coord_values = new ArrayList<Integer>();
-		x_coord_values.add(0);
-		x_coord_values.add(40);
-		x_coord_values.add(28);
-		x_coord_values.add(52);
-		x_coord_values.add(90);
-		x_coord_values.add(72);
-		x_coord_values.add(65);
+
+		for (int i = 0; i < 7; i++) {
+			x_coords.add(String.valueOf(i + 1));
+			long startTime = DateUtil.getTimesMorning(-j);
+			long endTime = DateUtil.getTimesNight(-j);
+			j--;
+			int value = MRTestBLL.getTestMax(part, startTime, endTime,MRDetectionActivity.this);
+			x_coord_values.add(value);
+		}
 		lcv.setBgColor(Color.WHITE);
 		lcv.setValue(x_coords, x_coord_values);
 	}
-	
+
 	/**
 	 * 历史记录按照天显示，最多显示最后七次
 	 */
-	private void showDayHistory(){
+	private void showDayHistory() {
 		daySelect = true;
 		long time = DateUtil.getTimesMorning();
 		List<TestModel> dayList = new ArrayList<TestModel>();
 
-		List<TestModel> list = MRTestBLL.getTestList4Today(part, MRDetectionActivity.this, time);
-		if(list.size() > 7){
+		List<TestModel> list = MRTestBLL.getTestList4Today(part,
+				MRDetectionActivity.this, time);
+		if (list.size() > 7) {
 			dayList = list.subList(0, 6);
-		}else{
+		} else {
 			dayList = list;
 		}
-		
+
 		if (dayList.isEmpty()) {
 
 		} else {
-			//反序list
+			// 反序list
 			Collections.reverse(dayList);
 			int size = dayList.size();
 			List<String> x_coords = new ArrayList<String>();
 			List<Integer> x_coord_values = new ArrayList<Integer>();
 			for (int i = 0; i < size; i++) {
-				//只显示七条记录
+				// 只显示七条记录
 				if (i < 7) {
-					x_coords.add(String.valueOf(i+1));
+					x_coords.add(String.valueOf(i + 1));
 					x_coord_values.add((int) dayList.get(i).shuiFen);
 				}
 			}
