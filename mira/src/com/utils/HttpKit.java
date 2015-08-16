@@ -1,25 +1,16 @@
 package com.utils;
 
-import java.io.IOException;
-
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-
-import com.bean.LoginRet;
-import com.bean.ResultBean;
 import com.common.MiraConstants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+/**
+ * http请求工具
+ * @author CYY
+ *
+ */
 public class HttpKit {
-
 
 	/**
 	 * 创建Token
@@ -40,29 +31,6 @@ public class HttpKit {
 		params.add("Token", token);
 		client.post(MiraConstants.createToken, params, handler);
 		
-		
-//		ResultBean rb = new ResultBean();
-//		HttpClient httpClient = new DefaultHttpClient();
-//		
-//		HttpPost httpPost = new HttpPost(MiraConstants.createToken);
-//		httpPost.addHeader("UUID", UUID);
-//		httpPost.addHeader("MobileType", mobileType);
-//		httpPost.addHeader("Token", token);
-//		
-//		try {
-//			//执行请求
-//			HttpResponse response = httpClient.execute(httpPost);
-//			
-//			HttpEntity entity = response.getEntity();
-//			//返回值
-//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-//			
-//		} catch (ClientProtocolException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return rb;
 	}
 	
 	/**
@@ -75,8 +43,6 @@ public class HttpKit {
 	 */
 	public static void userLogin(String UUID, String loginName,
 			String type, String password, AsyncHttpResponseHandler handler) {
-//		LoginRet rb = new LoginRet();
-//		HttpClient httpClient = new DefaultHttpClient();
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
 		params.add("UUID", UUID);
@@ -85,26 +51,6 @@ public class HttpKit {
 		params.add("Password", password);
 		client.post(MiraConstants.userLogin, params, handler);
 		
-//		HttpPost httpPost = new HttpPost(MiraConstants.userLogin);
-//		httpPost.addHeader("UUID", UUID);
-//		httpPost.addHeader("LoginName", loginName);
-//		httpPost.addHeader("Type", String.valueOf(type));
-//		httpPost.addHeader("Password", password);
-//		
-//		try {
-//			//执行请求
-//			HttpResponse response = httpClient.execute(httpPost);
-//			
-//			HttpEntity entity = response.getEntity();
-//			//返回值
-//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-//			
-//		} catch (ClientProtocolException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return rb;
 	}
 	
 	/**
@@ -115,34 +61,12 @@ public class HttpKit {
 	 */
 	public static void getVerificationCode(String UUID, String mobile, AsyncHttpResponseHandler handler) {
 		
-		
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
 		params.add("UUID", UUID);
 		params.add("Mobile", mobile);
 		client.post(MiraConstants.getVerificationCode, params, handler);
 		
-//		ResultBean rb = new ResultBean();
-//		HttpClient httpClient = new DefaultHttpClient();
-		
-//		HttpPost httpPost = new HttpPost(MiraConstants.getVerificationCode);
-//		httpPost.addHeader("UUID", UUID);
-//		httpPost.addHeader("Mobile", mobile);
-//		
-//		try {
-//			//执行请求
-//			HttpResponse response = httpClient.execute(httpPost);
-//			
-//			HttpEntity entity = response.getEntity();
-//			//返回值
-//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-//			
-//		} catch (ClientProtocolException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return rb;
 	}
 	
 	/**
@@ -171,32 +95,6 @@ public class HttpKit {
 		params.add("SensitiveId", sensitiveId);
 		client.post(MiraConstants.updateUserInfo, params, handler);
 		
-//		ResultBean rb = new ResultBean();
-//		HttpClient httpClient = new DefaultHttpClient();
-//		
-//		HttpPost httpPost = new HttpPost(MiraConstants.updateUserInfo);
-//		httpPost.addHeader("UUID", UUID);
-//		httpPost.addHeader("UserId", userId);
-//		httpPost.addHeader("NickName", nickName);
-//		httpPost.addHeader("Sex", String.valueOf(sex));
-//		httpPost.addHeader("Birthday", birthday);
-//		httpPost.addHeader("SkinId", skinId);
-//		httpPost.addHeader("SensitiveId", sensitiveId);
-//		
-//		try {
-//			//执行请求
-//			HttpResponse response = httpClient.execute(httpPost);
-//			
-//			HttpEntity entity = response.getEntity();
-//			//返回值
-//			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-//			
-//		} catch (ClientProtocolException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return rb;
 	}
 	
 	/**
@@ -206,32 +104,16 @@ public class HttpKit {
 	 * @param newPasswordHash String	是	新密码(MD532位加密)
 	 * @return
 	 */
-	public static ResultBean changePassword(String UUID, String userId,
-			String oldPasswordHash, String newPasswordHash) {
+	public static void changePassword(String UUID, String userId,
+			String oldPasswordHash, String newPasswordHash, AsyncHttpResponseHandler handler) {
 		
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
-		
-		HttpPost httpPost = new HttpPost(MiraConstants.changePassword);
-		httpPost.addHeader("UUID", UUID);
-		httpPost.addHeader("UserId", userId);
-		httpPost.addHeader("OldPasswordHash", oldPasswordHash);
-		httpPost.addHeader("NewPasswordHash", newPasswordHash);
-		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UserId", userId);
+		params.add("OldPasswordHash", oldPasswordHash);
+		params.add("NewPasswordHash", newPasswordHash);
+		client.post(MiraConstants.changePassword, params, handler);
 	}
 	
 	/**
@@ -239,28 +121,12 @@ public class HttpKit {
 	 * @param UUID
 	 * @return
 	 */
-	public static ResultBean getSkinList(String UUID) {
+	public static void getSkinList(String UUID, AsyncHttpResponseHandler handler) {
 		
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
-		
-		HttpPost httpPost = new HttpPost(MiraConstants.getSkinList);
-		httpPost.addHeader("UUID", UUID);
-		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		client.post(MiraConstants.getSkinList, params, handler);
 	}
 	
 	/**
@@ -268,28 +134,11 @@ public class HttpKit {
 	 * @param UUID
 	 * @return
 	 */
-	public static ResultBean getSensitiveList(String UUID) {
-		
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
-		
-		HttpPost httpPost = new HttpPost(MiraConstants.getSensitiveList);
-		httpPost.addHeader("UUID", UUID);
-		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+	public static void getSensitiveList(String UUID, AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		client.post(MiraConstants.getSensitiveList, params, handler);
 	}
 	
 	/**
@@ -304,28 +153,20 @@ public class HttpKit {
 	 * @param Comment String	是	备注
 	 * @return
 	 */
-	public static ResultBean uploadDetection(String UUID, String UerId, int Position, String Humidity, String Temperature, String Water, String Score, String Comment) {
-		
-		ResultBean rb = new ResultBean();
-		HttpClient httpClient = new DefaultHttpClient();
-		
-		HttpPost httpPost = new HttpPost(MiraConstants.uploadDetection);
-		httpPost.addHeader("UUID", UUID);
-		
-		try {
-			//执行请求
-			HttpResponse response = httpClient.execute(httpPost);
-			
-			HttpEntity entity = response.getEntity();
-			//返回值
-			String retStr = EntityUtils.toString(entity, MiraConstants.charset);
-			
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return rb;
+	public static void uploadDetection(String UUID, String UerId,
+			int Position, String Humidity, String Temperature, String Water,
+			String Score, String Comment, AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UerId", UerId);
+		params.add("Position", String.valueOf(Position));
+		params.add("Humidity", Humidity);
+		params.add("Temperature", Temperature);
+		params.add("Water", Water);
+		params.add("Score", Score);
+		params.add("Comment", Comment);
+		client.post(MiraConstants.uploadDetection, params, handler);
 	}
 	
 	
