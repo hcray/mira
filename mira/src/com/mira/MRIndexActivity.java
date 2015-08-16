@@ -460,6 +460,7 @@ public class MRIndexActivity extends Activity implements
             	String selectCity = bundle.getString(MiraConstants.SELECTED_CITY);
             	if(null != selectCity && !selectCity.isEmpty()){
             		tvCity.setText(selectCity);
+            		HttpKit.getWeather(selectCity, handler);
             	}
             	
             }  
@@ -748,8 +749,6 @@ public class MRIndexActivity extends Activity implements
 //									
 //								}
 //							}
-							
-							
 						}
 					}
 				}
@@ -789,45 +788,39 @@ public class MRIndexActivity extends Activity implements
 			SpannableString msp = new SpannableString("若若推荐：芦荟绿茶面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
 			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			ClickableSpan reclickableSpan = new ClickableSpan(){
+			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
-					startActivity(intent);
-				}
-				
-			};
-			msp.setSpan(reclickableSpan, 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+//					startActivity(intent);
+					
+				}}, 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tvTodayTestRecommend.setText(msp);
 			
 		}else if(rd ==2){
 			SpannableString msp = new SpannableString("若若推荐：野菊花控油面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
 			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			ClickableSpan reclickableSpan = new ClickableSpan(){
+			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
-					startActivity(intent);
-				}
-				
-			};
-			msp.setSpan(reclickableSpan, 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+//					startActivity(intent);
+					
+				}}, 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tvTodayTestRecommend.setText(msp);
 			
 		}else{
 			SpannableString msp = new SpannableString("若若推荐：蜂蜜绿茶、菊花茶饮，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
 			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			ClickableSpan reclickableSpan = new ClickableSpan(){
+			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
-					startActivity(intent);
-				}
-				
-			};
-			msp.setSpan(reclickableSpan, 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+//					startActivity(intent);
+					
+				}}, 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tvTodayTestRecommend.setText(msp);
 			
 		}

@@ -155,12 +155,12 @@ public class MRMainActivity extends TabActivity {
 				
 			};
 		});
-		TestModel model = BaiduLocation.getWeather(this);
-		if(model == null){
+//		TestModel model = BaiduLocation.getWeather(this);
+//		if(model == null){
 //			Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-		}else{
+//		}else{
 //			Toast.makeText(this, model.toString(), Toast.LENGTH_SHORT).show();
-		}
+//		}
 		super.onResume();
 	}
 	@Override
