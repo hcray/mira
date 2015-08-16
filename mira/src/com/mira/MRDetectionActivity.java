@@ -1,5 +1,6 @@
 package com.mira;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -88,10 +89,17 @@ public class MRDetectionActivity extends Activity {
 	 */
 	private TextView tvWeek;
 
+	private TextView tvPartTestRet;
+	
 	/**
 	 * 默认显示天的历史记录
 	 */
 	private boolean daySelect;
+	
+	/**
+	 * 当前部位
+	 */
+	private String curPart;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +123,8 @@ public class MRDetectionActivity extends Activity {
 		lcv = (LineCharView) findViewById(R.id.detection_activity_lcv);
 
 		tvTitle = (TextView) findViewById(R.id.detection_activity_tv_title);
+		
+		tvPartTestRet = (TextView) findViewById(R.id.detection_activity_tv_part_result);
 
 		Intent intent = getIntent();// getIntent将该项目中包含的原始intent检索出来，将检索出来的intent赋值给一个Intent类型的变量intent
 		Bundle bundle = intent.getExtras();// .getExtras()得到intent所附带的额外数据
@@ -123,18 +133,19 @@ public class MRDetectionActivity extends Activity {
 		Log.d(tag, "part: " + part);
 
 		if (MiraConstants.PART_HEAD == part) {
-			tvTitle.setText(getString(R.string.detection_activity_title_head));
+			curPart = getString(R.string.detection_activity_title_head);
 
 		} else if (MiraConstants.PART_FACE == part) {
-			tvTitle.setText(getString(R.string.detection_activity_title_face));
+			curPart = getString(R.string.detection_activity_title_face);
 
 		} else if (MiraConstants.PART_NOSE == part) {
-			tvTitle.setText(getString(R.string.detection_activity_title_nose));
+			curPart = getString(R.string.detection_activity_title_nose);
 
 		} else if (MiraConstants.PART_CHIN == part) {
-			tvTitle.setText(getString(R.string.detection_activity_title_chin));
+			curPart = getString(R.string.detection_activity_title_chin);
 		}
-
+		tvTitle.setText(curPart);
+		
 		// List<String> x_coords = new ArrayList<String>();
 		// x_coords.add("1");
 		// x_coords.add("2");
@@ -309,6 +320,8 @@ public class MRDetectionActivity extends Activity {
 
 		// 保存数据库
 		MRTestBLL.addTestModel(testModel, MRDetectionActivity.this);
+		// 更新检测结果
+		showDetectionRet();
 		// 刷新历史数据
 		if (daySelect) {
 			showDayHistory();
@@ -316,7 +329,6 @@ public class MRDetectionActivity extends Activity {
 			showWeekHistory();
 		}
 		// 上传服务器
-		// TODO
 		User user = AppContext.getInstance().getLoginUser();
 		String UUID = AppContext.getInstance().getAppId();
 		String userId = user.getUserId();
@@ -431,6 +443,40 @@ public class MRDetectionActivity extends Activity {
 			lcv.setBgColor(Color.WHITE);
 			lcv.setValue(x_coords, x_coord_values);
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	private void showDetectionRet(){
+		//今天开始时间
+		long startTime = DateUtil.getTimesMorning();
+		//今天结束时间
+		long endTime = DateUtil.getTimesNight();
+		//系统平均水分
+		int average = 30 + (int) (Math.random() * 10);
+		//我的平均水分
+		int myAvg = MRTestBLL.getTestAverage(part, startTime, endTime, MRDetectionActivity.this);
+		StringBuilder text = new StringBuilder();
+		//比值
+		float avgRet = (float)(myAvg-average)/average;
+		DecimalFormat decimalFormat=new DecimalFormat(".0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+		Log.d(tag, "myAvg: " + myAvg + " average: " + average + " avgRet: " + avgRet);
+		if (avgRet < 0.05 && avgRet > -0.05) {
+			if(avgRet > 0){
+				text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你高出平均水平").append(decimalFormat.format(avgRet*100)).append("%，继续努力哦！ ");
+			}else{
+				text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你低于平均水平").append(decimalFormat.format(avgRet*100)).append("%，继续努力哦！ ");
+			}
+			
+		} else if (avgRet <= -0.05) {
+			text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你低于平均水平").append(decimalFormat.format(avgRet*100)).append("%，赶紧去补水吧！ ");
+
+		} else if (avgRet >= 0.05) {
+			text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你高出平均水平").append(decimalFormat.format(avgRet*100)).append("%，棒棒哒！ ");
+		}
+		
+		tvPartTestRet.setText(text.toString());
 	}
 
 }

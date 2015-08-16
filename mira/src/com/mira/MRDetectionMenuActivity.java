@@ -38,6 +38,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvHead.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				menuSelected.setText(getString(R.string.detection_menu_activity_head_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				//1：额头 2：脸颊 3：鼻子 4：下巴
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_HEAD);
@@ -49,6 +50,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvFace.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				menuSelected.setText(getString(R.string.detection_menu_activity_face_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_FACE);
 				startActivity(intent);
@@ -59,6 +61,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvNose.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				menuSelected.setText(getString(R.string.detection_menu_activity_nose_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_NOSE);
 				startActivity(intent);
@@ -69,6 +72,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvChin.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				menuSelected.setText(getString(R.string.detection_menu_activity_chin_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_CHIN);
 				startActivity(intent);

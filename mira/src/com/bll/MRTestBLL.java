@@ -91,6 +91,26 @@ public class MRTestBLL {
 	}
 	
 	/**
+	 * 查询区间的平均数据
+	 * @param type
+	 * @param context
+	 * @return
+	 */
+	public static int getTestAverage(int type,long startTime, long endTime, Context context) {
+		String sql = "select avg(shuifen) as shuifen  from " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " where type = ? and time >= ? and time <= ?";
+		int ret = 0;
+		MRDataBase dbAdapter = new MRDataBase(context);
+		dbAdapter.open();
+		SQLiteDatabase database = dbAdapter.getmDb();
+		Cursor c = database.rawQuery(sql, new String[] { String.valueOf(type) , String.valueOf(startTime), String.valueOf(endTime)});
+		while (c.moveToNext()) {
+			ret = c.getInt(c.getColumnIndex("shuifen"));
+		}
+		dbAdapter.close();
+		return ret;
+	}
+	
+	/**
 	 * 查询今天数据
 	 * @param type
 	 * @param context
