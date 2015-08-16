@@ -142,6 +142,8 @@ public class MRIndexActivity extends Activity implements
 	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 	
+	private TextView tvTodayTestResult;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -171,8 +173,9 @@ public class MRIndexActivity extends Activity implements
 		tvChinValue = (TextView) this.findViewById(R.id.index_activity_tv_chin_value);
 		ivChinWaring = (ImageView) this.findViewById(R.id.index_activity_iv_chin_waring);
 		
-		ibCamera = (ImageButton) this.findViewById(R.id.ib_camera);
+		tvTodayTestResult = (TextView) this.findViewById(R.id.index_activity_tv_today_test_result);
 		
+		ibCamera = (ImageButton) this.findViewById(R.id.ib_camera);
 		ibCamera.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -240,7 +243,7 @@ public class MRIndexActivity extends Activity implements
 					Date shiftDate = DateUtil.getShiftDay(curDate, -1);
 					String shiftDateStr = format.format(shiftDate);
 					etSelectDate.setText(shiftDateStr);
-					showTestRet();
+					showTestRet(false);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -268,7 +271,7 @@ public class MRIndexActivity extends Activity implements
 					Date shiftDate = DateUtil.getShiftDay(curDate, 1);
 					String shiftDateStr = format.format(shiftDate);
 					etSelectDate.setText(shiftDateStr);
-					showTestRet();
+					showTestRet(false);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -295,7 +298,7 @@ public class MRIndexActivity extends Activity implements
 		                            sb.append(s).append("\n");
 		                        }
 		                        etSelectDate.setText(sb.toString());
-		                        showTestRet();
+		                        showTestRet(false);
 //		                        Toast.makeText(MRIndexActivity.this, sb.toString(),Toast.LENGTH_SHORT).show();
 		                        dialog.dismiss();
 		                    }
@@ -345,7 +348,7 @@ public class MRIndexActivity extends Activity implements
 		});
 		
 		//设置显示的数据
-		showTestRet();
+		showTestRet(true);
 		
 		//启动蓝牙
 		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -525,7 +528,16 @@ public class MRIndexActivity extends Activity implements
 	}
 	
 	
-	private void showTestRet(){
+	@Override
+	protected void onStart() {
+		super.onStart();
+		String picName = format.format(new Date());
+		//显示今天的时间
+		etSelectDate.setText(picName);
+		showTestRet(true);
+	}
+
+	private void showTestRet(boolean today){
 		//当前显示数据的日期
 		String curDateStr = etSelectDate.getText().toString();
 		try {
@@ -541,26 +553,34 @@ public class MRIndexActivity extends Activity implements
 			
 			//今日的最小值、最大值
 			int minValue = headValue;
+			String minPart = getString(R.string.detection_menu_activity_head_value);
 			int maxValue = headValue;
+			String maxPart = getString(R.string.detection_menu_activity_head_value);
 			
 			if(faceValue < minValue){
 				minValue = faceValue;
+				minPart = getString(R.string.detection_menu_activity_face_value);
 			}
 			if(noseValue < minValue){
 				minValue = noseValue;
+				minPart = getString(R.string.detection_menu_activity_nose_value);
 			}
 			if(chinValue < minValue){
 				minValue = chinValue;
+				minPart = getString(R.string.detection_menu_activity_chin_value);
 			}
 			
 			if(faceValue > maxValue){
 				maxValue = faceValue;
+				maxPart = getString(R.string.detection_menu_activity_face_value);
 			}
 			if(noseValue > maxValue){
 				maxValue = noseValue;
+				maxPart = getString(R.string.detection_menu_activity_nose_value);
 			}
 			if(chinValue > maxValue){
 				maxValue = chinValue;
+				maxPart = getString(R.string.detection_menu_activity_chin_value);
 			}
 			
 			tvHeadValue.setText(String.valueOf(headValue));
@@ -597,6 +617,13 @@ public class MRIndexActivity extends Activity implements
 			} else {
 				ivChinWaring.setVisibility(View.GONE);
 				tvChinValue.setTextColor(Color.parseColor("#81d8cf"));
+			}
+			
+			//今日检测结果的展示
+			if(today){
+				StringBuilder sb = new StringBuilder();
+				sb.append("您的").append(maxPart).append("水分值最高，").append(minPart).append("水分值最低，建议多做补水面膜，快去积分商城兑换小样吧！");
+				tvTodayTestResult.setText(sb.toString());
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

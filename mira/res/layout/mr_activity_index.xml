@@ -486,6 +486,18 @@
                         android:gravity="center_vertical"
                         android:text="@string/index_activity_today_result"
                         android:textColor="#81d8cf" />
+                    
+                    <TextView
+                        android:id="@+id/index_activity_tv_today_test_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="10dp"
+                        android:text="@string/index_activity_today_result"
+                        android:textColor="#aaaaaa"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
