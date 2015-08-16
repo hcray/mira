@@ -4,10 +4,13 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
+
+import org.apache.http.Header;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +24,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -39,11 +47,17 @@ import android.widget.ViewSwitcher.ViewFactory;
 import cn.aigestudio.datepicker.interfaces.OnDateSelected;
 import cn.aigestudio.datepicker.views.DatePicker;
 
+import com.bean.CityIndexBean;
+import com.bean.CityWeatherBean;
+import com.bean.WeatherBean;
 import com.bll.MRTestBLL;
 import com.common.MiraConstants;
 import com.common.StringUtils;
+import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.service.BluetoothService;
 import com.utils.DateUtil;
+import com.utils.HttpKit;
 
 public class MRIndexActivity extends Activity implements
 	OnItemSelectedListener, ViewFactory {
@@ -142,7 +156,27 @@ public class MRIndexActivity extends Activity implements
 	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 	
+	/**
+	 * 今天天气分析
+	 */
+	private TextView tvTodayWeather;
+	
+	/**
+	 * 今天检测结果
+	 */
 	private TextView tvTodayTestResult;
+
+	private TextView tvTodayTestRecommend;
+	
+	/**
+	 * pm25
+	 */
+	private TextView tvPm25;
+	
+	/**
+	 * 紫外线
+	 */
+	private TextView tvUitraviolet;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +208,14 @@ public class MRIndexActivity extends Activity implements
 		ivChinWaring = (ImageView) this.findViewById(R.id.index_activity_iv_chin_waring);
 		
 		tvTodayTestResult = (TextView) this.findViewById(R.id.index_activity_tv_today_test_result);
+		
+		tvTodayTestRecommend = (TextView) this.findViewById(R.id.index_activity_tv_today_test_recommend);
+
+		tvTodayWeather = (TextView) this.findViewById(R.id.index_activity_tv_today_weather);
+		
+		tvPm25 = (TextView) this.findViewById(R.id.index_activity_tv_pm25_value);
+
+		tvUitraviolet = (TextView) this.findViewById(R.id.index_activity_tv_uitraviolet_value);
 		
 		ibCamera = (ImageButton) this.findViewById(R.id.ib_camera);
 		ibCamera.setOnClickListener(new OnClickListener() {
@@ -336,6 +378,11 @@ public class MRIndexActivity extends Activity implements
 			city = preferences.getString("City", "");
 		}
 		tvCity.setText(city);
+		
+		//定位到了城市，设置天气信息
+		if(!city.isEmpty()){
+			HttpKit.getWeather(city, handler);
+		}
 		
 		//检测历史记录
 		llTestHistory = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_history);
@@ -553,34 +600,15 @@ public class MRIndexActivity extends Activity implements
 			
 			//今日的最小值、最大值
 			int minValue = headValue;
-			String minPart = getString(R.string.detection_menu_activity_head_value);
-			int maxValue = headValue;
-			String maxPart = getString(R.string.detection_menu_activity_head_value);
 			
 			if(faceValue < minValue){
 				minValue = faceValue;
-				minPart = getString(R.string.detection_menu_activity_face_value);
 			}
 			if(noseValue < minValue){
 				minValue = noseValue;
-				minPart = getString(R.string.detection_menu_activity_nose_value);
 			}
 			if(chinValue < minValue){
 				minValue = chinValue;
-				minPart = getString(R.string.detection_menu_activity_chin_value);
-			}
-			
-			if(faceValue > maxValue){
-				maxValue = faceValue;
-				maxPart = getString(R.string.detection_menu_activity_face_value);
-			}
-			if(noseValue > maxValue){
-				maxValue = noseValue;
-				maxPart = getString(R.string.detection_menu_activity_nose_value);
-			}
-			if(chinValue > maxValue){
-				maxValue = chinValue;
-				maxPart = getString(R.string.detection_menu_activity_chin_value);
 			}
 			
 			tvHeadValue.setText(String.valueOf(headValue));
@@ -619,16 +647,194 @@ public class MRIndexActivity extends Activity implements
 				tvChinValue.setTextColor(Color.parseColor("#81d8cf"));
 			}
 			
+			int compareValue = 50;
 			//今日检测结果的展示
 			if(today){
-				StringBuilder sb = new StringBuilder();
-				sb.append("您的").append(maxPart).append("水分值最高，").append(minPart).append("水分值最低，建议多做补水面膜，快去积分商城兑换小样吧！");
-				tvTodayTestResult.setText(sb.toString());
+				if (headValue > compareValue && faceValue > compareValue && noseValue > compareValue
+						&& chinValue > compareValue) {
+					tvTodayTestResult.setText("经过若若专业分析，你的脸蛋整体都水汪汪哒，快赶上小baby啦。");
+					tvTodayTestRecommend.setVisibility(View.GONE);
+				} else if (headValue < compareValue && faceValue < compareValue && noseValue < compareValue
+						&& chinValue < compareValue) {
+					tvTodayTestResult.setText("哎呀，你长得那么美，为啥脸蛋会干巴巴滴呢？");
+					setTestRecommend();
+//					tvTodayTestRecommend.setText("若若推荐：DIY蜂蜜牛奶滋养面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
+					
+					
+				} else {
+					StringBuilder minParts = new StringBuilder();
+					if (headValue < compareValue) {
+						minParts.append("[");
+						minParts.append(getString(R.string.detection_menu_activity_head_value));
+						minParts.append("]");
+					}
+					if (faceValue < compareValue) {
+						minParts.append("[");
+						minParts.append(getString(R.string.detection_menu_activity_face_value));
+						minParts.append("]");
+					}
+					if (noseValue < compareValue) {
+						minParts.append("[");
+						minParts.append(getString(R.string.detection_menu_activity_nose_value));
+						minParts.append("]");
+					}
+					if (chinValue < compareValue) {
+						minParts.append("[");
+						minParts.append(getString(R.string.detection_menu_activity_chin_value));
+						minParts.append("]");
+					}
+					tvTodayTestResult.setText("经过若若专业分析，发现您脸蛋整体不错，但是"+minParts.toString()+"不是很理想。");
+					setTestRecommend();
+//					tvTodayTestRecommend.setText("若若推荐：DIY蜂蜜牛奶滋养面膜（系统预设内容随机抽取），记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
+
+				}
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 天气接口的回调
+	 */
+	private final JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d(TAG, "handler: " + response.toString());
+			Gson gson = new Gson();
+			WeatherBean retBean = gson.fromJson(response.toString(), WeatherBean.class);
+			if(retBean != null){
+				//成功
+				if("0".equalsIgnoreCase(retBean.getError())){
+					if(retBean.getResults() != null && retBean.getResults().size() > 0){
+						CityWeatherBean cityWeather = retBean.getResults().get(0);
+						if(cityWeather != null){
+							int pm25 = cityWeather.getPm25();
+							String pm25Desc = getDescForPm(pm25);
+							//设置pm25的值
+							tvPm25.setText(pm25 + pm25Desc);
+							
+							List<CityIndexBean> indexList = cityWeather.getIndex();
+							CityIndexBean  uvBean = new CityIndexBean();
+							CityIndexBean  cyBean = new CityIndexBean();
+							if(indexList != null){
+								for(CityIndexBean index : indexList){
+									if (index != null
+											&& index.getTitle() != null
+											&& index.getTitle().contains("紫外线")) {
+										uvBean = index;
+										tvUitraviolet.setText(index.getZs());
+										
+									}
+									if (index != null
+											&& index.getTitle() != null
+											&& index.getTitle().contains("穿衣")) {
+										cyBean = index;
+									}
+								}
+							}
+							
+							StringBuilder weather = new StringBuilder();
+							weather.append("今天").append(tvCity.getText()).append("天气")
+								.append(cyBean.getZs()).append("，")
+								//.append(uvBean.getTipt()).append(uvBean.getZs())
+								.append(uvBean.getDes());
+								
+							tvTodayWeather.setText(weather.toString());
+//							List<WeatherDataBean> dataList = cityWeather.getWeather_data();
+//							if(dataList != null){
+//								for(WeatherDataBean data : dataList){
+//									
+//								}
+//							}
+							
+							
+						}
+					}
+				}
+			}
+		}
+	};
+	
+	/**
+	 * 根据PM25的值，生成描述
+	 * @param pm25 值
+	 * @return 描述
+	 */
+	private String getDescForPm(int pm25){
+		StringBuilder ret = new StringBuilder();
+		ret.append("(");
+		if (pm25 <= 50 && pm25 > 0) {
+			ret.append("优");
+		}else if(pm25 <= 100 && pm25 > 50){
+			ret.append("良");
+		}else if(pm25 <= 150 && pm25 > 100){
+			ret.append("轻度污染");
+		}else if(pm25 <= 200 && pm25 > 150){
+			ret.append("中度污染");
+		}else if(pm25 <= 300 && pm25 > 200){
+			ret.append("重度污染");
+		}else if(pm25 > 300){
+			ret.append("严重污染");
+		}
+		ret.append(")");
+		return ret.toString();
+	}
+	
+	
+	private void setTestRecommend(){
+		int rd = new Random().nextInt(3)+1;
+		if(rd == 1){
+			SpannableString msp = new SpannableString("若若推荐：芦荟绿茶面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
+			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			ClickableSpan reclickableSpan = new ClickableSpan(){
+				@Override
+				public void onClick(View widget) {
+					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					startActivity(intent);
+				}
+				
+			};
+			msp.setSpan(reclickableSpan, 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			tvTodayTestRecommend.setText(msp);
+			
+		}else if(rd ==2){
+			SpannableString msp = new SpannableString("若若推荐：野菊花控油面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
+			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			ClickableSpan reclickableSpan = new ClickableSpan(){
+				@Override
+				public void onClick(View widget) {
+					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					startActivity(intent);
+				}
+				
+			};
+			msp.setSpan(reclickableSpan, 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			tvTodayTestRecommend.setText(msp);
+			
+		}else{
+			SpannableString msp = new SpannableString("若若推荐：蜂蜜绿茶、菊花茶饮，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
+			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			ClickableSpan reclickableSpan = new ClickableSpan(){
+				@Override
+				public void onClick(View widget) {
+					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					startActivity(intent);
+				}
+				
+			};
+			msp.setSpan(reclickableSpan, 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			tvTodayTestRecommend.setText(msp);
+			
+		}
+		
+	}
+	
+
 	
 	/**
 	 * 监听返回--是否退出程序

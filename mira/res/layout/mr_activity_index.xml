@@ -133,10 +133,10 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tv_index_activity_pm25_value"
+                    android:id="@+id/index_activity_tv_pm25_value"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:text="99(轻度污染)"
+                    android:text=""
                     android:textColor="#81d8cf"
                     android:textSize="12sp" />
 
@@ -167,12 +167,12 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tv_index_activity_uitraviolet_value"
+                        android:id="@+id/index_activity_tv_uitraviolet_value"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="10dp"
-                        android:text="强"
+                        android:text=""
                         android:textColor="#81d8cf"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -488,14 +488,32 @@
                         android:textColor="#81d8cf" />
                     
                     <TextView
+                        android:id="@+id/index_activity_tv_today_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:drawablePadding="10dp"
+                        android:text=""
+                        android:textColor="#aaaaaa"
+                        />
+                    <TextView
                         android:id="@+id/index_activity_tv_today_test_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:drawablePadding="10dp"
+                        android:text=""
+                        android:textColor="#aaaaaa"
+                        />
+                    
+                    <TextView
+                        android:id="@+id/index_activity_tv_today_test_recommend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
                         android:drawablePadding="10dp"
-                        android:text="@string/index_activity_today_result"
+                        android:text=""
                         android:textColor="#aaaaaa"
                         />
                 </LinearLayout>

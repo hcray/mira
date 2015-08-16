@@ -170,4 +170,14 @@ public class HttpKit {
 	}
 	
 	
+	/**
+	 * 获取城市的天气
+	 * @param cityName 城市名称
+	 * @param handler 
+	 */
+	public static void getWeather(String cityName, AsyncHttpResponseHandler handler) {
+		String url = "http://api.map.baidu.com/telematics/v3/weather?location="+ cityName+"&output=json&;ak=C849c6992c5232a86e0f6e4426e7ce29";
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.get(url, handler);
+	}
 }

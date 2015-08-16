@@ -420,7 +420,7 @@ public class MRDetectionActivity extends Activity {
 		List<TestModel> list = MRTestBLL.getTestList4Today(part,
 				MRDetectionActivity.this, time);
 		if (list.size() > 7) {
-			dayList = list.subList(0, 6);
+			dayList = list.subList(0, 7);
 		} else {
 			dayList = list;
 		}
@@ -435,10 +435,8 @@ public class MRDetectionActivity extends Activity {
 			List<Integer> x_coord_values = new ArrayList<Integer>();
 			for (int i = 0; i < size; i++) {
 				// 只显示七条记录
-				if (i < 7) {
-					x_coords.add(String.valueOf(i + 1));
-					x_coord_values.add((int) dayList.get(i).shuiFen);
-				}
+				x_coords.add(String.valueOf(i + 1));
+				x_coord_values.add((int) dayList.get(i).shuiFen);
 			}
 			lcv.setBgColor(Color.WHITE);
 			lcv.setValue(x_coords, x_coord_values);
