@@ -648,7 +648,7 @@ public class MRIndexActivity extends Activity implements
 				tvChinValue.setTextColor(Color.parseColor("#81d8cf"));
 			}
 			
-			int compareValue = 50;
+			int compareValue = 30;
 			//今日检测结果的展示
 			if(today){
 				if (headValue > compareValue && faceValue > compareValue && noseValue > compareValue
