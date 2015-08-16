@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.model.User;
 import com.service.BluetoothService;
+import com.utils.Tools;
+import com.utils.UpdateManager;
 
 public class MRMyActivity extends Activity {
 	private Long mExitTime = 0l;
@@ -34,6 +36,8 @@ public class MRMyActivity extends Activity {
 //	private TextView tv_level;
 	
 	private TextView tv_grades;
+	
+	private TextView tv_check_update;
 	
 	/**
 	 * 退出按钮
@@ -111,6 +115,20 @@ public class MRMyActivity extends Activity {
 	    		finish();
 			}
 		});
+		
+		tv_check_update = (TextView) this.findViewById(R.id.my_activity_tv_check_update);
+		tv_check_update.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				if(Tools.isNetworkAvailable(MRMyActivity.this)){
+					UpdateManager updateManager = new UpdateManager(MRMyActivity.this);
+					updateManager.checkUpdate(true);
+				}else{
+					Toast.makeText(getApplicationContext(), R.string.network_exception, Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+		});
+		
 		initUI();
 	}
 	

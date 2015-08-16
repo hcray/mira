@@ -1,9 +1,14 @@
 package com.mira;
 
 
+import java.util.HashMap;
+
+import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -19,10 +24,14 @@ import com.common.HandlerEvent;
 import com.common.MRCommon;
 import com.model.TestModel;
 import com.service.BluetoothService;
+import com.utils.Tools;
+import com.utils.UpdateManager;
 
 public class MRMainActivity extends TabActivity {
 	
 	private Long mExitTime = 0l;
+	
+	private final static String TAG = "MRMainActivity";
 	
 	TabHost tabHost;
 	ImageView ivIndex;
@@ -38,11 +47,16 @@ public class MRMainActivity extends TabActivity {
 	//TextView tvFind;
 	//TextView tvTest;
 	//TextView tvMy;
+	private Handler mHandler;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_main);
 //		MRDataBase.Init(this);
+		mHandler = new Handler();
+		//检查更新
+		checkUpdate.start();
 		
 		ivIndex=(ImageView)findViewById(R.id.iv_index);
 		//ivFind=(ImageView)findViewById(R.id.iv_find);
@@ -189,5 +203,39 @@ public class MRMainActivity extends TabActivity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	 /* This Thread checks for Updates in the Background */
+    private Thread checkUpdate = new Thread(){
+        public void run() {
+            try {
+            	// 获取当前软件版本
+        		int versionCode = Tools.getVerCode(MRMainActivity.this);
+        		// 服务端软件版本
+        		int serviceCode = -1;
+        		HashMap<String,String> mHashMap = Tools.getServerVerInfo();
+        		if (null != mHashMap) {
+        			serviceCode = Integer.valueOf(mHashMap.get("version"));
+        		}
+
+                // 如果服务端版本大于当前版本
+                if (serviceCode > versionCode) {
+                    //执行更新
+                	mHandler.post(updateVersion);
+                }
+            } catch (Exception e) {
+            	Log.e(TAG, "Thread　checkUpdate " + e.getMessage());
+            }
+        }
+    };
+
+    //更新的次线程
+	private Runnable updateVersion = new Runnable(){
+		@Override
+		public void run() {
+			UpdateManager updateManager = new UpdateManager(MRMainActivity.this);
+			updateManager.checkUpdate(false);
+		}
+		
+	};
 
 }

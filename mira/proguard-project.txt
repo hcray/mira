@@ -154,5 +154,10 @@
 #Location
 -keep   class com.baidu.location.**{*;} 
 
+##---------------保护async-http  ----------
+#-libraryjars   libs/android-async-http-1.4.8.jar
+#Location
+-keep   class com.loopj.android.http.**{*;} 
+
 -dontwarn com.amap.api.**
 -dontwarn com.aps.**

@@ -1,0 +1,188 @@
+package com.utils;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.util.Log;
+
+import com.bean.UpdateInfo;
+import com.google.gson.Gson;
+
+public class Tools {
+
+	/**
+	 * 判断GPS是否开启，GPS或者AGPS开启一个就认为是开启的
+	 * 
+	 * @param context
+	 * @return true 表示开启
+	 */
+	public static final boolean isOPen(final Context context) {
+		LocationManager locationManager = (LocationManager) context
+				.getSystemService(Context.LOCATION_SERVICE);
+		// 通过GPS卫星定位，定位级别可以精确到街（通过24颗卫星定位，在室外和空旷的地方定位准确、速度快）
+		boolean gps = locationManager
+				.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		// 通过WLAN或移动网络(3G/2G)确定的位置（也称作AGPS，辅助GPS定位。主要用于在室内或遮盖物（建筑群或茂密的深林等）密集的地方定位）
+		boolean network = locationManager
+				.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+		if (gps || network) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 强制帮用户打开GPS
+	 * 
+	 * @param context
+	 */
+	public static final void openGPS(Context context) {
+		Intent GPSIntent = new Intent();
+		GPSIntent.setClassName("com.android.settings",
+				"com.android.settings.widget.SettingsAppWidgetProvider");
+		GPSIntent.addCategory("android.intent.category.ALTERNATIVE");
+		GPSIntent.setData(Uri.parse("custom:3"));
+		try {
+			PendingIntent.getBroadcast(context, 0, GPSIntent, 0).send();
+		} catch (CanceledException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 检测当的网络（WLAN、3G/2G）状态
+	 * 
+	 * @param context
+	 *            Context
+	 * @return true 表示网络可用
+	 */
+	public static boolean isNetworkAvailable(Context context) {
+		ConnectivityManager connectivity = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connectivity != null) {
+			NetworkInfo info = connectivity.getActiveNetworkInfo();
+			if (info != null && info.isConnected()) {
+				// 当前网络是连接的
+				if (info.getState() == NetworkInfo.State.CONNECTED) {
+					// 当前所连接的网络可用
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/***
+	 * 获取版本号
+	 * @param context
+	 * @return 软件版本号
+	 */
+	public static int getVerCode(Context context) {  
+        int verCode = -1;  
+        try {  
+            verCode = context.getPackageManager().getPackageInfo(  
+                    "com.mira", 0).versionCode;  
+        } catch (NameNotFoundException e) {  
+            Log.e("Tools", e.getMessage());  
+        }  
+        return verCode;  
+    }  
+     
+	
+	/***
+	 * 获取版本名称
+	 * @param context
+	 * @return 软件版本名称
+	 */
+    public static String getVerName(Context context) {
+        String verName = "";  
+        try {  
+            verName = context.getPackageManager().getPackageInfo(  
+                    "com.mira", 0).versionName;  
+        } catch (NameNotFoundException e) {  
+            Log.e("Tools", e.getMessage());  
+        }  
+        return verName;     
+    }
+    
+    /**
+     * 返回服务器端软件版本
+     * @return 软件版本的信息
+     */
+    public static HashMap<String,String> getServerVerInfo(){
+    	HashMap<String,String> map = new HashMap<String,String>();
+    	//在模拟器上可以用10.0.2.2代替127.0.0.1和localhost 另外如果是在局域网环境可以用 192.168.0.x或者192.168.1.x(根据具体配置)连接本机
+    	//String url = "http://10.36.23.143:8080/TaxiAppUpateServer/download/version.json";
+    	String url = "http://cyy2hxh.tunnel.mobi/TaxiAppUpateServer/download/version.json";
+    	//String url = "https://work.dahuatech.com/webs/download/PhoneApp/version.json";
+    	String retJson = null;
+    	
+    	try {
+    		retJson = getContent(url);
+    		Log.d("Tools","retJson: " + retJson);
+    		
+    		Gson gson = new Gson();
+    		UpdateInfo info = gson.fromJson(retJson, UpdateInfo.class);
+    		
+    		map.put("version", info.getVersion());
+    		map.put("name", info.getName());
+    		map.put("url", info.getUrl());
+		
+    	} catch (Exception e) {
+			Log.e("Tools"," getcontent() error : " + e.getMessage());
+			e.printStackTrace();
+			map = null;
+		}
+    	
+    	return map;
+    }
+    
+    /**
+     * 获取网址内容
+     * @param url
+     * @return
+     * @throws Exception
+     */
+     public static String getContent(String url) throws Exception{
+    	 StringBuilder sb = new StringBuilder();
+    	 
+         HttpClient client = new DefaultHttpClient();
+         //HttpClient client = getNewHttpClient(); 
+         HttpParams httpParams = client.getParams();
+         //设置网络超时参数
+         HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+         HttpConnectionParams.setSoTimeout(httpParams, 5000);
+         
+         HttpResponse response = client.execute(new HttpGet(url));
+         HttpEntity entity = response.getEntity();
+         if (entity != null) {
+             BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"), 8192);
+             
+             String line = null;
+             while ((line = reader.readLine())!= null){
+                 sb.append(line + "\n");
+             }
+             reader.close();
+         }
+         
+         return sb.toString();
+     }
+}
