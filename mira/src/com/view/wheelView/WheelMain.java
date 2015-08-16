@@ -1,6 +1,7 @@
 package com.view.wheelView;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import android.view.View;
@@ -17,7 +18,7 @@ public class WheelMain {
 	private WheelView wv_mins;
 	public int screenheight;
 	private boolean hasSelectTime;
-	private static int START_YEAR = 1990, END_YEAR = 2100;
+	private static int START_YEAR = 1900, END_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 
 	public View getView() {
 		return view;
