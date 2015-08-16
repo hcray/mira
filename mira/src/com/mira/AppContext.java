@@ -142,6 +142,7 @@ public class AppContext extends BaseApplication {
 		editor.putString("user.birthday", user.getBirthday());
 		editor.commit();
 		User curUser = getLoginUser();
+		Log.d("AppContext", getAppId());
 		HttpKit.updateUserInfo(getAppId(), curUser.getUserId(), curUser.getNickName(), curUser.getSex(), curUser.getBirthday(), "", "", handler);
 		
 	}
@@ -190,6 +191,9 @@ public class AppContext extends BaseApplication {
 		editor.commit();
 	}
 	
+	/**
+	 * 修改用户后的回调
+	 */
 	private final JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
 		@Override
 		public void onSuccess(int statusCode, Header[] headers,
@@ -199,6 +203,7 @@ public class AppContext extends BaseApplication {
 			ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
 			//成功
 			if(retBean.getResultCode() == 0){
+				
 			}
 		}
 	};
