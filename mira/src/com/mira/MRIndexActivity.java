@@ -26,6 +26,7 @@ import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -791,11 +792,12 @@ public class MRIndexActivity extends Activity implements
 			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-//					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
-//					startActivity(intent);
+					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					startActivity(intent);
 					
 				}}, 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tvTodayTestRecommend.setText(msp);
+			tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
 			
 		}else if(rd ==2){
 			SpannableString msp = new SpannableString("若若推荐：野菊花控油面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
@@ -804,11 +806,12 @@ public class MRIndexActivity extends Activity implements
 			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-//					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
-//					startActivity(intent);
+					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					startActivity(intent);
 					
 				}}, 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tvTodayTestRecommend.setText(msp);
+			tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
 			
 		}else{
 			SpannableString msp = new SpannableString("若若推荐：蜂蜜绿茶、菊花茶饮，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
@@ -817,11 +820,12 @@ public class MRIndexActivity extends Activity implements
 			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-//					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
-//					startActivity(intent);
+					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					startActivity(intent);
 					
 				}}, 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			tvTodayTestRecommend.setText(msp);
+			tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
 			
 		}
 		
