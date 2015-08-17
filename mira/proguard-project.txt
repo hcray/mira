@@ -142,22 +142,22 @@
 #-libraryjars   libs/AMap_3DMap_V2.3.1.jar
 #-libraryjars   libs/Android_Location_V1.3.1.jar
 #3D 地图
--keep   class com.amap.api.mapcore.**{*;} 
--keep   class com.amap.api.maps.**{*;} 
--keep   class com.autonavi.amap.mapcore.*{*;} 
+-keep class com.amap.api.mapcore.**{*;} 
+-keep class com.amap.api.maps.**{*;} 
+-keep class com.autonavi.amap.mapcore.*{*;} 
 #Location
--keep   class com.amap.api.location.**{*;} 
--keep   class com.aps.**{*;} 
+-keep class com.amap.api.location.**{*;} 
+-keep class com.aps.**{*;} 
 
 ##---------------保护百度地图  ----------
 #-libraryjars   libs/locSDK_4.2.jar
 #Location
--keep   class com.baidu.location.**{*;} 
+-keep class com.baidu.location.**{*;} 
 
 ##---------------保护async-http  ----------
 #-libraryjars   libs/android-async-http-1.4.8.jar
 #Location
--keep   class com.loopj.android.http.**{*;} 
+-keep class com.loopj.android.http.**{*;} 
 
 -dontwarn com.amap.api.**
 -dontwarn com.aps.**
