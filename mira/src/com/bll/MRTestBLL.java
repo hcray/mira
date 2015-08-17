@@ -20,16 +20,17 @@ public class MRTestBLL {
 	 * @param context
 	 */
 	public static void addTestModel(TestModel model, Context context) {
-		String sql = "insert or replace into " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " (type,status,wendu,shidu,shuifen,ziwaixian,time,weatherpm,weatherziwaixian,weatherwendu,weathercity) values (?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert or replace into " + MRDataBase.DATABASE_TABLE_TEST_RESULT + " (type,status,wendu,shidu,shuifen,score,ziwaixian,time,weatherpm,weatherziwaixian,weatherwendu,weathercity) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 		//SQLiteDatabase database = MRDataBase.getDataBase(context);
 		MRDataBase dbAdapter = new MRDataBase(context);
 		dbAdapter.open();
 		SQLiteDatabase database = dbAdapter.getmDb();
 		
-		database.execSQL(sql, new Object[] { model.type, model.status,
-				model.wenDu, model.shiDu, model.shuiFen, model.ziWaiXian,
-				model.time, model.weatherpm, model.weatherziwaixian,
-				model.weatherwendu, model.weathercity });
+		database.execSQL(sql, new Object[] {
+				model.type, model.status,model.wenDu,
+				model.shiDu, model.shuiFen,model.score,
+				model.ziWaiXian,model.time, model.weatherpm,
+				model.weatherziwaixian,model.weatherwendu, model.weathercity });
 		dbAdapter.close();
 
 	}
@@ -56,12 +57,12 @@ public class MRTestBLL {
 			model.wenDu = c.getShort(c.getColumnIndex("wendu"));
 			model.shiDu = c.getShort(c.getColumnIndex("shidu"));
 			model.shuiFen = c.getShort(c.getColumnIndex("shuifen"));
+			model.score = c.getShort(c.getColumnIndex("score"));
 			model.ziWaiXian = c.getShort(c.getColumnIndex("ziwaixian"));
 			model.time = c.getLong(c.getColumnIndex("time"));
 			model.status = c.getInt(c.getColumnIndex("status"));
 			model.weatherpm = c.getInt(c.getColumnIndex("weatherpm"));
-			model.weatherziwaixian = c.getString(c
-					.getColumnIndex("weatherziwaixian"));
+			model.weatherziwaixian = c.getString(c.getColumnIndex("weatherziwaixian"));
 			model.weatherwendu = c.getString(c.getColumnIndex("weatherwendu"));
 			model.weathercity = c.getString(c.getColumnIndex("weathercity"));
 			list.add(model);
@@ -131,6 +132,7 @@ public class MRTestBLL {
 			model.wenDu = c.getShort(c.getColumnIndex("wendu"));
 			model.shiDu = c.getShort(c.getColumnIndex("shidu"));
 			model.shuiFen = c.getShort(c.getColumnIndex("shuifen"));
+			model.score = c.getShort(c.getColumnIndex("score"));
 			model.ziWaiXian = c.getShort(c.getColumnIndex("ziwaixian"));
 			model.time = c.getLong(c.getColumnIndex("time"));
 			model.status = c.getInt(c.getColumnIndex("status"));
@@ -185,10 +187,8 @@ public class MRTestBLL {
 		for (int i = 0; i < cursor.getCount(); i++) {
 			cursor.moveToPosition(i);
 			CityModel cityModel = new CityModel();
-			cityModel.setCityName(cursor.getString(cursor
-					.getColumnIndex("AllNameSort")));
-			cityModel.setNameSort(cursor.getString(cursor
-					.getColumnIndex("CityName")));
+			cityModel.setCityName(cursor.getString(cursor.getColumnIndex("AllNameSort")));
+			cityModel.setNameSort(cursor.getString(cursor.getColumnIndex("CityName")));
 			names.add(cityModel);
 		}
 		cursor.close();
@@ -206,15 +206,12 @@ public class MRTestBLL {
 		MRDataBase dbAdapter = new MRDataBase(context);
 		dbAdapter.open();
 		SQLiteDatabase database = dbAdapter.getmDb();
-		Cursor cursor = database.rawQuery(
-				"SELECT * FROM t_city ORDER BY CityName", null);
+		Cursor cursor = database.rawQuery("SELECT * FROM t_city ORDER BY CityName", null);
 		for (int i = 0; i < cursor.getCount(); i++) {
 			cursor.moveToPosition(i);
 			CityModel cityModel = new CityModel();
-			cityModel.setCityName(cursor.getString(cursor
-					.getColumnIndex("AllNameSort")));
-			cityModel.setNameSort(cursor.getString(cursor
-					.getColumnIndex("CityName")));
+			cityModel.setCityName(cursor.getString(cursor.getColumnIndex("AllNameSort")));
+			cityModel.setNameSort(cursor.getString(cursor.getColumnIndex("CityName")));
 			names.add(cityModel);
 		}
 		cursor.close();

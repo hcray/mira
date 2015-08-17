@@ -185,4 +185,27 @@ public class Tools {
          
          return sb.toString();
      }
+     
+	/**
+	 * 根据水分值计算评分值
+	 * 
+	 * @param water
+	 *            水分值
+	 * @return 评分值
+	 */
+	public static int getScore(int water) {
+		int score = 0;
+		if (water > 0) {
+			if (water < 30 && water > 0) {
+				score = water * 2;
+				
+			} else if (water < 70 && water >= 30) {
+				score = water + 30;
+
+			} else if(water > 70){
+				score = 100;
+			}
+		}
+		return score;
+	}
 }

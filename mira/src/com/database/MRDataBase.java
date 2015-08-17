@@ -45,10 +45,12 @@ public class MRDataBase {
 			+ "shidu integer,"
 			+ "wendu integer,"
 			+ "ziwaixian integer,"
+			+ "score integer,"
 			+ "time long,"
 			+ "weatherpm int,"
 			+ "weatherziwaixian text,"
-			+ "weatherwendu text," + "weathercity text" + ")";
+			+ "weatherwendu text," 
+			+ "weathercity text" + ")";
 	
 	// 创建检测结果的数据库表
 	private static String CREATE_TABLE_CITY = "create table if not exists "

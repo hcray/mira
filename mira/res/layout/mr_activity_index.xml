@@ -100,17 +100,19 @@
                         android:gravity="center_vertical"
                         android:padding="3.0dip"
                         android:scaleType="fitCenter"
-                        android:text="" />
+                        android:text=""
+                        android:textColor="#999999" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:background="#f0f8ff"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp" >
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp" >
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -123,26 +125,27 @@
                     android:id="@+id/tv_index_activity_pm25_label"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
+                    android:gravity="center_vertical"
                     android:inputType="none"
-                    android:paddingBottom="5dp"
                     android:paddingEnd="15dp"
                     android:paddingStart="10dp"
-                    android:paddingTop="5dp"
                     android:text="PM2.5"
                     android:textColor="#81d8cf"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/index_activity_tv_pm25_value"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
+                    android:gravity="center_vertical"
                     android:text=""
                     android:textColor="#81d8cf"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp" >
@@ -159,12 +162,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:layout_marginEnd="5dp"
+                        android:gravity="center_vertical"
                         android:inputType="none"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
                         android:text="紫外线指数"
                         android:textColor="#81d8cf"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/index_activity_tv_uitraviolet_value"
@@ -172,9 +174,10 @@
                         android:layout_height="25dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="10dp"
+                        android:gravity="center_vertical"
                         android:text=""
                         android:textColor="#81d8cf"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -189,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:baselineAligned="false"
                     android:orientation="horizontal" >
@@ -199,7 +202,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="200dp"
                         android:layout_weight="1"
-                        android:gravity="center_vertical|center" >
+                        android:gravity="center_vertical|center"
+                        android:visibility="gone" >
 
                         <ImageButton
                             android:id="@+id/index_activity_ib_arrowLeft"
@@ -213,16 +217,7 @@
                     <RelativeLayout
                         android:id="@+id/index_activity_ll_imgSwitcher"
                         android:layout_width="wrap_content"
-                        android:layout_height="200dp"
-                        android:layout_weight="8" >
-
-                        <!--
-                        <ImageSwitcher
-                            android:id="@+id/imgSwitcher"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:scaleType="centerInside"
-                            />                        -->
+                        android:layout_height="200dp" >
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -231,222 +226,212 @@
                             android:src="@drawable/index_photo" />
 
                         <LinearLayout
-                            android:id="@+id/index_activity_ly_head"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="50dp"
                             android:layout_marginTop="40dp"
-                            android:gravity="right"
+                            android:gravity="end"
                             android:orientation="vertical" >
-                            <TextView
-                                android:id="@+id/index_activity_tv_head"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="额头"
-                                android:textColor="#999999"
-                                android:textSize="12sp" />
 
-                            <View
-                                android:id="@+id/view_line"
-                                android:layout_width="match_parent"
-                                android:layout_height="0.8dp"
-                                android:background="#efeff4" >
-                            </View>
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_head"
+                                android:layout_width="110dp"
+                                android:layout_height="15dp"
+                                android:gravity="end"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_head"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="额头"
+                                    android:textColor="#999999"
+                                    android:textSize="12sp" />
+
+                                <View
+                                    android:id="@+id/view_line"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#efeff4" >
+                                </View>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_face"
+                                android:layout_width="70dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="45dp"
+                                android:gravity="end"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_face"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="脸颊"
+                                    android:textColor="#999999"
+                                    android:textSize="12sp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#efeff4" >
+                                </View>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_nose"
+                                android:layout_width="110dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="5dp"
+                                android:gravity="end"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_nose"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="鼻子"
+                                    android:textColor="#999999"
+                                    android:textSize="12sp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#efeff4" >
+                                </View>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_chin"
+                                android:layout_width="110dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="25dp"
+                                android:gravity="end"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_chin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="下巴"
+                                    android:textColor="#999999"
+                                    android:textSize="12sp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#efeff4" >
+                                </View>
+                            </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/index_activity_ly_face"
-                            android:layout_below="@id/index_activity_ly_head"
-                            android:layout_width="70dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginTop="30dp"
-                            android:gravity="right"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/index_activity_tv_face"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="脸颊"
-                                android:textColor="#999999"
-                                android:textSize="12sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.8dp"
-                                android:background="#efeff4" >
-                            </View>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/index_activity_ly_nose"
-                            android:layout_below="@id/index_activity_ly_face"
-                            android:layout_width="110dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginTop="5dp"
-                            android:gravity="right"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/index_activity_tv_nose"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="鼻子"
-                                android:textColor="#999999"
-                                android:textSize="12sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.8dp"
-                                android:background="#efeff4" >
-                            </View>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/index_activity_ly_chin"
-                            android:layout_below="@id/index_activity_ly_nose"
-                            android:layout_width="110dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginTop="20dp"
-                            android:gravity="right"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/index_activity_tv_chin"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="下巴"
-                                android:textColor="#999999"
-                                android:textSize="12sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.8dp"
-                                android:background="#efeff4" >
-                            </View>
-                        </LinearLayout>
-                        
-                        <LinearLayout 
-                            android:id="@+id/index_activity_ly_head_value"
-                            android:layout_height="wrap_content"
-                            android:layout_width="40dp"
-                            android:layout_alignBottom="@+id/index_activity_ly_head"
-                            android:layout_alignEnd="@id/index_activity_ly_head"
                             android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            >
-	                        <TextView
-	                            android:id="@+id/index_activity_tv_head_value"
-	                            android:layout_width="wrap_content"
-	                            android:layout_height="wrap_content"
-	                            android:text=""
-	                            android:textColor="#81d8cf"
-	                            android:textSize="14sp" />
-	                        
-	                         <ImageView
-	                            android:id="@+id/index_activity_iv_head_waring"
-	                            android:layout_height="15dp"
-	                            android:layout_width="15dp"
-	                            android:src="@drawable/ico_waring"
-	                            android:scaleType="centerInside"
-	                            android:visibility="gone"
-	                            />
-                            
-                        </LinearLayout>
-                        
-                        <LinearLayout 
-                            android:id="@+id/index_activity_ly_face_value"
-                            android:layout_height="wrap_content"
-                            android:layout_width="40dp"
-                            android:layout_alignBottom="@+id/index_activity_ly_face"
-                            android:layout_alignEnd="@id/index_activity_ly_face"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            >
-	                        <TextView
-	                            android:id="@+id/index_activity_tv_face_value"
-	                            android:layout_width="wrap_content"
-	                            android:layout_height="wrap_content"
-	                            android:text=""
-	                            android:textColor="#81d8cf"
-	                            android:textSize="14sp" />
-	                        
-	                         <ImageView
-	                            android:id="@+id/index_activity_iv_face_waring"
-	                            android:layout_height="15dp"
-	                            android:layout_width="15dp"
-	                            android:src="@drawable/ico_waring"
-	                            android:scaleType="centerInside"
-	                            android:visibility="gone"
-	                            />
-                            
-                        </LinearLayout>
-                        
-                        <LinearLayout 
-                            android:id="@+id/index_activity_ly_nose_value"
-                            android:layout_height="wrap_content"
-                            android:layout_width="40dp"
-                            android:layout_alignBottom="@+id/index_activity_ly_nose"
-                            android:layout_alignEnd="@id/index_activity_ly_nose"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            >
-	                        <TextView
-	                            android:id="@+id/index_activity_tv_nose_value"
-	                            android:layout_width="wrap_content"
-	                            android:layout_height="wrap_content"
-	                            android:text=""
-	                            android:textColor="#81d8cf"
-	                            android:textSize="14sp" />
-	                        
-	                          <ImageView
-	                            android:id="@+id/index_activity_iv_nose_waring"
-	                            android:layout_height="15dp"
-	                            android:layout_width="15dp"
-	                            android:src="@drawable/ico_waring"
-	                            android:scaleType="centerInside"
-	                            android:visibility="gone"
-	                            />
-                            
-                        </LinearLayout>
-                        
-                        <LinearLayout 
-                            android:id="@+id/index_activity_ly_chin_value"
-                            android:layout_height="wrap_content"
-                            android:layout_width="40dp"
-                            android:layout_alignBottom="@+id/index_activity_ly_chin"
-                            android:layout_alignEnd="@id/index_activity_ly_chin"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:gravity="bottom"
-                            >
-	                        <TextView
-	                            android:id="@+id/index_activity_tv_chin_value"
-	                            android:layout_width="wrap_content"
-	                            android:layout_height="wrap_content"
-	                            android:text=""
-	                            android:textColor="#81d8cf"
-	                            android:textSize="14sp" 
-	                            />
-	                        <ImageView
-	                            android:id="@+id/index_activity_iv_chin_waring"
-	                            android:layout_height="15dp"
-	                            android:layout_width="15dp"
-	                            android:src="@drawable/ico_waring"
-	                            android:scaleType="centerInside"
-	                            android:visibility="gone"
-	                            />
-                            
-                        </LinearLayout>
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="40dp"
+                            android:gravity="start"
+                            android:orientation="vertical">
 
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_head_value"
+                                android:layout_width="40dp"
+                                android:layout_height="15dp"
+                                >
 
+                                <TextView
+                                    android:id="@+id/index_activity_tv_head_value"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="44"
+                                    android:textColor="#81d8cf"
+                                    android:textSize="12sp" />
+
+                                <ImageView
+                                    android:id="@+id/index_activity_iv_head_waring"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ico_waring"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_face_value"
+                                android:layout_width="40dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="45dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_face_value"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="55"
+                                    android:textColor="#81d8cf"
+                                    android:textSize="12sp" />
+
+                                <ImageView
+                                    android:id="@+id/index_activity_iv_face_waring"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ico_waring"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_nose_value"
+                                android:layout_width="40dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="5dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_nose_value"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="77"
+                                    android:textColor="#81d8cf"
+                                    android:textSize="12sp" />
+
+                                <ImageView
+                                    android:id="@+id/index_activity_iv_nose_waring"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ico_waring"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/index_activity_ly_chin_value"
+                                android:layout_width="40dp"
+                                android:layout_height="15dp"
+                                android:layout_marginTop="25dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/index_activity_tv_chin_value"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="66"
+                                    android:textColor="#81d8cf"
+                                    android:textSize="12sp" />
+
+                                <ImageView
+                                    android:id="@+id/index_activity_iv_chin_waring"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ico_waring"
+                                    android:visibility="gone" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -454,7 +439,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="200dp"
                         android:layout_weight="1"
-                        android:gravity="center_vertical|center" >
+                        android:gravity="center_vertical|center"
+                        android:visibility="gone" >
 
                         <ImageButton
                             android:id="@+id/index_activity_ib_arrowRight"
@@ -485,8 +471,9 @@
                         android:drawableStart="@drawable/ico_test_result"
                         android:gravity="center_vertical"
                         android:text="@string/index_activity_today_result"
-                        android:textColor="#81d8cf" />
-                    
+                        android:textColor="#81d8cf"
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/index_activity_tv_today_weather"
                         android:layout_width="wrap_content"
@@ -494,8 +481,8 @@
                         android:layout_marginStart="20dp"
                         android:drawablePadding="10dp"
                         android:text=""
-                        android:textColor="#aaaaaa"
-                        />
+                        android:textColor="#aaaaaa" />
+
                     <TextView
                         android:id="@+id/index_activity_tv_today_test_result"
                         android:layout_width="wrap_content"
@@ -503,9 +490,8 @@
                         android:layout_marginStart="20dp"
                         android:drawablePadding="10dp"
                         android:text=""
-                        android:textColor="#aaaaaa"
-                        />
-                    
+                        android:textColor="#aaaaaa" />
+
                     <TextView
                         android:id="@+id/index_activity_tv_today_test_recommend"
                         android:layout_width="wrap_content"
@@ -514,8 +500,7 @@
                         android:layout_marginStart="20dp"
                         android:drawablePadding="10dp"
                         android:text=""
-                        android:textColor="#aaaaaa"
-                        />
+                        android:textColor="#aaaaaa" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -538,7 +523,8 @@
                         android:drawableStart="@drawable/ico_test_changes"
                         android:gravity="center_vertical"
                         android:text="@string/index_activity_test_changes"
-                        android:textColor="#81d8cf" />
+                        android:textColor="#81d8cf"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -579,7 +565,8 @@
                         android:drawableStart="@drawable/ico_test_history"
                         android:gravity="center_vertical"
                         android:text="@string/index_activity_test_history"
-                        android:textColor="#81d8cf" />
+                        android:textColor="#81d8cf"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"

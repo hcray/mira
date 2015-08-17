@@ -41,7 +41,7 @@
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
-		android:padding="10.0dip"
+		android:padding="10sp"
 		android:background="@color/white">
         
         	<RelativeLayout
@@ -49,10 +49,10 @@
 		    	android:layout_height="wrap_content">
 	    	    <ImageView 
 			    	android:id="@+id/user_info_userface"
-			      	android:layout_width="70dip" 
-			        android:layout_height="70dip"
+			      	android:layout_width="70dp" 
+			        android:layout_height="70dp"
 			        android:scaleType="fitCenter"
-			        android:padding="3.0dip"
+			        android:padding="3dp"
 					android:clickable="true"
 			        android:src="@drawable/head_pic"
 			        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
@@ -60,7 +60,7 @@
 	    	        android:layout_width="fill_parent" 
     				android:layout_height="wrap_content"
     				android:orientation="vertical"
-    				android:layout_marginStart="10dip"
+    				android:layout_marginStart="10dp"
     				android:layout_marginTop="20dp"
     				android:layout_toEndOf="@id/user_info_userface"
     				>
@@ -68,8 +68,8 @@
 			       		android:id="@+id/my_activity_nickName"  
 			    		android:layout_width="wrap_content" 
 			           	android:layout_height="wrap_content" 
-			           	android:layout_marginBottom="10.0dip"
-			           	android:textSize="15.0dip"
+			           	android:layout_marginBottom="10dp"
+			           	android:textSize="16sp"
 			           	android:text="Mira's Fans"
 			           	android:textColor="#84dfd8"/>
 				   	
@@ -126,9 +126,9 @@
 					       		android:id="@+id/my_activity_grades"  
 					    		android:layout_width="wrap_content" 
 					           	android:layout_height="wrap_content" 
-					           	android:layout_marginBottom="10.0dip"
+					           	android:layout_marginBottom="10dp"
 					           	android:layout_marginEnd="2dp"
-					           	android:textSize="15.0dip"
+					           	android:textSize="15sp"
 					           	android:textColor="#84dfd8"
 					           	android:text="368"
 					            />
@@ -136,17 +136,17 @@
 					       		android:id="@+id/my_activity_grades_name"  
 					    		android:layout_width="wrap_content" 
 					           	android:layout_height="wrap_content" 
-					           	android:layout_marginBottom="10.0dip"
-					           	android:textSize="15.0dip"
+					           	android:layout_marginBottom="10dp"
+					           	android:textSize="15sp"
 					           	android:textColor="#999999"
 					           	android:text="积分"
 					            />
 						  	 
 						  	 <ImageButton
 						    	android:id="@+id/my_activity_ibtn_help"
-						      	android:layout_width="18dip" 
-						        android:layout_height="18dip"
-						        android:layout_marginStart="10.0dip"
+						      	android:layout_width="18dp" 
+						        android:layout_height="18dp"
+						        android:layout_marginStart="10dp"
 					           	android:layout_alignParentEnd="true"
 					           	android:scaleType="fitCenter"
 						        android:background="@drawable/ico_help"
@@ -176,7 +176,7 @@
        		android:id="@+id/user_info"  
     		android:layout_width="wrap_content" 
            	android:layout_height="wrap_content" 
-           	android:textSize="16.0dip"
+           	android:textSize="16sp"
            	android:textColor="#999999"
            	android:gravity="center_vertical"
            	android:layout_marginStart="20dp"
@@ -211,7 +211,7 @@
 	       		android:id="@+id/user_info_change"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:textSize="16.0dip"
+	           	android:textSize="16sp"
 	           	android:textColor="#999999"
 	           	android:text="@string/my_activity_tv_user_info_change"
 		        android:gravity="center_vertical"
@@ -252,7 +252,7 @@
 	       		android:id="@+id/user_info_history"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:textSize="16.0dip"
+	           	android:textSize="16sp"
 	           	android:textColor="#999999"
 	           	android:text="@string/my_activity_tv_user_info_history"
 	           	android:gravity="center_vertical"
@@ -295,7 +295,7 @@
             android:paddingTop="5dp"
             android:text="@string/set_activity_tv_check_update_value"
             android:textColor="#999999"
-            android:textSize="16.0dip" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/my_activity_tv_version_name"

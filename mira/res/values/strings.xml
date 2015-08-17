@@ -149,8 +149,8 @@
     <string name="detection_activity_title_chin">下巴</string>
     <string name="detection_activity_history_day">天</string>
     <string name="detection_activity_history_week">周</string>
-    <string name="detection_activity_result_desc1">哎呀,你额头的皮肤都快赶上小Baby的了，超过了79%的帅哥和美女，快告诉我你是怎么补水哒。</string>
-    <string name="detection_activity_result_desc2">室内温、湿度适宜，室外紫外线强度较强，建议出门前涂擦SPF在12至15之间，PA+的防嗮护肤品。</string>
+    <string name="detection_activity_part_result_start">终于见到小主啦，若若好激动呢！让我们一起玩个游戏吧，用美棒按压</string>
+    <string name="detection_activity_part_result_end">3~5秒，就会有奇迹发生哦~</string>
     
     <!-- 提示 -->
     <string name="tip_login_error_for_network">对不起,无法登录</string>

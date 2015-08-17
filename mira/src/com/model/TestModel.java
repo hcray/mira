@@ -6,6 +6,10 @@ public class TestModel {
 	public short shiDu;
 	public short shuiFen;
 	public short ziWaiXian;
+	/**
+	 * 评分
+	 */
+	public int score;
 	public int type;
 	public int status;
 	public long time;
@@ -17,7 +21,7 @@ public class TestModel {
 	@Override
 	public String toString() {
 		return "TestModel [id=" + id + ", wenDu=" + wenDu + ", shiDu=" + shiDu
-				+ ", shuiFen=" + shuiFen + ", ziWaiXian=" + ziWaiXian
+				+ ", shuiFen=" + shuiFen + ", ziWaiXian=" + ziWaiXian + ", score=" + score
 				+ ", type=" + type + ", status=" + status + ", time=" + time
 				+ ", weatherpm=" + weatherpm + ", weatherziwaixian="
 				+ weatherziwaixian + ", weatherwendu=" + weatherwendu

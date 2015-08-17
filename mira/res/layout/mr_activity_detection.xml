@@ -55,9 +55,10 @@
                 android:layout_marginStart="20dp"
                 android_custom:roundColor="#ffffff"
                 android_custom:roundProgressColor="#84dfd8"
-                android_custom:roundWidth="13dp"
+                android_custom:roundWidth="14dp"
                 android_custom:textColor="#84dfd8"
-                android_custom:textSize="18sp" />
+                android_custom:textSize="22sp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -100,7 +101,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/detection_activity_tv_tem_label"
                     android:gravity="center"
-                    android:text=""
+                    android:text="0℃"
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -141,7 +142,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/detection_activity_tv_wet_label"
                     android:gravity="center"
-                    android:text=""
+                    android:text="0%"
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -181,7 +182,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/detection_activity_tv_water_label"
                     android:gravity="center"
-                    android:text=""
+                    android:text="0%"
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
                     android:textStyle="bold" />

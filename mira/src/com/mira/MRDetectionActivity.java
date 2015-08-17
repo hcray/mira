@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
@@ -13,6 +14,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,7 @@ import com.model.TestModel;
 import com.model.User;
 import com.utils.DateUtil;
 import com.utils.HttpKit;
+import com.utils.Tools;
 import com.view.LineCharView;
 import com.view.RoundProgressBar;
 
@@ -100,6 +103,21 @@ public class MRDetectionActivity extends Activity {
 	 * 当前部位
 	 */
 	private String curPart;
+	
+	/**
+	 * 时间戳
+	 */
+	private long timestamp = 0l;
+	
+	/**
+	 * 随机生成的平均值
+	 */
+	private int average;
+	
+	/**
+	 * 城市
+	 */
+	private String city;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +163,7 @@ public class MRDetectionActivity extends Activity {
 			curPart = getString(R.string.detection_activity_title_chin);
 		}
 		tvTitle.setText(curPart);
+		tvPartTestRet.setText(getString(R.string.detection_activity_part_result_start)+curPart+getString(R.string.detection_activity_part_result_end));
 		
 		// List<String> x_coords = new ArrayList<String>();
 		// x_coords.add("1");
@@ -203,6 +222,9 @@ public class MRDetectionActivity extends Activity {
 				showWeekHistory();
 			}
 		});
+		
+		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
+		city = preferences.getString("City", "");
 	}
 
 	@Override
@@ -309,7 +331,8 @@ public class MRDetectionActivity extends Activity {
 		tvTem.setText(wenDu / 100 + "℃");
 		tvWet.setText(shiDu + "%");
 		tvWater.setText(shuiFen + "%");
-		rpb.setProgress(shuiFen);
+		int score = Tools.getScore(shuiFen);
+		rpb.setProgress(score);
 		TestModel testModel = new TestModel();
 
 		testModel.time = System.currentTimeMillis();
@@ -317,11 +340,12 @@ public class MRDetectionActivity extends Activity {
 		testModel.shiDu = shiDu;
 		testModel.shuiFen = shuiFen;
 		testModel.type = part;
+		testModel.score = score;
 
 		// 保存数据库
 		MRTestBLL.addTestModel(testModel, MRDetectionActivity.this);
 		// 更新检测结果
-		showDetectionRet();
+		showDetectionRet(shuiFen);
 		// 刷新历史数据
 		if (daySelect) {
 			showDayHistory();
@@ -335,7 +359,7 @@ public class MRDetectionActivity extends Activity {
 		Log.d(tag, "userId: " + userId);
 		HttpKit.uploadDetection(UUID, userId, part, String.valueOf(shiDu),
 				String.valueOf(wenDu), String.valueOf(shuiFen),
-				String.valueOf(shuiFen), String.valueOf(shuiFen), handler);
+				String.valueOf(score), String.valueOf(shuiFen), handler);
 	}
 
 	/**
@@ -345,11 +369,12 @@ public class MRDetectionActivity extends Activity {
 		int wenDu = 0;
 		int shiDu = 0;
 		int shuiFen = 0;
+		int score = 0;
 		// 页面显示
 		tvTem.setText(wenDu / 100 + "℃");
 		tvWet.setText(shiDu + "%");
 		tvWater.setText(shuiFen + "%");
-		rpb.setProgress(shuiFen);
+		rpb.setProgress(score);
 	}
 
 	// 显示提示信息
@@ -446,32 +471,43 @@ public class MRDetectionActivity extends Activity {
 	/**
 	 * 
 	 */
-	private void showDetectionRet(){
+	private void showDetectionRet(int myWater){
 		//今天开始时间
 		long startTime = DateUtil.getTimesMorning();
 		//今天结束时间
 		long endTime = DateUtil.getTimesNight();
 		//系统平均水分
-		int average = 30 + (int) (Math.random() * 10);
+		//int average = 30 + (int) (Math.random() * 10);
+		if (timestamp == 0l) {
+			average = new Random().nextInt(5) + 36;
+			timestamp = System.currentTimeMillis();
+			
+		} else {
+			//超过5分钟重新设置随机数
+			if(System.currentTimeMillis() - timestamp > 5*60*1000){
+				average = new Random().nextInt(5) + 36;
+				timestamp = System.currentTimeMillis();
+			}
+		}
 		//我的平均水分
-		int myAvg = MRTestBLL.getTestAverage(part, startTime, endTime, MRDetectionActivity.this);
+		//int myAvg = MRTestBLL.getTestAverage(part, startTime, endTime, MRDetectionActivity.this);
 		StringBuilder text = new StringBuilder();
 		//比值
-		float avgRet = (float)(myAvg-average)/average;
+		float avgRet = (float) (myWater - average) / average;
 		DecimalFormat decimalFormat=new DecimalFormat(".0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-		Log.d(tag, "myAvg: " + myAvg + " average: " + average + " avgRet: " + avgRet);
+		Log.d(tag, "myWater: " + myWater + " average: " + average + " avgRet: " + avgRet);
 		if (avgRet < 0.05 && avgRet > -0.05) {
 			if(avgRet > 0){
-				text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你高出平均水平").append(decimalFormat.format(avgRet*100)).append("%，继续努力哦！ ");
+				text.append("小若若报告：今天").append(city).append("用户").append(curPart).append("平均水份值为").append(average).append("%，你高出平均水平").append(decimalFormat.format(avgRet*100)).append("%，继续努力哦！ ");
 			}else{
-				text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你低于平均水平").append(decimalFormat.format(avgRet*100)).append("%，继续努力哦！ ");
+				text.append("小若若报告：今天").append(city).append("用户").append(curPart).append("平均水份值为").append(average).append("%，你低于平均水平").append(decimalFormat.format(avgRet*100)).append("%，继续努力哦！ ");
 			}
 			
 		} else if (avgRet <= -0.05) {
-			text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你低于平均水平").append(decimalFormat.format(avgRet*100)).append("%，赶紧去补水吧！ ");
+			text.append("小若若报告：今天").append(city).append("用户").append(curPart).append("平均水份值为").append(average).append("%，你低于平均水平").append(decimalFormat.format(avgRet*100)).append("%，赶紧去补水吧！ ");
 
 		} else if (avgRet >= 0.05) {
-			text.append("小若若报告：今天帅哥美女").append(curPart).append("平均水份值为").append(myAvg).append("%，你高出平均水平").append(decimalFormat.format(avgRet*100)).append("%，棒棒哒！ ");
+			text.append("小若若报告：今天").append(city).append("用户").append(curPart).append("平均水份值为").append(average).append("%，你高出平均水平").append(decimalFormat.format(avgRet*100)).append("%，棒棒哒！ ");
 		}
 		
 		tvPartTestRet.setText(text.toString());

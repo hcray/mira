@@ -58,6 +58,12 @@ public class MRMainActivity extends TabActivity {
 		//检查更新
 		checkUpdate.start();
 		
+		BaiduLocation.getLocation(this, new HandlerEvent<BaiDuLocationModel>(){
+			public void handleMessage(BaiDuLocationModel result) {
+				
+			};
+		});
+		
 		ivIndex=(ImageView)findViewById(R.id.iv_index);
 		//ivFind=(ImageView)findViewById(R.id.iv_find);
 		ivTest=(ImageView)findViewById(R.id.iv_test);

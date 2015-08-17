@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.mira.R;
@@ -133,10 +132,11 @@ public class RoundProgressBar extends View {
 		paint.setTextSize(textSize);
 		paint.setTypeface(Typeface.DEFAULT_BOLD); //��������
 		int percent = (int)(((float)progress / (float)max) * 100);  //�м�Ľ�Ȱٷֱȣ���ת����float�ڽ��г����㣬��Ȼ��Ϊ0
-		float textWidth = paint.measureText(percent + "%");   //���������ȣ�������Ҫ�������Ŀ��������Բ���м�
-		float textHeight=0;
+		float textWidth = paint.measureText(String.valueOf(percent));   //���������ȣ�������Ҫ�������Ŀ��������Բ���м�
+		float textHeight=-12;
 		if(textIsDisplayable && percent != 0 && style == STROKE){
-			canvas.drawText(percent + "%", centre - textWidth / 2, centre + (textSize+textHeight)/2, paint); //������Ȱٷֱ�
+			//去除%的显示
+			canvas.drawText(String.valueOf(percent), centre - textWidth/2, centre + (textSize+textHeight)/2, paint); //������Ȱٷֱ�
 		}
 		
 		
