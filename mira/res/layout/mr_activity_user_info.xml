@@ -61,11 +61,11 @@
             android:paddingEnd="10dp"
             android:gravity="end" >
 	         <ImageView 
-		    	android:id="@+id/userInfo_activityi_iv_userface"
-		      	android:layout_width="50dip" 
-		        android:layout_height="50dip"
+		    	android:id="@+id/userInfo_activity_iv_userface"
+		      	android:layout_width="50dp" 
+		        android:layout_height="50dp"
 		        android:scaleType="fitCenter"
-		        android:padding="3.0dip"
+		        android:padding="3.0dp"
 				android:clickable="true"
 		        android:src="@drawable/head_pic"
 		        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
@@ -114,6 +114,7 @@
 	             android:id="@+id/userInfo_activity_tv_nick_name_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
+	             android:padding="3.0dp"
 	             android:text=""
 	             android:textColor="#999999"
 	             />
@@ -163,6 +164,7 @@
 	             android:id="@+id/userInfo_activity_tv_sex_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
+	             android:padding="3.0dp"
 	             android:text=""
 	             android:textColor="#999999"
 	             />
@@ -214,6 +216,7 @@
 	             android:id="@+id/userInfo_activity_tv_birthday_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
+	             android:padding="3.0dp"
 	             android:text=""
 	             android:textColor="#999999"
 	             />
@@ -263,6 +266,7 @@
 	             android:id="@+id/userInfo_activity_tv_skin_type_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
+	             android:padding="3.0dp"
 	             android:text="油性皮肤"
 	             android:textColor="#999999"
 	             />
@@ -313,6 +317,7 @@
 	             android:id="@+id/userInfo_activity_tv_skin_sensitivity_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
+	             android:padding="3.0dp"
 	             android:text="非敏感性"
 	             android:textColor="#999999"
 	             />
@@ -363,6 +368,7 @@
 	             android:id="@+id/userInfo_activity_tv_menses_value"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
+	             android:padding="3.0dp"
 	             android:text="月经期"
 	             android:textColor="#999999"
 	             />
@@ -389,5 +395,4 @@
 	        android:textColor="@color/white"
             android:text="@string/userInfo_activity_save" />
     </LinearLayout>
-
 </RelativeLayout>

@@ -169,6 +169,33 @@ public class HttpKit {
 		client.post(MiraConstants.uploadDetection, params, handler);
 	}
 	
+	public static void uploadImageByte(String UUID, String UserId,
+			int Position, String Humidity, String Temperature, String Water,
+			String Score, String Comment, AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UserId", UserId);
+		params.add("Position", String.valueOf(Position));
+		params.add("Humidity", Humidity);
+		params.add("Temperature", Temperature);
+		params.add("Water", Water);
+		params.add("Score", Score);
+		params.add("Comment", Comment);
+		client.post(MiraConstants.uploadImageByte, params, handler);
+	}
+	
+	
+	public static void uploadImage(String UUID, String UserId,
+			int Type, AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UserId", UserId);
+		params.add("Type", String.valueOf(Type));
+		client.post(MiraConstants.uploadImage, params, handler);
+	}
+	
 	
 	/**
 	 * 获取城市的天气

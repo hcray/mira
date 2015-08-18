@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         android:paddingBottom="10dp" >
 
         <LinearLayout
@@ -46,6 +47,16 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="vertical" >
+            
+            <TextView
+                android:id="@+id/detection_activity_rpb_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#aaaaaa"
+                android:text="@string/detection_activity_count_score"
+                android:textSize="16sp"
+                />
 
             <com.view.RoundProgressBar
                 android:id="@+id/detection_activity_rpb"
@@ -53,6 +64,7 @@
                 android:layout_height="80dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
                 android_custom:roundColor="#ffffff"
                 android_custom:roundProgressColor="#84dfd8"
                 android_custom:roundWidth="14dp"
@@ -64,13 +76,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:orientation="horizontal" >
 
@@ -79,15 +92,20 @@
                     android:layout_height="fill_parent"
                     android:scaleType="centerInside"
                     android:src="@drawable/data_bg" />
+                
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ico_data_tem" />
 
                 <TextView
                     android:id="@+id/detection_activity_tv_tem_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="40dp"
-                    android:drawableLeft="@drawable/ico_data_tem"
-                    android:drawablePadding="5dp"
-                    android:gravity="right|center_vertical"
+                    android:layout_marginStart="80dp"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="环境温度"
@@ -104,13 +122,15 @@
                     android:text="0℃"
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:layout_marginEnd="30dp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:orientation="horizontal" >
@@ -120,15 +140,20 @@
                     android:layout_height="fill_parent"
                     android:scaleType="centerInside"
                     android:src="@drawable/data_bg" />
+                
+              	<ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ico_data_wet" />
 
                 <TextView
                     android:id="@+id/detection_activity_tv_wet_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="40dp"
-                    android:drawableLeft="@drawable/ico_data_wet"
-                    android:drawablePadding="5dp"
-                    android:gravity="right|center_vertical"
+                    android:layout_marginStart="80dp"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="环境湿度"
@@ -145,13 +170,16 @@
                     android:text="0%"
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:layout_marginEnd="30dp"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:orientation="horizontal" >
 
@@ -160,15 +188,20 @@
                     android:layout_height="fill_parent"
                     android:scaleType="centerInside"
                     android:src="@drawable/data_bg" />
+                
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ico_data_water" />
 
                 <TextView
                     android:id="@+id/detection_activity_tv_water_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="40dp"
-                    android:drawableLeft="@drawable/ico_data_water"
-                    android:drawablePadding="5dp"
-                    android:gravity="right|center_vertical"
+                    android:layout_marginStart="80dp"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="皮肤水分"
@@ -185,7 +218,9 @@
                     android:text="0%"
                     android:textColor="#81d8cf"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold" 
+                    android:layout_marginEnd="30dp"
+                    />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

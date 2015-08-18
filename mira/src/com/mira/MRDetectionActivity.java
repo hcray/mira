@@ -225,6 +225,8 @@ public class MRDetectionActivity extends Activity {
 		
 		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
 		city = preferences.getString("City", "");
+		//初始化综合分值
+		rpb.setProgress(0);
 	}
 
 	@Override

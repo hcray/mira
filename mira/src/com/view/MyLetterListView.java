@@ -1,5 +1,7 @@
 package com.view;
 
+import com.utils.Tools;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -52,7 +54,7 @@ public class MyLetterListView extends View
 			paint.setColor(Color.parseColor("#49c6bd"));
 			//paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
-			paint.setTextSize(45);
+			paint.setTextSize(Tools.dip2px(this.getContext(), 18));
 			if (i == choose)
 			{
 				//选中索引的颜色

@@ -89,103 +89,108 @@ public class Tools {
 		}
 		return false;
 	}
-	
+
 	/***
 	 * 获取版本号
+	 * 
 	 * @param context
 	 * @return 软件版本号
 	 */
-	public static int getVerCode(Context context) {  
-        int verCode = -1;  
-        try {  
-            verCode = context.getPackageManager().getPackageInfo(  
-                    "com.mira", 0).versionCode;  
-        } catch (NameNotFoundException e) {  
-            Log.e("Tools", e.getMessage());  
-        }  
-        return verCode;  
-    }  
-     
-	
+	public static int getVerCode(Context context) {
+		int verCode = -1;
+		try {
+			verCode = context.getPackageManager().getPackageInfo("com.mira", 0).versionCode;
+		} catch (NameNotFoundException e) {
+			Log.e("Tools", e.getMessage());
+		}
+		return verCode;
+	}
+
 	/***
 	 * 获取版本名称
+	 * 
 	 * @param context
 	 * @return 软件版本名称
 	 */
-    public static String getVerName(Context context) {
-        String verName = "";  
-        try {  
-            verName = context.getPackageManager().getPackageInfo(  
-                    "com.mira", 0).versionName;  
-        } catch (NameNotFoundException e) {  
-            Log.e("Tools", e.getMessage());  
-        }  
-        return verName;     
-    }
-    
-    /**
-     * 返回服务器端软件版本
-     * @return 软件版本的信息
-     */
-    public static HashMap<String,String> getServerVerInfo(){
-    	HashMap<String,String> map = new HashMap<String,String>();
-    	//在模拟器上可以用10.0.2.2代替127.0.0.1和localhost 另外如果是在局域网环境可以用 192.168.0.x或者192.168.1.x(根据具体配置)连接本机
-    	//String url = "http://10.36.23.143:8080/TaxiAppUpateServer/download/version.json";
-    	String url = "http://cyy2hxh.tunnel.mobi/TaxiAppUpateServer/download/version.json";
-    	//String url = "https://work.dahuatech.com/webs/download/PhoneApp/version.json";
-    	String retJson = null;
-    	
-    	try {
-    		retJson = getContent(url);
-    		Log.d("Tools","retJson: " + retJson);
-    		
-    		Gson gson = new Gson();
-    		UpdateInfo info = gson.fromJson(retJson, UpdateInfo.class);
-    		
-    		map.put("version", info.getVersion());
-    		map.put("name", info.getName());
-    		map.put("url", info.getUrl());
-		
-    	} catch (Exception e) {
-			Log.e("Tools"," getcontent() error : " + e.getMessage());
+	public static String getVerName(Context context) {
+		String verName = "";
+		try {
+			verName = context.getPackageManager().getPackageInfo("com.mira", 0).versionName;
+		} catch (NameNotFoundException e) {
+			Log.e("Tools", e.getMessage());
+		}
+		return verName;
+	}
+
+	/**
+	 * 返回服务器端软件版本
+	 * 
+	 * @return 软件版本的信息
+	 */
+	public static HashMap<String, String> getServerVerInfo() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		// 在模拟器上可以用10.0.2.2代替127.0.0.1和localhost 另外如果是在局域网环境可以用
+		// 192.168.0.x或者192.168.1.x(根据具体配置)连接本机
+		// String url =
+		// "http://10.36.23.143:8080/TaxiAppUpateServer/download/version.json";
+		String url = "http://cyy2hxh.tunnel.mobi/TaxiAppUpateServer/download/version.json";
+		// String url =
+		// "https://work.dahuatech.com/webs/download/PhoneApp/version.json";
+		String retJson = null;
+
+		try {
+			retJson = getContent(url);
+			Log.d("Tools", "retJson: " + retJson);
+
+			Gson gson = new Gson();
+			UpdateInfo info = gson.fromJson(retJson, UpdateInfo.class);
+
+			map.put("version", info.getVersion());
+			map.put("name", info.getName());
+			map.put("url", info.getUrl());
+
+		} catch (Exception e) {
+			Log.e("Tools", " getcontent() error : " + e.getMessage());
 			e.printStackTrace();
 			map = null;
 		}
-    	
-    	return map;
-    }
-    
-    /**
-     * 获取网址内容
-     * @param url
-     * @return
-     * @throws Exception
-     */
-     public static String getContent(String url) throws Exception{
-    	 StringBuilder sb = new StringBuilder();
-    	 
-         HttpClient client = new DefaultHttpClient();
-         //HttpClient client = getNewHttpClient(); 
-         HttpParams httpParams = client.getParams();
-         //设置网络超时参数
-         HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
-         HttpConnectionParams.setSoTimeout(httpParams, 5000);
-         
-         HttpResponse response = client.execute(new HttpGet(url));
-         HttpEntity entity = response.getEntity();
-         if (entity != null) {
-             BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent(), "UTF-8"), 8192);
-             
-             String line = null;
-             while ((line = reader.readLine())!= null){
-                 sb.append(line + "\n");
-             }
-             reader.close();
-         }
-         
-         return sb.toString();
-     }
-     
+
+		return map;
+	}
+
+	/**
+	 * 获取网址内容
+	 * 
+	 * @param url
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getContent(String url) throws Exception {
+		StringBuilder sb = new StringBuilder();
+
+		HttpClient client = new DefaultHttpClient();
+		// HttpClient client = getNewHttpClient();
+		HttpParams httpParams = client.getParams();
+		// 设置网络超时参数
+		HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+		HttpConnectionParams.setSoTimeout(httpParams, 5000);
+
+		HttpResponse response = client.execute(new HttpGet(url));
+		HttpEntity entity = response.getEntity();
+		if (entity != null) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					entity.getContent(), "UTF-8"), 8192);
+
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			reader.close();
+		}
+
+		return sb.toString();
+	}
+
 	/**
 	 * 根据水分值计算评分值
 	 * 
@@ -198,14 +203,31 @@ public class Tools {
 		if (water > 0) {
 			if (water < 30 && water > 0) {
 				score = water * 2;
-				
+
 			} else if (water < 70 && water >= 30) {
 				score = water + 30;
 
-			} else if(water > 70){
+			} else if (water > 70) {
 				score = 100;
 			}
 		}
 		return score;
 	}
+
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+	 */
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+
+	/**
+	 * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+	 */
+	public static int px2dip(Context context, float pxValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (pxValue / scale + 0.5f);
+	}
+
 }
