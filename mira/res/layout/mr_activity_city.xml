@@ -10,7 +10,6 @@
     <RelativeLayout
         android:id="@+id/city_activity_title"
         style="@style/title"
-        android:layout_alignParentTop="true"
         android:background="#84dfd8"
         android:visibility="visible" >
 
@@ -59,7 +58,7 @@
             android:layout_height="fill_parent"
             android:layout_marginStart="10dp"
             android:background="@null"
-            android:hint="请输入省市中文名称或拼音首字母"
+            android:hint="@string/city_activity_input"
             android:textColorHint="#aaaaaa"
             android:textSize="14sp" />
     </LinearLayout>
@@ -87,7 +86,7 @@
             android:layout_height="fill_parent"
             android:layout_marginStart="10dp"
             android:gravity="center_vertical"
-            android:text="定位到的城市："
+            android:text="@string/city_activity_pos_city"
             android:textColor="#aaaaaa"
             android:textSize="14sp" />
 
@@ -107,7 +106,7 @@
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="搜索"
+        android:text="@string/city_activity_search"
         android:visibility="gone" />
 
     <FrameLayout
@@ -132,7 +131,7 @@
                 android:id="@+id/cityLetterListView"
                 android:layout_width="30dp"
                 android:layout_height="fill_parent"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:background="#50e4f3f2" />
         </RelativeLayout>
 

@@ -130,6 +130,9 @@
 
     <!-- 选择城市 -->
     <string name="city_activity_title">选择城市</string>
+    <string name="city_activity_input">请输入省市中文名称或拼音首字母</string>
+    <string name="city_activity_pos_city">定位到的城市：</string>
+    <string name="city_activity_search">搜索</string>
     <string name="title_activity_mrdetection">MRDetectionActivity</string>
     
     <!-- 检测菜单页面 -->
