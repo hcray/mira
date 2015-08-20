@@ -134,7 +134,7 @@
     <string name="city_activity_pos_city">定位到的城市：</string>
     <string name="city_activity_search">搜索</string>
     <string name="title_activity_mrdetection">MRDetectionActivity</string>
-    
+
     <!-- 检测菜单页面 -->
     <string name="detection_menu_activity_title">检测</string>
     <string name="detection_menu_activity_head_value">额头</string>
@@ -143,7 +143,7 @@
     <string name="detection_menu_activity_chin_value">下巴</string>
     <string name="detection_menu_acitivity_photo">部位展示图片</string>
     <string name="detection_menu_acitivity_menu">菜单背景图片</string>
-    
+
     <!-- 检测页面 -->
     <string name="detection_activity_title">检测</string>
     <string name="detection_activity_title_head">额头</string>
@@ -155,7 +155,7 @@
     <string name="detection_activity_part_result_start">终于见到小主啦，若若好激动呢！让我们一起玩个游戏吧，用美棒按压</string>
     <string name="detection_activity_part_result_end">3~5秒，就会有奇迹发生哦~</string>
     <string name="detection_activity_count_score">综合分值</string>
-    
+
     <!-- 提示 -->
     <string name="tip_login_error_for_network">对不起,无法登录</string>
     <string name="tip_no_internet">当前没有可用的网络链接</string>
@@ -171,4 +171,9 @@
     <string name="soft_update_cancel">取消</string>
     <string name="soft_update_exception">连接服务器异常，请检查网络！</string>
     <string name="network_exception">您的网络出错啦！</string>
+    
+    <!-- 推荐 -->
+    <string name="title_activity_mrrecommend">MRRecommendActivity</string>
+    <string name="recommend_activity_title">若若推荐</string>
+
 </resources>

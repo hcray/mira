@@ -98,7 +98,8 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
-        </service>
+        </service>
+
         <activity
             android:name=".MRLoginActivity"
             android:label="@string/title_activity_login" >
@@ -143,9 +144,14 @@
             android:name=".MRDetectionActivity"
             android:label="@string/title_activity_mrdetection" >
         </activity>
-        
+
         <!-- 自动连接蓝牙的服务 -->
-        <service android:name="com.service.BluetoothService"/>
+        <service android:name="com.service.BluetoothService" />
+
+        <activity
+            android:name=".MRRecommendActivity"
+            android:label="@string/title_activity_mrrecommend" >
+        </activity>
     </application>
 
 </manifest>

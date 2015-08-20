@@ -792,7 +792,7 @@ public class MRIndexActivity extends Activity implements
 			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
 					startActivity(intent);
 					
 				}}, 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -806,7 +806,7 @@ public class MRIndexActivity extends Activity implements
 			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
 					startActivity(intent);
 					
 				}}, 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -820,7 +820,7 @@ public class MRIndexActivity extends Activity implements
 			msp.setSpan(new ClickableSpan(){
 				@Override
 				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRHistoryActivity.class);
+					Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
 					startActivity(intent);
 					
 				}}, 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
