@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -209,6 +210,8 @@ public class MRLoginActivity extends Activity {
 		@Override
 		public void onFinish() {// 计时完毕时触发
 			if(!isFinishing()){
+				btn_getCode.setBackgroundColor(Color.parseColor("#49c6bd"));
+				btn_getCode.setTextColor(Color.WHITE);
 				btn_getCode.setText(getString(R.string.login_activity_get_code));
 				btn_getCode.setClickable(true);
 			}
@@ -220,7 +223,9 @@ public class MRLoginActivity extends Activity {
 				time.cancel();
 			}else{
 				btn_getCode.setClickable(false);
-				btn_getCode.setText(millisUntilFinished / 1000 + "秒");
+				btn_getCode.setBackgroundColor(Color.parseColor("#555555"));
+				btn_getCode.setTextColor(Color.parseColor("#999999"));
+				btn_getCode.setText("重新获取"+millisUntilFinished / 1000 + "秒");
 			}
 		}
 	}
