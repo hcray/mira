@@ -111,4 +111,9 @@ public class MiraConstants {
 	 * Type=1:动态验证码 Type= 2：账户密码
 	 */
 	public final static String LOGIN_TYPE_PW = "2";
+	
+	/**
+	 * 推荐的序号
+	 */
+	public final static String recommend = "recommend";
 }

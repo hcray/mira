@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:background="#e4f3f2"
     android:orientation="vertical"
-    tools:context="${relativePackage}.${activityClass}" 
-    >
+    tools:context="${relativePackage}.${activityClass}" >
 
     <RelativeLayout
         android:id="@+id/recommend_title"
@@ -33,5 +32,163 @@
             android:text="@string/recommend_activity_title"
             android:textColor="@color/white" />
     </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="vertical"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/index_photo" />
+
+                <TextView
+                    android:id="@+id/recommend_activity_tv_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="【蜂蜜绿茶、菊花茶饮】"
+                    android:textColor="#81d8cf"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" >
+                
+                <ImageView 
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+	                android:background="@drawable/recommend_box"
+                    />
+                
+
+                <LinearLayout
+                    android:id="@+id/recommend_activity_ll_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/recommend_activity_tv_type"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/recommend_activity_type_title"
+                        android:textColor="#81d8cf"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/recommend_activity_tv_type_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="适合任何肤质"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                
+                <View
+                    android:id="@+id/login_activity_view1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="10dp"
+                    android:background="#bfe8e4" 
+                    android:layout_below="@id/recommend_activity_ll_type"
+                    >
+                </View>
+
+                <LinearLayout
+                    android:id="@+id/recommend_activity_ll_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical" 
+                    android:layout_below="@id/login_activity_view1"
+                    >
+
+                    <TextView
+                        android:id="@+id/recommend_activity_tv_method"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/recommend_activity_method_title"
+                        android:textColor="#81d8cf"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/recommend_activity_tv_method_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="用热水冲泡适量绿茶或菊花，放凉后加入蜂蜜即可"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                
+                <View
+                    android:id="@+id/login_activity_view2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="10dp"
+                    android:background="#bfe8e4" 
+                    android:layout_below="@id/recommend_activity_ll_method"
+                    >
+                </View>
+
+                <LinearLayout
+                    android:id="@+id/login_activity_explain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical" 
+                    android:layout_below="@id/login_activity_view2"
+                    >
+
+                    <TextView
+                        android:id="@+id/recommend_activity_tv_explain"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/recommend_activity_explain_title"
+                        android:textColor="#81d8cf"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/recommend_activity_tv_explain_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="绿茶和菊花茶都有养颜护肤、清热祛火的功效。绿茶含有丰富的茶多酚和维生素，不仅能够可以提神，还能养颜美容。菊花茶可以明目，降低眼部疲劳，不仅能喝，还能用热气熏蒸眼睛，缓解眼部的干涩疲劳"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

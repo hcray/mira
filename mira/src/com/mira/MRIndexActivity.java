@@ -179,6 +179,8 @@ public class MRIndexActivity extends Activity implements
 	 */
 	private TextView tvUitraviolet;
 	
+	private int recommendNum;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -784,50 +786,67 @@ public class MRIndexActivity extends Activity implements
 	
 	
 	private void setTestRecommend(){
-		int rd = new Random().nextInt(3)+1;
-		if(rd == 1){
-			SpannableString msp = new SpannableString("若若推荐：芦荟绿茶面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
-			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			msp.setSpan(new ClickableSpan(){
-				@Override
-				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
-					startActivity(intent);
-					
-				}}, 5, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			tvTodayTestRecommend.setText(msp);
-			tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
-			
-		}else if(rd ==2){
-			SpannableString msp = new SpannableString("若若推荐：野菊花控油面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
-			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			msp.setSpan(new ClickableSpan(){
-				@Override
-				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
-					startActivity(intent);
-					
-				}}, 5, 12, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			tvTodayTestRecommend.setText(msp);
-			tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
-			
-		}else{
-			SpannableString msp = new SpannableString("若若推荐：蜂蜜绿茶、菊花茶饮，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
-			msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			msp.setSpan(new ClickableSpan(){
-				@Override
-				public void onClick(View widget) {
-					Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
-					startActivity(intent);
-					
-				}}, 5, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			tvTodayTestRecommend.setText(msp);
-			tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
-			
+		recommendNum = new Random().nextInt(10)+1;
+		SpannableString msp = null;
+		String startStr = "若若推荐：";
+		String midStr = "";
+		String endStr = "，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~";
+		int startNum = 5;
+		int endNum = 5;
+		if (recommendNum == 1) {
+			midStr = getString(R.string.recommend_activity_name1);
+			endNum = startNum + midStr.length();
+		} else if (recommendNum == 2) {
+			midStr = getString(R.string.recommend_activity_name2);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 3) {
+			midStr = getString(R.string.recommend_activity_name3);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 4) {
+			midStr = getString(R.string.recommend_activity_name4);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 5) {
+			midStr = getString(R.string.recommend_activity_name5);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 6) {
+			midStr = getString(R.string.recommend_activity_name6);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 7) {
+			midStr = getString(R.string.recommend_activity_name7);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 8) {
+			midStr = getString(R.string.recommend_activity_name8);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 9) {
+			midStr = getString(R.string.recommend_activity_name9);
+			endNum = startNum + midStr.length();
+
+		} else if (recommendNum == 10) {
+			midStr = getString(R.string.recommend_activity_name10);
+			endNum = startNum + midStr.length();
 		}
+		
+		msp = new SpannableString(startStr + midStr + endStr);
+		msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		msp.setSpan(new ClickableSpan(){
+			@Override
+			public void onClick(View widget) {
+				Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
+				intent.putExtra(MiraConstants.recommend, recommendNum);
+				startActivity(intent);
+				
+			}}, startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		tvTodayTestRecommend.setText(msp);
+		tvTodayTestRecommend.setMovementMethod(LinkMovementMethod.getInstance());
+		
 		
 	}
 	
