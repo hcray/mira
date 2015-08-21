@@ -1,11 +1,15 @@
 package com.mira;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import org.apache.http.Header;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore.Images;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -28,9 +33,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bean.ResultBean;
 import com.common.StringUtils;
+import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.User;
 import com.utils.FileUtil;
+import com.utils.HttpKit;
 import com.utils.ImageUtils;
 import com.view.wheelView.JudgeDate;
 import com.view.wheelView.ScreenInfo;
@@ -407,6 +416,28 @@ public class MRUserInfoActivity extends Activity {
     	   Toast.makeText(this, "图像不存在，上传失败", Toast.LENGTH_SHORT).show();
        }
        if (protraitBitmap != null) {
+    	   try {
+			HttpKit.uploadImageByte(protraitFile, new JsonHttpResponseHandler() {
+					@Override
+					public void onSuccess(int statusCode, Header[] headers,
+							JSONObject response) {
+						Log.d("AppContext", "handler: " + response.toString());
+						Gson gson = new Gson();
+						ResultBean retBean = gson.fromJson(response.toString(), ResultBean.class);
+						//成功
+						if(retBean.getResultCode() == 0){
+							Toast.makeText(MRUserInfoActivity.this, "更换成功", Toast.LENGTH_SHORT).show();
+                            // 显示新头像
+							ivUserface.setImageBitmap(protraitBitmap);
+						}else {
+							Toast.makeText(MRUserInfoActivity.this, retBean.getMessage(), Toast.LENGTH_SHORT).show();
+						}
+					}
+				});
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+    	   
 
 //           try {
 //               OSChinaApi.updatePortrait(AppContext.getInstance()

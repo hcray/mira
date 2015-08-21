@@ -1,5 +1,8 @@
 package com.utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import com.common.MiraConstants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -169,19 +172,11 @@ public class HttpKit {
 		client.post(MiraConstants.uploadDetection, params, handler);
 	}
 	
-	public static void uploadImageByte(String UUID, String UserId,
-			int Position, String Humidity, String Temperature, String Water,
-			String Score, String Comment, AsyncHttpResponseHandler handler) {
+	public static void uploadImageByte(File image, AsyncHttpResponseHandler handler) throws FileNotFoundException {
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
-		params.add("UUID", UUID);
-		params.add("UserId", UserId);
-		params.add("Position", String.valueOf(Position));
-		params.add("Humidity", Humidity);
-		params.add("Temperature", Temperature);
-		params.add("Water", Water);
-		params.add("Score", Score);
-		params.add("Comment", Comment);
+//		params.put("UUID", UUID);
+		params.put("image", image);
 		client.post(MiraConstants.uploadImageByte, params, handler);
 	}
 	
