@@ -74,7 +74,7 @@ public class MRIndexActivity extends Activity implements
 	/**
 	 * 相机 
 	 */
-	private ImageButton ibCamera;
+	private ImageView ivCamera;
 	
 	/**
 	 * 日期选择
@@ -218,8 +218,8 @@ public class MRIndexActivity extends Activity implements
 
 		tvUitraviolet = (TextView) this.findViewById(R.id.index_activity_tv_uitraviolet_value);
 		
-		ibCamera = (ImageButton) this.findViewById(R.id.ib_camera);
-		ibCamera.setOnClickListener(new OnClickListener() {
+		ivCamera = (ImageView) this.findViewById(R.id.iv_camera);
+		ivCamera.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				try {

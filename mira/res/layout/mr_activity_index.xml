@@ -29,11 +29,12 @@
             android:text="@string/main_activity_tv_diary"
             android:textColor="@color/white" />
 
-        <ImageButton
-            android:id="@+id/ib_camera"
+        <ImageView
+            android:id="@+id/iv_camera"
             style="@style/table_more_set"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerInside"
             android:contentDescription="@string/activity_index_camera"
             android:src="@drawable/ico_camera" />
     </RelativeLayout>
