@@ -54,6 +54,7 @@ import com.bean.WeatherBean;
 import com.bll.MRTestBLL;
 import com.common.MiraConstants;
 import com.common.StringUtils;
+import com.common.ViewHolder;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.service.BluetoothService;
@@ -153,6 +154,8 @@ public class MRIndexActivity extends Activity implements
 	
 	private ImageView ivChinWaring;
 	
+	private LinearLayout llMyChanges;
+	
 	private LinearLayout llTestHistory;
 	
 	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
@@ -180,6 +183,17 @@ public class MRIndexActivity extends Activity implements
 	private TextView tvUitraviolet;
 	
 	private int recommendNum;
+	
+	private LinearLayout llImages;
+	
+	//历史记录
+	private ImageView myChangeImage0;
+	private ImageView myChangeImage1;
+	private ImageView myChangeImage2;
+	private TextView myChangeDate0;
+	private TextView myChangeDate1;
+	private TextView myChangeDate2;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -387,12 +401,45 @@ public class MRIndexActivity extends Activity implements
 			HttpKit.getWeather(city, handler);
 		}
 		
+		//我的美丽变化
+		llMyChanges = (LinearLayout) this.findViewById(R.id.index_activity_ll_my_changes);
+		llMyChanges.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), MRMyChangesActivity.class);
+				startActivity(intent);
+			}
+		});
+		
+		llImages = (LinearLayout) this.findViewById(R.id.index_activity_ll_my_changes_images);
+		
+		myChangeImage0 = (ImageView) this.findViewById(R.id.index_activity_my_change_image0);
+		myChangeImage1 = (ImageView) this.findViewById(R.id.index_activity_my_change_image1);
+		myChangeImage2 = (ImageView) this.findViewById(R.id.index_activity_my_change_image2);
+		
+		myChangeDate0 = (TextView) this.findViewById(R.id.index_activity_my_change_date0);
+		myChangeDate1 = (TextView) this.findViewById(R.id.index_activity_my_change_date1);
+		myChangeDate2 = (TextView) this.findViewById(R.id.index_activity_my_change_date2);
+		
+		List<String> imageList = getImagePathFromSD();
+		if(imageList.isEmpty()){
+			llImages.setVisibility(View.GONE);
+		}else{
+			if(imageList.size() > 2){
+				
+			} else if(imageList.size() > 1){
+				
+			} else {
+				
+			}
+		}
+		
 		//检测历史记录
 		llTestHistory = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_history);
 		llTestHistory.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MRHistoryActivity.class);
+				Intent intent = new Intent(v.getContext(), MRPastRecordsActivity.class);
 				startActivity(intent);
 			}
 		});
