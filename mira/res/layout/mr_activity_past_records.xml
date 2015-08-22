@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -63,14 +64,14 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/pastRecordRightBtn"
+            android:id="@+id/past_record_activity_btn_view_select"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginEnd="10dp"
             android:background="@color/white"
-            android:text="@string/pastRecord_activity_day_view"
+            android:text="@string/pastRecord_activity_week_view"
             android:textColor="#81d8c8"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -215,7 +216,10 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- 天视图 -->
+
         <LinearLayout
+            android:id="@+id/past_records_activity_ll_day_view"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -423,6 +427,27 @@
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
+
+        <!-- 周视图 -->
+
+        <LinearLayout
+            android:id="@+id/past_records_activity_ll_week_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" 
+            android:visibility="gone"
+            >
+
+            <com.view.LineCharView
+                android:id="@+id/past_records_activity_lcv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android_custom:interval="80dp"
+                android_custom:xytextcolor="#aaaaaa"
+                android_custom:xytextsize="12sp" />
         </LinearLayout>
     </LinearLayout>
 

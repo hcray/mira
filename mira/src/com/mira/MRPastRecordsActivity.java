@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +22,12 @@ public class MRPastRecordsActivity extends Activity {
 	private TextView tvMonthTitle;
 	
 	private LinearLayout backbtn;
+	
+	private Button btnViewSelect;
+	
+	private LinearLayout llDayView;
+
+	private LinearLayout llWeekView;
 	
 	private DatePicker prDp;
 	
@@ -34,6 +41,10 @@ public class MRPastRecordsActivity extends Activity {
 		tvYearTitle = (TextView) this.findViewById(R.id.pastRecord_activity_tv_year_title);
 
 		tvMonthTitle = (TextView) this.findViewById(R.id.pastRecord_activity_tv_month_title);
+		
+		llDayView = (LinearLayout) this.findViewById(R.id.past_records_activity_ll_day_view);
+		
+		llWeekView = (LinearLayout) this.findViewById(R.id.past_records_activity_ll_week_view);
 		
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		int month = Calendar.getInstance().get(Calendar.MONTH);
@@ -73,5 +84,27 @@ public class MRPastRecordsActivity extends Activity {
 				MRPastRecordsActivity.this.finish();
 			}
 		});
+		
+		btnViewSelect = (Button) this.findViewById(R.id.past_record_activity_btn_view_select);
+		btnViewSelect.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				String dayView = getString(R.string.pastRecord_activity_day_view);
+				String weekView = getString(R.string.pastRecord_activity_week_view);
+				
+				String curText = (String) btnViewSelect.getText();
+				//点击天视图
+				if(dayView.equalsIgnoreCase(curText)){
+					btnViewSelect.setText(weekView);
+					llDayView.setVisibility(View.GONE);
+					llWeekView.setVisibility(View.VISIBLE);
+
+				}else{
+					btnViewSelect.setText(dayView);
+					llDayView.setVisibility(View.VISIBLE);
+					llWeekView.setVisibility(View.GONE);
+				}
+			}
+		});
+		
 	}
 }
