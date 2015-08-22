@@ -71,7 +71,10 @@
     <string name="gradesRule_activity_rule_content4">4.记录我的护肤品得积分</string>
     <string name="title_activity_mruser_info">MRUserInfoActivity</string>
     <string name="title_activity_mrmy_changes">MRMyChangesActivity</string>
+    <!-- 我的变化 -->
     <string name="myChanges_activity_title">我的变化</string>
+    <string name="my_changes_activity_del">删除按钮</string>
+    <!-- 个人资料 -->
     <string name="userInfo_activity_title">资料</string>
     <string name="userInfo_activity_user_pic">头像</string>
     <string name="userInfo_activity_user_sign">个性签名</string>

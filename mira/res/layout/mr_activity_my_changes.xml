@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e4f3f2"
     tools:context="${relativePackage}.${activityClass}" >
 
     <RelativeLayout
@@ -17,8 +18,9 @@
             android:onClick="back"
             android:visibility="visible" >
 
-            <ImageView style="@style/table_back_image" 
-                android:contentDescription="@string/btn_back_value"/>
+            <ImageView
+                style="@style/table_back_image"
+                android:contentDescription="@string/btn_back_value" />
         </LinearLayout>
 
         <TextView
@@ -29,40 +31,50 @@
             android:layout_centerInParent="true"
             android:text="@string/myChanges_activity_title"
             android:textColor="@color/white" />
-         
-         <ImageButton
-            android:id="@+id/myChanges_share"
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            style="@style/table_more_set"
-            android:src="@drawable/share"
-            android:contentDescription="@string/myChanges_activity_share_desc" />
+            android:layout_height="fill_parent" 
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            >
+
+            <ImageView
+                android:id="@+id/my_changes_activity_iv_del"
+                style="@style/table_more_set"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/my_changes_activity_del"
+                android:scaleType="centerInside"
+                android:src="@drawable/ico_del" />
+        </LinearLayout>
     </RelativeLayout>
-    
-     <LinearLayout
+
+    <LinearLayout
         android:id="@+id/myChanges_activity_lv1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/myChanges_title"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:orientation="horizontal" 
-        android:gravity="end">
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:visibility="gone" >
 
         <TextView
             android:id="@+id/completeInfo_activity_tv_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textSize="18sp"
-            android:text="@string/myChanges_activity_lately" />
+            android:text="@string/myChanges_activity_lately"
+            android:textSize="18sp" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:contentDescription="@string/myChanges_activity_lately" >
+            android:contentDescription="@string/myChanges_activity_lately"
+            android:orientation="horizontal" >
 
             <RadioButton
                 android:id="@+id/radioMale"
@@ -80,12 +92,16 @@
             </RadioButton>
         </RadioGroup>
     </LinearLayout>
-    
-	<GridView
+
+    <GridView
         android:id="@+id/myChanges_gridView"
-        android:layout_below="@id/myChanges_activity_lv1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/myChanges_activity_lv1"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:cacheColorHint="@android:color/transparent"
         android:clipChildren="true"
         android:gravity="center"
@@ -95,23 +111,5 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="3dip" >
     </GridView>
-    
-	<RelativeLayout
-        android:id="@+id/myChanges_bottom_rly"
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:layout_alignParentBottom="true"
-        android:clickable="true" 
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/myChange_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:text="@string/myChanges_activity_setting"
-            />
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.mira;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -11,7 +12,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.adapter.ImageGridAdapter;
 import com.gif.JpgToGif;
 
 public class MRMyChangesActivity extends Activity {
+	
+	private final static String tag = "MRMyChangesActivity";
 
 	private LinearLayout backbtn;
 
@@ -37,9 +40,14 @@ public class MRMyChangesActivity extends Activity {
 	
 	
 	/**
-	 * 分享按钮 
+	 * 拍照按钮 
 	 */
-	private ImageButton ibShare;
+//	private ImageView iv_camera;
+	
+	/**
+	 * 删除按钮
+	 */
+	private ImageView ivDel;
 	
 	/**
 	 * 设置按钮
@@ -55,11 +63,27 @@ public class MRMyChangesActivity extends Activity {
 		
 		jpgToGif = new JpgToGif();
 		
-		ibShare = (ImageButton) this.findViewById(R.id.myChanges_share);
+//		iv_camera = (ImageView) this.findViewById(R.id.my_changes_activity_iv_camera);
 		
-		ibSetting = (Button) this.findViewById(R.id.myChange_setting);
+//		ibSetting = (Button) this.findViewById(R.id.myChange_setting);
 
 		mGirdView = (GridView) this.findViewById(R.id.myChanges_gridView);
+		
+		ivDel = (ImageView) this.findViewById(R.id.my_changes_activity_iv_del);
+		ivDel.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				List<String> selectItem = mAdapter.mSelectedImage;
+				int size = selectItem.size();
+				for (String path : selectItem) {
+					File file = new File(path);
+					file.delete();
+					selectItem.remove(path);
+				}
+				initGridView();
+				Toast.makeText(v.getContext(), "删除了" + size + "张照片",Toast.LENGTH_SHORT).show();
+			}
+		});
+		
 
 		backbtn = (LinearLayout) this.findViewById(R.id.myChangesBackbtn);
 		backbtn.setOnClickListener(new View.OnClickListener() {
@@ -68,46 +92,23 @@ public class MRMyChangesActivity extends Activity {
 			}
 		});
 		initGridView();
-
 		
-		ibShare.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				int checkedItemCount = mGirdView.getCheckedItemCount();
-				Toast.makeText(v.getContext(), "选中了" + checkedItemCount +"张图片", Toast.LENGTH_SHORT).show();
-				/*
-				String gifSavePath = Environment.getExternalStorageDirectory()
-		                    .getAbsolutePath() + "/mira/gif/";
-		            File gifSavedir = new File(gifSavePath);
-		            if (!gifSavedir.exists()) {
-		            	gifSavedir.mkdirs();
-		            }
-		            
-		            String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		            String gifFileName = "mira_" + timeStamp + ".gif";// 照片命名
-		            
-		            String imgPath = Environment.getExternalStorageDirectory()
-		    				.getAbsolutePath() + "/mira/Camera/";
-		            
-		            String[] paths = new String[mImgs.size()];
-		            for (int i = 0; i < mImgs.size(); i++) {
-		            	paths[i] = imgPath + mImgs.get(i);
-		            }
-		            
-		            jpgToGif.jpgToGif(paths, gifSavePath + gifFileName);
-				*/
-			}
-		});
+//		iv_camera.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				//开启照相机
+//				
+//			}
+//		});
 		
-		ibSetting.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+//		ibSetting.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
 	}
 
 	private void initGridView() {
@@ -124,6 +125,9 @@ public class MRMyChangesActivity extends Activity {
 				return false;
 			}
 		}));
+		
+		//最后拍照的放到前面
+		Collections.reverse(mImgs);
 		/**
 		 * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
 		 */
