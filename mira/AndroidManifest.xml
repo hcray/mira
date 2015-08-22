@@ -152,6 +152,10 @@
             android:name=".MRRecommendActivity"
             android:label="@string/title_activity_mrrecommend" >
         </activity>
+        <activity
+            android:name=".MRPastRecordsActivity"
+            android:label="@string/title_activity_mrpast_records" >
+        </activity>
     </application>
 
 </manifest>

@@ -91,7 +91,7 @@ public class MRMyActivity extends Activity {
 		rlHistory = (RelativeLayout) this.findViewById(R.id.my_activity_rl_history);
 		rlHistory.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MRHistoryActivity.class);
+				Intent intent = new Intent(v.getContext(), MRPastRecordsActivity.class);
 				startActivity(intent);
 			}
 		});

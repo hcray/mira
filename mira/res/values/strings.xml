@@ -171,62 +171,60 @@
     <string name="soft_update_cancel">取消</string>
     <string name="soft_update_exception">连接服务器异常，请检查网络！</string>
     <string name="network_exception">您的网络出错啦！</string>
-    
+
     <!-- 推荐 -->
     <string name="title_activity_mrrecommend">MRRecommendActivity</string>
     <string name="recommend_activity_title">若若推荐</string>
     <string name="recommend_activity_type_title">【适用肤质】</string>
     <string name="recommend_activity_method_title">【制作方法】</string>
     <string name="recommend_activity_explain_title">【若若说明】</string>
-    
     <string name="recommend_activity_name1">香蕉面膜</string>
     <string name="recommend_activity_type1">干性、敏感性皮肤</string>
     <string name="recommend_activity_method1">将香蕉半只，去皮捣烂，掺入适量的牛奶，调成厚厚的糊状，敷在脸上，15－20分钟后用温水洗去</string>
     <string name="recommend_activity_explain1">香蕉是热带地区常见的水果，它的营养价值相当高，香蕉富含蛋白质、淀粉质、维生素及矿物质，特别是它含有丰富的钾，对于心脏血管疾病的人是一种非常好的食品。对于肌肤来说，香蕉也是一种很好的面膜材料，它有细嫩皮肤、补水保湿，去除痤疮及雀斑等功效，蕉皮素还能抑制真菌和细菌的滋生，非常适合敏感肌人群</string>
-   
     <string name="recommend_activity_name2">蜂蜜番茄面膜</string>
     <string name="recommend_activity_type2">适用于任何肤质（敏感皮肤除外）</string>
     <string name="recommend_activity_method2">先将番茄压烂取汁，加入适量蜂蜜和少许面粉调成膏状，涂于面部保持20－30分钟，具有使皮肤滋润、白嫩、柔软的作用，长期使用还具有祛斑除皱和治疗皮肤痤疮等功能</string>
     <string name="recommend_activity_explain2">番茄中的番茄红素是一种超强力抗氧化剂，比类胡萝卜素和维生素E还要强大，用来养护皮肤是一种非常好的选择。但要注意番茄也含有较多的AHA酸，可能不利于皮肤敏感人士，因此皮肤敏感者慎用</string>
-   
     <string name="recommend_activity_name3">蜂蜜牛奶滋养面膜</string>
     <string name="recommend_activity_type3">干性皮肤</string>
     <string name="recommend_activity_method3">取新鲜的酸奶100g，加上两茶匙蜂蜜，搅拌均匀后敷在脸上。多余的材料，还可以敷在手背和手臂上，10分钟后洗净即可。每周一到两次，夜间效果更好</string>
     <string name="recommend_activity_explain3">酸奶中含有大量益生菌，其中的乳酸能软化皮肤，有很强的补水、锁水效果，能调节肌肤的水平衡。蜂蜜滋养度高，能增强细胞活力，同时蜂蜜的密封性很强，可以很好地保护皮肤中的水分。酸奶和蜂蜜可称得上是黄金搭配，一起使用，补水、锁水的功效将成倍增长</string>
-   
     <string name="recommend_activity_name4">芦荟绿茶面膜</string>
     <string name="recommend_activity_type4">油性皮肤</string>
     <string name="recommend_activity_method4">新鲜绿茶晒干后，制成粉备用（也可以用现成的绿茶粉），芦荟捣成糊状，加入绿茶粉和纯净水，充分搅拌均匀。使用时，可以将糊状物直接均匀地涂在脸上。15分钟后洗去面膜，轻轻拍打或者按摩皮肤以充分吸收有效成分，然后正常洁面</string>
     <string name="recommend_activity_explain4">芦荟中的氨基酸、有机酸、多糖和微量元素，是人体皮肤内起保湿作用的角蛋白所需要的成分。做面膜时，皮肤能够吸收这些成分，一定程度上完成受损肌肤的修复，加强皮肤的保湿功能，因此用芦荟做成的面膜有极强的补水锁水效果。同时芦荟中含有的维生素C、维生素E等成分，能够有效地清除自由基，延缓衰老，抑制黑色素。绿茶因为富含维生素C、类黄酮等成分，已经越来越被护肤专家们看重，在对抗自由基方面，绿茶有得天独厚的强大功效</string>
-    
     <string name="recommend_activity_name5">野菊花控油面膜</string>
     <string name="recommend_activity_type5">油性皮肤</string>
     <string name="recommend_activity_method5">准备野菊花50克，新鲜柠檬半个，面膜纸一张，纯净水适量。野菊花洗干净后，加纯净水文火煮五分钟，取野菊花水冷却备用。柠檬洗干净后取汁，加入野菊花汁，均匀搅拌。使用时，将面膜纸浸在汁液中，尽量浸透后敷面。15分钟后即可将面膜纸取下来，用手轻轻拍打或按摩面部，促进吸收。取下来的面膜纸可以敷在手臂上。每周一到两次</string>
     <string name="recommend_activity_explain5">野菊花中含有氨基酸和抗氧化成分，能够净化肌肤，去除多余的油脂。柠檬含有高达4%的有机酸，清洁和杀菌的作用都很突出，也能有效防止肌肤中的色素沉淀。同时还能平衡脸部的酸碱度，舒爽宜人。野菊花还是清热解毒的常用中药材，临床上医生常用来内服或外用治疗痘痘、各种脓肿等，同时也是很好的护肤品，具有很强的吸油功效</string>
-    
     <string name="recommend_activity_name6">蜂蜜绿茶、菊花茶饮</string>
     <string name="recommend_activity_type6">适合任何肤质</string>
     <string name="recommend_activity_method6">用热水冲泡适量绿茶或菊花，放凉后加入蜂蜜即可</string>
     <string name="recommend_activity_explain6">绿茶和菊花茶都有养颜护肤、清热祛火的功效。绿茶含有丰富的茶多酚和维生素，不仅能够可以提神，还能养颜美容。菊花茶可以明目，降低眼部疲劳，不仅能喝，还能用热气熏蒸眼睛，缓解眼部的干涩疲劳。蜂蜜又有滋润养颜的功效，还能效缓解便秘哦</string>
-    
     <string name="recommend_activity_name7">红酒美白面膜</string>
     <string name="recommend_activity_type7">适合任何肤质（对酒精过敏的敏感肌肤除外）</string>
     <string name="recommend_activity_method7">红酒20毫升、蜂蜜2勺、珍珠粉少许混合，涂于脸上，约5分钟后用温水洗净。这款面膜最好晚上使用，因为皮肤死皮祛除后遭受日晒，反而会加速皮肤得老化</string>
     <string name="recommend_activity_explain7">这是一款多功能的面膜。红酒中的葡萄籽富含营养物质“多酚”，其抗衰老能力非常强，维生素E的50倍，维生素C的25倍。红酒中低浓度得果酸还有促进角质新陈代谢,淡化色素的功效,能让肤质更白皙、更光滑。而蜂蜜能保湿和滋养肌肤，珍珠粉更有除老化的角质和黑头，美白祛痘的功效</string>
-   
     <string name="recommend_activity_name8">茶叶眼膜</string>
     <string name="recommend_activity_type8">适合任何肤质（敏感皮肤除外）</string>
     <string name="recommend_activity_method8">将喝剩的茶叶用纱布包起，或用泡过的茶叶包（不能用红茶），将水分稍微挤掉，敷在眼睛上，微闭双眼，可以消除眼睛疲劳、镇定因熬夜而充血的眼睛</string>
     <string name="recommend_activity_explain8">茶叶中的有机成分能够有效去除黑眼圈和消除眼部水肿，但要注意，普通的绿茶包可能含有添加成分，如果能用天然茶叶效果更佳。最好是选用绿茶，不能使用红茶</string>
-    
     <string name="recommend_activity_name9">银耳眼膜</string>
     <string name="recommend_activity_type9">适合任何肤质</string>
     <string name="recommend_activity_method9">银耳煮成浓汁，放入冰箱冰镇，每次取3到5滴涂于眼角、眼周，每日一次效果最佳</string>
     <string name="recommend_activity_explain9">银耳里面含有大量的植物胶质，它对细纹和干肤可是有立竿见影的效果 哦，能立刻让皮肤水润起来，还能美白去皱、增强眼部皮肤弹性，弹弹弹，弹走鱼尾纹</string>
-    
     <string name="recommend_activity_name10">鸡蛋清消炎面膜</string>
     <string name="recommend_activity_type10">适合任何肤质（敏感皮肤除外）</string>
     <string name="recommend_activity_method10">将一个鸡蛋清调散，加入面粉搅匀后敷于过敏处</string>
     <string name="recommend_activity_explain10">当你尝试了一款新产品而悲剧地过敏了，此面膜就是你的救星。蛋清中的蛋白质氨基酸的组成与人体最接近，生物价也最高，它还有清热解毒、消炎，保护皮肤和增强皮肤免疫功能的功效</string>
+    <string name="title_activity_mrpast_records">MRPastRecordsActivity</string>
+    
+    <!-- 历史记录 -->
+    <string name="pastRecord_activity_title">历史记录</string>
+    <string name="pastRecord_activity_day_view">查看一天</string>
+    <string name="pastRecord_activity_week_view">查看一周</string>
+    <string name="pastRecord_activity_year">年</string>
+    <string name="pastRecord_activity_month">月</string>
 
 </resources>
