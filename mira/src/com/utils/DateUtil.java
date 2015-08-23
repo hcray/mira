@@ -49,6 +49,22 @@ public class DateUtil {
 		cal.add(Calendar.DAY_OF_YEAR, day);
 		return cal.getTimeInMillis();
 	}
+	
+	/**
+	 * 获得跟date比偏移了day的0点的时间
+	 * @param day 跟今天比偏移的天数，可以是负数，默认加
+	 * @return
+	 */
+	public static long getTimesMorning(Date date, int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.DAY_OF_YEAR, day);
+		return cal.getTimeInMillis();
+	}
 
 	/**
 	 * 获得当天24点时间
@@ -71,6 +87,22 @@ public class DateUtil {
 	 */
 	public static long getTimesNight(int day) {
 		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 24);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.DAY_OF_YEAR, day);
+		return cal.getTimeInMillis();
+	}
+	
+	/**
+	 * 获得跟date比偏移了day的24点时间
+	 * @param day 跟今天比偏移的天数 ,可以是负数,默认加
+	 * @return
+	 */
+	public static long getTimesNight(Date date, int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
 		cal.set(Calendar.HOUR_OF_DAY, 24);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MINUTE, 0);

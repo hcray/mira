@@ -2,17 +2,14 @@ package com.mira;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.bll.MRTestBLL;
-import com.common.MiraConstants;
-import com.model.TestModel;
-import com.utils.DateUtil;
-
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +23,12 @@ import cn.mira.datepicker.interfaces.OnDateSelected;
 import cn.mira.datepicker.interfaces.OnMonthChange;
 import cn.mira.datepicker.interfaces.OnYearChange;
 import cn.mira.datepicker.views.DatePicker;
+
+import com.bll.MRTestBLL;
+import com.common.MiraConstants;
+import com.model.TestModel;
+import com.utils.DateUtil;
+import com.view.LineCharView;
 
 public class MRPastRecordsActivity extends Activity {
 	
@@ -88,6 +91,11 @@ public class MRPastRecordsActivity extends Activity {
 	private TextView tvProgressTime5;
 	private TextView tvProgressScore5;
 
+	/**
+	 * 历史记录
+	 */
+	private LineCharView lcv;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,6 +132,7 @@ public class MRPastRecordsActivity extends Activity {
 		tvProgressTime5 = (TextView) this.findViewById(R.id.past_record_activity_tv_progress_time5);
 		tvProgressScore5 = (TextView) this.findViewById(R.id.past_record_activity_tv_progress_score5);
 		
+		lcv = (LineCharView) findViewById(R.id.past_records_activity_lcv);
 		
 		llDayView = (LinearLayout) this.findViewById(R.id.past_records_activity_ll_day_view);
 		
@@ -139,28 +148,48 @@ public class MRPastRecordsActivity extends Activity {
 		tabHead.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				//选中了当前的时间
-				showDayHistory(curSelectDate, MiraConstants.PART_HEAD);
+				if(dayViewFlag){
+					showDayHistory(curSelectDate, MiraConstants.PART_HEAD);
+				}else{
+					showWeekHistory(curSelectDate, MiraConstants.PART_HEAD);
+				}
 			}
 		});
 		
 		tabFace = (LinearLayout) this.findViewById(R.id.past_record_activity_ll_day_tab_face);
 		tabFace.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				showDayHistory(curSelectDate, MiraConstants.PART_FACE);
+				if(dayViewFlag){
+					showDayHistory(curSelectDate, MiraConstants.PART_FACE);
+				}else{
+					showWeekHistory(curSelectDate, MiraConstants.PART_FACE);
+				}
 			}
 		});
 		
 		tabNose = (LinearLayout) this.findViewById(R.id.past_record_activity_ll_day_tab_nose);
 		tabNose.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				showDayHistory(curSelectDate, MiraConstants.PART_NOSE);
+				if(dayViewFlag){
+					showDayHistory(curSelectDate, MiraConstants.PART_NOSE);
+					
+				}else{
+					showWeekHistory(curSelectDate, MiraConstants.PART_NOSE);
+					
+				}
 			}
 		});
 		
 		tabChin = (LinearLayout) this.findViewById(R.id.past_record_activity_ll_day_tab_chin);
 		tabChin.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				showDayHistory(curSelectDate, MiraConstants.PART_CHIN);
+				if(dayViewFlag){
+					showDayHistory(curSelectDate, MiraConstants.PART_CHIN);
+					
+				}else{
+					showWeekHistory(curSelectDate, MiraConstants.PART_CHIN);
+					
+				}
 			}
 		});
 		
@@ -176,7 +205,7 @@ public class MRPastRecordsActivity extends Activity {
 					showDayHistory(date.get(0), MiraConstants.PART_HEAD);
 
 				} else {
-					showWeekHistory(date.get(0));
+					showWeekHistory(date.get(0), MiraConstants.PART_HEAD);
 
 				}
 			}});
@@ -213,18 +242,18 @@ public class MRPastRecordsActivity extends Activity {
 				
 				String curText = (String) btnViewSelect.getText();
 				//点击天视图
-				if(dayView.equalsIgnoreCase(curText)){
+				if (dayView.equalsIgnoreCase(curText)) {
 					btnViewSelect.setText(weekView);
-					llDayView.setVisibility(View.GONE);
-					llWeekView.setVisibility(View.VISIBLE);
-					dayViewFlag = false;
-					
-				}else{
-					btnViewSelect.setText(dayView);
 					llDayView.setVisibility(View.VISIBLE);
 					llWeekView.setVisibility(View.GONE);
 					dayViewFlag = true;
-					
+
+				} else {
+					btnViewSelect.setText(dayView);
+					llDayView.setVisibility(View.GONE);
+					llWeekView.setVisibility(View.VISIBLE);
+					dayViewFlag = false;
+
 				}
 			}
 		});
@@ -255,10 +284,10 @@ public class MRPastRecordsActivity extends Activity {
 	}
 	
 	/**
-	 * 天视图显示数据
-	 * @param date
+	 * 切换显示的部位
+	 * @param partType
 	 */
-	private void showDayHistory(String date, int partType){
+	private void switchTab(int partType){
 		Drawable btnOn = getResources().getDrawable(R.drawable.btn_on);
 		Drawable btnOff = getResources().getDrawable(R.drawable.btn_off);
 		switch (partType) {
@@ -294,7 +323,14 @@ public class MRPastRecordsActivity extends Activity {
 		default:
 			break;
 		}
-		
+	}
+	
+	/**
+	 * 天视图显示数据
+	 * @param date
+	 */
+	private void showDayHistory(String date, int partType){
+		switchTab(partType);
 		resetDatView();
 		//选中了当前的时间
 		if(date != null){
@@ -381,7 +417,29 @@ public class MRPastRecordsActivity extends Activity {
 	 * 周视图显示数据
 	 * @param date
 	 */
-	private void showWeekHistory(String date){
+	private void showWeekHistory(String date, int partType){
+		switchTab(partType);
+		//重置视图 //TODO
 		
+		Date curDate;
+		try {
+			curDate = sdf.parse(curSelectDate);
+			int j = 6;
+			List<String> x_coords = new ArrayList<String>();
+			List<Integer> x_coord_values = new ArrayList<Integer>();
+			
+			for (int i = 0; i < 7; i++) {
+				x_coords.add(String.valueOf(i + 1));
+				long startTime = DateUtil.getTimesMorning(curDate, -j);
+				long endTime = DateUtil.getTimesNight(curDate, -j);
+				j--;
+				int value = MRTestBLL.getTestMax(partType, startTime, endTime, MRPastRecordsActivity.this);
+				x_coord_values.add(value);
+			}
+			lcv.setBgColor(Color.WHITE);
+			lcv.setValue(x_coords, x_coord_values);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 }
