@@ -43,20 +43,24 @@
             android:value="kHVC8pGEtCzymBTskOGQqGqD" />
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".MRWelcomeActivity"
+            android:name="com.AppStart"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MRWelcomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".MRMainActivity"
