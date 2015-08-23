@@ -118,6 +118,7 @@ public class AppContext extends BaseApplication {
 		editor.putString("user.account", user.getAccount());
 		editor.putString("user.birthday", user.getBirthday());
 		editor.putString("user.userId", user.getUserId());
+		editor.putString("user.face", user.getFace());
 		
 		editor.putBoolean("user.isLogin", login);
 		editor.commit();
@@ -136,6 +137,8 @@ public class AppContext extends BaseApplication {
 		editor.putString("user.nickName", user.getNickName());
 		editor.putInt("user.sex", user.getSex());
 		editor.putString("user.birthday", user.getBirthday());
+		editor.putString("user.face", user.getFace());
+		
 		editor.commit();
 		User curUser = getLoginUser();
 		Log.d("AppContext", getAppId());
@@ -156,12 +159,14 @@ public class AppContext extends BaseApplication {
 		String account = preferences.getString("user.account", user.getAccount());
 		String birthday = preferences.getString("user.birthday", user.getBirthday());
 		String userId = preferences.getString("user.userId", user.getUserId());
+		String face = preferences.getString("user.face", user.getUserId());
 
 		user.setAccount(account);
 		user.setNickName(nickName);
 		user.setSex(sex);
 		user.setBirthday(birthday);
 		user.setUserId(userId);
+		user.setFace(face);
 		return user;
 	}
 	

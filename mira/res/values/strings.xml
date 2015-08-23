@@ -225,12 +225,16 @@
     <string name="recommend_activity_method10">将一个鸡蛋清调散，加入面粉搅匀后敷于过敏处</string>
     <string name="recommend_activity_explain10">当你尝试了一款新产品而悲剧地过敏了，此面膜就是你的救星。蛋清中的蛋白质氨基酸的组成与人体最接近，生物价也最高，它还有清热解毒、消炎，保护皮肤和增强皮肤免疫功能的功效</string>
     <string name="title_activity_mrpast_records">MRPastRecordsActivity</string>
-    
+
     <!-- 历史记录 -->
     <string name="pastRecord_activity_title">历史记录</string>
     <string name="pastRecord_activity_day_view">查看一天</string>
     <string name="pastRecord_activity_week_view">查看一周</string>
     <string name="pastRecord_activity_year">年</string>
     <string name="pastRecord_activity_month">月</string>
+    <string name="title_activity_mrguide">MRGuideActivity</string>
+    
+    <!-- 引导页 -->
+    <string name="guid3_btn_login_value">马上登录</string>
 
 </resources>

@@ -439,6 +439,7 @@ public class MRUserInfoActivity extends Activity {
 					@Override
 					public void onFailure(int statusCode, Header[] headers,
 							Throwable throwable, JSONObject errorResponse) {
+						Toast.makeText(MRUserInfoActivity.this, "更换头像失败", Toast.LENGTH_SHORT).show();
 						Log.d("AppContext", "handler: onFailure statusCode " + statusCode);
 						Log.d("AppContext", "handler: onFailure headers " + headers.toString());
 						Log.d("AppContext", "handler: onFailure errorResponse " + errorResponse.toString());

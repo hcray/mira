@@ -2,7 +2,7 @@ package com.model;
 
 public class User {
 	/**
-	 * 头像的图片文件名
+	 * 头像地址
 	 */
 	private String face;
 	

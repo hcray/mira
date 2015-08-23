@@ -317,6 +317,7 @@ public class MRLoginActivity extends Activity {
 				user.setNickName(retBean.getNickName());
 				user.setBirthday(retBean.getBirthday());
 				user.setSex(retBean.getSex());
+				user.setFace(retBean.getPhoto());
 				AppContext.getInstance().saveUserInfo(user);
 				//跳转主页面
 	    		Intent intent = new Intent(MRLoginActivity.this, MRMainActivity.class);

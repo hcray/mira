@@ -204,10 +204,10 @@ public class HttpKit {
 			AsyncHttpResponseHandler handler) throws FileNotFoundException {
 		AsyncHttpClient client = new AsyncHttpClient();
 		RequestParams params = new RequestParams();
-		params.put("UUID", UUID);
-		params.put("UserId", UserId);
+		//params.put("UUID", UUID);
+		//params.put("UserId", UserId);
 		params.put("image", image);
-		client.post(MiraConstants.uploadHead, params, handler);
+		client.post(MiraConstants.uploadHead+"?UUID="+UUID+"&UserId="+UserId, params, handler);
 	}
 	
 	/**
