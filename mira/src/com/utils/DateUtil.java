@@ -65,6 +65,43 @@ public class DateUtil {
 		cal.add(Calendar.DAY_OF_YEAR, day);
 		return cal.getTimeInMillis();
 	}
+	
+	/**
+	 * 获得跟date比偏移了day的日期
+	 * @param day 跟今天比偏移的天数，可以是负数，默认加
+	 * @return
+	 */
+	public static String getMonthDay(Date date, int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.DAY_OF_YEAR, day);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+		
+		return month + "-" + dayOfMonth;
+	}
+	
+	/**
+	 * 获得跟今天比偏移了day的日期
+	 * @param day 跟今天比偏移的天数，可以是负数，默认加
+	 * @return
+	 */
+	public static String getMonthDay(int day) {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.DAY_OF_YEAR, day);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+		
+		return month + "-" + dayOfMonth;
+	}
 
 	/**
 	 * 获得当天24点时间

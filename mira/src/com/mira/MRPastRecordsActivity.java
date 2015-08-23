@@ -429,7 +429,7 @@ public class MRPastRecordsActivity extends Activity {
 			List<Integer> x_coord_values = new ArrayList<Integer>();
 			
 			for (int i = 0; i < 7; i++) {
-				x_coords.add(String.valueOf(i + 1));
+				x_coords.add(DateUtil.getMonthDay(curDate, -j));
 				long startTime = DateUtil.getTimesMorning(curDate, -j);
 				long endTime = DateUtil.getTimesNight(curDate, -j);
 				j--;
