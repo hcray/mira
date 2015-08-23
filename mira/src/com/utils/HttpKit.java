@@ -193,6 +193,44 @@ public class HttpKit {
 	
 	
 	/**
+	 * 上传头像
+	 * @param image
+	 * @param UUID  UUID
+	 * @param UserId UserId
+	 * @param handler handler
+	 * @throws FileNotFoundException
+	 */
+	public static void uploadHeadPic(File image, String UUID, String UserId,
+			AsyncHttpResponseHandler handler) throws FileNotFoundException {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.put("UUID", UUID);
+		params.put("UserId", UserId);
+		params.put("image", image);
+		client.post(MiraConstants.uploadHead, params, handler);
+	}
+	
+	/**
+	 * 版本更新接口
+	 * @param UUID String	是	设备号
+	 * @param UserId String	是	用户编号
+	 * @param Type Int	是	安卓：1 IOS：2 塞班：3
+	 * @param Id Int	是	当前的版本编号
+	 * @param handler
+	 */
+	public static void versionDetection(String UUID, String UserId, int Type, int Id,
+			AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UserId", UserId);
+		params.add("Type", String.valueOf(Type));
+		params.add("Id", String.valueOf(Id));
+		client.post(MiraConstants.versionDetection, params, handler);
+	}
+	
+	
+	/**
 	 * 获取城市的天气
 	 * @param cityName 城市名称
 	 * @param handler 

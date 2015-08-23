@@ -417,7 +417,9 @@ public class MRUserInfoActivity extends Activity {
        }
        if (protraitBitmap != null) {
     	   try {
-			HttpKit.uploadImageByte(protraitFile, new JsonHttpResponseHandler() {
+    		String uuid = AppContext.getInstance().getAppId();
+    		String userId = AppContext.getInstance().getLoginUser().getUserId();
+			HttpKit.uploadHeadPic(protraitFile, uuid, userId, new JsonHttpResponseHandler() {
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							JSONObject response) {
@@ -433,6 +435,17 @@ public class MRUserInfoActivity extends Activity {
 							Toast.makeText(MRUserInfoActivity.this, retBean.getMessage(), Toast.LENGTH_SHORT).show();
 						}
 					}
+
+					@Override
+					public void onFailure(int statusCode, Header[] headers,
+							Throwable throwable, JSONObject errorResponse) {
+						Log.d("AppContext", "handler: onFailure statusCode " + statusCode);
+						Log.d("AppContext", "handler: onFailure headers " + headers.toString());
+						Log.d("AppContext", "handler: onFailure errorResponse " + errorResponse.toString());
+						super.onFailure(statusCode, headers, throwable, errorResponse);
+					}
+					
+					
 				});
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

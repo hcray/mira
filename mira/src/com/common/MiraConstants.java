@@ -73,6 +73,16 @@ public class MiraConstants {
 	public final static String uploadNotice = baseUrl + "/api/User/UploadNotice";
 	
 	/**
+	 * 上传头像
+	 */
+	public final static String uploadHead = baseUrl + "/api/User/UploadHead";
+
+	/**
+	 * 版本检测
+	 */
+	public final static String versionDetection = baseUrl + "/api/System/VersionDetection";
+	
+	/**
 	 * 部位
 	 */
 	public final static String PART = "part";
