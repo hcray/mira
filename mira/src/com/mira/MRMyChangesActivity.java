@@ -2,6 +2,7 @@ package com.mira;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -74,11 +75,13 @@ public class MRMyChangesActivity extends Activity {
 			public void onClick(View v) {
 				List<String> selectItem = mAdapter.mSelectedImage;
 				int size = selectItem.size();
+				List<String> delList = new ArrayList<String>();
 				for (String path : selectItem) {
 					File file = new File(path);
 					file.delete();
-					selectItem.remove(path);
+					delList.add(path);
 				}
+				selectItem.removeAll(delList);
 				initGridView();
 				Toast.makeText(v.getContext(), "删除了" + size + "张照片",Toast.LENGTH_SHORT).show();
 			}

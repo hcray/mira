@@ -34,6 +34,7 @@
     <string name="login_activity_desc_arrow_down">朝下展开</string>
     <string name="msg_login_account_null">请输入手机号</string>
     <string name="msg_login_account_invalid">您输入的手机号无效</string>
+    <string name="msg_vcode_send_success">验证码已发送，请注意查收</string>
     <string name="msg_login_pwd_null">请输入验证码</string>
     <string name="title_activity_mrnex">MRNexActivity</string>
     <string name="title_activity_mrinput_account">MRInputAccountActivity</string>

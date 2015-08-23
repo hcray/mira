@@ -96,8 +96,7 @@ public class MRLoginActivity extends Activity {
 
 		UUID = AppContext.getInstance().getAppId();
 		// 获取验证码按钮
-		btn_getCode = (Button) this
-				.findViewById(R.id.login_activity_btn_get_code);
+		btn_getCode = (Button) this.findViewById(R.id.login_activity_btn_get_code);
 		btn_getCode.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				account = loginAccount.getText().toString();
@@ -113,6 +112,8 @@ public class MRLoginActivity extends Activity {
 						//验证码按钮可用倒计时
 						time = new TimeCount(60000, 1000);
 						time.start();
+						Toast.makeText(v.getContext(), getString(R.string.msg_vcode_send_success), Toast.LENGTH_SHORT).show();
+						
 					} else {
 						Toast.makeText(v.getContext(), getString(R.string.msg_login_account_invalid), Toast.LENGTH_SHORT).show();
 						return;
