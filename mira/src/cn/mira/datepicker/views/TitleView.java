@@ -55,15 +55,17 @@ public class TitleView extends LinearLayout implements MonthView.OnPageChangeLis
                     mOnDateSelected.selected(monthView.getDateSelected());
             }
         });
-
+        
         addView(tvYear, llParams);
         addView(tvMonth, llParams);
         addView(tvConfirm, llParams);
     }
 
     public void setOnDateSelected(OnDateSelected onDateSelected, MonthView monthView) {
-        mOnDateSelected = onDateSelected;
+        //mOnDateSelected = onDateSelected;
+    	
         this.monthView = monthView;
+        monthView.setOnDateSelected(onDateSelected);
     }
 
     public void setColor(int color) {

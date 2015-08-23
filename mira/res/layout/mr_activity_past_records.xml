@@ -105,12 +105,13 @@
             android:orientation="horizontal" >
 
             <LinearLayout
+                android:id="@+id/past_record_activity_ll_day_tab_head"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="2"
-                android:background="@drawable/btn_off"
+                android:background="@drawable/btn_on"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
@@ -132,6 +133,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/past_record_activity_ll_day_tab_face"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
                 android:layout_marginEnd="5dp"
@@ -160,6 +162,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/past_record_activity_ll_day_tab_nose"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
                 android:layout_marginEnd="5dp"
@@ -188,12 +191,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/past_record_activity_ll_day_tab_chin"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="2"
-                android:background="@drawable/btn_on"
+                android:background="@drawable/btn_off"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
@@ -244,12 +248,13 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/past_record_activity_avg_score"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginStart="5dp"
                     android:background="#e4f3f2"
                     android:gravity="center_vertical"
-                    android:text="79"
+                    android:text=""
                     android:textColor="#81d8cf"
                     android:textSize="40sp"
                     android:textStyle="bold" />
@@ -263,6 +268,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/past_record_activity_ll_progress1"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="5dp"
@@ -271,31 +277,35 @@
                     android:orientation="horizontal" >
 
                     <RelativeLayout
-                        android:layout_width="100dp"
+                        android:id="@+id/past_record_activity_rl_progress1"
+                        android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="#81d8cf" >
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
-                            android:text="08:55"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_score1"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
-                            android:text="90"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/past_record_activity_ll_progress2"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="5dp"
@@ -304,31 +314,35 @@
                     android:orientation="horizontal" >
 
                     <RelativeLayout
-                        android:layout_width="150dp"
+                        android:id="@+id/past_record_activity_rl_progress2"
+                        android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="#81d8cf" >
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
-                            android:text="08:55"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_score2"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
-                            android:text="90"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/past_record_activity_ll_progress3"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="5dp"
@@ -337,31 +351,35 @@
                     android:orientation="horizontal" >
 
                     <RelativeLayout
-                        android:layout_width="190dp"
+                        android:id="@+id/past_record_activity_rl_progress3"
+                        android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="#81d8cf" >
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
-                            android:text="08:55"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_score3"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
-                            android:text="90"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/past_record_activity_ll_progress4"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="5dp"
@@ -370,31 +388,35 @@
                     android:orientation="horizontal" >
 
                     <RelativeLayout
-                        android:layout_width="200dp"
+                        android:id="@+id/past_record_activity_rl_progress4"
+                        android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="#81d8cf" >
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
-                            android:text="08:55"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_score4"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
-                            android:text="90"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/past_record_activity_ll_progress5"
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="5dp"
@@ -403,25 +425,28 @@
                     android:orientation="horizontal" >
 
                     <RelativeLayout
-                        android:layout_width="100dp"
+                        android:id="@+id/past_record_activity_rl_progress5"
+                        android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="#81d8cf" >
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentStart="true"
                             android:gravity="center_vertical"
-                            android:text="08:55"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/past_record_activity_tv_progress_score5"
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
-                            android:text="90"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </RelativeLayout>

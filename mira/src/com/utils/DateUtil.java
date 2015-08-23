@@ -159,4 +159,32 @@ public class DateUtil {
 		cal.add(Calendar.DAY_OF_YEAR, day);
 		return cal.getTime();
 	}
+	
+	/**
+	 * 根据时间获取小时和分值
+	 * @param date
+	 * @return
+	 */
+	public static String getHourMinute(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.setTime(date);
+		int hour = cal.get(Calendar.HOUR_OF_DAY);
+		int minute = cal.get(Calendar.MINUTE);
+		return hour + ":" + minute;
+	}
+	
+	/**
+	 * 根据时间获取小时和分值
+	 * @param milliseconds 毫秒
+	 * @return
+	 */
+	public static String getHourMinute(long milliseconds) {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.setTimeInMillis(milliseconds);
+		int hour = cal.get(Calendar.HOUR_OF_DAY);
+		int minute = cal.get(Calendar.MINUTE);
+		return hour + ":" + minute;
+	}
 }

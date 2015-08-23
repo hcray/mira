@@ -27,6 +27,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Scroller;
 import cn.mira.datepicker.bizs.CalendarBiz;
 import cn.mira.datepicker.entities.BGCircle;
+import cn.mira.datepicker.interfaces.OnDateSelected;
 
 /**
  * 月视图
@@ -42,6 +43,8 @@ public class MonthView extends View implements ValueAnimator.AnimatorUpdateListe
 
     private OnPageChangeListener onPageChangeListener;
     private OnSizeChangedListener onSizeChangedListener;
+    
+    private OnDateSelected mOnDateSelected;
 
     private int sizeBase;
     private int lastPointX;
@@ -431,6 +434,10 @@ public class MonthView extends View implements ValueAnimator.AnimatorUpdateListe
         mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), dx, dy, 500);
         invalidate();
     }
+    
+    public void setOnDateSelected(OnDateSelected onDateSelected) {
+        mOnDateSelected = onDateSelected;
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -485,6 +492,7 @@ public class MonthView extends View implements ValueAnimator.AnimatorUpdateListe
                     }
                 } else {
                     defineContainRegion((int) event.getX(), (int) event.getY());
+                    mOnDateSelected.selected(dateSelected);
                 }
                 break;
         }
