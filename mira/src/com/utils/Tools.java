@@ -282,5 +282,22 @@ public class Tools {
 		}
 		return retStr;
 	}
+	
+	/**
+	 * 根据文件名取得拍照日期
+	 * @param name
+	 * @return 日期
+	 */
+	public static String getDateByPath(String path){
+		String retStr = "";
+		if(path.contains("Camera/")){
+			String name = path.split("Camera/")[1];
+			if(name.startsWith("mira_")){
+				String str = name.split("_")[1];
+				retStr = str.substring(4, 6)+ "-" + str.substring(6, 8)+ " " + str.substring(8,10) +":"+ str.substring(10,12);
+			}
+		}
+		return retStr;
+	}
 
 }
