@@ -112,7 +112,6 @@ public class MRLoginActivity extends Activity {
 						//验证码按钮可用倒计时
 						time = new TimeCount(60000, 1000);
 						time.start();
-						Toast.makeText(v.getContext(), getString(R.string.msg_vcode_send_success), Toast.LENGTH_SHORT).show();
 						
 					} else {
 						Toast.makeText(v.getContext(), getString(R.string.msg_login_account_invalid), Toast.LENGTH_SHORT).show();
@@ -145,6 +144,7 @@ public class MRLoginActivity extends Activity {
 					Matcher m = p.matcher(account);
 					if (m.matches()) {
 						HttpKit.userLogin(UUID, account, MiraConstants.LOGIN_TYPE_DYNAMIC, pwd, handler);
+						Toast.makeText(v.getContext(), getString(R.string.msg_login_loging), Toast.LENGTH_SHORT).show();
 						
 					} else {
 						Toast.makeText(v.getContext(), getString(R.string.msg_login_account_invalid), Toast.LENGTH_SHORT).show();
@@ -255,6 +255,12 @@ public class MRLoginActivity extends Activity {
 				Log.d(TAG, "mHandler: ResultCode == -2");
 				String token = CyptoUtils.encodeMd5(UUID + "mira2015");
 				HttpKit.createToken(UUID, "1", token, cHandler);
+			} else if(retBean.getResultCode() == 0){
+				Toast.makeText(MRLoginActivity.this, getString(R.string.msg_vcode_send_success), Toast.LENGTH_SHORT).show();
+				
+			} else {
+				Toast.makeText(MRLoginActivity.this, getString(R.string.msg_vcode_send_fail), Toast.LENGTH_SHORT).show();
+				
 			}
 		}
 	};
