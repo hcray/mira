@@ -224,6 +224,9 @@
     <string name="recommend_activity_type10">适合任何肤质（敏感皮肤除外）</string>
     <string name="recommend_activity_method10">将一个鸡蛋清调散，加入面粉搅匀后敷于过敏处</string>
     <string name="recommend_activity_explain10">当你尝试了一款新产品而悲剧地过敏了，此面膜就是你的救星。蛋清中的蛋白质氨基酸的组成与人体最接近，生物价也最高，它还有清热解毒、消炎，保护皮肤和增强皮肤免疫功能的功效</string>
+    <string name="recommend_activity_hit_title">温馨提示</string>
+    <string name="recommend_activity_hit_content">以上秘方由若若小编历尽千山万水、拜访各路皮肤专家，汇此宝典，献奉小主。然世界之大，无奇不有。为确保万无一失，若若建议各小主（尤其敏感肌肤者），在使用之前进行敏感性测试（将样品抹在耳后或手肘内侧，保留24小时，若这段时间没有不适反应，可放心使用）如出现皮肤红肿、发痒等过敏性症状请及时去医院就医，防止病情恶化。</string>
+    
     <string name="title_activity_mrpast_records">MRPastRecordsActivity</string>
 
     <!-- 历史记录 -->
