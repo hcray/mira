@@ -1,5 +1,7 @@
 package com.mira;
 
+import org.kymjs.kjframe.KJBitmap;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,8 @@ import com.utils.UpdateManager;
 
 public class MRMyActivity extends Activity {
 	private Long mExitTime = 0l;
+	
+	private ImageView ivUserface;
 	
 	private ImageButton iBtn_help;
 	//个人资料
@@ -54,6 +59,7 @@ public class MRMyActivity extends Activity {
 //		tv_sign = (TextView) this.findViewById(R.id.my_activity_sign);
 //		tv_level = (TextView) this.findViewById(R.id.my_activity_level);
 		tv_grades = (TextView) this.findViewById(R.id.my_activity_grades);
+		ivUserface = (ImageView) this.findViewById(R.id.my_activity_userface);
 		
 		iBtn_help = (ImageButton) this.findViewById(R.id.my_activity_ibtn_help);
 		iBtn_help.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +181,7 @@ public class MRMyActivity extends Activity {
 //			tv_sign.setText(user.getSign());
 //			tv_level.setText(user.getLevel());
 			tv_grades.setText(user.getGrades());
+			new KJBitmap().displayWithLoadBitmap(ivUserface, user.getFace(), R.drawable.head_pic);
 		} else {
 			tv_nickName.setText("未登录");
 		}

@@ -224,8 +224,8 @@ public class MRLoginActivity extends Activity {
 				time.cancel();
 			}else{
 				btn_getCode.setClickable(false);
-				btn_getCode.setBackgroundColor(Color.parseColor("#555555"));
-				btn_getCode.setTextColor(Color.parseColor("#999999"));
+				btn_getCode.setBackgroundColor(Color.parseColor("#e5e5e5"));
+				btn_getCode.setTextColor(Color.parseColor("#070606"));
 				btn_getCode.setText("重新获取"+millisUntilFinished / 1000 + "秒");
 			}
 		}

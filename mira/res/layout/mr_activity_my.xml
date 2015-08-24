@@ -48,7 +48,7 @@
 		    	android:layout_width="fill_parent" 
 		    	android:layout_height="wrap_content">
 	    	    <ImageView 
-			    	android:id="@+id/user_info_userface"
+			    	android:id="@+id/my_activity_userface"
 			      	android:layout_width="70dp" 
 			        android:layout_height="70dp"
 			        android:scaleType="fitCenter"
@@ -62,7 +62,7 @@
     				android:orientation="vertical"
     				android:layout_marginStart="10dp"
     				android:layout_marginTop="20dp"
-    				android:layout_toEndOf="@id/user_info_userface"
+    				android:layout_toEndOf="@id/my_activity_userface"
     				>
 				   	<TextView 
 			       		android:id="@+id/my_activity_nickName"  
