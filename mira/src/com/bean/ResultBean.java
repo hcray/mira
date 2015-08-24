@@ -27,6 +27,11 @@ public class ResultBean {
 	 * 敏感类型小类
 	 */
 	private List<SensitiveBean> SensitiveList;
+	
+	/**
+	 * 头像地址
+	 */
+	private String PhotoUrl;
 
 	public int getResultCode() {
 		return ResultCode;
@@ -59,4 +64,13 @@ public class ResultBean {
 	public void setSensitiveList(List<SensitiveBean> sensitiveList) {
 		SensitiveList = sensitiveList;
 	}
+
+	public String getPhotoUrl() {
+		return PhotoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		PhotoUrl = photoUrl;
+	}
+	
 }

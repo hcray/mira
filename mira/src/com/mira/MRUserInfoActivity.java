@@ -10,6 +10,7 @@ import java.util.Date;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
+import org.kymjs.kjframe.KJBitmap;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -327,6 +328,8 @@ public class MRUserInfoActivity extends Activity {
 			} else if (sex == 3) {
 				tvSex.setText("保密");
 			}
+			//加载服务端的头像
+	        new KJBitmap().displayWithLoadBitmap(ivUserface, curUser.getFace(), R.drawable.head_pic);
 		}
 	}
 	
@@ -431,6 +434,9 @@ public class MRUserInfoActivity extends Activity {
 							Toast.makeText(MRUserInfoActivity.this, "更换成功", Toast.LENGTH_SHORT).show();
                             // 显示新头像
 							ivUserface.setImageBitmap(protraitBitmap);
+							String photoUrl = retBean.getPhotoUrl();
+							curUser.setFace(photoUrl);
+							AppContext.getInstance().updateUserInfo(curUser);
 						}else {
 							Toast.makeText(MRUserInfoActivity.this, retBean.getMessage(), Toast.LENGTH_SHORT).show();
 						}
