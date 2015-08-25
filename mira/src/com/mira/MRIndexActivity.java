@@ -54,10 +54,9 @@ import com.bean.CityWeatherBean;
 import com.bean.WeatherBean;
 import com.bll.MRTestBLL;
 import com.common.ImageLoader;
+import com.common.ImageLoader.Type;
 import com.common.MiraConstants;
 import com.common.StringUtils;
-import com.common.ViewHolder;
-import com.common.ImageLoader.Type;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.service.BluetoothService;
@@ -516,7 +515,39 @@ public class MRIndexActivity extends Activity implements
         startActivityForResult(intent, 0);
     }
 	
-    /***
+    @Override
+	protected void onResume() {
+		super.onResume();
+		List<String> imageList = getImagePathFromSD();
+		if(imageList.isEmpty()){
+			llImages.setVisibility(View.GONE);
+		}else{
+			//按照文件名反序
+			Collections.reverse(imageList);
+			if (imageList.size() > 2) {
+				String pathStr2 = imageList.get(2);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr2, myChangeImage2);
+				myChangeDate2.setText(Tools.getDateByPath(pathStr2));
+				
+			}
+			
+			if (imageList.size() > 1) {
+				String pathStr1 = imageList.get(1);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
+				myChangeDate1.setText(Tools.getDateByPath(pathStr1));
+				
+			}
+			
+			if (imageList.size() > 0) {
+				String pathStr0 = imageList.get(0);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
+				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
+				
+			}
+		}
+	}
+
+	/***
      * 返回方法
      */
 	@Override 
@@ -652,6 +683,33 @@ public class MRIndexActivity extends Activity implements
 		//显示今天的时间
 		etSelectDate.setText(picName);
 		showTestRet(true);
+		List<String> imageList = getImagePathFromSD();
+		if(imageList.isEmpty()){
+			llImages.setVisibility(View.GONE);
+		}else{
+			//按照文件名反序
+			Collections.reverse(imageList);
+			if (imageList.size() > 2) {
+				String pathStr2 = imageList.get(2);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr2, myChangeImage2);
+				myChangeDate2.setText(Tools.getDateByPath(pathStr2));
+				
+			}
+			
+			if (imageList.size() > 1) {
+				String pathStr1 = imageList.get(1);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
+				myChangeDate1.setText(Tools.getDateByPath(pathStr1));
+				
+			}
+			
+			if (imageList.size() > 0) {
+				String pathStr0 = imageList.get(0);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
+				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
+				
+			}
+		}
 	}
 
 	private void showTestRet(boolean today){

@@ -1,8 +1,5 @@
 package com.mira;
 
-import com.common.MiraConstants;
-import com.service.BluetoothService;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.common.MiraConstants;
+import com.service.BluetoothService;
 
 public class MRDetectionMenuActivity extends Activity{
 	
@@ -24,7 +24,7 @@ public class MRDetectionMenuActivity extends Activity{
 	
 	private TextView tvChin;
 	
-	private TextView menuSelected;
+	//private TextView menuSelected;
 	
 	private Long mExitTime = 0l;
 
@@ -38,7 +38,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvHead.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				menuSelected.setText(getString(R.string.detection_menu_activity_head_value));
+				//menuSelected.setText(getString(R.string.detection_menu_activity_head_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				//1：额头 2：脸颊 3：鼻子 4：下巴
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_HEAD);
@@ -50,7 +50,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvFace.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				menuSelected.setText(getString(R.string.detection_menu_activity_face_value));
+				//menuSelected.setText(getString(R.string.detection_menu_activity_face_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_FACE);
 				startActivity(intent);
@@ -61,7 +61,7 @@ public class MRDetectionMenuActivity extends Activity{
 		tvNose.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				menuSelected.setText(getString(R.string.detection_menu_activity_nose_value));
+				//menuSelected.setText(getString(R.string.detection_menu_activity_nose_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_NOSE);
 				startActivity(intent);
@@ -72,14 +72,14 @@ public class MRDetectionMenuActivity extends Activity{
 		tvChin.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				menuSelected.setText(getString(R.string.detection_menu_activity_chin_value));
+				//menuSelected.setText(getString(R.string.detection_menu_activity_chin_value));
 				Intent intent = new Intent(v.getContext(), MRDetectionActivity.class);
 				intent.putExtra(MiraConstants.PART, MiraConstants.PART_CHIN);
 				startActivity(intent);
 			}
 		});
 		
-		menuSelected = (TextView) this.findViewById(R.id.detection_menu_activity_menu_selected);
+		//menuSelected = (TextView) this.findViewById(R.id.detection_menu_activity_menu_selected);
 	}
 	
 	/**

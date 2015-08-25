@@ -232,14 +232,14 @@ public class MRLoginActivity extends Activity {
 	}
 	
 	/**
-	 * 创建token
+	 * 获取验证码
 	 */
 	private final JsonHttpResponseHandler mHandler = new JsonHttpResponseHandler() {
 
 		@Override
 		public void onFailure(int statusCode, Header[] headers,
 				Throwable throwable, JSONObject errorResponse) {
-			Log.d(TAG, "mHandler: " + errorResponse.toString());
+			Log.d(TAG, "mHandler: " + statusCode);
 			Toast.makeText(MRLoginActivity.this, getString(R.string.tip_no_internet), Toast.LENGTH_SHORT).show();
 		}
 
@@ -266,14 +266,14 @@ public class MRLoginActivity extends Activity {
 	};
 	
 	/**
-	 * 获取验证码
+	 * 创建token
 	 */
 	private final JsonHttpResponseHandler cHandler = new JsonHttpResponseHandler() {
 		
 		@Override
 		public void onFailure(int statusCode, Header[] headers,
 				Throwable throwable, JSONObject errorResponse) {
-			Log.d(TAG, "cHandler: " + errorResponse.toString());
+			Log.d(TAG, "cHandler: " + statusCode);
 			Toast.makeText(MRLoginActivity.this, getString(R.string.tip_no_internet), Toast.LENGTH_SHORT).show();
 		}
 		

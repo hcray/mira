@@ -114,7 +114,7 @@
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:text=""
+            android:text="@string/detection_menu_acitivity_menu_select_part"
             android:textColor="#81d8cf"
             android:textSize="18sp" />
     </RelativeLayout>

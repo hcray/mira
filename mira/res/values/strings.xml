@@ -149,6 +149,7 @@
     <string name="detection_menu_activity_chin_value">下巴</string>
     <string name="detection_menu_acitivity_photo">部位展示图片</string>
     <string name="detection_menu_acitivity_menu">菜单背景图片</string>
+    <string name="detection_menu_acitivity_menu_select_part">请选择部位</string>
 
     <!-- 检测页面 -->
     <string name="detection_activity_title">检测</string>

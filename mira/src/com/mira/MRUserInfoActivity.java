@@ -184,7 +184,7 @@ public class MRUserInfoActivity extends Activity {
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						MRUserInfoActivity.this);
 				builder.setTitle("性别");
-				final String[] sex = { "男", "女", "保密" };
+				final String[] sex = { "男", "女"};
 
 				int i = 0;
 				String curSex = tvSex.getText().toString();
@@ -192,9 +192,9 @@ public class MRUserInfoActivity extends Activity {
 					i = 0;
 				} else if ("女".equalsIgnoreCase(curSex)) {
 					i = 1;
-				} else if ("保密".equalsIgnoreCase(curSex)) {
+				} /*else if ("保密".equalsIgnoreCase(curSex)) {
 					i = 2;
-				}
+				}*/
 				// 设置一个单项选择下拉框
 				/**
 				 * 第一个参数指定我们要显示的一组下拉单选框的数据集合 第二个参数代表索引，指定默认哪一个单选框被勾选上，1表示默认'女'
