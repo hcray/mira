@@ -106,8 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="80dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
+                    android:gravity="center"
                     android:text="环境温度"
                     android:textColor="#aaaaaa"
                     android:textSize="12sp" />
@@ -154,8 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="80dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
+                    android:gravity="center"
                     android:text="环境湿度"
                     android:textColor="#aaaaaa"
                     android:textSize="12sp" />
@@ -202,8 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="80dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
+                    android:gravity="center"
                     android:text="皮肤水分"
                     android:textColor="#aaaaaa"
                     android:textSize="12sp" />
