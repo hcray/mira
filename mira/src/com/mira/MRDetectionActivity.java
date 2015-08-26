@@ -199,6 +199,8 @@ public class MRDetectionActivity extends Activity {
 		tvDay.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//埋点统计
+				MobclickAgent.onEvent(v.getContext(), "test_day_view_click");
 				// 修改选择样式
 				tvDay.setBackgroundColor(Color.parseColor("#84dfd8"));
 				tvDay.setTextColor(Color.parseColor("#ffffff"));
@@ -213,6 +215,8 @@ public class MRDetectionActivity extends Activity {
 		tvWeek.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//埋点统计
+				MobclickAgent.onEvent(v.getContext(), "test_week_view_click");
 				// 修改选择样式
 				tvWeek.setBackgroundColor(Color.parseColor("#84dfd8"));
 				tvWeek.setTextColor(Color.parseColor("#ffffff"));

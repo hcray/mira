@@ -276,12 +276,16 @@ public class MRPastRecordsActivity extends Activity {
 				String curText = (String) btnViewSelect.getText();
 				// 点击天视图
 				if (dayView.equalsIgnoreCase(curText)) {
+					//埋点统计
+					MobclickAgent.onEvent(v.getContext(), "history_day_view_click");
 					btnViewSelect.setText(weekView);
 					llDayView.setVisibility(View.VISIBLE);
 					llWeekView.setVisibility(View.GONE);
 					dayViewFlag = true;
 
 				} else {
+					//埋点统计
+					MobclickAgent.onEvent(v.getContext(), "history_week_view_click");
 					btnViewSelect.setText(dayView);
 					llDayView.setVisibility(View.GONE);
 					llWeekView.setVisibility(View.VISIBLE);

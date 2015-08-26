@@ -89,6 +89,8 @@ public class MRMyActivity extends Activity {
 		rlChanges = (RelativeLayout) this.findViewById(R.id.my_activity_rl_changes);
 		rlChanges.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				//埋点统计
+				MobclickAgent.onEvent(v.getContext(), "my_changes_click");
 				//我的变化
 				Intent intent = new Intent(v.getContext(), MRMyChangesActivity.class);
 				startActivity(intent);
@@ -98,6 +100,8 @@ public class MRMyActivity extends Activity {
 		rlHistory = (RelativeLayout) this.findViewById(R.id.my_activity_rl_history);
 		rlHistory.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				//埋点统计
+				MobclickAgent.onEvent(v.getContext(), "my_history_click");
 				Intent intent = new Intent(v.getContext(), MRPastRecordsActivity.class);
 				startActivity(intent);
 			}

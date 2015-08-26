@@ -258,6 +258,8 @@ public class MRIndexActivity extends Activity implements
 		            startActivityForResult(intent, 0); 
 		            Log.v(TAG, "startActivityForResult");
 		            */
+					//埋点统计
+					MobclickAgent.onEvent(v.getContext(), "camera_click");
 					startTakePhoto();
 		        } catch (Exception e) {  
 		            e.printStackTrace();  
@@ -410,6 +412,8 @@ public class MRIndexActivity extends Activity implements
 		llMyChanges.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//埋点统计
+				MobclickAgent.onEvent(v.getContext(), "index_changes_click");
 				Intent intent = new Intent(v.getContext(), MRMyChangesActivity.class);
 				startActivity(intent);
 			}
@@ -458,6 +462,8 @@ public class MRIndexActivity extends Activity implements
 		llTestHistory.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//埋点统计
+				MobclickAgent.onEvent(v.getContext(), "index_history_click");
 				Intent intent = new Intent(v.getContext(), MRPastRecordsActivity.class);
 				startActivity(intent);
 			}
