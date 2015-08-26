@@ -41,6 +41,9 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="kHVC8pGEtCzymBTskOGQqGqD" />
+        
+        <meta-data android:value="55dd7168e0f55a0305000525" android:name="UMENG_APPKEY"/>
+		<meta-data android:value="mira" android:name="UMENG_CHANNEL"/>
 
         <activity
             android:name="com.AppStart"

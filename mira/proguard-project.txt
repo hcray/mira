@@ -77,6 +77,10 @@
 }
 
 -keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+
+-keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
 

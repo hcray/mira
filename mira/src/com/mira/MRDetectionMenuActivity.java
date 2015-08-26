@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.common.MiraConstants;
 import com.service.BluetoothService;
+import com.umeng.analytics.MobclickAgent;
 
 public class MRDetectionMenuActivity extends Activity{
 	
@@ -82,6 +83,18 @@ public class MRDetectionMenuActivity extends Activity{
 		//menuSelected = (TextView) this.findViewById(R.id.detection_menu_activity_menu_selected);
 	}
 	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+	
 	/**
 	 * 监听返回--是否退出程序
 	 */
@@ -94,6 +107,7 @@ public class MRDetectionMenuActivity extends Activity{
 			} else {
 				Intent intent = new Intent(MRDetectionMenuActivity.this, BluetoothService.class);
 			    stopService(intent);
+			    MobclickAgent.onKillProcess(MRDetectionMenuActivity.this);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

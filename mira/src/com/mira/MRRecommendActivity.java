@@ -1,6 +1,7 @@
 package com.mira;
 
 import com.common.MiraConstants;
+import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -117,5 +118,17 @@ public class MRRecommendActivity extends Activity {
 				MRRecommendActivity.this.finish();
 			}
 		});
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 }

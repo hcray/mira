@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.TestModel;
 import com.model.User;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.DateUtil;
 import com.utils.HttpKit;
 import com.utils.Tools;
@@ -246,6 +247,18 @@ public class MRDetectionActivity extends Activity {
 		}
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+	
 	/*
 	 * @Override protected void onResume() { super.onResume(); receiver = new
 	 * BLEReceiver(); IntentFilter filter = new IntentFilter();

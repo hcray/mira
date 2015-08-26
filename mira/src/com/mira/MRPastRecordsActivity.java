@@ -27,6 +27,7 @@ import cn.mira.datepicker.views.DatePicker;
 import com.bll.MRTestBLL;
 import com.common.MiraConstants;
 import com.model.TestModel;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.DateUtil;
 import com.view.LineCharView;
 
@@ -289,6 +290,18 @@ public class MRPastRecordsActivity extends Activity {
 				}
 			}
 		});
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 
 	/**

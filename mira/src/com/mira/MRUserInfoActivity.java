@@ -39,6 +39,7 @@ import com.common.StringUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.User;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.FileUtil;
 import com.utils.HttpKit;
 import com.utils.ImageUtils;
@@ -310,6 +311,18 @@ public class MRUserInfoActivity extends Activity {
 		});
 
 		initUI();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 
 	/**

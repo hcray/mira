@@ -1,17 +1,18 @@
 package com.mira;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.umeng.analytics.MobclickAgent;
 
 public class MRFindActivity extends Activity {
 	private Long mExitTime = 0l;
@@ -100,6 +101,7 @@ public class MRFindActivity extends Activity {
 				mExitTime = System.currentTimeMillis();
 			} else {
 				int pid = android.os.Process.myTid();
+				MobclickAgent.onKillProcess(MRFindActivity.this);
 	            android.os.Process.killProcess(pid);
 			}
 		return flag;

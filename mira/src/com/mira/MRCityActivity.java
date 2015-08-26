@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.bll.MRTestBLL;
 import com.common.MiraConstants;
 import com.model.CityModel;
+import com.umeng.analytics.MobclickAgent;
 import com.view.MyLetterListView;
 import com.view.MyLetterListView.OnTouchingLetterChangedListener;
 
@@ -109,7 +110,18 @@ public class MRCityActivity extends Activity {
 		cityLocation.setText(city);
 	}
 
-	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+
 
 	/**
 	 * 城市列表点击事件

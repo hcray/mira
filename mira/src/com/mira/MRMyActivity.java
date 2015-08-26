@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.model.User;
 import com.service.BluetoothService;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.Tools;
 import com.utils.UpdateManager;
 
@@ -162,6 +163,7 @@ public class MRMyActivity extends Activity {
 			} else {
 				Intent intent = new Intent(MRMyActivity.this, BluetoothService.class);
 			    stopService(intent);
+			    MobclickAgent.onKillProcess(MRMyActivity.this);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

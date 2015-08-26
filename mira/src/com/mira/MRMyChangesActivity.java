@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.adapter.ImageGridAdapter;
 import com.gif.JpgToGif;
+import com.umeng.analytics.MobclickAgent;
 
 public class MRMyChangesActivity extends Activity {
 	
@@ -112,6 +113,18 @@ public class MRMyChangesActivity extends Activity {
 //				
 //			}
 //		});
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 
 	private void initGridView() {

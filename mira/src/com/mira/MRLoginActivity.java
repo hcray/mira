@@ -28,6 +28,7 @@ import com.common.StringUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.model.User;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.CountDownTimerUtil;
 import com.utils.CyptoUtils;
 import com.utils.HttpKit;
@@ -197,6 +198,19 @@ public class MRLoginActivity extends Activity {
 		});
 
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
+
 
 	/**
 	 * 重新发送信息的定时器

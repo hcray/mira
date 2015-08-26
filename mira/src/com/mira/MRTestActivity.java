@@ -11,6 +11,7 @@ import com.common.BitConverter;
 import com.device.MRBluetoothEvent;
 import com.device.MRBluetoothManage;
 import com.model.TestModel;
+import com.umeng.analytics.MobclickAgent;
 import com.view.RoundProgressBar;
 
 import android.os.Bundle;
@@ -620,6 +621,7 @@ public class MRTestActivity extends Activity {
 				Toast.makeText(this, R.string.back_exit_tips, 2000).show();
 				mExitTime = System.currentTimeMillis();
 			} else {
+				 MobclickAgent.onKillProcess(MRTestActivity.this);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

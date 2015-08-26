@@ -60,6 +60,7 @@ import com.common.StringUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.service.BluetoothService;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.DateUtil;
 import com.utils.HttpKit;
 import com.utils.Tools;
@@ -514,10 +515,18 @@ public class MRIndexActivity extends Activity implements
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         startActivityForResult(intent, 0);
     }
+    
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
 	
     @Override
 	protected void onResume() {
 		super.onResume();
+		MobclickAgent.onResume(this);
 		List<String> imageList = getImagePathFromSD();
 		if(imageList.isEmpty()){
 			llImages.setVisibility(View.GONE);
@@ -988,6 +997,7 @@ public class MRIndexActivity extends Activity implements
 			} else {
 				Intent intent = new Intent(MRIndexActivity.this, BluetoothService.class);
 			    stopService(intent);
+			    MobclickAgent.onKillProcess(MRIndexActivity.this);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}

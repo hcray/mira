@@ -24,6 +24,7 @@ import com.common.HandlerEvent;
 import com.common.MRCommon;
 import com.model.TestModel;
 import com.service.BluetoothService;
+import com.umeng.analytics.MobclickAgent;
 import com.utils.Tools;
 import com.utils.UpdateManager;
 
@@ -202,6 +203,7 @@ public class MRMainActivity extends TabActivity {
 			} else {
 				Intent intent = new Intent(MRMainActivity.this, BluetoothService.class);
 			    stopService(intent);
+			    MobclickAgent.onKillProcess(MRMainActivity.this);
 				int pid = android.os.Process.myTid();
 	            android.os.Process.killProcess(pid);
 			}
