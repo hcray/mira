@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:gravity="center_horizontal" >
 
         <ImageView
@@ -26,12 +26,12 @@
         android:layout_marginBottom="100dp"
         android:layout_marginEnd="80dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="100dp" 
+        android:layout_marginTop="150dp" 
         android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/guide3_btn_login"
-            android:layout_width="160dp"
+            android:layout_width="180dp"
             android:layout_height="40dp"
             android:background="@drawable/guide_btn_login"
             android:text="@string/guid3_btn_login_value"

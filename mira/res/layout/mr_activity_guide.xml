@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}" 
+    android:background="@color/black"
+    >
 
     <android.support.v4.view.ViewPager
         android:id="@+id/guide_activity_viewpager"
@@ -20,8 +22,8 @@
 
         <ImageView
             android:id="@+id/guide_activity_dot0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:clickable="true"
             android:padding="15dp"
@@ -29,8 +31,8 @@
 
         <ImageView
             android:id="@+id/guide_activity_dot1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:clickable="true"
             android:padding="15dp"
@@ -38,8 +40,8 @@
 
         <ImageView
             android:id="@+id/guide_activity_dot2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:clickable="true"
             android:padding="15dp"

@@ -239,6 +239,6 @@
     <string name="title_activity_mrguide">MRGuideActivity</string>
     
     <!-- 引导页 -->
-    <string name="guid3_btn_login_value">马上登录</string>
+    <string name="guid3_btn_login_value">马上体验</string>
 
 </resources>
