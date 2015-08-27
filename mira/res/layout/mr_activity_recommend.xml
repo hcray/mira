@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/index_photo" />
+                    android:src="@drawable/recommend6" />
 
                 <TextView
                     android:id="@+id/recommend_activity_tv_name"
@@ -77,13 +77,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:orientation="vertical" 
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@color/white"
                 >
                 
                 <ImageView 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
 	                android:background="@drawable/recommend_box"
+	                android:visibility="gone"
                     />
                 
 
@@ -108,9 +111,12 @@
                         android:id="@+id/recommend_activity_tv_type_content"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="适合任何肤质"
-                        android:textSize="14sp" />
+                        android:textSize="14sp" 
+                        android:layout_marginStart="5dp"
+                        android:textColor="#999999"
+                        />
                 </LinearLayout>
                 
                 <View
@@ -146,9 +152,13 @@
                         android:id="@+id/recommend_activity_tv_method_content"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="用热水冲泡适量绿茶或菊花，放凉后加入蜂蜜即可"
-                        android:textSize="14sp" />
+                        android:textSize="14sp" 
+                        android:textColor="#999999"
+                        android:layout_marginStart="5dp"
+                        android:lineSpacingExtra="2dp"
+                        />
                 </LinearLayout>
                 
                 <View
@@ -184,9 +194,13 @@
                         android:id="@+id/recommend_activity_tv_explain_content"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="绿茶和菊花茶都有养颜护肤、清热祛火的功效。绿茶含有丰富的茶多酚和维生素，不仅能够可以提神，还能养颜美容。菊花茶可以明目，降低眼部疲劳，不仅能喝，还能用热气熏蒸眼睛，缓解眼部的干涩疲劳"
-                        android:textSize="14sp" />
+                        android:textSize="14sp" 
+                        android:textColor="#999999"
+                        android:layout_marginStart="5dp"
+                        android:lineSpacingExtra="2dp"
+                        />
                 </LinearLayout>
                 
                <View
@@ -205,6 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginBottom="20dp"
                     android:orientation="vertical" 
                     android:layout_below="@id/recommend_activity_view3"
                     >
@@ -222,9 +237,13 @@
                         android:id="@+id/recommend_activity_tv_hint_content"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="@string/recommend_activity_hit_content"
-                        android:textSize="14sp" />
+                        android:textSize="14sp" 
+                        android:textColor="#999999"
+                        android:layout_marginStart="5dp"
+                        android:lineSpacingExtra="2dp"
+                        />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

@@ -711,6 +711,7 @@ public class MRIndexActivity extends Activity implements
 				
 			}
 			
+			
 			if (imageList.size() > 1) {
 				String pathStr1 = imageList.get(1);
 				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
@@ -723,6 +724,15 @@ public class MRIndexActivity extends Activity implements
 				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
 				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
 				
+			}
+			
+			if(imageList.size() == 2){
+				myChangeImage2.setVisibility(View.INVISIBLE);
+			}
+			
+			if(imageList.size() == 1){
+				myChangeImage2.setVisibility(View.INVISIBLE);
+				myChangeImage1.setVisibility(View.INVISIBLE);
 			}
 		}
 	}
@@ -974,7 +984,7 @@ public class MRIndexActivity extends Activity implements
 		
 		msp = new SpannableString(startStr + midStr + endStr);
 		msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		//msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		msp.setSpan(new ClickableSpan(){
 			@Override
 			public void onClick(View widget) {
