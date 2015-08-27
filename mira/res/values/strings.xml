@@ -77,6 +77,8 @@
     <!-- 我的变化 -->
     <string name="myChanges_activity_title">我的变化</string>
     <string name="my_changes_activity_del">删除按钮</string>
+    <string name="my_changes_activity_hint_value">这里什么也没有</string>
+    <string name="my_changes_activity_hint1_value">快去拍张美美的自拍照吧</string>
     <!-- 个人资料 -->
     <string name="userInfo_activity_title">资料</string>
     <string name="userInfo_activity_user_pic">头像</string>

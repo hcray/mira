@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adapter.ImageGridAdapter;
@@ -57,6 +58,11 @@ public class MRMyChangesActivity extends Activity {
 	private Button ibSetting;
 	
 	private JpgToGif jpgToGif;
+	
+	/**
+	 * 没有照片是的提示
+	 */
+	private LinearLayout lv_hint;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,8 @@ public class MRMyChangesActivity extends Activity {
 //		ibSetting = (Button) this.findViewById(R.id.myChange_setting);
 
 		mGirdView = (GridView) this.findViewById(R.id.myChanges_gridView);
+		
+		lv_hint = (LinearLayout) this.findViewById(R.id.my_changes_activity_ll_hint);
 		
 		ivDel = (ImageView) this.findViewById(R.id.my_changes_activity_iv_del);
 		ivDel.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +152,11 @@ public class MRMyChangesActivity extends Activity {
 		
 		//最后拍照的放到前面
 		Collections.reverse(mImgs);
+		
+		//没有照片的时候显示提示
+		if(mImgs.isEmpty()){
+			lv_hint.setVisibility(View.VISIBLE);
+		}
 		/**
 		 * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
 		 */

@@ -312,7 +312,7 @@ public class MRLoginActivity extends Activity {
 		@Override
 		public void onFailure(int statusCode, Header[] headers,
 				Throwable throwable, JSONObject errorResponse) {
-			Log.d(TAG, "handler: " + errorResponse.toString());
+			Log.d(TAG, "handler: " + errorResponse);
 			Toast.makeText(MRLoginActivity.this, getString(R.string.tip_login_error_for_network), Toast.LENGTH_SHORT).show();
 		}
 		

@@ -109,7 +109,43 @@
         android:listSelector="@android:color/transparent"
         android:numColumns="3"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="3dip" >
+        android:verticalSpacing="3dip" 
+        >
     </GridView>
+    
+    <LinearLayout
+        android:id="@+id/my_changes_activity_ll_hint"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/myChanges_activity_lv1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        >
+    
+	     <TextView
+	        android:id="@+id/my_changes_activity_hint"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="20dp"
+	        android:layout_marginEnd="20dp"
+	        android:textColor="#999999"
+	        android:textSize="20sp"
+	        android:text="@string/my_changes_activity_hint_value"
+	        android:gravity="center_horizontal"
+	        />
+	     
+	     <TextView
+	        android:id="@+id/my_changes_activity_hint2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="20dp"
+	        android:layout_marginEnd="20dp"
+	        android:textColor="#999999"
+	        android:textSize="20sp"
+	        android:text="@string/my_changes_activity_hint1_value"
+	        android:gravity="center_horizontal"
+	        />
+     </LinearLayout>
 
 </RelativeLayout>
