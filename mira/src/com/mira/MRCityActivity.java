@@ -57,6 +57,8 @@ public class MRCityActivity extends Activity {
 	private ArrayList<CityModel> mCityNames;
 	private Button btn;
 	private EditText et;
+	
+	private String city = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,10 +106,18 @@ public class MRCityActivity extends Activity {
 		et.addTextChangedListener(watcher);
 		
 		cityLocation = (TextView) this.findViewById(R.id.city_activity_tv_city_location);
-		String city = "";
 		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
 		city = preferences.getString("City", "");
 		cityLocation.setText(city);
+		cityLocation.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent mIntent = new Intent();
+				mIntent.putExtra(MiraConstants.SELECTED_CITY, city);
+				setResult(RESULT_OK, mIntent);
+				finish();
+			}
+		});
+		
 	}
 
 	@Override
