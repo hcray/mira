@@ -45,6 +45,8 @@
 -keep public class com.google.vending.licensing.ILicensingService
 -keep public interface com.android.vending.licensing.ILicensingService
 
+-keep class com.model.** { *; }
+
 # Preserve all native method names and the names of their classes.
 -keep public class * extends android.view.View {
     public <init>(android.content.Context);
@@ -170,6 +172,12 @@
 #Location
 -keep class org.kymjs.kjframe.**{*;} 
 -dontwarn org.kymjs.kjframe.**
+
+##------------友盟------------
+#-libraryjars   libs/umeng-analytics-v5.5.3.jar
+#Location
+-keep class com.umeng.analytics.**{*;} 
+-dontwarn com.umeng.analytics.**
 
 #-dontwarn com.amap.api.**
 #-dontwarn com.aps.**
