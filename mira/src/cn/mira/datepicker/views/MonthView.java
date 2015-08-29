@@ -492,7 +492,11 @@ public class MonthView extends View implements ValueAnimator.AnimatorUpdateListe
                     }
                 } else {
                     defineContainRegion((int) event.getX(), (int) event.getY());
-                    mOnDateSelected.selected(dateSelected);
+					if (dateSelected.isEmpty()) {
+	
+					} else {
+						mOnDateSelected.selected(dateSelected);
+					}
                 }
                 break;
         }
