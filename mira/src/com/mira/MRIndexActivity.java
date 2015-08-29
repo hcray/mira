@@ -508,6 +508,9 @@ public class MRIndexActivity extends Activity implements
         theLarge = savePath + fileName;// 该照片的绝对路径
 
         intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        intent.putExtra("camerasensortype", 2); // 调用前置摄像头  
+//        intent.putExtra("autofocus", true); // 自动对焦  
+//        intent.putExtra("fullScreen", false); // 全屏  
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         startActivityForResult(intent, 0);
     }
