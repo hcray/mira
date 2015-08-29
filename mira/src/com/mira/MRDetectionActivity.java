@@ -463,18 +463,28 @@ public class MRDetectionActivity extends Activity {
 	 */
 	private void showWeekHistory() {
 		daySelect = false;
-		int j = 6;
 		List<String> x_coords = new ArrayList<String>();
 		List<Integer> x_coord_values = new ArrayList<Integer>();
-
-		for (int i = 0; i < 7; i++) {
-			x_coords.add(DateUtil.getMonthDay(-j));
+		
+		int dayOfWeek = DateUtil.getTodayOfWeek();
+		int j = dayOfWeek - 1;
+		for (int i = 1; i <= dayOfWeek; i++) {
+			x_coords.add(Tools.getWeekDayName(i));
 			long startTime = DateUtil.getTimesMorning(-j);
 			long endTime = DateUtil.getTimesNight(-j);
 			j--;
 			int value = MRTestBLL.getTestMax(part, startTime, endTime,MRDetectionActivity.this);
 			x_coord_values.add(value);
 		}
+
+//		for (int i = 0; i < 7; i++) {
+//			x_coords.add(DateUtil.getMonthDay(-j));
+//			long startTime = DateUtil.getTimesMorning(-j);
+//			long endTime = DateUtil.getTimesNight(-j);
+//			j--;
+//			int value = MRTestBLL.getTestMax(part, startTime, endTime,MRDetectionActivity.this);
+//			x_coord_values.add(value);
+//		}
 		lcv.setBgColor(Color.WHITE);
 		lcv.setValue(x_coords, x_coord_values);
 	}

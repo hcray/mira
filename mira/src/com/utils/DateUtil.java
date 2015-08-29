@@ -256,4 +256,14 @@ public class DateUtil {
 		int minute = cal.get(Calendar.MINUTE);
 		return hour + ":" + minute;
 	}
+
+	/**
+	 * 一周的第几天
+	 * @return
+	 */
+	public static int getTodayOfWeek() {
+		Calendar cal = Calendar.getInstance();
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+		return dayOfWeek;
+	}
 }

@@ -299,5 +299,37 @@ public class Tools {
 		}
 		return retStr;
 	}
+	
+	/**
+	 * 返回星期的描述
+	 * @param dayOfWeek
+	 * @return
+	 */
+	public static String getWeekDayName(int dayOfWeek){
+		String ret = "";
+		if(dayOfWeek == 1){
+			ret = "周日";
+			
+		}else if(dayOfWeek == 2){
+			ret = "周一";
+			
+		}else if(dayOfWeek == 3){
+			ret = "周二";
+			
+		}else if(dayOfWeek == 4){
+			ret = "周三";
+			
+		}else if(dayOfWeek == 5){
+			ret = "周四";
+			
+		}else if(dayOfWeek == 6){
+			ret = "周五";
+			
+		}else if(dayOfWeek == 7){
+			ret = "周六";
+			
+		}
+		return ret;
+	}
 
 }
