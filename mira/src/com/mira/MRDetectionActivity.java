@@ -119,6 +119,11 @@ public class MRDetectionActivity extends Activity {
 	 * 城市
 	 */
 	private String city;
+	
+	/**
+	 * 上次的环境湿度
+	 */
+	private short lastShiDu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -348,7 +353,28 @@ public class MRDetectionActivity extends Activity {
 
 		// 页面显示
 		tvTem.setText(wenDu / 100 + "℃");
-		tvWet.setText(shiDu + "%");
+		
+		if (timestamp == 0l) {
+			timestamp = System.currentTimeMillis();
+			tvWet.setText(shiDu + "%");
+			lastShiDu = shiDu;
+		} else {
+			//超过5分钟取检测数据
+			if(System.currentTimeMillis() - timestamp > 5*60*1000){
+				tvWet.setText(shiDu + "%");
+				lastShiDu = shiDu;
+				timestamp = System.currentTimeMillis();
+			} else {
+				//浮动超过0.1 ，取最新数据，在0.1之内，取上次的数据
+				float ratio = (float)(shiDu-lastShiDu)/lastShiDu;
+				if (ratio > 0.1 || ratio < -0.1) {
+					tvWet.setText(shiDu + "%");
+				} else {
+					tvWet.setText(lastShiDu + "%");
+				}
+			}
+		}
+		
 		tvWater.setText(shuiFen + "%");
 		int score = Tools.getScore(shuiFen);
 		rpb.setProgress(score);
