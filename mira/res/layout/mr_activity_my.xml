@@ -305,7 +305,7 @@
             android:layout_centerVertical="true"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"
-            android:text="@string/set_activity_tv_version"
+            android:text=""
             android:textColor="#999999"
             android:drawablePadding="10dp"
             />

@@ -50,6 +50,11 @@ public class MRMyActivity extends Activity {
 	 */
 	private Button btnLogout;
 	
+	/**
+	 * 当前版本
+	 */
+	private TextView tv_versionName;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,10 @@ public class MRMyActivity extends Activity {
 //		tv_level = (TextView) this.findViewById(R.id.my_activity_level);
 		tv_grades = (TextView) this.findViewById(R.id.my_activity_grades);
 		ivUserface = (ImageView) this.findViewById(R.id.my_activity_userface);
+		
+		tv_versionName = (TextView) this.findViewById(R.id.my_activity_tv_version_name);
+		String versionName = Tools.getVerName(this);
+		tv_versionName.setText("当前版本"+versionName);
 		
 		iBtn_help = (ImageButton) this.findViewById(R.id.my_activity_ibtn_help);
 		iBtn_help.setOnClickListener(new View.OnClickListener() {
