@@ -422,7 +422,7 @@ public class MRIndexActivity extends Activity implements
 			public void handleMessage(BaiDuLocationModel result) {
 				city = result.City;
 			};
-		}, true);
+		});
 		
 		//设置定位到的城市
 		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);

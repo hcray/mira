@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -157,12 +158,13 @@ public class LineCharView extends View {
 			canvas.drawCircle(x, yori, xylinewidth * 2, x_coordPaint);
 			String text = x_coords.get(i);
 			x_coordPaint.setColor(xytextcolor);
-			//x轴上的文字
-			canvas.drawText(text,  x - x_coordPaint.measureText(text) / 2, yori + xytextsize + xylinewidth * 2, x_coordPaint);
+			// x轴上的文字
+			canvas.drawText(text, x - x_coordPaint.measureText(text) / 2, yori
+					+ xytextsize + xylinewidth * 2, x_coordPaint);
 		}
-		//折线
+		// 折线
 		x_coordPaint.setStyle(Paint.Style.STROKE);
-		x_coordPaint.setStrokeWidth(xylinewidth*2);
+		x_coordPaint.setStrokeWidth(xylinewidth * 2);
 		x_coordPaint.setColor(linecolor);
 		// 画折线
 		canvas.drawPath(path, x_coordPaint);
@@ -171,14 +173,15 @@ public class LineCharView extends View {
 		for (int i = 0; i < x_coords.size(); i++) {
 			int x = (int) (i * interval * 0.5 + xinit);
 			canvas.drawBitmap(getYBitmap(x_coord_values.get(i)), x - imageWidth
-					/ 2, getYValue(x_coord_values.get(i)) - imageWidth / 2,
+					/ 4, getYValue(x_coord_values.get(i)) - imageWidth / 4,
 					x_coordPaint);
 		}
 
 		// 将折线超出x轴坐标的部分截取掉
 		x_coordPaint.setStyle(Paint.Style.FILL);
 		x_coordPaint.setColor(bgColor);
-		x_coordPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
+		x_coordPaint.setXfermode(new PorterDuffXfermode(
+				PorterDuff.Mode.SRC_OVER));
 		RectF rectF = new RectF(0, 0, xori, heigth);
 		canvas.drawRect(rectF, x_coordPaint);
 
@@ -186,59 +189,47 @@ public class LineCharView extends View {
 
 	// 得到y坐标
 	private float getYValue(int value) {
-		float v = value/20;
+		float v = value / 20;
 		return (float) (yori - interval * v * 0.4);
 		/*
-		if (value.equalsIgnoreCase("A")) {
-			return yori - interval / 2;
-		} else if (value.equalsIgnoreCase("B")) {
-			return yori - interval;
-		} else if (value.equalsIgnoreCase("C")) {
-			return (float) (yori - interval * 1.5);
-		} else if (value.equalsIgnoreCase("D")) {
-			return yori - interval * 2;
-		} else {
-			return yori;
-		}
-		*/
-		
+		 * if (value.equalsIgnoreCase("A")) { return yori - interval / 2; } else
+		 * if (value.equalsIgnoreCase("B")) { return yori - interval; } else if
+		 * (value.equalsIgnoreCase("C")) { return (float) (yori - interval *
+		 * 1.5); } else if (value.equalsIgnoreCase("D")) { return yori -
+		 * interval * 2; } else { return yori; }
+		 */
+
 	}
 
 	// 得到表情图
 	private Bitmap getYBitmap(Integer value) {
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.btn_blue);
-		return bitmap;
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+				R.drawable.btn_blue);
+		Matrix matrix = new Matrix();
+		// 缩放原图
+		matrix.postScale(0.5f, 0.5f);
+		// bmp.getWidth(), bmp.getHeight()分别表示缩放后的位图宽高
+		Bitmap dstbmp = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+				bitmap.getHeight(), matrix, true);
+		return dstbmp;
 	}
 
-	/*@Override
-	public boolean onTouchEvent(MotionEvent event) {
-
-		// 如果不用滑动就可以展示所有数据，就不让滑动
-		if (interval * x_coord_values.size() <= width - xori) {
-			return false;
-		}
-
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			startX = event.getX();
-			break;
-
-		case MotionEvent.ACTION_MOVE:
-			float dis = event.getX() - startX;
-			startX = event.getX();
-			if (xinit + dis > maxXinit) {
-				xinit = maxXinit;
-			} else if (xinit + dis < minXinit) {
-				xinit = minXinit;
-			} else {
-				xinit = (int) (xinit + dis);
-			}
-			invalidate();
-
-			break;
-		}
-		return true;
-	}*/
+	/*
+	 * @Override public boolean onTouchEvent(MotionEvent event) {
+	 * 
+	 * // 如果不用滑动就可以展示所有数据，就不让滑动 if (interval * x_coord_values.size() <= width -
+	 * xori) { return false; }
+	 * 
+	 * switch (event.getAction()) { case MotionEvent.ACTION_DOWN: startX =
+	 * event.getX(); break;
+	 * 
+	 * case MotionEvent.ACTION_MOVE: float dis = event.getX() - startX; startX =
+	 * event.getX(); if (xinit + dis > maxXinit) { xinit = maxXinit; } else if
+	 * (xinit + dis < minXinit) { xinit = minXinit; } else { xinit = (int)
+	 * (xinit + dis); } invalidate();
+	 * 
+	 * break; } return true; }
+	 */
 
 	public int getXori() {
 		return xori;

@@ -93,7 +93,7 @@ public class MRLoginActivity extends Activity {
 			public void handleMessage(BaiDuLocationModel result) {
 				
 			};
-		}, true);
+		});
 		
 		imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 

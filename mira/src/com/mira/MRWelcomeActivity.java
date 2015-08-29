@@ -27,7 +27,7 @@ public class MRWelcomeActivity extends Activity {
 			public void handleMessage(BaiDuLocationModel result) {
 				
 			};
-		}, true);
+		});
 
 		// 渐变展示启动屏
 		/*
