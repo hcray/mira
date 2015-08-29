@@ -522,34 +522,10 @@ public class MRIndexActivity extends Activity implements
     @Override
 	protected void onResume() {
 		super.onResume();
+		Log.d(TAG, "onResume()");
 		MobclickAgent.onResume(this);
-		List<String> imageList = getImagePathFromSD();
-		if(imageList.isEmpty()){
-			llImages.setVisibility(View.GONE);
-		}else{
-			//按照文件名反序
-			Collections.reverse(imageList);
-			if (imageList.size() > 2) {
-				String pathStr2 = imageList.get(2);
-				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr2, myChangeImage2);
-				myChangeDate2.setText(Tools.getDateByPath(pathStr2));
-				
-			}
-			
-			if (imageList.size() > 1) {
-				String pathStr1 = imageList.get(1);
-				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
-				myChangeDate1.setText(Tools.getDateByPath(pathStr1));
-				
-			}
-			
-			if (imageList.size() > 0) {
-				String pathStr0 = imageList.get(0);
-				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
-				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
-				
-			}
-		}
+		
+		showMyChangesPic();
 	}
 
 	/***

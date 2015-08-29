@@ -3,7 +3,6 @@ package com.mira;
 
 import java.util.HashMap;
 
-import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +20,6 @@ import android.widget.Toast;
 import com.common.BaiDuLocationModel;
 import com.common.BaiduLocation;
 import com.common.HandlerEvent;
-import com.common.MRCommon;
-import com.model.TestModel;
 import com.service.BluetoothService;
 import com.umeng.analytics.MobclickAgent;
 import com.utils.Tools;
@@ -154,9 +151,13 @@ public class MRMainActivity extends TabActivity {
 			@Override
 			public void onTabChanged(String arg0) {
 				// TODO Auto-generated method stub
-				
+				Log.d(TAG, arg0);
+				if("a".equalsIgnoreCase(arg0)){
+					
+				}
 			}
 		});
+		
 		tabHost.setCurrentTab(0);
 		ivIndex.setBackgroundResource(R.drawable.tab_infomation_select);
 		//ivFind.setBackgroundResource(R.drawable.tab_discover);
@@ -167,7 +168,7 @@ public class MRMainActivity extends TabActivity {
 		//tvFind.setTextColor(0xff888888);
 		//tvTest.setTextColor(0xff888888);
 		//tvMy.setTextColor(0xff888888);
-		MRCommon.update(this);
+		//MRCommon.update(this);
 	}
 	@Override
 	protected void onResume() {
