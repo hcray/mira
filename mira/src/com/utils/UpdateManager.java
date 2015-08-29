@@ -9,6 +9,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import org.apache.http.Header;
+import org.json.JSONObject;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -20,12 +23,18 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bean.VersionResultBean;
+import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mira.AppContext;
 import com.mira.R;
+import com.model.User;
 
 
 public class UpdateManager {
@@ -43,7 +52,7 @@ public class UpdateManager {
 	
 	
 	/* 保存解析的XML信息 */
-	HashMap<String, String> mHashMap;
+	HashMap<String, String> mHashMap = new HashMap<String, String>();
 	/* 下载保存路径 */
 	private String mSavePath;
 	/* 记录进度条数量 */
@@ -81,19 +90,68 @@ public class UpdateManager {
 	/**
 	 * 检测软件更新
 	 */
-	public void checkUpdate(boolean prompt) {
-		int param = isUpdate(); 
-		if (param == UPDATE_YES) { //有更新
-			// 显示提示对话框
-			showNoticeDialog();
-		} else if(param == UPDATE_NO && prompt){
-			//没有更新
-			Toast.makeText(mContext, R.string.soft_update_no, Toast.LENGTH_LONG).show();
-		} else if(prompt){
-			//连接服务器异常
+	public void checkUpdate() {
+//		int param = isUpdate(); 
+//		if (param == UPDATE_YES) { //有更新
+//			// 显示提示对话框
+//			showNoticeDialog();
+//		} else if(param == UPDATE_NO && prompt){
+//			//没有更新
+//			Toast.makeText(mContext, R.string.soft_update_no, Toast.LENGTH_LONG).show();
+//		} else if(prompt){
+//			//连接服务器异常
+//			Toast.makeText(mContext, R.string.soft_update_exception, Toast.LENGTH_LONG).show();
+//		}
+		
+		User curUser = AppContext.getInstance().getLoginUser();
+		String UserId = curUser.getUserId();
+		String UUID = AppContext.getInstance().getAppId();
+		HttpKit.versionDetection(UUID, UserId, 1, 1, handler);
+	}
+	
+	/**
+	 * 修改用户后的回调
+	 */
+	private final JsonHttpResponseHandler handler = new JsonHttpResponseHandler() {
+		@Override
+		public void onSuccess(int statusCode, Header[] headers,
+				JSONObject response) {
+			Log.d("UpdateManager", "handler: " + response.toString());
+			Gson gson = new Gson();
+			VersionResultBean retBean = gson.fromJson(response.toString(), VersionResultBean.class);
+			//TODO
+			retBean.setResultCode(0);
+			//成功
+			if(retBean.getResultCode() == 0){
+				retBean.setId(2);
+				retBean.setUrl("http://cyy2hxh.tunnel.mobi/TaxiAppUpateServer/download/mira.apk");
+				retBean.setName("mira2.0");
+				
+				Log.d("UpdateManager", retBean.toString());
+				mHashMap.put("version", retBean.getCode());
+				mHashMap.put("name", retBean.getName());
+				mHashMap.put("url", retBean.getUrl());
+				int serverCode = retBean.getId();
+				int curCode = Tools.getVerCode(mContext);
+				if(serverCode > curCode){
+					showNoticeDialog();
+				}else{
+					Toast.makeText(mContext, R.string.soft_update_no, Toast.LENGTH_LONG).show();
+				}
+				
+			} else {
+				Toast.makeText(mContext, retBean.getMessage(),
+						Toast.LENGTH_LONG).show();
+			}
+		}
+
+		@Override
+		public void onFailure(int statusCode, Header[] headers,
+				String responseString, Throwable throwable) {
 			Toast.makeText(mContext, R.string.soft_update_exception, Toast.LENGTH_LONG).show();
 		}
-	}
+		
+	};
 
 	/**
 	 * 检查软件是否有更新版本
@@ -197,9 +255,10 @@ public class UpdateManager {
 				if (Environment.getExternalStorageState().equals(
 						Environment.MEDIA_MOUNTED)) {
 					// 获得存储卡的路径
-					String sdpath = Environment.getExternalStorageDirectory()
-							+ "/";
-					mSavePath = sdpath + "tGPS_DOWNLOAD";
+					//String sdpath = Environment.getExternalStorageDirectory() + "/";
+					//mSavePath = sdpath + "mira/download";
+					
+					mSavePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/mira/download/";
 					URL url = new URL(mHashMap.get("url"));
 					// 创建连接
 					HttpURLConnection conn = (HttpURLConnection) url

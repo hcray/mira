@@ -303,11 +303,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:drawableEnd="@drawable/arrow_right"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"
             android:text="@string/set_activity_tv_version"
-            android:textColor="#999999" 
+            android:textColor="#999999"
             android:drawablePadding="10dp"
             />
 	</RelativeLayout>

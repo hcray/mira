@@ -54,7 +54,7 @@ public class MRMainActivity extends TabActivity {
 //		MRDataBase.Init(this);
 		mHandler = new Handler();
 		//检查更新
-		checkUpdate.start();
+		//checkUpdate.start();
 		
 		BaiduLocation.getLocation(this, new HandlerEvent<BaiDuLocationModel>(){
 			public void handleMessage(BaiDuLocationModel result) {
@@ -217,20 +217,22 @@ public class MRMainActivity extends TabActivity {
     private Thread checkUpdate = new Thread(){
         public void run() {
             try {
-            	// 获取当前软件版本
-        		int versionCode = Tools.getVerCode(MRMainActivity.this);
-        		// 服务端软件版本
-        		int serviceCode = -1;
-        		HashMap<String,String> mHashMap = Tools.getServerVerInfo();
-        		if (null != mHashMap) {
-        			serviceCode = Integer.valueOf(mHashMap.get("version"));
-        		}
-
-                // 如果服务端版本大于当前版本
-                if (serviceCode > versionCode) {
-                    //执行更新
-                	mHandler.post(updateVersion);
-                }
+            	UpdateManager updateManager = new UpdateManager(MRMainActivity.this);
+    			updateManager.checkUpdate();
+//            	// 获取当前软件版本
+//        		int versionCode = Tools.getVerCode(MRMainActivity.this);
+//        		// 服务端软件版本
+//        		int serviceCode = -1;
+//        		HashMap<String,String> mHashMap = Tools.getServerVerInfo();
+//        		if (null != mHashMap) {
+//        			serviceCode = Integer.valueOf(mHashMap.get("version"));
+//        		}
+//
+//                // 如果服务端版本大于当前版本
+//                if (serviceCode > versionCode) {
+//                    //执行更新
+//                	mHandler.post(updateVersion);
+//                }
             } catch (Exception e) {
             	Log.e(TAG, "Thread　checkUpdate " + e.getMessage());
             }
@@ -238,13 +240,13 @@ public class MRMainActivity extends TabActivity {
     };
 
     //更新的次线程
-	private Runnable updateVersion = new Runnable(){
-		@Override
-		public void run() {
-			UpdateManager updateManager = new UpdateManager(MRMainActivity.this);
-			updateManager.checkUpdate(false);
-		}
-		
-	};
+//	private Runnable updateVersion = new Runnable(){
+//		@Override
+//		public void run() {
+//			UpdateManager updateManager = new UpdateManager(MRMainActivity.this);
+//			updateManager.checkUpdate();
+//		}
+//		
+//	};
 
 }

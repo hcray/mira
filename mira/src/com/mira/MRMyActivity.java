@@ -130,13 +130,14 @@ public class MRMyActivity extends Activity {
 		tv_check_update = (TextView) this.findViewById(R.id.my_activity_tv_check_update);
 		tv_check_update.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if(Tools.isNetworkAvailable(MRMyActivity.this)){
-					UpdateManager updateManager = new UpdateManager(MRMyActivity.this);
-					updateManager.checkUpdate(true);
-				}else{
-					Toast.makeText(getApplicationContext(), R.string.network_exception, Toast.LENGTH_SHORT).show();
-					return;
-				}
+				UpdateManager updateManager = new UpdateManager(MRMyActivity.this);
+				updateManager.checkUpdate();
+				
+//				if(Tools.isNetworkAvailable(MRMyActivity.this)){
+//				}else{
+//					Toast.makeText(getApplicationContext(), R.string.network_exception, Toast.LENGTH_SHORT).show();
+//					return;
+//				}
 			}
 		});
 		
