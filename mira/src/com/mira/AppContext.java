@@ -1,5 +1,9 @@
 package com.mira;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
 import java.util.UUID;
 
 import org.apache.http.Header;
@@ -178,6 +182,35 @@ public class AppContext extends BaseApplication {
 		SharedPreferences preferences = context().getSharedPreferences("user", Context.MODE_PRIVATE);
 		boolean isLogin = preferences.getBoolean("user.isLogin", false);
 		return isLogin;
+	}
+	
+	/**
+	 * 今天推荐的DIY面膜
+	 * @return
+	 */
+	public int getRecommendNum(){
+		int retNum = 1;
+		SharedPreferences preferences = context().getSharedPreferences("recommend", Context.MODE_PRIVATE);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+		String curDate = format.format(new Date());
+		//上次的日期
+		String date = preferences.getString("recommendDate", "");
+		//推荐的编号
+		int num = preferences.getInt("recommendNum", 1);
+		//同一天
+		if(curDate.equalsIgnoreCase(date)){
+			retNum = num;
+		} else {
+			//不是一天、重新生成
+			retNum = new Random().nextInt(10)+1;
+			//保存每天生成的日期以及编号
+			Editor editor = preferences.edit();
+			editor.putString("recommendDate", curDate);
+			editor.putInt("recommendNum", retNum);
+			editor.commit();
+		}
+		
+		return retNum;
 	}
 
 	/**

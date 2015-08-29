@@ -27,6 +27,7 @@ import android.provider.MediaStore;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -580,9 +581,10 @@ public class MRIndexActivity extends Activity implements
             	
             }  
             if (resultCode == 0) {  
-                //finish();  
+                //finish(); 
                 return;  
             }
+            showMyChangesPic();
             
             //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
             //String picName = format.format(new Date());
@@ -603,7 +605,7 @@ public class MRIndexActivity extends Activity implements
 	/** 从SD卡中获取资源图片的路径 */
 	private List<String> getImagePathFromSD() {
 		/* 设定目前所在路径 */
-		List<String> it = new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
 
 		/*
 		String status = Environment.getExternalStorageState();
@@ -638,10 +640,10 @@ public class MRIndexActivity extends Activity implements
 			for (int i = 0; i < files.length; i++) {
 				File file = files[i];
 				if (checkIsImageFile(file.getPath()))
-					it.add(file.getPath());
+					list.add(file.getPath());
 			}
         }
-		return it;
+		return list;
 	}
 
 	/** 判断是否相应的图片格式 */
@@ -698,6 +700,7 @@ public class MRIndexActivity extends Activity implements
 		//显示今天的时间
 		etSelectDate.setText(picName);
 		showTestRet(true);
+		
 		List<String> imageList = getImagePathFromSD();
 		if(imageList.isEmpty()){
 			llImages.setVisibility(View.GONE);
@@ -935,7 +938,9 @@ public class MRIndexActivity extends Activity implements
 	
 	
 	private void setTestRecommend(){
-		recommendNum = new Random().nextInt(10)+1;
+		//recommendNum = new Random().nextInt(10)+1;
+		//每天推荐一款
+		recommendNum = AppContext.getInstance().getRecommendNum();
 		SpannableString msp = null;
 		String startStr = "若若推荐：";
 		String midStr = "";
@@ -984,8 +989,16 @@ public class MRIndexActivity extends Activity implements
 		
 		msp = new SpannableString(startStr + midStr + endStr);
 		msp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		//msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		msp.setSpan(new ForegroundColorSpan(Color.parseColor("#81d8cf")), startNum, endNum, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		msp.setSpan(new ClickableSpan(){
+			
+			@Override
+			public void updateDrawState(TextPaint ds) {
+				super.updateDrawState(ds);
+				ds.setColor(Color.parseColor("#81d8cf")); //设置文件颜色
+                ds.setUnderlineText(true); //设置下划线
+			}
+
 			@Override
 			public void onClick(View widget) {
 				Intent intent = new Intent(widget.getContext(), MRRecommendActivity.class);
@@ -999,7 +1012,50 @@ public class MRIndexActivity extends Activity implements
 		
 	}
 	
-
+	
+	/**
+	 * 显示我的美丽变化
+	 */
+	public void showMyChangesPic(){
+		List<String> imageList = getImagePathFromSD();
+		if(imageList.isEmpty()){
+			llImages.setVisibility(View.GONE);
+		}else{
+			//按照文件名反序
+			Collections.reverse(imageList);
+			if (imageList.size() > 2) {
+				String pathStr2 = imageList.get(2);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr2, myChangeImage2);
+				myChangeDate2.setText(Tools.getDateByPath(pathStr2));
+				
+			}
+			
+			
+			if (imageList.size() > 1) {
+				String pathStr1 = imageList.get(1);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
+				myChangeDate1.setText(Tools.getDateByPath(pathStr1));
+				
+			}
+			
+			if (imageList.size() > 0) {
+				String pathStr0 = imageList.get(0);
+				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
+				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
+				
+			}
+			
+			if(imageList.size() == 2){
+				myChangeImage2.setVisibility(View.INVISIBLE);
+			}
+			
+			if(imageList.size() == 1){
+				myChangeImage2.setVisibility(View.INVISIBLE);
+				myChangeImage1.setVisibility(View.INVISIBLE);
+			}
+		}
+	}
+	
 	
 	/**
 	 * 监听返回--是否退出程序
