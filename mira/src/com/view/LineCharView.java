@@ -119,22 +119,17 @@ public class LineCharView extends View {
 		paint.setColor(xylinecolor);
 		paint.setStyle(Paint.Style.FILL);
 		for (int i = 1; i < 6; i++) {
-			canvas.drawCircle(xori + 20, (float) (yori - (i * 0.4 * interval)),
-					xylinewidth * 2, paint);
+			canvas.drawCircle(xori + 20, (float) (yori - (float)(i * 0.4 * interval)), xylinewidth * 2, paint);
+			Log.d("LineCharView", "yValue :yori: " + yori + " interval:" + interval + " i " + i + "  value: " + (float) (yori - (float)(i * 0.4 * interval)));
 		}
 
 		paint.setTextSize(xytextsize);
 		paint.setColor(xytextcolor);
-		canvas.drawText("100", xori - textwidth - 6 - xylinewidth,
-				(float) (yori - (2.0 * interval) + xytextsize / 2), paint);
-		canvas.drawText("80", xori - textwidth - 6 - xylinewidth, (float) (yori
-				- (1.6 * interval) + xytextsize / 2), paint);
-		canvas.drawText("60", xori - textwidth - 6 - xylinewidth, (float) (yori
-				- (1.2 * interval) + xytextsize / 2), paint);
-		canvas.drawText("40", xori - textwidth - 6 - xylinewidth, (float) (yori
-				- (0.8 * interval) + xytextsize / 2), paint);
-		canvas.drawText("20", xori - textwidth - 6 - xylinewidth, (float) (yori
-				- (0.4 * interval) + xytextsize / 2), paint);
+		canvas.drawText("100", xori - textwidth - 6 - xylinewidth, (float) (yori - (float)(2.0 * interval) + (float)(xytextsize / 2)), paint);
+		canvas.drawText("80", xori - textwidth - 6 - xylinewidth, (float) (yori - (1.6 * interval) + (float)(xytextsize / 2)), paint);
+		canvas.drawText("60", xori - textwidth - 6 - xylinewidth, (float) (yori - (1.2 * interval) + (float)(xytextsize / 2)), paint);
+		canvas.drawText("40", xori - textwidth - 6 - xylinewidth, (float) (yori - (0.8 * interval) + (float)(xytextsize / 2)), paint);
+		canvas.drawText("20", xori - textwidth - 6 - xylinewidth, (float) (yori	- (0.4 * interval) + (float)(xytextsize / 2)), paint);
 	}
 
 	// 画X轴坐标点，折线，表情
@@ -189,8 +184,10 @@ public class LineCharView extends View {
 
 	// 得到y坐标
 	private float getYValue(int value) {
-		float v = value / 20;
-		return (float) (yori - interval * v * 0.4);
+		//float v = (float)(value / 20);
+		float yValue = (float) (yori - (float)((interval * value * 0.4)/20)); 
+		Log.d("LineCharView", "getYValue... yori: " + yori + " interval:" + interval + " yValue :" + yValue + " value: " + value );
+		return yValue;
 		/*
 		 * if (value.equalsIgnoreCase("A")) { return yori - interval / 2; } else
 		 * if (value.equalsIgnoreCase("B")) { return yori - interval; } else if
