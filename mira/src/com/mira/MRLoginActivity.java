@@ -23,6 +23,9 @@ import android.widget.Toast;
 
 import com.bean.ResultBean;
 import com.bean.RetUserBean;
+import com.common.BaiDuLocationModel;
+import com.common.BaiduLocation;
+import com.common.HandlerEvent;
 import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.google.gson.Gson;
@@ -85,6 +88,13 @@ public class MRLoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mr_activity_login);
 		Log.v(TAG, "onCreate()");
+		
+		BaiduLocation.getLocation(this, new HandlerEvent<BaiDuLocationModel>(){
+			public void handleMessage(BaiDuLocationModel result) {
+				
+			};
+		}, true);
+		
 		imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
 		lyThirdPartyAccountDetail = (LinearLayout) this

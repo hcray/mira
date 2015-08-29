@@ -58,7 +58,7 @@ public class MRMainActivity extends TabActivity {
 		
 		BaiduLocation.getLocation(this, new HandlerEvent<BaiDuLocationModel>(){
 			public void handleMessage(BaiDuLocationModel result) {
-				
+				String city = result.City;
 			};
 		});
 		

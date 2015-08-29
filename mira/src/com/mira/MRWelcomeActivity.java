@@ -1,5 +1,8 @@
 package com.mira;
 
+import com.common.BaiDuLocationModel;
+import com.common.BaiduLocation;
+import com.common.HandlerEvent;
 import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
@@ -19,6 +22,12 @@ public class MRWelcomeActivity extends Activity {
 		// LinearLayout wellcome = (LinearLayout)
 		// view.findViewById(R.id.app_start_view);
 		setContentView(R.layout.mr_activity_welcome);
+		
+		BaiduLocation.getLocation(this, new HandlerEvent<BaiDuLocationModel>(){
+			public void handleMessage(BaiDuLocationModel result) {
+				
+			};
+		}, true);
 
 		// 渐变展示启动屏
 		/*

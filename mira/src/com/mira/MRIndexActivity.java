@@ -56,6 +56,9 @@ import com.bean.WeatherBean;
 import com.bll.MRTestBLL;
 import com.common.ImageLoader;
 import com.common.ImageLoader.Type;
+import com.common.BaiDuLocationModel;
+import com.common.BaiduLocation;
+import com.common.HandlerEvent;
 import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.google.gson.Gson;
@@ -208,6 +211,11 @@ public class MRIndexActivity extends Activity implements
 	private TextView myChangeDate0;
 	private TextView myChangeDate1;
 	private TextView myChangeDate2;
+	
+	/**
+	 * 定位到的城市
+	 */
+	private String city;
 	
 	
 	@Override
@@ -409,17 +417,28 @@ public class MRIndexActivity extends Activity implements
             	startActivityForResult(intent, 1);
             }
 		});
+		
+		BaiduLocation.getLocation(this, new HandlerEvent<BaiDuLocationModel>(){
+			public void handleMessage(BaiDuLocationModel result) {
+				city = result.City;
+			};
+		}, true);
+		
 		//设置定位到的城市
 		SharedPreferences preferences = this.getApplicationContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
-		String city = preferences.getString(MiraConstants.SELECTED_CITY, "");
-		if(city.isEmpty()){
-			city = preferences.getString("City", "");
+		String curCity = preferences.getString(MiraConstants.SELECTED_CITY, "");
+		if(curCity.isEmpty()){
+			curCity = preferences.getString("City", "");
 		}
-		tvCity.setText(city);
+		
+		if (curCity.isEmpty() && city != null) {
+			curCity = city;
+		}
+		tvCity.setText(curCity);
 		
 		//定位到了城市，设置天气信息
-		if(!city.isEmpty()){
-			HttpKit.getWeather(city, handler);
+		if(!curCity.isEmpty()){
+			HttpKit.getWeather(curCity, handler);
 		}
 		
 		//我的美丽变化
