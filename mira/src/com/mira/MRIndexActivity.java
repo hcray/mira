@@ -191,6 +191,16 @@ public class MRIndexActivity extends Activity implements
 	
 	private LinearLayout llImages;
 	
+	/**
+	 * 今天的检测名称
+	 */
+	private LinearLayout llTestName;
+
+	/**
+	 * 今天的检测结果
+	 */
+	private LinearLayout llTestValue;
+	
 	//历史记录
 	private ImageView myChangeImage0;
 	private ImageView myChangeImage1;
@@ -238,6 +248,10 @@ public class MRIndexActivity extends Activity implements
 		tvPm25 = (TextView) this.findViewById(R.id.index_activity_tv_pm25_value);
 
 		tvUitraviolet = (TextView) this.findViewById(R.id.index_activity_tv_uitraviolet_value);
+		
+		llTestName = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_name);
+
+		llTestValue = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_value);
 		
 		ivCamera = (ImageView) this.findViewById(R.id.iv_camera);
 		ivCamera.setOnClickListener(new OnClickListener() {
@@ -430,33 +444,8 @@ public class MRIndexActivity extends Activity implements
 		myChangeDate1 = (TextView) this.findViewById(R.id.index_activity_my_change_date1);
 		myChangeDate2 = (TextView) this.findViewById(R.id.index_activity_my_change_date2);
 		
-		List<String> imageList = getImagePathFromSD();
-		if(imageList.isEmpty()){
-			llImages.setVisibility(View.GONE);
-		}else{
-			//按照文件名反序
-			Collections.reverse(imageList);
-			if (imageList.size() > 2) {
-				String pathStr2 = imageList.get(2);
-				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr2, myChangeImage2);
-				myChangeDate2.setText(Tools.getDateByPath(pathStr2));
-				
-			}
-			
-			if (imageList.size() > 1) {
-				String pathStr1 = imageList.get(1);
-				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
-				myChangeDate1.setText(Tools.getDateByPath(pathStr1));
-				
-			}
-			
-			if (imageList.size() > 0) {
-				String pathStr0 = imageList.get(0);
-				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
-				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
-				
-			}
-		}
+		//显示我的变化图片
+		showMyChangesPic();
 		
 		//检测历史记录
 		llTestHistory = (LinearLayout) this.findViewById(R.id.index_activity_ll_test_history);
@@ -754,21 +743,23 @@ public class MRIndexActivity extends Activity implements
 			int noseValue = MRTestBLL.getTestMax(MiraConstants.PART_NOSE, startTime, endTime, MRIndexActivity.this);
 			int chinValue = MRTestBLL.getTestMax(MiraConstants.PART_CHIN, startTime, endTime, MRIndexActivity.this);
 			
-			//今日的最小值、最大值
-			int minValue = headValue;
+			int compareValue = 30;
 			
-			if(faceValue < minValue){
-				minValue = faceValue;
-			}
-			if(noseValue < minValue){
-				minValue = noseValue;
-			}
-			if(chinValue < minValue){
-				minValue = chinValue;
-			}
+			//今日的最小值、最大值
+//			int minValue = headValue;
+//			
+//			if(faceValue < minValue){
+//				minValue = faceValue;
+//			}
+//			if(noseValue < minValue){
+//				minValue = noseValue;
+//			}
+//			if(chinValue < minValue){
+//				minValue = chinValue;
+//			}
 			
 			tvHeadValue.setText(String.valueOf(headValue));
-			if(headValue == minValue){
+			if(headValue < compareValue){
 				ivHeadWaring.setVisibility(View.VISIBLE);
 				tvHeadValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
@@ -777,7 +768,7 @@ public class MRIndexActivity extends Activity implements
 			}
 			
 			tvFaceValue.setText(String.valueOf(faceValue));
-			if(faceValue == minValue){
+			if(faceValue < compareValue){
 				ivFaceWaring.setVisibility(View.VISIBLE);
 				tvFaceValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
@@ -786,7 +777,7 @@ public class MRIndexActivity extends Activity implements
 			}
 			
 			tvNoseValue.setText(String.valueOf(noseValue));
-			if(noseValue == minValue){
+			if(noseValue < compareValue){
 				ivNoseWaring.setVisibility(View.VISIBLE);
 				tvNoseValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
@@ -795,7 +786,7 @@ public class MRIndexActivity extends Activity implements
 			}
 			
 			tvChinValue.setText(String.valueOf(chinValue));
-			if(chinValue == minValue){
+			if(chinValue < compareValue){
 				ivChinWaring.setVisibility(View.VISIBLE);
 				tvChinValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
@@ -803,46 +794,52 @@ public class MRIndexActivity extends Activity implements
 				tvChinValue.setTextColor(Color.parseColor("#81d8cf"));
 			}
 			
-			int compareValue = 30;
 			//今日检测结果的展示
 			if(today){
-				if (headValue > compareValue && faceValue > compareValue && noseValue > compareValue
-						&& chinValue > compareValue) {
-					tvTodayTestResult.setText("经过若若专业分析，你的脸蛋整体都水汪汪哒，快赶上小baby啦。");
-					tvTodayTestRecommend.setVisibility(View.GONE);
-				} else if (headValue < compareValue && faceValue < compareValue && noseValue < compareValue
-						&& chinValue < compareValue) {
-					tvTodayTestResult.setText("哎呀，你长得那么美，为啥脸蛋会干巴巴滴呢？");
-					setTestRecommend();
-//					tvTodayTestRecommend.setText("若若推荐：DIY蜂蜜牛奶滋养面膜，记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
-					
-					
+				//完成四个部位的检测
+				if (headValue > 0 && faceValue > 0 && noseValue > 0
+						&& chinValue > 0) {
+					if (headValue > compareValue && faceValue > compareValue && noseValue > compareValue
+							&& chinValue > compareValue) {
+						tvTodayTestResult.setText("经过若若专业分析，你的脸蛋整体都水汪汪哒，快赶上小baby啦。");
+						tvTodayTestRecommend.setVisibility(View.GONE);
+					} else if (headValue < compareValue && faceValue < compareValue && noseValue < compareValue
+							&& chinValue < compareValue) {
+						tvTodayTestResult.setText("哎呀，你长得那么美，为啥脸蛋会干巴巴滴呢？");
+						setTestRecommend();
+					} else {
+						StringBuilder minParts = new StringBuilder();
+						if (headValue < compareValue) {
+							minParts.append("[");
+							minParts.append(getString(R.string.detection_menu_activity_head_value));
+							minParts.append("]");
+						}
+						if (faceValue < compareValue) {
+							minParts.append("[");
+							minParts.append(getString(R.string.detection_menu_activity_face_value));
+							minParts.append("]");
+						}
+						if (noseValue < compareValue) {
+							minParts.append("[");
+							minParts.append(getString(R.string.detection_menu_activity_nose_value));
+							minParts.append("]");
+						}
+						if (chinValue < compareValue) {
+							minParts.append("[");
+							minParts.append(getString(R.string.detection_menu_activity_chin_value));
+							minParts.append("]");
+						}
+						tvTodayTestResult.setText("经过若若专业分析，发现您脸蛋整体不错，但是"+minParts.toString()+"不是很理想。");
+						setTestRecommend();
+					}
 				} else {
-					StringBuilder minParts = new StringBuilder();
-					if (headValue < compareValue) {
-						minParts.append("[");
-						minParts.append(getString(R.string.detection_menu_activity_head_value));
-						minParts.append("]");
+					if(headValue == 0 && faceValue == 0 && noseValue == 0
+							&& chinValue == 0){
+						llTestName.setVisibility(View.GONE);
+						llTestValue.setVisibility(View.GONE);
 					}
-					if (faceValue < compareValue) {
-						minParts.append("[");
-						minParts.append(getString(R.string.detection_menu_activity_face_value));
-						minParts.append("]");
-					}
-					if (noseValue < compareValue) {
-						minParts.append("[");
-						minParts.append(getString(R.string.detection_menu_activity_nose_value));
-						minParts.append("]");
-					}
-					if (chinValue < compareValue) {
-						minParts.append("[");
-						minParts.append(getString(R.string.detection_menu_activity_chin_value));
-						minParts.append("]");
-					}
-					tvTodayTestResult.setText("经过若若专业分析，发现您脸蛋整体不错，但是"+minParts.toString()+"不是很理想。");
-					setTestRecommend();
-//					tvTodayTestRecommend.setText("若若推荐：DIY蜂蜜牛奶滋养面膜（系统预设内容随机抽取），记住一定要坚持用美棒检测皮肤水份~这样才能看到变化哦~");
-
+					tvTodayTestResult.setText("若若提示：你今天还未完成检测哦~赶紧去测试皮肤的含水量吧");
+					tvTodayTestRecommend.setVisibility(View.GONE);
 				}
 			}
 		} catch (ParseException e) {

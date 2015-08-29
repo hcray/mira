@@ -111,10 +111,18 @@ public class MRCityActivity extends Activity {
 		cityLocation.setText(city);
 		cityLocation.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent mIntent = new Intent();
-				mIntent.putExtra(MiraConstants.SELECTED_CITY, city);
-				setResult(RESULT_OK, mIntent);
-				finish();
+				//定位到城市
+				if(!city.isEmpty()){
+					SharedPreferences preferences = v.getContext().getSharedPreferences("Location", Context.MODE_PRIVATE);
+					Editor editor = preferences.edit();
+					editor.putString(MiraConstants.SELECTED_CITY, city);
+					editor.commit();
+					
+					Intent mIntent = new Intent();
+					mIntent.putExtra(MiraConstants.SELECTED_CITY, city);
+					setResult(RESULT_OK, mIntent);
+					finish();
+				}
 			}
 		});
 		

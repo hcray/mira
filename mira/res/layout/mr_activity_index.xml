@@ -227,6 +227,7 @@
                             android:src="@drawable/index_photo" />
 
                         <LinearLayout
+                            android:id="@+id/index_activity_ll_test_name"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -330,6 +331,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/index_activity_ll_test_value"
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
