@@ -1016,6 +1016,7 @@ public class MRIndexActivity extends Activity implements
 		if(imageList.isEmpty()){
 			llImages.setVisibility(View.GONE);
 		}else{
+			llImages.setVisibility(View.VISIBLE);
 			//按照文件名反序
 			Collections.reverse(imageList);
 			if (imageList.size() > 2) {
