@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CityWeatherBean {
 	private String currentCity;
-	private int pm25;
+	private String pm25;
 	private List<CityIndexBean> index;
 	private List<WeatherDataBean> weather_data;
 	public String getCurrentCity() {
@@ -13,10 +13,10 @@ public class CityWeatherBean {
 	public void setCurrentCity(String currentCity) {
 		this.currentCity = currentCity;
 	}
-	public int getPm25() {
+	public String getPm25() {
 		return pm25;
 	}
-	public void setPm25(int pm25) {
+	public void setPm25(String pm25) {
 		this.pm25 = pm25;
 	}
 	public List<CityIndexBean> getIndex() {

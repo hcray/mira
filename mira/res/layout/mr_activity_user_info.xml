@@ -35,12 +35,19 @@
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_user_pic"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/userInfo_title"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white"
         >
+         <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ico_info_head"
+            android:layout_marginStart="10dp"
+            android:scaleType="centerInside"
+            />
          <TextView
             android:id="@+id/userInfo_activity_tv_user_pic"
             android:layout_width="wrap_content"
@@ -50,7 +57,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ico_info_head"
 	        android:drawablePadding="20dp"
             />
          
@@ -84,11 +90,18 @@
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_nick_name"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/userInfo_activity_view1"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white">
+           <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ico_info_name"
+            android:layout_marginStart="10dp"
+            android:scaleType="centerInside"
+            />
          <TextView
             android:id="@+id/userInfo_activity_tv_nick_name"
             android:layout_width="wrap_content"
@@ -98,7 +111,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ico_info_name"
 	        android:drawablePadding="20dp"
             />
          
@@ -134,11 +146,20 @@
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_sex"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/userInfo_activity_view2"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white">
+		
+		<ImageView 
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ico_info_sex"
+            android:layout_marginStart="10dp"
+            android:scaleType="centerInside"
+            />
+	    
          <TextView
             android:id="@+id/userInfo_activity_tv_sex"
             android:layout_width="wrap_content"
@@ -148,7 +169,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ico_info_sex"
 	        android:drawablePadding="20dp"
             />
          
@@ -185,12 +205,21 @@
 	<LinearLayout
 	    android:id="@+id/userInfo_activity_ll_birthday"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/userInfo_activity_view3"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@color/white"
         >
+         
+	    <ImageView 
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ico_info_birth"
+            android:layout_marginStart="10dp"
+            android:scaleType="centerInside"
+            />
+	    
          <TextView
             android:id="@+id/userInfo_activity_tv_birthday"
             android:layout_width="wrap_content"
@@ -200,7 +229,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="10dp"
-            android:drawableStart="@drawable/ico_info_birth"
 	        android:drawablePadding="20dp"
             />
 		

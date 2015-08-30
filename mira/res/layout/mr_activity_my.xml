@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#e4f3f2"
     android:orientation="vertical"
-    tools:context=".MRMyActivity" 
-    android:background="#e4f3f2">
+    tools:context=".MRMyActivity" >
 
     <RelativeLayout
         android:id="@+id/title"
@@ -35,261 +35,302 @@
             android:onClick="complete"
             android:text="" />
     </RelativeLayout>
-   
-    <LinearLayout
-        android:orientation="vertical"
-    	android:layout_width="fill_parent" 
-    	android:layout_height="wrap_content"
-		android:gravity="center_horizontal"
-		android:padding="10sp"
-		android:background="@color/white">
-        
-        	<RelativeLayout
-		    	android:layout_width="fill_parent" 
-		    	android:layout_height="wrap_content">
-	    	    <ImageView 
-			    	android:id="@+id/my_activity_userface"
-			      	android:layout_width="70dp" 
-			        android:layout_height="70dp"
-			        android:scaleType="fitCenter"
-			        android:padding="3dp"
-					android:clickable="true"
-			        android:src="@drawable/head_pic"
-			        android:contentDescription="@string/my_activity_iv_user_info_userface_desc"/>
-	    	    <LinearLayout     	
-	    	        android:layout_width="fill_parent" 
-    				android:layout_height="wrap_content"
-    				android:orientation="vertical"
-    				android:layout_marginStart="10dp"
-    				android:layout_marginTop="20dp"
-    				android:layout_toEndOf="@id/my_activity_userface"
-    				>
-				   	<TextView 
-			       		android:id="@+id/my_activity_nickName"  
-			    		android:layout_width="wrap_content" 
-			           	android:layout_height="wrap_content" 
-			           	android:layout_marginBottom="10dp"
-			           	android:textSize="16sp"
-			           	android:text="Mira's Fans"
-			           	android:textColor="#84dfd8"/>
-				   	
-				   	<!-- 
-				   	<TextView 
-			       		android:id="@+id/my_activity_sign"  
-			    		android:layout_width="wrap_content" 
-			           	android:layout_height="wrap_content" 
-			           	android:layout_marginBottom="10.0dip"
-			           	android:textSize="15.0dip"
-			           	android:text="222"
-			            />
-				   	 -->
-				   	
-				   	<LinearLayout  
-				   	    android:layout_width="fill_parent" 
-    					android:layout_height="fill_parent"
-    					android:visibility="gone"
-    					>
-    					<!-- 
-					   	<TextView 
-				       		android:id="@+id/my_activity_level"  
-				    		android:layout_width="wrap_content" 
-				           	android:layout_height="wrap_content" 
-				           	android:layout_marginBottom="10.0dip"
-				           	android:textSize="15.0dip"
-				           	android:text="333"
-				            />
-    					 -->
-					   	<ImageView 
-					   	    android:src="@drawable/ico_star1"
-					   	    android:layout_width="wrap_content"
-					   	    android:layout_height="wrap_content"/>
-					   	<ImageView 
-					   	    android:src="@drawable/ico_star1"
-					   	    android:layout_width="wrap_content"
-					   	    android:layout_height="wrap_content"/>
-					   	<ImageView 
-					   	    android:src="@drawable/ico_star1"
-					   	    android:layout_width="wrap_content"
-					   	    android:layout_height="wrap_content"/>
-					   	<ImageView 
-					   	    android:src="@drawable/ico_star2"
-					   	    android:layout_width="wrap_content"
-					   	    android:layout_height="wrap_content"/>
-				   	      
-					   	
-					   <LinearLayout
-				            android:layout_width="fill_parent"
-				            android:layout_height="wrap_content"
-				            android:gravity="end" >
-			   	
-						  	<TextView 
-					       		android:id="@+id/my_activity_grades"  
-					    		android:layout_width="wrap_content" 
-					           	android:layout_height="wrap_content" 
-					           	android:layout_marginBottom="10dp"
-					           	android:layout_marginEnd="2dp"
-					           	android:textSize="15sp"
-					           	android:textColor="#84dfd8"
-					           	android:text="368"
-					            />
-						  	<TextView 
-					       		android:id="@+id/my_activity_grades_name"  
-					    		android:layout_width="wrap_content" 
-					           	android:layout_height="wrap_content" 
-					           	android:layout_marginBottom="10dp"
-					           	android:textSize="15sp"
-					           	android:textColor="#999999"
-					           	android:text="积分"
-					            />
-						  	 
-						  	 <ImageButton
-						    	android:id="@+id/my_activity_ibtn_help"
-						      	android:layout_width="18dp" 
-						        android:layout_height="18dp"
-						        android:layout_marginStart="10dp"
-					           	android:layout_alignParentEnd="true"
-					           	android:scaleType="fitCenter"
-						        android:background="@drawable/ico_help"
-						        android:contentDescription="@string/myChanges_activity_share_desc"
-						        />
-					  	 </LinearLayout>
-				   	</LinearLayout>
-				   	
-	    	    </LinearLayout>
 
-		    </RelativeLayout>
-        
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10sp" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/my_activity_userface"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:clickable="true"
+                android:contentDescription="@string/my_activity_iv_user_info_userface_desc"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/head_pic" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@id/my_activity_userface"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/my_activity_nickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Mira&apos;s Fans"
+                    android:textColor="#84dfd8"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/my_activity_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10.0dip"
+                    android:text="222"
+                    android:textSize="15.0dip" 
+                    android:visibility="gone"
+                    />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/my_activity_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10.0dip"
+                        android:text="333"
+                        android:textSize="15.0dip"
+                         />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_star1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_star1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_star1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ico_star2" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" >
+
+                        <TextView
+                            android:id="@+id/my_activity_grades"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="2dp"
+                            android:text="368"
+                            android:textColor="#84dfd8"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/my_activity_grades_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:text="积分"
+                            android:textColor="#999999"
+                            android:textSize="15sp" />
+
+                        <ImageButton
+                            android:id="@+id/my_activity_ibtn_help"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/ico_help"
+                            android:contentDescription="@string/myChanges_activity_share_desc"
+                            android:scaleType="fitCenter" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
-    
-    <RelativeLayout  
+
+    <LinearLayout
         android:id="@+id/my_activity_rl_user_info"
-   	    android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:layout_marginTop="15dp"
-		android:layout_marginStart="15dp"
-		android:layout_marginEnd="15dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		>
-     		
-    	<TextView
-       		android:id="@+id/user_info"  
-    		android:layout_width="wrap_content" 
-           	android:layout_height="wrap_content" 
-           	android:textSize="16sp"
-           	android:textColor="#999999"
-           	android:gravity="center_vertical"
-           	android:layout_marginStart="20dp"
-           	android:text="@string/my_activity_tv_user_info"
-           	android:drawableStart="@drawable/ico_peoplemsg"
-           	android:drawablePadding="20dp"
-           	android:paddingTop="5dp"
-           	android:paddingBottom="5dp"
-            />
-    	
-   		<ImageView
-	      	android:layout_width="wrap_content" 
-	        android:layout_height="wrap_content"
-           	android:layout_alignParentEnd="true"
-           	android:paddingStart="10dp"
-           	android:paddingEnd="10dp"
-           	android:layout_centerVertical="true"
-	        android:src="@drawable/arrow_right"/>
-     		
-	</RelativeLayout>
-    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/user_info_pic"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ico_peoplemsg"
+            android:contentDescription="@string/my_activity_tv_user_info"
+            android:gravity="center_vertical"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/my_activity_tv_user_info"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:src="@drawable/arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/my_activity_rl_changes"
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="15dp"
-		android:layout_marginEnd="15dp"
-		android:layout_marginTop="15dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		>
-     		<TextView 
-	       		android:id="@+id/user_info_change"  
-	    		android:layout_width="wrap_content" 
-	           	android:layout_height="wrap_content" 
-	           	android:textSize="16sp"
-	           	android:textColor="#999999"
-	           	android:text="@string/my_activity_tv_user_info_change"
-		        android:gravity="center_vertical"
-	           	android:layout_marginStart="20dp"
-	           	android:drawableStart="@drawable/ico_change"
-	           	android:drawablePadding="20dp"
-	           	android:paddingTop="5dp"
-           		android:paddingBottom="5dp"
-	            />
-     		
-	   		<ImageView
-		      	android:layout_width="wrap_content" 
-		        android:layout_height="wrap_content"
-	           	android:layout_alignParentEnd="true"
-	           	android:paddingStart="10dp"
-	           	android:paddingEnd="10dp"
-	           	android:layout_centerVertical="true"
-		        android:src="@drawable/arrow_right"/>
-	</RelativeLayout>
-	<View android:layout_height="1px" 
-	    android:background="#84dfd8" 
-	    android:layout_width="fill_parent"
-	    android:layout_marginStart="30dp"
-		android:layout_marginEnd="30dp"
-		>
-	    
-	</View>
-    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ico_change"
+            android:contentDescription="@string/my_activity_tv_user_info_change"
+            android:gravity="center_vertical"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/user_info_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/my_activity_tv_user_info_change"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:src="@drawable/arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="#84dfd8" >
+    </View>
+
+    <LinearLayout
         android:id="@+id/my_activity_rl_history"
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="15dp"
-		android:layout_marginEnd="15dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		>
-     		<TextView 
-	       		android:id="@+id/user_info_history"  
-	    		android:layout_width="wrap_content" 
-	           	android:layout_height="wrap_content" 
-	           	android:textSize="16sp"
-	           	android:textColor="#999999"
-	           	android:text="@string/my_activity_tv_user_info_history"
-	           	android:gravity="center_vertical"
-	           	android:layout_marginStart="20dp"
-	           	android:drawableStart="@drawable/ico_history"
-	           	android:drawablePadding="20dp"
-   				android:paddingTop="5dp"
-          	 	android:paddingBottom="5dp"
-	            />
-     		
-	   		<ImageView
-		      	android:layout_width="wrap_content" 
-		        android:layout_height="wrap_content"
-	           	android:layout_alignParentEnd="true"
-	           	android:paddingStart="10dp"
-	           	android:paddingEnd="10dp"
-	           	android:layout_centerVertical="true"
-		        android:src="@drawable/arrow_right"/>
-	</RelativeLayout>
-	
-    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ico_history"
+            android:contentDescription="@string/my_activity_tv_user_info_history"
+            android:gravity="center_vertical"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/user_info_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/my_activity_tv_user_info_history"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:src="@drawable/arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/my_activity_rl_check_update"
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="15dp"
-		android:layout_marginEnd="15dp"
-		android:layout_marginTop="15dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		>
-         <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ico_peoplemsg"
+            android:contentDescription="@string/set_activity_tv_check_update_value"
+            android:gravity="center_vertical"
+            android:scaleType="centerInside" />
+
+        <TextView
             android:id="@+id/my_activity_tv_check_update"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:drawablePadding="20dp"
-            android:drawableStart="@drawable/ico_peoplemsg"
             android:gravity="center_vertical"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
@@ -297,37 +338,42 @@
             android:textColor="#999999"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/my_activity_tv_version_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:gravity="end"
             android:paddingEnd="10dp"
-            android:paddingStart="10dp"
-            android:text=""
-            android:textColor="#999999"
-            android:drawablePadding="10dp"
-            />
-	</RelativeLayout>
-	
-    <RelativeLayout  
-   	    android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="10dp"
-		android:layout_marginTop="15dp"
-		android:background="@color/white"
-		android:gravity="center_vertical"
-		>
-   		   <Button
-	        android:id="@+id/my_activity_bt_logout"
-	        android:background="#49c6bd"
-	        android:textColor="@color/white"
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:gravity="center"
-        	android:text="@string/my_activity_btn_logout"/>
-	</RelativeLayout>
+            android:paddingStart="10dp" >
+
+            <TextView
+                android:id="@+id/my_activity_tv_version_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text=""
+                android:textColor="#999999" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/my_activity_bt_logout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#49c6bd"
+            android:gravity="center"
+            android:text="@string/my_activity_btn_logout"
+            android:textColor="@color/white" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,13 +28,13 @@ public class MRMyActivity extends Activity {
 	
 	private ImageButton iBtn_help;
 	//个人资料
-	private RelativeLayout rlUserInfo;
+	private LinearLayout rlUserInfo;
 	//我的变化
-	private RelativeLayout rlChanges;
+	private LinearLayout rlChanges;
 	//历史记录
-	private RelativeLayout rlHistory;
+	private LinearLayout rlHistory;
 	//设置
-	private RelativeLayout rlSetting;
+	private LinearLayout rlSetting;
 	
 	private TextView tv_nickName;
 
@@ -80,7 +81,7 @@ public class MRMyActivity extends Activity {
  			}
 		});
 		
-		rlUserInfo = (RelativeLayout) this.findViewById(R.id.my_activity_rl_user_info);
+		rlUserInfo = (LinearLayout) this.findViewById(R.id.my_activity_rl_user_info);
 		rlUserInfo.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				//个人资料
@@ -95,7 +96,7 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
-		rlChanges = (RelativeLayout) this.findViewById(R.id.my_activity_rl_changes);
+		rlChanges = (LinearLayout) this.findViewById(R.id.my_activity_rl_changes);
 		rlChanges.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				//埋点统计
@@ -106,7 +107,7 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
-		rlHistory = (RelativeLayout) this.findViewById(R.id.my_activity_rl_history);
+		rlHistory = (LinearLayout) this.findViewById(R.id.my_activity_rl_history);
 		rlHistory.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				//埋点统计
@@ -116,7 +117,7 @@ public class MRMyActivity extends Activity {
 			}
 		});
 		
-		rlSetting = (RelativeLayout) this.findViewById(R.id.my_activity_rl_check_update);
+		rlSetting = (LinearLayout) this.findViewById(R.id.my_activity_rl_check_update);
 		rlSetting.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 //				Intent intent = new Intent(v.getContext(), MRSetActivity.class);

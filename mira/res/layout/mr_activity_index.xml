@@ -240,9 +240,10 @@
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_head"
                                 android:layout_width="110dp"
-                                android:layout_height="15dp"
-                                android:gravity="end"
-                                android:orientation="vertical" >
+                                android:layout_height="20dp"
+                                android:gravity="end|bottom"
+                                android:orientation="vertical" 
+                                >
 
                                 <TextView
                                     android:id="@+id/index_activity_tv_head"
@@ -256,16 +257,18 @@
                                     android:id="@+id/view_line"
                                     android:layout_width="match_parent"
                                     android:layout_height="0.8dp"
-                                    android:background="#efeff4" >
+                                    android:background="#efeff4" 
+                                    android:visibility="gone"
+                                    >
                                 </View>
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_face"
                                 android:layout_width="70dp"
-                                android:layout_height="15dp"
-                                android:layout_marginTop="45dp"
-                                android:gravity="end"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="35dp"
+                                android:gravity="end|bottom"
                                 android:orientation="vertical" >
 
                                 <TextView
@@ -279,16 +282,18 @@
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="0.8dp"
-                                    android:background="#efeff4" >
+                                    android:background="#efeff4" 
+                                    android:visibility="gone"
+                                    >
                                 </View>
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_nose"
                                 android:layout_width="110dp"
-                                android:layout_height="15dp"
+                                android:layout_height="20dp"
                                 android:layout_marginTop="5dp"
-                                android:gravity="end"
+                                android:gravity="end|bottom"
                                 android:orientation="vertical" >
 
                                 <TextView
@@ -302,16 +307,18 @@
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="0.8dp"
-                                    android:background="#efeff4" >
+                                    android:background="#efeff4" 
+                                    android:visibility="gone"
+                                    >
                                 </View>
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_chin"
                                 android:layout_width="110dp"
-                                android:layout_height="15dp"
-                                android:layout_marginTop="25dp"
-                                android:gravity="end"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="end|bottom"
                                 android:orientation="vertical" >
 
                                 <TextView
@@ -325,7 +332,9 @@
                                 <View
                                     android:layout_width="match_parent"
                                     android:layout_height="0.8dp"
-                                    android:background="#efeff4" >
+                                    android:background="#efeff4" 
+                                    android:visibility="gone"
+                                    >
                                 </View>
                             </LinearLayout>
                         </LinearLayout>
@@ -337,13 +346,16 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginTop="40dp"
+                            android:layout_marginStart="5dp"
                             android:gravity="start"
                             android:orientation="vertical" >
 
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_head_value"
                                 android:layout_width="40dp"
-                                android:layout_height="15dp" >
+                                android:layout_height="20dp" 
+                                android:gravity="bottom"
+                                >
 
                                 <TextView
                                     android:id="@+id/index_activity_tv_head_value"
@@ -351,7 +363,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="44"
                                     android:textColor="#81d8cf"
-                                    android:textSize="12sp" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:id="@+id/index_activity_iv_head_waring"
@@ -365,8 +377,10 @@
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_face_value"
                                 android:layout_width="40dp"
-                                android:layout_height="15dp"
-                                android:layout_marginTop="45dp" >
+                                android:layout_height="20dp"
+                                android:layout_marginTop="35dp" 
+                                android:gravity="bottom"
+                                >
 
                                 <TextView
                                     android:id="@+id/index_activity_tv_face_value"
@@ -374,7 +388,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="55"
                                     android:textColor="#81d8cf"
-                                    android:textSize="12sp" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:id="@+id/index_activity_iv_face_waring"
@@ -388,8 +402,10 @@
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_nose_value"
                                 android:layout_width="40dp"
-                                android:layout_height="15dp"
-                                android:layout_marginTop="5dp" >
+                                android:layout_height="20dp"
+                                android:layout_marginTop="5dp" 
+                                android:gravity="bottom"
+                                >
 
                                 <TextView
                                     android:id="@+id/index_activity_tv_nose_value"
@@ -397,7 +413,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="77"
                                     android:textColor="#81d8cf"
-                                    android:textSize="12sp" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:id="@+id/index_activity_iv_nose_waring"
@@ -411,8 +427,10 @@
                             <LinearLayout
                                 android:id="@+id/index_activity_ly_chin_value"
                                 android:layout_width="40dp"
-                                android:layout_height="15dp"
-                                android:layout_marginTop="25dp" >
+                                android:layout_height="20dp"
+                                android:layout_marginTop="10dp" 
+                                android:gravity="bottom"
+                                >
 
                                 <TextView
                                     android:id="@+id/index_activity_tv_chin_value"
@@ -420,7 +438,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="66"
                                     android:textColor="#81d8cf"
-                                    android:textSize="12sp" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:id="@+id/index_activity_iv_chin_waring"

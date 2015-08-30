@@ -108,6 +108,11 @@ public class MRDetectionActivity extends Activity {
 	/**
 	 * 时间戳
 	 */
+	private long timestampWater = 0l;
+	
+	/**
+	 * 时间戳
+	 */
 	private long timestamp = 0l;
 	
 	/**
@@ -533,15 +538,15 @@ public class MRDetectionActivity extends Activity {
 		long endTime = DateUtil.getTimesNight();
 		//系统平均水分
 		//int average = 30 + (int) (Math.random() * 10);
-		if (timestamp == 0l) {
+		if (timestampWater == 0l) {
 			average = new Random().nextInt(5) + 36;
-			timestamp = System.currentTimeMillis();
+			timestampWater = System.currentTimeMillis();
 			
 		} else {
 			//超过5分钟重新设置随机数
-			if(System.currentTimeMillis() - timestamp > 5*60*1000){
+			if(System.currentTimeMillis() - timestampWater > 5*60*1000){
 				average = new Random().nextInt(5) + 36;
-				timestamp = System.currentTimeMillis();
+				timestampWater = System.currentTimeMillis();
 			}
 		}
 		//我的平均水分

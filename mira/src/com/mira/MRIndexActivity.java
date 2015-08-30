@@ -63,6 +63,7 @@ import com.common.MiraConstants;
 import com.common.StringUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.model.TestModel;
 import com.service.BluetoothService;
 import com.umeng.analytics.MobclickAgent;
 import com.utils.DateUtil;
@@ -736,10 +737,21 @@ public class MRIndexActivity extends Activity implements
 			long startTime = DateUtil.getTimesMorning(curDate);
 			//结束时间
 			long endTime = DateUtil.getTimesNight(curDate);
-			int headValue = MRTestBLL.getTestMax(MiraConstants.PART_HEAD, startTime, endTime, MRIndexActivity.this);
-			int faceValue = MRTestBLL.getTestMax(MiraConstants.PART_FACE, startTime, endTime, MRIndexActivity.this);
-			int noseValue = MRTestBLL.getTestMax(MiraConstants.PART_NOSE, startTime, endTime, MRIndexActivity.this);
-			int chinValue = MRTestBLL.getTestMax(MiraConstants.PART_CHIN, startTime, endTime, MRIndexActivity.this);
+			TestModel headModel = MRTestBLL.getTestModel4Today(MiraConstants.PART_HEAD, MRIndexActivity.this, startTime, endTime);
+			int headValue = headModel.shuiFen;
+			int headScore = headModel.score;
+			
+			TestModel faceModel = MRTestBLL.getTestModel4Today(MiraConstants.PART_FACE, MRIndexActivity.this, startTime, endTime);
+			int faceValue = faceModel.shuiFen;
+			int faceScore = faceModel.score;
+			
+			TestModel noseModel = MRTestBLL.getTestModel4Today(MiraConstants.PART_NOSE, MRIndexActivity.this, startTime, endTime);
+			int noseValue = noseModel.shuiFen;
+			int noseScore = noseModel.score;
+			
+			TestModel chinModel = MRTestBLL.getTestModel4Today(MiraConstants.PART_CHIN, MRIndexActivity.this, startTime, endTime);
+			int chinValue = chinModel.shuiFen;
+			int chinScore = chinModel.score;
 			
 			int compareValue = 30;
 			
@@ -756,36 +768,44 @@ public class MRIndexActivity extends Activity implements
 //				minValue = chinValue;
 //			}
 			
-			tvHeadValue.setText(String.valueOf(headValue));
+			tvHeadValue.setText(String.valueOf(headScore));
 			if(headValue < compareValue){
-				ivHeadWaring.setVisibility(View.VISIBLE);
+				if(noseValue > 0){
+					ivHeadWaring.setVisibility(View.VISIBLE);
+				}
 				tvHeadValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
 				ivHeadWaring.setVisibility(View.GONE);
 				tvHeadValue.setTextColor(Color.parseColor("#81d8cf"));
 			}
 			
-			tvFaceValue.setText(String.valueOf(faceValue));
+			tvFaceValue.setText(String.valueOf(faceScore));
 			if(faceValue < compareValue){
-				ivFaceWaring.setVisibility(View.VISIBLE);
+				if(noseValue > 0){
+					ivFaceWaring.setVisibility(View.VISIBLE);
+				}
 				tvFaceValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
 				ivFaceWaring.setVisibility(View.GONE);
 				tvFaceValue.setTextColor(Color.parseColor("#81d8cf"));
 			}
 			
-			tvNoseValue.setText(String.valueOf(noseValue));
+			tvNoseValue.setText(String.valueOf(noseScore));
 			if(noseValue < compareValue){
-				ivNoseWaring.setVisibility(View.VISIBLE);
+				if(noseValue > 0){
+					ivNoseWaring.setVisibility(View.VISIBLE);
+				}
 				tvNoseValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
 				ivNoseWaring.setVisibility(View.GONE);
 				tvNoseValue.setTextColor(Color.parseColor("#81d8cf"));
 			}
 			
-			tvChinValue.setText(String.valueOf(chinValue));
+			tvChinValue.setText(String.valueOf(chinScore));
 			if(chinValue < compareValue){
-				ivChinWaring.setVisibility(View.VISIBLE);
+				if(noseValue > 0){
+					ivChinWaring.setVisibility(View.VISIBLE);
+				}
 				tvChinValue.setTextColor(Color.parseColor("#FD9A00"));
 			} else {
 				ivChinWaring.setVisibility(View.GONE);
@@ -800,10 +820,12 @@ public class MRIndexActivity extends Activity implements
 					if (headValue > compareValue && faceValue > compareValue && noseValue > compareValue
 							&& chinValue > compareValue) {
 						tvTodayTestResult.setText("经过若若专业分析，你的脸蛋整体都水汪汪哒，快赶上小baby啦。");
+						tvTodayTestResult.setBottom(10);
 						tvTodayTestRecommend.setVisibility(View.GONE);
 					} else if (headValue < compareValue && faceValue < compareValue && noseValue < compareValue
 							&& chinValue < compareValue) {
 						tvTodayTestResult.setText("哎呀，你长得那么美，为啥脸蛋会干巴巴滴呢？");
+						tvTodayTestRecommend.setVisibility(View.VISIBLE);
 						setTestRecommend();
 					} else {
 						StringBuilder minParts = new StringBuilder();
@@ -828,11 +850,14 @@ public class MRIndexActivity extends Activity implements
 							minParts.append("]");
 						}
 						tvTodayTestResult.setText("经过若若专业分析，发现您脸蛋整体不错，但是"+minParts.toString()+"不是很理想。");
+						tvTodayTestRecommend.setVisibility(View.VISIBLE);
 						setTestRecommend();
 					}
+					
+					llTestName.setVisibility(View.VISIBLE);
+					llTestValue.setVisibility(View.VISIBLE);
 				} else {
-					if(headValue == 0 && faceValue == 0 && noseValue == 0
-							&& chinValue == 0){
+					if(headValue == 0 && faceValue == 0 && noseValue == 0 && chinValue == 0){
 						llTestName.setVisibility(View.GONE);
 						llTestValue.setVisibility(View.GONE);
 					}
@@ -861,7 +886,7 @@ public class MRIndexActivity extends Activity implements
 					if(retBean.getResults() != null && retBean.getResults().size() > 0){
 						CityWeatherBean cityWeather = retBean.getResults().get(0);
 						if(cityWeather != null){
-							int pm25 = cityWeather.getPm25();
+							String pm25 = cityWeather.getPm25();
 							String pm25Desc = getDescForPm(pm25);
 							//设置pm25的值
 							tvPm25.setText(pm25 + pm25Desc);
@@ -911,7 +936,14 @@ public class MRIndexActivity extends Activity implements
 	 * @param pm25 值
 	 * @return 描述
 	 */
-	private String getDescForPm(int pm25){
+	private String getDescForPm(String pm25Str){
+		
+		int pm25 = -1;
+		
+		if(pm25Str.matches("[0-9]+")){
+			pm25 = Integer.parseInt(pm25Str);
+		}
+		
 		StringBuilder ret = new StringBuilder();
 		ret.append("(");
 		if (pm25 <= 50 && pm25 > 0) {
@@ -928,6 +960,10 @@ public class MRIndexActivity extends Activity implements
 			ret.append("严重污染");
 		}
 		ret.append(")");
+		
+		if(pm25 == -1){
+			ret = new StringBuilder();
+		}
 		return ret.toString();
 	}
 	
@@ -1023,7 +1059,8 @@ public class MRIndexActivity extends Activity implements
 				String pathStr2 = imageList.get(2);
 				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr2, myChangeImage2);
 				myChangeDate2.setText(Tools.getDateByPath(pathStr2));
-				
+				myChangeImage2.setVisibility(View.VISIBLE);
+				myChangeImage1.setVisibility(View.VISIBLE);
 			}
 			
 			
@@ -1031,18 +1068,17 @@ public class MRIndexActivity extends Activity implements
 				String pathStr1 = imageList.get(1);
 				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr1, myChangeImage1);
 				myChangeDate1.setText(Tools.getDateByPath(pathStr1));
-				
 			}
 			
 			if (imageList.size() > 0) {
 				String pathStr0 = imageList.get(0);
 				ImageLoader.getInstance(3, Type.LIFO).loadImage(pathStr0, myChangeImage0);
 				myChangeDate0.setText(Tools.getDateByPath(pathStr0));
-				
 			}
 			
 			if(imageList.size() == 2){
 				myChangeImage2.setVisibility(View.INVISIBLE);
+				myChangeImage1.setVisibility(View.VISIBLE);
 			}
 			
 			if(imageList.size() == 1){
