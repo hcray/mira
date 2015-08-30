@@ -20,11 +20,12 @@ import com.service.BluetoothService;
 import com.umeng.analytics.MobclickAgent;
 import com.utils.Tools;
 import com.utils.UpdateManager;
+import com.view.AvatarView;
 
 public class MRMyActivity extends Activity {
 	private Long mExitTime = 0l;
 	
-	private ImageView ivUserface;
+	private AvatarView ivUserface;
 	
 	private ImageButton iBtn_help;
 	//个人资料
@@ -66,7 +67,7 @@ public class MRMyActivity extends Activity {
 //		tv_sign = (TextView) this.findViewById(R.id.my_activity_sign);
 //		tv_level = (TextView) this.findViewById(R.id.my_activity_level);
 		tv_grades = (TextView) this.findViewById(R.id.my_activity_grades);
-		ivUserface = (ImageView) this.findViewById(R.id.my_activity_userface);
+		ivUserface = (AvatarView) this.findViewById(R.id.my_activity_userface);
 		
 		tv_versionName = (TextView) this.findViewById(R.id.my_activity_tv_version_name);
 		String versionName = Tools.getVerName(this);
