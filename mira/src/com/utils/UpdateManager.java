@@ -106,7 +106,8 @@ public class UpdateManager {
 		User curUser = AppContext.getInstance().getLoginUser();
 		String UserId = curUser.getUserId();
 		String UUID = AppContext.getInstance().getAppId();
-		HttpKit.versionDetection(UUID, UserId, 1, 1, handler);
+		int verCode = Tools.getVerCode(AppContext.context());
+		HttpKit.versionDetection(UUID, UserId, 1, verCode, handler);
 	}
 	
 	/**
@@ -120,13 +121,12 @@ public class UpdateManager {
 			Gson gson = new Gson();
 			VersionResultBean retBean = gson.fromJson(response.toString(), VersionResultBean.class);
 			//TODO
-			retBean.setResultCode(0);
+			//retBean.setResultCode(0);
 			//成功
 			if(retBean.getResultCode() == 0){
-				retBean.setId(2);
-				retBean.setUrl("http://cyy2hxh.tunnel.mobi/TaxiAppUpateServer/download/mira.apk");
-				retBean.setName("mira2.0");
-				
+				//retBean.setId(2);
+				//retBean.setUrl("http://cyy2hxh.tunnel.mobi/TaxiAppUpateServer/download/mira.apk");
+				//retBean.setName("mira2.0");
 				Log.d("UpdateManager", retBean.toString());
 				mHashMap.put("version", retBean.getCode());
 				mHashMap.put("name", retBean.getName());
