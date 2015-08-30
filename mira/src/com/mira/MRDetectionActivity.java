@@ -520,7 +520,10 @@ public class MRDetectionActivity extends Activity {
 			List<Integer> x_coord_values = new ArrayList<Integer>();
 			for (int i = 0; i < size; i++) {
 				// 只显示七条记录
-				x_coords.add(String.valueOf(i + 1));
+				long milliseconds = dayList.get(i).time;
+				String xTime = DateUtil.getHourMinute(milliseconds);
+				//x_coords.add(String.valueOf(i + 1));
+				x_coords.add(xTime);
 				x_coord_values.add((int) dayList.get(i).shuiFen);
 			}
 			lcv.setBgColor(Color.WHITE);
