@@ -254,7 +254,7 @@
                     android:layout_marginStart="5dp"
                     android:background="#e4f3f2"
                     android:gravity="center"
-                    android:text=""
+                    android:text="0"
                     android:textColor="#81d8cf"
                     android:textSize="40sp"
                     android:textStyle="bold" />

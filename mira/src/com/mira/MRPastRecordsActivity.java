@@ -492,6 +492,9 @@ public class MRPastRecordsActivity extends Activity {
 
 					}
 					tvAvgScore.setText(String.valueOf(avgScore));
+				} else{
+					//没有值，设置平均水分为0
+					tvAvgScore.setText(String.valueOf(avgScore));
 				}
 			} catch (ParseException e) {
 				e.printStackTrace();
