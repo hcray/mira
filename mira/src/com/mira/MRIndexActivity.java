@@ -1,6 +1,10 @@
 package com.mira;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,9 +23,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -508,6 +516,8 @@ public class MRIndexActivity extends Activity implements
 				ivIndexPhoto.setImageBitmap(bitmap);
 			}
 		}
+		//保存背景图片
+		saveDefaultIndexPic();
 		
 		//设置显示的数据
 		showTestRet(true);
@@ -609,7 +619,12 @@ public class MRIndexActivity extends Activity implements
             	String selectImgPath = ImageUtils.getAbsoluteImagePath(this, selectImgUri);
             	Log.v(TAG, "onActivityResult selectImgPath = " + selectImgPath);
             	AppContext.getInstance().setIndexImgPath(selectImgPath);
-            	ivIndexPhoto.setImageURI(selectImgUri);
+            	if(selectImgPath.contains("index/index.png")){
+            		Log.v(TAG, "onActivityResult set default index.png");
+            		ivIndexPhoto.setImageResource(R.drawable.index_photo);
+            	}else{
+            		ivIndexPhoto.setImageURI(selectImgUri);
+            	}
             }
             
             //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
@@ -1144,7 +1159,44 @@ public class MRIndexActivity extends Activity implements
             
         }
     }
-	
+    
+    private void saveDefaultIndexPic(){
+        Resources res = getResources();
+        Drawable drawable = res.getDrawable(R.drawable.index_photo);
+        //实际上这是一个BitmapDrawable对象
+        BitmapDrawable bitmapDrawable=(BitmapDrawable)drawable;
+        //可以在调用getBitmap方法，得到这个位图
+        Bitmap bitmap=bitmapDrawable.getBitmap();
+        
+        String savePath = Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/mira/index/index.png";
+        File indexFile = new File(savePath);
+		if (indexFile.exists()) {
+
+		} else {
+			File file = new File(savePath.substring(0,
+					savePath.lastIndexOf(File.separator)));
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+			
+			BufferedOutputStream bos;
+			try {
+				bos = new BufferedOutputStream(new FileOutputStream(savePath));
+				bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+				bos.flush();
+				bos.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+			Uri uri = Uri.fromFile(file);
+			intent.setData(uri);
+			this.sendBroadcast(intent);
+		}
+    }
 	
 	/**
 	 * 监听返回--是否退出程序
