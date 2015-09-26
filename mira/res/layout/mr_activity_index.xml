@@ -221,6 +221,7 @@
                         android:layout_height="200dp" >
 
                         <ImageView
+                            android:id="@+id/index_activity_iv_index_photo"
                             android:layout_width="match_parent"
                             android:layout_height="fill_parent"
                             android:scaleType="centerInside"

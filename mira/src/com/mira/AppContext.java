@@ -185,6 +185,27 @@ public class AppContext extends BaseApplication {
 	}
 	
 	/**
+	 * 首页背景图片的路径
+	 * @return
+	 */
+	public String getIndexImgPath(){
+		SharedPreferences preferences = context().getSharedPreferences("user", Context.MODE_PRIVATE);
+		String indexImgPath = preferences.getString("user.indexImgPath", "");
+		return indexImgPath;
+	}
+	
+	/**
+	 * 首页背景图片的路径
+	 * @return
+	 */
+	public void setIndexImgPath(String path){
+		SharedPreferences preferences = context().getSharedPreferences("user", Context.MODE_PRIVATE);
+		Editor editor = preferences.edit();
+		editor.putString("user.indexImgPath", path);
+		editor.commit();
+	}
+	
+	/**
 	 * 今天推荐的DIY面膜
 	 * @return
 	 */

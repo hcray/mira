@@ -19,11 +19,15 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -68,6 +72,7 @@ import com.service.BluetoothService;
 import com.umeng.analytics.MobclickAgent;
 import com.utils.DateUtil;
 import com.utils.HttpKit;
+import com.utils.ImageUtils;
 import com.utils.Tools;
 
 public class MRIndexActivity extends Activity implements
@@ -218,6 +223,10 @@ public class MRIndexActivity extends Activity implements
 	 */
 	private String city;
 	
+	/**
+	 * 背景图片
+	 */
+	private ImageView ivIndexPhoto;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -479,6 +488,27 @@ public class MRIndexActivity extends Activity implements
 			}
 		});
 		
+		//更换背景图片
+		ivIndexPhoto = (ImageView) this.findViewById(R.id.index_activity_iv_index_photo);
+		ivIndexPhoto.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startImagePick();
+			}
+		});
+		
+		//设置用户的自定图片
+		String indexImgPath = AppContext.getInstance().getIndexImgPath();
+		Log.d(TAG, "indexImgPath: " + indexImgPath);
+		if(!indexImgPath.isEmpty()){
+			Bitmap bitmap = BitmapFactory.decodeFile(indexImgPath);
+			//Uri selectImgUri = Uri.parse(indexImgPath);
+			//ivIndexPhoto.setImageURI(selectImgUri);
+			if(bitmap != null){
+				ivIndexPhoto.setImageBitmap(bitmap);
+			}
+		}
+		
 		//设置显示的数据
 		showTestRet(true);
 		
@@ -573,6 +603,14 @@ public class MRIndexActivity extends Activity implements
                 return;  
             }
             showMyChangesPic();
+            
+            if(requestCode == 2){
+            	Uri selectImgUri = data.getData();
+            	String selectImgPath = ImageUtils.getAbsoluteImagePath(this, selectImgUri);
+            	Log.v(TAG, "onActivityResult selectImgPath = " + selectImgPath);
+            	AppContext.getInstance().setIndexImgPath(selectImgPath);
+            	ivIndexPhoto.setImageURI(selectImgUri);
+            }
             
             //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
             //String picName = format.format(new Date());
@@ -1087,6 +1125,25 @@ public class MRIndexActivity extends Activity implements
 			}
 		}
 	}
+	
+    /**
+     * 显示图片选择框
+     */
+    private void startImagePick() {
+        Intent intent;
+        if (Build.VERSION.SDK_INT < 19) {
+            intent = new Intent();
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            startActivityForResult(Intent.createChooser(intent, "选择图片"), 2);
+            
+        } else {
+            intent = new Intent(Intent.ACTION_PICK, Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            startActivityForResult(Intent.createChooser(intent, "选择图片"), 2);
+            
+        }
+    }
 	
 	
 	/**
