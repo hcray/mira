@@ -1,11 +1,5 @@
 package com.device;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 import android.bluetooth.BluetoothAdapter;
@@ -16,10 +10,10 @@ import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.ParcelUuid;
 import android.util.Log;
 
 public class MRBluetoothManage {
@@ -40,10 +34,12 @@ public class MRBluetoothManage {
 	static Context context;
 	static BluetoothAdapter bluetoothAdapter;
 	static MRBluetoothEvent bluetoothEvent;
-	static Timer scanTimer;
+	//static Timer scanTimer;
 	static boolean isScanOK;
 	static boolean isInit;
 	static BluetoothGatt bluetoothGatt;
+	
+	private static String mBluetoothDeviceAddress = "";
 
 	public static synchronized int Init(Context context, MRBluetoothEvent event) {
 		Log.d(tag, "init()...");
@@ -58,18 +54,18 @@ public class MRBluetoothManage {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-					bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_NOT_OPEN);
 				}
 			});
+			bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_NOT_OPEN);
 			return MRBLUETOOTHSTATUS_NOT_OPEN;
 		}
 		isInit = true;
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
-				bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_INIT_OK);
 			}
 		});
+		bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_INIT_OK);
 		return MRBLUETOOTHSTATUS_INIT_OK;
 	}
 
@@ -81,18 +77,19 @@ public class MRBluetoothManage {
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
-				bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_START);
 			}
 		});
+		bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_START);
 		bluetoothAdapter.startLeScan(new LeScanCallback() {
 			@Override
-			public void onLeScan(BluetoothDevice arg0, int arg1, byte[] arg2) {
-				ParcelUuid[] uuids = arg0.getUuids();
-				if (!isScanOK && arg0.getName() != null
-						&& arg0.getName().equals(DeviceName)) {
+			public void onLeScan(BluetoothDevice device, int rssi, byte[] arg2) {
+				//ParcelUuid[] uuids = arg0.getUuids();
+				if (!isScanOK && device.getName() != null
+						&& device.getName().equals(DeviceName)) {
+					Log.d(tag, "onLeScan() isScanOK: " + isScanOK);
 					isScanOK = true;
 					stopScan();
-					connect(arg0);
+					connect(device);
 				}
 			}
 		});
@@ -108,16 +105,16 @@ public class MRBluetoothManage {
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
-				bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_START);
 			}
 		});
+		bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_START);
 		bluetoothAdapter.startLeScan(uuids, new LeScanCallback() {
 			@Override
-			public void onLeScan(BluetoothDevice arg0, int arg1, byte[] arg2) {
+			public void onLeScan(BluetoothDevice device, int rssi, byte[] arg2) {
 				if (!isScanOK) {
 					isScanOK = true;
 					stopScan();
-					connect(arg0);
+					connect(device);
 				}
 			}
 		});
@@ -137,6 +134,7 @@ public class MRBluetoothManage {
 
 			}
 		});
+		/*
 		final HashMap<String, BluetoothDevice> deviceHashMap = new HashMap<String, BluetoothDevice>();
 		if (scanTimer != null) {
 			scanTimer.cancel();
@@ -158,28 +156,31 @@ public class MRBluetoothManage {
 					new Handler(Looper.getMainLooper()).post(new Runnable() {
 						@Override
 						public void run() {
-							bluetoothEvent.ResultDevice(deviceList);
 						}
 					});
+					bluetoothEvent.ResultDevice(deviceList);
 				}
 			}
 		}, 1000, 1000);
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
-				bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_START);
 			}
 		});
+		*/
+		bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_START);
 		bluetoothAdapter.startLeScan(new LeScanCallback() {
 
 			@Override
 			public void onLeScan(BluetoothDevice arg0, int arg1, byte[] arg2) {
 				String mac = arg0.getAddress();
+				/*
 				synchronized (deviceHashMap) {
 					if (!deviceHashMap.containsKey(mac)) {
 						deviceHashMap.put(mac, arg0);
 					}
 				}
+				*/
 			}
 		});
 	}
@@ -189,25 +190,24 @@ public class MRBluetoothManage {
 		if (!isInit) {
 			return;
 		}
-		isScanOK = true;
-		if (scanTimer != null) {
-			scanTimer.cancel();
-			scanTimer = null;
-		}
+		isScanOK = false;
+//		if (scanTimer != null) {
+//			scanTimer.cancel();
+//			scanTimer = null;
+//		}
 		if (bluetoothGatt != null) {
 			bluetoothGatt.disconnect();
 			bluetoothGatt.close();
-			bluetoothGatt = null;
+			//bluetoothGatt = null;
 		}
 		bluetoothAdapter.stopLeScan(new LeScanCallback() {
-
 			@Override
 			public void onLeScan(BluetoothDevice arg0, int arg1, byte[] arg2) {
 				// TODO Auto-generated method stub
 
 			}
 		});
-		isInit = false;
+		//isInit = false;
 	}
 
 	public static synchronized void stopScan() {
@@ -215,18 +215,17 @@ public class MRBluetoothManage {
 		if (!isInit) {
 			return;
 		}
-		if (scanTimer != null) {
-			scanTimer.cancel();
-			scanTimer = null;
-		}
+//		if (scanTimer != null) {
+//			scanTimer.cancel();
+//			scanTimer = null;
+//		}
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
-				bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_END);
 			}
 		});
+		bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_SCAN_END);
 		bluetoothAdapter.stopLeScan(new LeScanCallback() {
-
 			@Override
 			public void onLeScan(BluetoothDevice arg0, int arg1, byte[] arg2) {
 				// TODO Auto-generated method stub
@@ -235,19 +234,32 @@ public class MRBluetoothManage {
 		});
 	}
 
-	static void connect(BluetoothDevice Device) {
+	static synchronized void connect(BluetoothDevice device) {
 		Log.d(tag,"connect()");
 		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
-				bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_START);
 			}
 		});
+		
+		bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_START);
 		if (bluetoothGatt != null) {
-			bluetoothGatt.close();
-			bluetoothGatt = null;
+			//bluetoothGatt.close();
+			//bluetoothGatt = null;
 		}
-		bluetoothGatt = Device.connectGatt(context, false,
+		
+		//连接已经存在的情况
+		if (mBluetoothDeviceAddress.equals(device.getAddress())
+				&& bluetoothGatt != null) {
+			Log.d(tag,"connect() device: " + device.getAddress());
+			if (bluetoothGatt.connect()) {
+				Log.d(tag,"connect() return");
+				return;
+			}
+		}
+		
+		Log.d(tag, "重新创建gatt");
+		bluetoothGatt = device.connectGatt(context, false,
 				new BluetoothGattCallback() {
 					@Override
 					public void onCharacteristicRead(final BluetoothGatt gatt,
@@ -260,17 +272,17 @@ public class MRBluetoothManage {
 									.post(new Runnable() {
 										@Override
 										public void run() {
-											bluetoothEvent.ResultData(data);
 										}
 									});
+							bluetoothEvent.ResultData(data);
 							new Handler(Looper.getMainLooper()).postDelayed(
 									new Runnable() {
 
 										@Override
 										public void run() {
-											gatt.readCharacteristic(characteristic);
 										}
 									}, 100);
+							gatt.readCharacteristic(characteristic);
 						} else {
 
 						}
@@ -285,9 +297,9 @@ public class MRBluetoothManage {
 						new Handler(Looper.getMainLooper()).post(new Runnable() {
 									@Override
 									public void run() {
-										bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_OK);
 									}
 								});
+						bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_OK);
 						gatt.readCharacteristic(characteristic);
 						super.onServicesDiscovered(gatt, status);
 					}
@@ -295,25 +307,38 @@ public class MRBluetoothManage {
 					@Override
 					public void onConnectionStateChange(BluetoothGatt gatt,
 							int status, int newState) {
-						Log.d(tag,"onConnectionStateChange()");
-						if (newState == 2) {
-							gatt.discoverServices();
-						} else if (status == 0 && newState == 0) {
+						Log.d(tag,"onConnectionStateChange() status: " + status + " newState: " + newState);
+						if (newState == BluetoothProfile.STATE_CONNECTED) {
+//							 if (status != BluetoothGatt.GATT_SUCCESS) {
+//					                Log.w("Fisken", "Disconnect and close");
+//					                gatt.disconnect();
+//					                gatt.close();
+//					                bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_CLOSE);
+//					           }else{
+//					           }
+							 stopScan();
+							 gatt.discoverServices();
+						//连接已经断开
+						} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+							 if (status != BluetoothGatt.GATT_SUCCESS) {
+					                Log.w("Fisken", "Disconnect and close");
+					                gatt.disconnect();
+					          }
+							//gatt.disconnect();
 							gatt.close();
-							gatt.disconnect();
-							new Handler(Looper.getMainLooper())
-									.post(new Runnable() {
-										@Override
-										public void run() {
-											bluetoothEvent
-													.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_CLOSE);
-										}
-									});
+//							new Handler(Looper.getMainLooper())
+//									.post(new Runnable() {
+//										@Override
+//										public void run() {
+//										}
+//									});
+							bluetoothEvent.ResultStatus(MRBLUETOOTHSTATUS_CONNECT_CLOSE);
 						}
 						super.onConnectionStateChange(gatt, status, newState);
 					}
 				});
 		bluetoothGatt.connect();
+		mBluetoothDeviceAddress = device.getAddress();
 
 	}
 }
