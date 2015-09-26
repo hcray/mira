@@ -144,6 +144,29 @@ public class HttpKit {
 		client.post(MiraConstants.getSensitiveList, params, handler);
 	}
 	
+
+	/**
+	 * 下载检测数据
+	 * @param UUID 设备号
+	 * @param UserId 用户编号
+	 * @param Position 1：额头 2：脸颊 3：鼻子 4：下巴
+	 * @param StartDate 开始时间
+	 * @param EndDate 结束时间
+	 * @param handler
+	 */
+	public static void getDetection(String UUID, 
+			String UserId, int Position, String StartDate, String EndDate,
+			AsyncHttpResponseHandler handler) {
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.add("UUID", UUID);
+		params.add("UserId", UserId);
+		params.add("Position", String.valueOf(Position));
+		params.add("StartDate", StartDate);
+		params.add("EndDate", EndDate);
+		client.post(MiraConstants.getDetection, params, handler);
+	}
+	
 	/**
 	 * 上传检测数据
 	 * @param UUID String 是	设备号

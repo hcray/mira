@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
@@ -34,12 +35,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bean.DetectionBean;
+import com.bean.DetectionRet;
 import com.bean.ResultBean;
+import com.bean.RetUserBean;
+import com.bll.MRTestBLL;
 import com.common.StringUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.model.TestModel;
 import com.model.User;
 import com.umeng.analytics.MobclickAgent;
+import com.utils.DateUtil;
 import com.utils.FileUtil;
 import com.utils.HttpKit;
 import com.utils.ImageUtils;
@@ -297,7 +304,57 @@ public class MRUserInfoActivity extends Activity {
 				 * }else{ user.setSex("female"); }
 				 * AppContext.getInstance().saveUserInfo(user);
 				 */
-				MRUserInfoActivity.this.finish();
+				//MRUserInfoActivity.this.finish();
+				String UUID = AppContext.getInstance().getAppId();
+				User user = AppContext.getInstance().getLoginUser();
+				String UserId = user.getUserId();
+				
+				String endTime = dateFormat.format(new Date());
+				for (int i = 1; i < 5; i++) {
+					HttpKit.getDetection(UUID, UserId, i, "2015-08-01", endTime, new JsonHttpResponseHandler() {
+						
+						@Override
+						public void onFailure(int statusCode, Header[] headers,
+								Throwable throwable, JSONObject errorResponse) {
+							Log.d("", "handler: " + errorResponse);
+						}
+						
+						@Override
+						public void onSuccess(int statusCode, Header[] headers,
+								JSONObject response) {
+							Log.d("", "handler: " + response.toString());
+							Gson gson = new Gson();
+							DetectionRet detectionRet = gson.fromJson(response.toString(), DetectionRet.class);
+							if(detectionRet != null){
+								List<DetectionBean> detectionList = detectionRet.getDetectionList();
+								Log.d("", "detectionList.size(): " + detectionList.size());
+								for (DetectionBean detectionBean : detectionList) {
+									Log.d("", "detectionBean: " + detectionBean.toString());
+									
+									long time = DateUtil.getTimes(detectionBean.getCheckinTime());
+									int part = detectionBean.getPosition();
+									short wenDu = Short.parseShort(detectionBean.getTemperature());
+									short shiDu = Short.parseShort(detectionBean.getHumidity());
+									short shuiFen = Short.parseShort(detectionBean.getWater()); 
+									int score = Integer.parseInt(detectionBean.getScore());
+									
+									TestModel testModel = new TestModel();
+									
+									testModel.time = time;
+									testModel.wenDu = wenDu;
+									testModel.shiDu = shiDu;
+									testModel.shuiFen = shuiFen;
+									testModel.type = part;
+									testModel.score = score;
+									
+									// 保存数据库
+									MRTestBLL.addTestModel(testModel, MRUserInfoActivity.this);
+								}
+							}
+							
+						}
+					});
+				}
 			}
 		});
 		

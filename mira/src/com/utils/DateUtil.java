@@ -1,5 +1,8 @@
 package com.utils;
 
+import android.annotation.SuppressLint;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -241,6 +244,40 @@ public class DateUtil {
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
 		int minute = cal.get(Calendar.MINUTE);
 		return hour + ":" + minute;
+	}
+	
+	/**
+	 * 指定日期的24点的时间
+	 * @param date 指定的日期
+	 * @return 从1970年开始计算的时间
+	 */
+	public static long getTimes(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.setTime(date);
+		return cal.getTimeInMillis();
+	}
+	
+	/**
+	 * 指定日期的24点的时间
+	 * @param date 指定的日期 yyyy-MM-dd HH:mm:ss
+	 * @return 从1970年开始计算的时间
+	 */
+	@SuppressLint("SimpleDateFormat")
+	public static long getTimes(String dateStr) {
+		long ret = 0l;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date;
+		try {
+			date = sdf.parse(dateStr);
+			Calendar cal = Calendar.getInstance();
+			cal.clear();
+			cal.setTime(date);
+			ret = cal.getTimeInMillis();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 	
 	/**
